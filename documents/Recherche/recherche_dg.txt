@@ -1,0 +1,48 @@
+﻿
+
+http://preview.themeforest.net/item/pathwell-senior-care-hospital-wordpress-theme/full_screen_preview/21975739?_ga=2.209998613.1638148060.1570215202-2021091932.1570215177
+(un peu "much") pour ce qui est des zooms, grosses sections avec 1 seul focus,  sinon navigation avec gros boutons (hover un peu much encore.)
+
+http://preview.themeforest.net/item/oak-house-senior-care-retirement-rehabilitation-wordpress-theme/full_screen_preview/19164372?_ga=2.12874738.437138124.1570215213-2021091932.1570215177
+(très simple)
+
+https://themeforest.net/item/happy-seniors-senior-medical-care-wordpress-theme/20188028
+(clicker sur screenshot) (quelques uns sont classes)
+
+
+https://www.seniorlivingforesight.net/is-your-website-optimized-for-older-eyes-heres-what-you-need-to-know/
+parle de comment optimizer les sites pour les personnes agés (exemple: vision jaunis et ils ont plus de misère à distinguer le jaune. même chose avec vert et bleu proche.)
+évident: font size, pas d'image qui tourbillone non-stop   good distance, icones
+
+https://www.nationaltours.fr/  prix, departs dans cards
+
+
+https://www.nationaltours.fr/voyage-circuit/portugal-entre,douro,et,tage-338116.html
+(exemple d'un circuit)  infos et ittinéraire
+
+
+https://vacations.aircanada.com/fr/toutes-les-destinations/europe/portugal
+(genre tu click sur la région qui t'intéresse et propose des circuits genre: plages:  faits saillants:  )
+
+
+https://www.indianholiday.com/blog/travel-circuits-in-india/
+très simple: images des activités et infos claires:  places, temps du circuit, etc...
+
+
+https://www.trafalgar.com/en-ca/tours/t/european-supreme/?season=summer+2020&tripcode=esupc
+(BEST)  nice layout!! about: inclure des liens  ou plus de details
+
+
+
+
+implémentation de google maps
+
+
+Offres: réduction pour membres,  2ième forfait à 75 % (...)
+
+
+
+
+
+
+doit accepter les terms & conditions
