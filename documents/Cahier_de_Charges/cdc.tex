@@ -1,0 +1,160 @@
+\documentclass{scrreprt}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage{graphicx}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\renewcommand{\contentsname}{Table des matières}
+\def\myversion{1.0 }
+\def\projectname{[NOM DU PROJET]}
+\hypersetup{
+    bookmarks=false,    % show bookmarks bar?
+    pdftitle={Cahier de charges - \projectname},    % title
+    pdfauthor={Simon Landry},                       % author
+    pdfsubject={Cahier de charges du site circuit voyages},  % subject of the document
+    pdfkeywords={},        % list of keywords
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,       % color of internal links
+    citecolor=black,       % color of links to bibliography
+    filecolor=black,       % color of file links
+    urlcolor=blue,         % color of external links
+    linktoc=page           % only page is linked
+}
+
+\usepackage{hyperref}
+\begin{document}
+\pagenumbering{gobble}
+\begin{flushright}
+    \rule{16cm}{5pt}\vskip1cm
+    \begin{bfseries}
+        \Huge{CAHIER DE \\ CHARGES}\\
+        \vspace{1.5cm}
+        pour\\
+        \vspace{1.5cm}
+        \projectname\\
+        \vspace{1.5cm}
+        \LARGE{Version \myversion}\\
+        \vspace{1.5cm}
+        Préparé par :\\
+        Nicholas Massé\\
+        David Godin\\
+        Philippe Bourassa\\
+        Simon Landry\\
+        et Keven Aubin\\
+        \vspace{1.5cm}
+        \today\\
+    \end{bfseries}
+\end{flushright}
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\chapter{Présentation du projet}
+
+\projectname est un projet destiné à mettre en place une application
+web afin d'offrir des services similaires à ceux d'une agence de voyage.
+
+Ciblant une clientèle un peu plus précise, l'entreprise a pour but
+d'offrir des voyages hors normes en veillant à ce que toutes les
+demandes et volontés du client soient comblées. Les offres de voyage
+ont un air standardisé mais offrent un tel éventail d'options qu'elles
+font plutôt partie d'une démarche «sur mesure».
+
+Le principe de la compagnie est de développer et d'organiser des
+voyages selon des thématiques spécifiques, appelées des «circuits». Les
+circuits sont destinés à une clientèle internationale et se veulent
+accessibles de n'importe où. Le client ayant sélectionné sa thématique
+de préférence, il pourra construire son voyage en choisissant son
+propre point de départ et point d'arrivée à l'intérieur du circuit
+proposé.
+
+\chapter{Objectifs et environnements}
+\section{Objectifs}
+Se voulant être un projet d'envergure internationale, la mise en place
+de l'application \projectname doit passer par certaines étapes.
+
+Tout d'abord, \projectname a l'intention de se démarquer de ses
+concurrents par son offre de service approfondie, et devra être adaptée
+à tous les types de clientèle. Malgré tout, ses services assez onéreux
+forcent la compagnie à s'adresser à une clientèle plus âgée et devra
+donc axer ses services dans cette direction.
+
+\projectname a la volonté de devenir un leader dans les offres de
+voyages de luxe, et dans cette mesure s'attend à avoir une
+infrastructure technologique appropriée.
+
+
+\section{Environnements}
+La mise en place de l'application web inclut trois branches
+principales: les environnements «Client», «Admin» et «Personnel».
+
+L'environnement «Client» permettra à n'importe quel internaute de
+naviguer sur le site et de prendre connaissance des circuits de voyage
+offerts par la compagnie. Le client aura également la possibilité de
+créer son compte pour avoir accès à l'inscription sur les circuits, à
+des informations personnalisées, à son propre profil ainsi qu'à son
+historique de voyage.
+
+L'environnement «Admin» permettra à l'administrateur ou son mandataire
+de modifier les offres de circuit, de gérer les comptes clients ainsi
+que les promotions et les rabais
+
+L'environnement «Personnel» donnera accès à la gestion des envois de
+promotions et rabais. Il permettra aussi la consultation et la gestion
+des paiements par les clients.
+
+\chapter{Ressources allouées}
+\section{Financement et matériel}
+
+\projectname ne possède pas de limite budgétaire et c'est dans cette
+optique que la qualité de l'application web doit être inégalée. Bien
+qu'une limite temporelle et technologique existe, l'entreprise a
+confiance en l'équipe de développement en ce qui a trait à la gestion
+des ressources matérielles.
+
+\section{Équipe de développement}
+
+La compagnie fait appel à une équipe de jeunes développeurs composée de
+finissants du niveau collégial québécois. Leurs origines
+professionnelles et personnelles sont diversifiées et en font un atout
+principal.
+
+Ci-dessous se trouve un petit descriptif de chacun des membres de
+l'équipe de développement.
+
+\subsection{Keven Aubin}
+
+Keven Aubin est un développeur web terminant sa formation au Collège de
+Maisonneuve. Son expérience en développement front-end et back-end en
+feront un membre polyvalent de l'équipe.
+Expérimenté à la tâche de Scrum Master, Keven saura mener l'équipe dans
+ce rôle lors des scrums journaliers et saura protéger l'équipe des
+obstacles et distractions qui l'entourent.
+Titulaire d'un diplôme de droit notarial, ce développeur utilise son
+expérience de la communication pour mieux communiquer avec le client et
+ainsi comprendre plus facilement les besoins et désirs du maître
+d'ouvrage.
+
+\subsection{Philippe Bourassa}
+
+[...]
+
+\subsection{Simon Landry}
+
+Simon Landry est un développeur back-end terminant sa formation au Collège de Maisonneuve.
+Son expertise en développement sur divers projets «Open Source», qui s'échelonne sur plus d'une dizaine d'années,
+lui permettera de conseiller ses collègues sur les meilleures pratiques de développement et les multiple outils qui entourent le développement.
+Après une année au sein des Forces Armées Canadiennes en tant qu'officier, ce développeur saura utiliser ses compétences en leadership pour mener le projet à termes.
+
+\subsection{David Godin}
+
+[...]
+
+\subsection{Nicholas Massé}
+
+[...]
+
+
+\end{document}
