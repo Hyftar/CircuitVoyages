@@ -18,6 +18,48 @@
   - Règles d'optimisation et d'ergonomie pour les personnes agées
 
 
+- https://www.crossrope.com/
+  - Beaucoup d'imagines
+  - Belle présentation de l'information
+
+
+- https://www.newchapter.com/
+  - Beau layout
+  - Information bien disposée
+  - Belle couleurs
+
+
+- https://zikzak.com.ua/en/
+  - Navigation claire
+  - Facile de savoir où cliquer
+
+
+- https://www.padstowbreaks.com
+  - Belles animations
+  - Information bien disposée
+  - Belle landing page
+
+
+- https://www.pygmy-elephant.com
+  - Très belle landing page
+  - Utilisation simple
+  - Pas surchargé
+  - Beaux thèmes
+
+
+- https://seastreak.com
+  - Beaux itinéraires
+  - Information sur chaque circuit bien disposée
+  - Très clair
+  - Tout l'information importante est facile d'accès
+
+
+- https://hospitalrun.io
+  - Bel exemple de «Single Page Application»
+  - Facile d'utilisation
+  - Intuitif
+
+
 ## Sites offrant un service similaire
 
 - https://www.nationaltours.fr
@@ -40,3 +82,25 @@
     - Reviews
     - Liste de ce qui est inclus
     - Photos
+
+
+- http://www.uniktour.com/
+  - Belle présentation des voyages par activité
+  - Cards
+
+
+- https://www.objectifmonde.com/
+  - Exemple de belle landing page
+  - Page pas trop chargée
+
+
+- https://www.friendlyplanet.com
+  - Belle disposition de l'information
+  - Checklist
+  - Exemple de réservation de voyage «complète»
+
+
+- https://www.transat.com/fr-CA/Sud/Costa-Rica/Liberia/Circuit/Les-tresors-du-Costa-Rica?opentab=photo&gateway=YUL&day=fri&tiles=2019_2020:importantInfo,aboutYourProduct,itinerary,inclusions,highlights,accommodation#2019_2020
+  - Bel exemple d'information bien disposée pour un circuit
+  - Villes et places visitées clair et bien disposé
+  - Beau carousel avec les images
