@@ -149,38 +149,134 @@ d'ouvrage.
 
 \subsection{Philippe Bourassa}
 
-[...]
+Philippe Bourassa est un développeur full-stack qui termine ses études en
+informatique au Collège de Maisonneuve. Sa capacité d'apprendre par lui-même et
+sa grande expérience académique aideront beaucoup son équipe à mener le projet à
+terme.
+
 
 \subsection{Simon Landry}
 
 Simon Landry est un développeur back-end terminant sa formation au Collège de
-Maisonneuve.
-
-\paragraph{}
-Son expertise en développement sur divers projets «Open Source», qui s'échelonne
-sur plus d'une dizaine d'années,
-lui permettera de conseiller ses collègues sur les meilleures pratiques de
-développement et les multiple outils qui entourent le développement.
-Après une année au sein des Forces Armées Canadiennes en
-tant qu'officier, ce développeur saura utiliser ses
+Maisonneuve. Son expertise en développement sur divers projets «Open Source»,
+qui s'échelonne sur plus d'une dizaine d'années, lui permettera de conseiller
+ses collègues sur les meilleures pratiques de développement et les multiple
+outils qui entourent le développement. Après une année au sein des
+Forces Armées Canadiennes en tant qu'officier, ce développeur saura utiliser ses
 compétences en leadership pour mener le projet à termes.
 
 \subsection{David Godin}
 
-[...]
+David termine présentement ses études en informatique de gestion en tant que
+programmeur analyste au Cégep de Maisonneuve tout comme le reste de ses
+coéquippiers. Grâce à son experience de plus de 5 ans au sein d'une équipe
+dynamique au service à la clientèle, sa capacité à communiquer et à effectuer
+plusieurs tâches simultanément saura aider les membres pour la réussite de
+l'équipe.
 
 \subsection{Nicholas Massé}
 
-Issu du domaine de la restauration et de la sommellerie,
-Nicholas finit présentement ses études en développement
-web au Collège de Maisonneuve.
+Issu du domaine de la restauration et de la sommellerie, Nicholas finit
+présentement ses études en développement web au Collège de Maisonneuve.
+Il sait donc travailler sous pression et aime relever les défis à travers les
+projets qu'il entreprend. Ses connaissances en sommellerie sont aussi
+étroitement liées au tourisme européen. Utilisées conjointement avec sa forte
+créativité, elles feront de lui un atout majeur pour l'équipe de développement.
+
+
+\chapter{Besoins}
+L’application web élaborée devra permette au propriétaire du logiciel de gérer
+des circuits de voyage sur Internet. Elle devra également permettre aux
+administrateurs de la plateforme d’accéder aux informations des membres du site
+et aux informations financières des commandes passées. Elle permettra également
+de faire parvenir aux clients des promotions particulières. Elle devra
+permettre aux visiteurs de la plateforme de consulter les différents circuits
+offerts à l’achat, classés par catégorie, et de consulter les détails de ceux-
+ci.
 
 \paragraph{}
-Il sait donc travailler sous pression et aime relever les
-défis au travers des projets qu'il entreprend. Ses
-connaissances en sommellerie sont aussi étroitement liées
-au tourisme européen. Utilisées conjointement avec sa forte créativité, elles
-feront de lui un atout majeur pour l'équipe de
-développement.
+Une fois enregistré et connecté à l’aide d’un compte Google ou Facebook, ou
+encore à l’aide d’un nom d’utilisateur et d’un mot de passe, le visiteur
+devient client enregistré et peut personnaliser son circuit. Il peut ajouter un
+circuit au panier, puis commander le contenu du panier. Il peut payer l’acompte
+ou toute somme restante à l’aide d’un compte PayPal. Il peut modifier ou
+annuler le circuit après la commande de celui-ci. Le client peut également
+recevoir, s’il le désire, des promotions, des informations sur de nouveaux
+circuits ou d’autres informations utiles.
 
+\paragraph{}
+Les normes graphiques du projet devront avoir été élaborées pour le projet,
+incluant le choix d’une marque, d’un logo et d’une palette de couleurs.
+
+\paragraph{}
+Un API devra être développé afin de fournir les données sur les circuits à une
+application mobile disponible sur la plateforme Android, elle aussi développée
+dans le cadre de ce projet.
+
+
+\chapter{Contraintes}
+L’application devra être de type single page et devra être conçue avec Angular
+JS, Bootstrap et JSON. Elle devra utiliser un backend PHP orienté objet ainsi
+qu’une base de données MariaDB respectant les trois premières lois normales.
+Toutes les données devront être validées avant d’être ajoutées à la base
+de données. Les circuits en cours de création devront pouvoir être sauvegardés
+afin de pouvoir être complétés plus tard. L’application web devra être hébergée
+et accessible aux clients. Elle devra être disponible en français, anglais et
+en espagnol.
+
+\chapter{Élaboration des normes graphiques}
+
+\section{Élaboration de la marque}
+Afin de bien représenter la marque auprès des clients, nous cherchions une
+marque répondant à 3 critères. Elle devait être originale, simple et
+disponible. Nous avons également cherché à développer une marque qui ne
+mentionnait pas le voyage, afin de diversifier les produits attachés à celle-ci
+au courant des prochaines années, si le client le désire.
+C’est ainsi que la marque Le labernois a été développée.
+Le labernois tire son nom d’une nouvelle race de chiens développée en 1996 au
+Québec par la fondation MIRA1. Créé d’un croisement entre un bouvier bernois et
+d’un retriever du Labrador, ce chien a spécialement été développé afin d’offrir
+aux personnes handicapées une assistance essentielle.
+Le chien représente un ami, un partenaire. On lui accorde sa confiance et on
+lui reconnait une grande loyauté. En choisissant une race créée au Québec, on
+associe la marque à la province, sans pour autant nuire à l’exportation de la
+marque.
+
+\paragraph{}
+Aucune marque utilise cette race de chien dans ses activités. Les noms de
+domaine labernois et lelabernois ne sont pas utilisés, qu’ils soient suivis de
+.ca ou de .com. Le nom est simple à retenir et est traduisible au besoin en
+anglais par The Labernese. Les différents noms de domaine anglophones sont tous
+disponibles, sauf labernese.com qui est enregistré mais n’est pas utilisé.
+
+\newpage
+
+\section{Élaboration du logo}
+Afin de bien représenter la marque, le chien devait être en mis en valeur dans
+l’élaboration du logo. Il devait paraître confiant, majestueux et regarder vers
+l’avenir.
+
+\paragraph{}
+Nous avons également opté pour la présence du triangle, dont les lignes droites
+et précises témoignent du professionnalisme et de l’efficacité de
+l’organisation2. La pointe de celui-ci devra être vers la droite, afin de
+témoigner d’un sentiment d’avancement, d’avenir.
+Les couleurs devront être celles du chien, mais également devront s’adapter aux
+couleurs choisies dans la palette de couleurs. En changeant la couleur d’un
+élément de l’arrière-plan du logo tout en conservant la forme ce celui-ci, le
+logo pourra s’adapter aux différents besoins visuels tout en étant facilement
+identifiable.\\
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{images/logo.png}
+\end{center}
+\section{Élaboration de la palette de couleurs}
+Afin de respecter les demandes du client, nous avons opté pour une palette de
+couleurs rappelant les voyages. Nous avons donc opté pour des couleurs
+rappelant le sable et l’eau, afin de rappeler aux clients les belles plages du
+monde. Les bleus serviront à attirer l’attention de l’utilisateur de la
+plateforme web, alors que le crème servira de fond à nos différents éléments
+graphiques. \\
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{images/palettev2.png}
+\end{center}
 \end{document}
