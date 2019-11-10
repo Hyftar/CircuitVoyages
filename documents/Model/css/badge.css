@@ -1,0 +1,77 @@
+.badge {
+  top: -1.5em;
+  right: -1.5em;
+  position: absolute;
+  border-radius: 0;
+  width: 5em;
+  height: 5em;
+  padding: 0;
+}
+
+.badge,
+.badge > div,
+.badge > div::after,
+.badge > div::before,
+.badge::after,
+.badge::before {
+  background-color: #ff8314cc;
+}
+
+.badge > div,
+.badge > div::after,
+.badge > div::before,
+.badge::after,
+.badge::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.badge::before {
+  transform: rotate(15deg);
+}
+
+.badge > div::before {
+  /* -15 deg relative to the div */
+  transform: rotate(-15deg);
+}
+
+.badge > div {
+  transform: rotate(45deg);
+}
+
+.badge > div::after {
+  /* 15 deg relative to the div */
+  transform: rotate(15deg);
+}
+
+.badge::after {
+  transform: rotate(75deg);
+}
+
+
+.badge > span {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 1.3em;
+  z-index: 1;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  text-transform: uppercase;
+  font-style: italic;
+  font-family: 'Fugaz One', cursive;
+  color: white;
+  text-shadow: black 2px 1px 0px;
+}

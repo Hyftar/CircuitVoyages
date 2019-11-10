@@ -1,0 +1,53 @@
+.ribbon {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  width: 100%;
+  height: 50%;
+}
+
+.ribbon__center {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ribbon__center > div {
+  background-color: red;
+  text-align: center;
+  border-top: 3px solid #700909;
+  border-bottom: 3px solid #700909;
+  transform: rotate(-25deg);
+  top: 2rem;
+  left: -4rem;
+  position: relative;
+  font-family: 'Fugaz One', cursive;
+  text-shadow: black 1px 1px 1px;
+  color: white;
+  font-style: italic;
+}
+
+.ribbon__bottom {
+  position: absolute;
+  top: 70px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid #BF0000;
+  border-left: 10px solid transparent;
+  border-bottom: 15px solid #BF0000;
+  background-color: transparent;
+}
+
+.ribbon.ribbon--green > .ribbon__center > div {
+  background-color: #006F26;
+  border-top: 3px solid #014618;
+  border-bottom: 3px solid #014618;
+}
+
+.ribbon.ribbon--green > .ribbon__bottom {
+  border-top: 15px solid #026100;
+  border-bottom: 15px solid #026100;
+}
