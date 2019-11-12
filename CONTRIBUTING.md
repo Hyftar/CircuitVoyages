@@ -6,25 +6,51 @@
 
 1. Installer Chocolatey
 
-https://chocolatey.org/install
+    https://chocolatey.org/install
 
-2. Installer les package managers avec Chocolatey
+2. Installer les package managers avec Chocolatey dans Powershell en mode Admin
 
-`choco install nvm npm composer`
+    `choco install nvm composer`
+
+    Redémarrer Powershell, puis entrer
+
+    `nvm install latest`
 
 3. Installer les dépendences node et php
 
-`nvm install latest`
+    1. Se déplacer dans le dossier du projet
 
-`npm install`
+    2. Installer les dépendances
 
-`composer install`
+        `npm install`
 
-4. Executer les tests
+        `composer install`
 
-`npm run test`
+4. Installer PHPunit en suivant les instructions suivantes :
 
-`npm run unit-test`
+    [Site de PHPunit](https://phpunit.de/manual/6.5/en/installation.html#installation.phar.windows)
+
+5. Héberger le site avec le built-in web server de php
+
+    Dans le cmd, dans le dossier du projet,
+
+    `php -S localhost:3030`
+
+    Par la suite, vous pourrez accéder au site en visitant localhost:3030
+
+6. Executer les tests
+
+    1. Tests unitaires
+
+        Dans le dossier du projet, entrer
+
+        `phpunit tests`
+
+    2. Tests d'implémentations avec Cypress
+
+        Pendant que le site est hébergé, entrer
+
+        `npm run cy:run`
 
 ## Prérequis
 
