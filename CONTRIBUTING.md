@@ -2,7 +2,29 @@
 
 ## Installation
 
-À venir
+### Windows
+
+1. Installer Chocolatey
+
+https://chocolatey.org/install
+
+2. Installer les package managers avec Chocolatey
+
+`choco install nvm npm composer`
+
+3. Installer les dépendences node et php
+
+`nvm install latest`
+
+`npm install`
+
+`composer install`
+
+4. Executer les tests
+
+`npm run test`
+
+`npm run unit-test`
 
 ## Prérequis
 
