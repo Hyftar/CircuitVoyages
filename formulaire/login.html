@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>formulaire</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+</head>
+
+<body>
+    <!-- NavBar -->
+    <div class="NavBar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="login.html">Voyage</a>
+            </div>
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a id="textDevenirMembre" class="nav-link" data-toggle="modal"
+                        data-target="#modalRegister"><span class="fas fa-user"></span> Devenir membre</a>
+                </li>
+                <li class="nav-item"><a id="textConnexion" class="nav-link" data-toggle="modal"
+                        data-target="#modalLogin"><span class="fas fa-sign-in-alt"></span>
+                        Connexion</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!--login page-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">Connectez-vous</h2>
+                        <form class="form-signin">
+                            <div class="form-label-group">
+                                <input type="email" id="input-email" class="form-control" placeholder="Email address" required>
+                                <label for="input-email">Adresse courriel</label>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="password" id="input-password" class="form-control" placeholder="Password" required>
+                                <label for="input-password">Mot de passe</label>
+                            </div>
+                            <div id="mdp-oublie">
+                                <a href="#" class="link">Mot de passe oublié?</a>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                type="submit">Connexion</button>
+                            <hr class="my-4">
+                            <div id="nouveau-membre">
+                                <a href="#" class="link">Nouveau membre? Enregistrez-vous!</a>
+                            </div>
+                            <button id="btn-google" class="btn btn-lg btn-google btn-block text-uppercase"
+                                type="submit"><i class="fab fa-google mr-2"></i> Connexion via Google</button>
+                            <button id="btn-facebook" class="btn btn-lg btn-facebook btn-block text-uppercase"
+                                type="submit"><i class="fab fa-facebook-f mr-2"></i> Connexion via Facebook</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--login page-->
+
+    <!--Password reset page-->
+    <div class="container mdp-reset">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <h3><i class="fa fa-lock fa-4x"></i></h3>
+                            <h2 class="text-center">Mot de passe oublié?</h2>
+                            <p>Réinitialiser votre mot de passe ici.</p>
+                            <form class="form-signin">
+                                <div class="form-label-group">
+                                    <input type="email" id="email-reset-form" class="form-control"
+                                        placeholder="Email address" >
+                                    <label for="email-reset-form">Adresse courriel</label>
+                                </div>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                    type="submit">Réinitialiser votre mot de passe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Password reset page-->
+    <br>
+    <br>
+    <br>
+
+
+    <!--Register user page-->
+    <div id="register-user-form" class="card bg-light">
+        <article  class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Créez un compte</h4>
+            <form>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" id="user-prenom" class="form-control" placeholder="Prenom" type="text">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" id="user-nom" class="form-control" placeholder="Nom" type="text">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="" id="email-admin-adress" class="form-control" placeholder="Adresse courriel" type="email">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+                    </div>                    
+                    <input type="text" id="birthdate" class="form-control" placeholder="Date de naissance">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                    </div>
+                    <select class="custom-select" style="max-width: 120px;">
+                        <option selected="">514</option>
+                        <option value="1">450</option>
+                    </select>
+                    <input name="" id="phone" class="form-control" placeholder="Téléphone" type="text">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <input name="" id="adress" class="form-control" placeholder="Adresse" type="email">
+                </div> <!-- form-group end.// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input id="user-register-password" class="form-control" placeholder="Créez mot de passe" type="password">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input id="user-repeat-password" class="form-control" placeholder="Répéter mot de passe" type="password">
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Créez un compte </button>
+                </div> <!-- form-group// -->
+                <p class="text-center">Vous avez déjà un compte? <a href="">Connexion</a> </p>
+            </form>
+        </article>
+    </div> <!-- card.// -->
+    
+    <!--Register user page end-->
+
+    <!--Register admin page-->
+    <div id="register-admin-form" class="card bg-light">
+        <article  class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Créez un compte administrateur</h4>
+            <form>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" id="user" class="form-control" placeholder="Username" type="text">
+                </div> <!-- form-group// -->               
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="" id="email-user-adress" class="form-control" placeholder="Adresse courriel" type="email">
+                </div> <!-- form-group// -->  
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input id="admin-register-password" class="form-control" placeholder="Créez mot de passe" type="password">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input id="admin-repeat-password" class="form-control" placeholder="Répéter mot de passe" type="password">
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Créez un compte administrateur </button>
+                </div> <!-- form-group// -->                
+            </form>
+        </article>
+    </div> <!-- card.// -->
+    
+    <!--Register admin page end-->
+
+    <script>
+        $('#birthdate').datepicker({
+            startDate: "01/01/1960"
+        });
+    </script>
+
+</body>
