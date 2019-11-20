@@ -1,0 +1,123 @@
+:root {
+  --sand: #e3ce8b;
+  --wet-sand: #fff5e1;
+  --foam: #fbfbfb;
+  --water: #5dbde6;
+  --deep-water: #1a7da8;
+  --mute-gray: #767676;
+}
+
+@media (min-width: 780px) {
+  body {
+    grid-template-rows: 1fr 12rem;
+    -ms-grid-rows: 1fr 12rem;
+  }
+
+  .banner__text {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 780px) {
+  body {
+    -ms-grid-rows: 1fr 10rem;
+    grid-template-rows: 1fr 10rem;
+  }
+
+  .banner__text {
+    font-size: 2.5rem;
+  }
+}
+
+body {
+  background-image: url(/images/beach.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  min-height: 200vh;
+  display: -ms-grid;
+  display: grid;
+}
+
+main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 40rem 6em auto;
+  grid-template-rows: 40rem 6em auto;
+}
+
+.content-header {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: var(--foam);
+  width: 100%;
+  margin-bottom: 0;
+  height: auto;
+  padding-left: 20vw;
+  padding-top: 1em;
+  padding-bottom: 1.5em;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.content {
+  background-color: var(--foam);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: flex-start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 2em;
+}
+
+.content .card {
+  margin: 1em;
+  height: auto;
+  width: 18rem;
+}
+
+.content .card-img-top {
+  height: 230px;
+}
+
+.content .card-price {
+  margin-left: 10px;
+  color: black;
+}
+
+.card-price.card-price--old {
+  text-decoration: line-through;
+  color: var(--mute-gray);
+}
+
+.card-price.card-price--new {
+  font-style: italic;
+}
+
+.banner {
+  background-color: rgba(255,255,255,0);
+  display: grid;
+  display: -ms-grid;
+  justify-content: center;
+  align-items: center;
+  place-items: center center;
+}
+
+.banner__text {
+  color: white;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  text-shadow: black 2px 2px 1px;
+}
+
+#footer {
+  background-color: var(--sand);
+}
