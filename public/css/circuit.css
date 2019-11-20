@@ -1,0 +1,133 @@
+:root {
+  --trail-color: #D67114;
+}
+
+body {
+  background-image: none;
+  background-size: initial;
+  background-repeat: initial;
+  background-position: initial;
+  background-attachment: initial;
+  display: block;
+}
+
+main > * {
+  background-color: var(--foam);
+}
+
+main {
+  display: block
+}
+
+.description-container {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}
+
+.description-body {
+  width: 60vw;
+}
+
+.nodes {
+  position: relative;
+}
+
+.banner {
+  width: 100%;
+  height: 50vh;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center -350px;
+}
+
+.nodes {
+  margin-left: 10vw;
+}
+
+.nodes::before {
+  content: '';
+  position: absolute;
+  background-color: var(--trail-color);
+  display: block;
+  left: 2.5rem;
+  width: 8px;
+  height: 100%;
+}
+
+.node__content {
+  max-height: 0;
+  overflow: hidden;
+  transition-property: max-height;
+  transition-duration: 0.3s;
+}
+
+.node__content--expand {
+  max-height: 60rem;
+  transition-duration: 1s;
+}
+
+.node {
+  user-select: none;
+  margin-left: 5rem;
+  cursor: pointer;
+}
+
+.node::before {
+  left: -3rem;
+  top: 1.5rem;
+  display: block;
+  position: relative;
+  border: 0.3rem solid var(--trail-color);
+  background-color: white;
+  border-radius: 1.5rem;
+  content: '';
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.circuit-guide {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.circuit-guide__image {
+  width: 400px;
+  height: 450px;
+  border-radius: 12em;
+  background-color: var(--sand);
+  box-shadow: 2px 2px 2px grey;
+}
+
+.circuit-guide__title {
+
+}
+
+.circuit-guide__supporting-text {
+  background-color: var(--wet-sand);
+  box-shadow: 2px 2px 1px grey;
+  padding: 1rem;
+  border-radius: 0.5em;
+}
+
+/* Circuit gallery styles */
+
+.circuit-gallery.circuit-gallery--style-1 {
+  background-color: var(--foam);
+  padding-right: 5vw;
+  padding-left: 5vw;
+  display: grid;
+  overflow-x: scroll;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  column-gap: 1.5em;
+  row-gap: 1.5em;
+}
+
+.circuit-gallery > img {
+  width: 600px;
+  height: 400px;
+}

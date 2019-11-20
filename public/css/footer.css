@@ -1,0 +1,19 @@
+footer {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+footer > div {
+  width: 50%;
+  overflow: hidden;
+}
+
+.footer__left {
+  padding: 20px;
+}
+
+.footer__left > img {
+  width: 100px;
+  margin-right: auto;
+}
