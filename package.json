@@ -1,0 +1,25 @@
+{
+  "name": "circuitvoyages",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "php -S localhost:3030 -t public/",
+    "cy:run": "cypress run",
+    "test": "start-server-and-test start http://localhost:3030 cy:run",
+    "unit-test": "./vendor/bin/phpunit --bootstrap vendor/autoload.php test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hyftar/CircuitVoyages.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hyftar/CircuitVoyages/issues"
+  },
+  "homepage": "https://github.com/Hyftar/CircuitVoyages#readme",
+  "devDependencies": {
+    "cypress": "^3.6.1"
+  }
+}
