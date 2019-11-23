@@ -2,18 +2,13 @@
 
 namespace Core;
 
-/**
- * Router
- *
- * PHP version 7.0
- */
 class Router
 {
 
     protected $routes = [];
     protected $params = [];
 
-    public function add($route, $params = [])
+    public function add($route, $params = [], $method = 'GET')
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
@@ -27,7 +22,7 @@ class Router
         // Add start and end delimiters, and case insensitive flag
         $route = '/^' . $route . '$/i';
 
-        $this->routes[$route] = $params;
+        $this->routes[] = new Route($route, $params, $method);
     }
 
     public function getRoutes()
@@ -39,10 +34,14 @@ class Router
      * Match the route to the routes in the routing table, setting the $params
      * property if a route is found.
      */
-    public function match($url)
+    public function match($url, $method)
     {
-        foreach ($this->routes as $route => $params) {
-            if (preg_match($route, $url, $matches)) {
+        foreach ($this->routes as $route) {
+            $params = $route->getParams();
+            $pattern = $route->getPattern();
+
+            if (preg_match($pattern, $url, $matches) &&
+                strtoupper($route->getMethod()) == strtoupper($method)) {
                 // Get named capture group values
                 foreach ($matches as $key => $match) {
                     if (is_string($key)) {
@@ -63,33 +62,36 @@ class Router
         return $this->params;
     }
 
-    public function dispatch($url)
+    public function dispatch($url, $method)
     {
         $url = $this->removeQueryStringVariables($url);
 
-        if ($this->match($url)) {
-            $controller = $this->params['controller'];
-            $controller = $this->convertToStudlyCaps($controller);
-            $controller = $this->getNamespace() . $controller;
-
-            if (class_exists($controller)) {
-                $controller_object = new $controller($this->params);
-
-                $action = $this->params['action'];
-                $action = $this->convertToCamelCase($action);
-
-                if (preg_match('/action$/i', $action) == 0) {
-                    $controller_object->$action();
-
-                } else {
-                    throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method"); // TODO: Remove in production
-                }
-            } else {
-                throw new \Exception("Controller class $controller not found"); // TODO: Remove in production
-            }
-        } else {
-            throw new \Exception('No route matched.', 404); // TODO: Remove in production
+        if (!$this->match($url, $method))  {
+            throw new \Exception('No route matched.', 404);
         }
+
+        $controller = $this->params['controller'];
+        $controller = $this->convertToStudlyCaps($controller);
+        $controller = $this->getNamespace() . $controller;
+
+        if (!class_exists($controller)) {
+            throw new \Exception("Controller class $controller not found");
+        }
+
+        $controller_object = new $controller($this->params);
+
+        $action = $this->params['action'];
+        $action = $this->convertToCamelCase($action);
+
+        if (preg_match('/action$/i', $action) != 0) {
+            throw new \Exception(
+                "Method $action in controller $controller
+                cannot be called directly - remove the
+                Action suffix to call this method"
+            );
+        }
+
+        $controller_object->$action();
     }
 
     protected function convertToStudlyCaps($string)

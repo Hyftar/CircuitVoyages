@@ -11,4 +11,9 @@ class Home extends \Core\Controller
     {
         View::renderTemplate('Home/index.html.twig');
     }
+
+    public function indexPostAction()
+    {
+        View::renderTemplate('Home/post.html.twig');
+    }
 }

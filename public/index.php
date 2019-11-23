@@ -17,8 +17,24 @@ set_exception_handler('Core\Error::exceptionHandler');
 $router = new Core\Router();
 
 // Add the routes
-$router->add('', ['controller' => 'Home', 'action' => 'index']);
-$router->add('circuits/', ['controller' => 'Circuits', 'action' => 'show']);
+$router->add(
+    '',
+    ['controller' => 'Home', 'action' => 'index'],
+    'GET'
+);
+
+$router->add(
+    '',
+    ['controller' => 'Home', 'action' => 'indexPost'],
+    'POST'
+);
+
+
+$router->add(
+    'circuits/',
+    ['controller' => 'Circuits', 'action' => 'show'],
+    'GET'
+);
 
 /**
  * Convert URI to QueryString
@@ -36,4 +52,4 @@ if ($matches[0][2] != '') {
     $QueryString .= "&" . $matches[0][2]; // Group 2: params
 }
 
-$router->dispatch($QueryString); // Send the query string to the router
+$router->dispatch($QueryString, $_SERVER['REQUEST_METHOD']); // Send the query string to the router
