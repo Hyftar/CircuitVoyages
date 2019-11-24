@@ -10,11 +10,7 @@
 
 2. Installer les package managers avec Chocolatey dans Powershell en mode Admin
 
-    `choco install nvm composer`
-
-    Redémarrer Powershell, puis entrer
-
-    `nvm install latest`
+    `choco install composer nodejs`
 
 3. Installer les dépendences node et php
 
@@ -34,7 +30,7 @@
 
     Dans le cmd, dans le dossier du projet,
 
-    `php -S localhost:3030`
+    `php -S localhost:3030 -f public/`
 
     Par la suite, vous pourrez accéder au site en visitant localhost:3030
 
