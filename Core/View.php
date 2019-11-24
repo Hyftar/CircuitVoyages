@@ -8,9 +8,11 @@ class View
     /**
      * Render a view file (.php or .html)
      */
-    public static function render($view, $args = [])
+    public static function render($view, $contentType = 'text/html', $args = [])
     {
         extract($args, EXTR_SKIP);
+        
+        header("Content-Type: $contentType");
 
         $file = dirname(__DIR__) . "/App/Views/$view";  // relative to Core directory
 
@@ -24,7 +26,7 @@ class View
     /**
      * Render a view template using Twig
      */
-    public static function renderTemplate($template, $args = [])
+    public static function renderTemplate($template, $contentType = 'text/html', $args = [])
     {
         static $twig = null;
 
@@ -32,6 +34,8 @@ class View
             $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/App/Views');
             $twig = new \Twig_Environment($loader);
         }
+
+        header("Content-Type: $contentType");
 
         echo $twig->render($template, $args);
     }
