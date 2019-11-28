@@ -36,6 +36,11 @@ $router->add(
     'GET'
 );
 
+$router->add(
+    'admin/',
+    ['controller' => 'Admin', 'action' => 'index']
+);
+
 /**
  * Convert URI to QueryString
  */
