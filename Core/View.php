@@ -11,16 +11,21 @@ class View
     public static function render($view, $contentType = 'text/html', $args = [])
     {
         extract($args, EXTR_SKIP);
-        
-        header("Content-Type: $contentType");
 
         $file = dirname(__DIR__) . "/App/Views/$view";  // relative to Core directory
 
-        if (is_readable($file)) {
-            require $file;
-        } else {
+        header("Content-Type: $contentType");
+        header("Content-Length: " . filesize($file));
+
+        if ($_SERVER['REQUEST_METHOD'] == 'HEAD') {
+            return;
+        }
+
+        if (!is_readable($file)) {
             throw new \Exception("$file not found");
         }
+
+        require $file;
     }
 
     /**
@@ -35,8 +40,28 @@ class View
             $twig = new \Twig_Environment($loader);
         }
 
-        header("Content-Type: $contentType");
+        $output = $twig->render($template, $args);
 
-        echo $twig->render($template, $args);
+        header("Content-Type: $contentType");
+        header("Content-Length: " . strlen($output));
+
+        if ($_SERVER['REQUEST_METHOD'] == 'HEAD') {
+            return;
+        }
+
+        echo $output;
+    }
+
+    public static function renderJSON($json)
+    {
+        $output = json_encode($json);
+        header("Content-Type: application/json");
+        header("Content-Length: " . strlen($output));
+
+        if ($_SERVER['REQUEST_METHOD'] == 'HEAD') {
+            return;
+        }
+
+        echo $output;
     }
 }
