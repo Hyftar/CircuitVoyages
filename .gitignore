@@ -279,3 +279,4 @@ TSWLatexianTemp*
 /cypress/screenshots/
 /cypress/videos/
 /logs/*.txt
+.env
