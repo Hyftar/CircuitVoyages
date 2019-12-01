@@ -557,9 +557,9 @@ CREATE TABLE `newsletters` (
 CREATE TABLE `newsletters_messages` (
   `id` int(11) NOT NULL,
   `newsletter_id` int(11) NOT NULL,
-  `description` text COLLATE utf8mb4_bin NOT NULL,
+  `content` text COLLATE utf8mb4_bin NOT NULL,
   `newsletter_message_date` datetime NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL
+  `subject` varchar(100) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
