@@ -122,3 +122,26 @@ main {
 #footer {
   background-color: var(--sand);
 }
+#toast-container {
+  position: fixed;
+  min-height: 200px;
+  z-index: 400;
+  bottom: 0;
+  left: 1rem;
+}
+
+.toast {
+  position: absolute;
+}
+
+.toast-header__logo {
+  height: 2rem;
+}
+
+.toast-header__title {
+  min-width: 8rem;
+}
+
+.toast-header__supporting-text {
+  min-width: 4rem;
+}
