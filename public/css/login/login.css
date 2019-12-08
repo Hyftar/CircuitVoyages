@@ -177,3 +177,16 @@ mdp oublie form
 .panel-default {
   background-color: #fff;
 }
+
+#login-errors {
+  background: #fd4141;
+  margin-bottom: 1rem;
+  padding: 1em;
+  border-radius: 1em;
+  border: 2px solid #cc1f1f;
+  color: white;
+}
+
+.login-error::before {
+  content: '- ';
+}

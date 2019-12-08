@@ -39,6 +39,7 @@ $router->add(
 $router->add(
     'login',
     ['controller' => 'Members', 'action' => 'login'],
+    'POST'
 );
 
 
