@@ -48,5 +48,15 @@ $router->add(
     ['controller' => 'Circuits', 'action' => 'show'],
 );
 
+$router->add(
+    'admin',
+    ['controller' => 'Admin', 'action' => 'index'],
+);
+
+$router->add(
+    'createIndex',
+    ['controller' => 'Admin', 'action' => 'createIndex']
+);
+
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
