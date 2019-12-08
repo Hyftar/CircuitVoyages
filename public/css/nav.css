@@ -99,6 +99,11 @@ a:visited {
   text-decoration: none;
 }
 
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
 body {
   margin: 0;
 }
@@ -113,7 +118,7 @@ header {
   display: -ms-grid;
   display: grid;
   grid-area: header;
-  z-index: 999;
+  z-index: 500;
 }
 
 .logo {
@@ -144,6 +149,7 @@ nav {
 }
 
 .nav-link {
+  color: black;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -151,7 +157,6 @@ nav {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-weight: bold;
-  color: #dde0b2;
   -ms-grid-row: 1;
   grid-row: 1;
   display: -ms-grid;

@@ -32,9 +32,8 @@ $router->add(
 );
 
 $router->add(
-    '',
-    ['controller' => 'Home', 'action' => 'indexPost'],
-    'POST'
+    'login',
+    ['controller' => 'Members', 'action' => 'login'],
 );
 
 
