@@ -20,6 +20,20 @@
   </head>
 
   <body>
+    <div id="toast-container" aria-live="polite" aria-atomic="true">
+      <div class="toast">
+        <div class="toast-header">
+          <img src="/images/labernois_logo.png" class="rounded mr-2 toast-header__logo" alt="toast-logo">
+          <strong id="toast-title" class="mr-auto toast-header__title"></strong>
+          <small id="toast-supporting-text" class="toast-header__supporting-text"></small>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="toast-body" class="toast-body toast-body__text">
+        </div>
+      </div>
+    </div>
     <div id="login-modal" class="hidden">
       {% include '/Members/login.html.twig' %}
       {% include '/Members/register.html.twig' %}
@@ -61,4 +75,5 @@
   <script src="/js/register.js"></script>
   <script src="/js/reset.js"></script>
   <script src="/js/drawer.js"></script>
+  <script src="/js/main.js"></script>
 </html>
