@@ -1,8 +1,4 @@
 @media (min-width: 1040px) {
-  #drawer {
-    display: none;
-  }
-
   header {
     -ms-grid-columns: 1fr 180px 4fr 6fr 1fr;
     grid-template-columns: 1fr 180px 4fr 6fr 1fr;
@@ -31,23 +27,6 @@
 }
 
 @media (max-width: 1040px) {
-  .drawer__nav {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: nav;
-    background-color: black;
-    padding-top: 2em;
-    min-width: 200px;
-  }
-
-  .drawer__mask {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
-    width: 1fr;
-    grid-area: mask;
-    background-color: rgba(0, 0, 0, .55);
-  }
-
   header {
     -ms-grid-columns: 10fr 130px 9fr 60px 1fr;
     grid-template-columns: 10fr 130px 9fr 60px 1fr;
@@ -168,10 +147,4 @@ nav {
 .nav-link:hover {
   -webkit-text-decoration: underline 2px solid #212529;
   text-decoration: underline 2px solid #212529;
-}
-
-
-
-.hidden {
-  display: none !important;
 }
