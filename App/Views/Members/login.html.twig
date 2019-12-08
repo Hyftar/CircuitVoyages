@@ -4,19 +4,21 @@
       <div class="card card-signin my-5">
         <div id="login-card" class="card-body">
           <h2 class="card-title text-center">Connectez-vous</h2>
-          <form class="form-signin">
+          <div id="login-errors" class="hidden">
+          </div>
+          <form class="form-signin" onsubmit="return false;">
             <div class="form-label-group">
-              <input name="email" type="email" id="input-email" class="form-control" placeholder="Email address" required="required">
+              <input id="input-email" name="email" type="email" class="form-control" placeholder="Email address" required="required">
               <label for="input-email">Adresse courriel</label>
             </div>
             <div class="form-label-group">
-              <input name="password" type="password" id="input-password" class="form-control" placeholder="Password" required="required">
+              <input id="input-password" name="password" type="password" class="form-control" placeholder="Password" required="required">
               <label for="input-password">Mot de passe</label>
             </div>
             <div id="forgot-password">
               <a href="#" class="link">Mot de passe oublié?</a>
             </div>
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Connexion</button>
+            <button id="login-submit-button" class="btn btn-lg btn-primary btn-block text-uppercase">Connexion</button>
             <hr class="my-4">
             <div id="login-register-link">
               <a href="#" class="link">Nouveau membre? Enregistrez-vous!</a>
