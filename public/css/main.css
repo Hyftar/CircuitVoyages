@@ -122,6 +122,11 @@ main {
 #footer {
   background-color: var(--sand);
 }
+
+.hidden {
+  display: none !important;
+}
+
 #toast-container {
   position: fixed;
   min-height: 200px;
