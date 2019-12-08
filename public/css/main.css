@@ -112,6 +112,7 @@ main {
 }
 
 .banner__text {
+  user-select: none;
   color: white;
   text-align: center;
   font-family: 'Dancing Script', cursive;
