@@ -31,18 +31,6 @@
 }
 
 @media (max-width: 1040px) {
-  #drawer {
-    display: -ms-grid;
-    display: grid;
-    position: fixed;
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-    grid-template-areas: "nav mask";
-    -ms-grid-columns: 40vw 1fr;
-    grid-template-columns: 40vw 1fr;
-  }
-
   .drawer__nav {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -63,7 +51,9 @@
   header {
     -ms-grid-columns: 10fr 130px 9fr 60px 1fr;
     grid-template-columns: 10fr 130px 9fr 60px 1fr;
-    grid-template-areas: ". logo . hamburger"
+    grid-template-areas:
+      ". logo . hamburger"
+      "nav nav nav nav";
   }
 
   .logo {
@@ -85,7 +75,17 @@
   }
 
   nav {
-    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s;
+  }
+
+  .nav-link {
+    height: 4rem;
+  }
+
+  .is-active ~ nav {
+    max-height: 20rem;
   }
 }
 
