@@ -26,30 +26,21 @@
       {% include '/Members/reset.html.twig' %}
     </div>
 
-    <div id="drawer" class="hidden">
-      <div id="drawer-nav" class="drawer__nav">
-        <a href="#" class="nav-link">Circuits</a>
-        <a href="#" class="nav-link">Promotions</a>
-        <a href="#" class="nav-link">About us</a>
-        <a id="drawer-login-link" href="#" class="nav-link">Login</a>
-      </div>
-      <div id="drawer-mask" class="drawer__mask"></div>
-    </div>
     <header>
       <a href="/" class="logo">
         <img alt="logo_with_text" src="/images/labernois_logo_text.png"/>
       </a>
+      <button id="menu-hamburger" class="hamburger hamburger--squeeze" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
       <nav>
         <a href="#" class="nav-link">Circuits</a>
         <a href="#" class="nav-link">Promotions</a>
         <a href="#" class="nav-link">About us</a>
         <a id="nav-login-link" href="#" class="nav-link">Login</a>
       </nav>
-      <button id="menu-hamburger" class="hamburger hamburger--squeeze" type="button">
-        <span class="hamburger-box">
-          <span class="hamburger-inner"></span>
-        </span>
-      </button>
     </header>
     <main>
       {% block body %}{% endblock %}
@@ -69,4 +60,5 @@
   <script src="/js/login.js"></script>
   <script src="/js/register.js"></script>
   <script src="/js/reset.js"></script>
+  <script src="/js/drawer.js"></script>
 </html>
