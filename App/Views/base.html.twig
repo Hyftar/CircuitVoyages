@@ -22,6 +22,7 @@
   <body>
     <div id="login-modal" class="hidden">
       {% include '/Members/login.html.twig' %}
+      {% include '/Members/register.html.twig' %}
     </div>
 
     <div id="drawer" class="hidden">
@@ -29,7 +30,7 @@
         <a href="#" class="nav-link">Circuits</a>
         <a href="#" class="nav-link">Promotions</a>
         <a href="#" class="nav-link">About us</a>
-        <a id="drawerLoginLink" href="#" class="nav-link">Login</a>
+        <a id="drawer-login-link" href="#" class="nav-link">Login</a>
       </div>
       <div id="drawer-mask" class="drawer__mask"></div>
     </div>
@@ -41,7 +42,7 @@
         <a href="#" class="nav-link">Circuits</a>
         <a href="#" class="nav-link">Promotions</a>
         <a href="#" class="nav-link">About us</a>
-        <a id="navLoginLink" href="#" class="nav-link">Login</a>
+        <a id="nav-login-link" href="#" class="nav-link">Login</a>
       </nav>
       <button id="menu-hamburger" class="hamburger hamburger--squeeze" type="button">
         <span class="hamburger-box">
@@ -65,4 +66,5 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
   <script src="/js/login.js"></script>
+  <script src="/js/register.js"></script>
 </html>
