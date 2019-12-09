@@ -50,7 +50,12 @@ $router->add(
 
 $router->add(
     'admin',
-    ['controller' => 'Admin', 'action' => 'index'],
+    ['controller' => 'Admin', 'action' => 'admin'],
+);
+
+$router->add(
+    'admin_circuits',
+    ['controller' => 'Admin', 'action' => 'circuitsIndex'],
 );
 
 $router->add(

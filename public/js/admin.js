@@ -19,5 +19,16 @@ $(function() {
   });
 });
 
+$(() => {
+  $.ajax({
+    url: 'admin_circuits',
+    type: 'GET',
+    success: (data) => {
+      let containter = document.getElementById('contenu')
+      containter.innerHTML = data
+    }
+  })
+})
+
 
 
