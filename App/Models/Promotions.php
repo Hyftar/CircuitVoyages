@@ -2,9 +2,9 @@
 
 namespace app\Models;
 
-use \App\Dao\PromotionsDAO;
+use PDO;
 
-class Promotions extends \App\DAO\PromotionsDAO
+class Promotions extends \Core\Model
 {
     protected $id;
     protected $start_date;
