@@ -59,4 +59,32 @@ class Promotions extends \Core\Model
         $stmt->bindValue(':id',$id, PDO::PARAM_INT);
         return $stmt->execute() != false;
     }
+
+    private static function generatePromoCode($code_length)
+    {
+        $resultat = '';
+        $promo_code = '';
+
+        $code_length > 1 ? $length = $code_length - 1 : $length = 0;
+
+        do
+        {
+            // La chaîne de caractères possibles n'inclut pas de voyelles, afin d'empêcher de former des mots, et le 1 et le 0 afin d'éviter la confusion
+            $possible_characters = '23456789qwrtpsdfghjklzxcvbnm';
+            $promo_code = '';
+            $characters_length = strlen($possible_characters);
+            for ($i = 0; $i < $length; $i++) {
+                $string .= $possible_characters[mt_rand(0, $characters_length - 1)];
+            }
+
+            $db = static::getDB();
+            $stmt = $db->prepare('SELECT * FROM promotions WHERE promo_code = :promo_code');
+            $stmt->bindValue(':promo_code',$promo_code, PDO::PARAM_STR);
+            $stmt->execute();
+            $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        while (!$resultat);
+        return $promo_code;
+
+    }
 }
