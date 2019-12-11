@@ -93,6 +93,16 @@ main {
   color: black;
 }
 
+.card {
+  transition: transform .2s; /* Animation */
+}
+
+.card:hover {
+  transform: scale(1.05);
+   z-index:2;
+}
+} 
+
 .card-price.card-price--old {
   text-decoration: line-through;
   color: var(--mute-gray);

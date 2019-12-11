@@ -2,10 +2,11 @@ footer {
   overflow: hidden;
   display: flex;
   flex-direction: row;
+  flex-basis: 33%;
+  justify-content: space-between;
 }
 
 footer > div {
-  width: 50%;
   overflow: hidden;
 }
 
@@ -13,7 +14,28 @@ footer > div {
   padding: 20px;
 }
 
+.footer__middle {
+  text-align:center;
+  padding: 20px;
+}
+
 .footer__left > img {
   width: 100px;
   margin-right: auto;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+#footer .link-colors {
+  color: #0000EE;
+  margin: 0px 10px;
+  
+}
+
+#footer .link-colors:hover {
+  text-decoration: underline;
+}
+
+#footer .footer-copyright {
+  font-style: italic;
 }
