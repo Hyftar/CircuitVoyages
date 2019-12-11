@@ -6,6 +6,7 @@ use PDO;
 
 class Promotions extends \Core\Model
 {
+    // get all promotions
     public static function getAll()
     {
         $db = static::getDB();
@@ -14,6 +15,17 @@ class Promotions extends \Core\Model
         return $stmt->fetchAll();
     }
 
+    // get specific promotion
+    public static function get($id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM promotions WHERE $id = :id');
+        $stmt->bindValue(':id',$id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // insert new promotion
     public static function add($start_date, $end_date, $promotion_type_id, $promo_code, $value, $description, $availability_number)
     {
         $db = static::getDB();
@@ -29,6 +41,7 @@ class Promotions extends \Core\Model
         return $stmt->execute();
     }
 
+    //  update information of promotions
     public static function update($id, $start_date, $end_date, $promotion_type_id, $promo_code, $value, $description, $availability_number)
     {
         $db = static::getDB();
@@ -52,6 +65,7 @@ class Promotions extends \Core\Model
         return $stmt->execute();
     }
 
+    // Remeve promotion from database
     public static function remove($id)
     {
         $db = static::getDB();
@@ -60,7 +74,8 @@ class Promotions extends \Core\Model
         return $stmt->execute() != false;
     }
 
-    private static function generatePromoCode($code_length)
+    // Generate random unique promo code for use in promotion redemption
+    public static function generatePromoCode($code_length)
     {
         $resultat = '';
         $promo_code = '';
@@ -85,6 +100,145 @@ class Promotions extends \Core\Model
         }
         while (!$resultat);
         return $promo_code;
+    }
 
+    // get all promotions_types
+    public static function getAllTypes()
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM promotions_types');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    // set promotion on all circuits_trips of all circuits
+    public static function addPromotionToAllCircuits($id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM circuits_trips');
+        $stmt->execute();
+        $circuits_trips = $stmt->fetchAll();
+
+        foreach($circuits_trips as $circuit_trip){
+            $stmtI = $db->prepare('INSERT INTO promotions_circuits_trips (promotion_id, circuit_trip_id)
+            VALUES (:id, :circuit_trip_id)');
+            $stmtI->bindValue(':circuit_trip_id',$circuit_trip['id'], PDO::PARAM_INT);
+            $stmtI->bindValue(':id',$id, PDO::PARAM_INT);
+            $stmtI->execute();
+        }
+    }
+
+    // set promotion on all circuits_trips of circuit
+    public static function addPromotionToOneCircuit($id,$circuit_id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM circuits_trips WHERE id = :id');
+        $stmt->bindValue(':id',$circuit_id,PDO::PARAM_INT);
+        $stmt->execute();
+        $circuits_trips = $stmt->fetchAll();
+
+        foreach($circuits_trips as $circuit_trip){
+            $stmtI = $db->prepare('INSERT INTO promotions_circuits_trips (promotion_id, circuit_trip_id)
+            VALUES (:id, :circuit_trip_id)');
+            $stmtI->bindValue(':circuit_trip_id',$circuit_trip['id'], PDO::PARAM_INT);
+            $stmtI->bindValue(':id',$id, PDO::PARAM_INT);
+            $stmtI->execute();
+        }
+    }
+
+    // set promotion on specific circuit_trip
+    public static function addPromotionToOneCircuitTrip($id,$circuit_trip_id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('INSERT INTO promotions_circuits_trips (promotion_id, circuit_trip_id)
+        VALUES (:id, :circuit_trip_id)');
+        $stmt->bindValue(':circuit_trip_id',$circuit_trip_id, PDO::PARAM_INT);
+        $stmt->bindValue(':id',$id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    // check if member has already used the promotion code
+    public static function isPromotionUsed($id, $member_id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM promotions_trip_members WHERE promotion_id = :id and member_id = :member_id');
+        $stmt->bindValue(':id',$id,PDO::PARAM_INT);
+        $stmt->bindValue(':member_id',$member_id,PDO::PARAM_INT);
+        $stmt->execute();
+        $promotion_trip_circuit = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$promotion_trip_circuit)
+        {
+            return false;
+        }
+        else
+        {
+            return $promotion_trip_circuit['applied'];
+        }
+    }
+
+    // check if promotion is still available
+    public static function promotionAvailability($id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM promotions WHERE id = :id and CURDATE() BETWEEN start_date and end_date');
+        $stmt->bindValue(':id',$id, PDO::PARAM_INT);
+        $stmt->execute();
+        $promotion = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$promotion)
+        {
+            return false;
+        }
+        elseif ($promotion['availability_number'] == -1)
+        {
+            return true;
+        }
+        else
+        {
+            $stmtCount = $db->prepare('SELECT COUNT(*) FROM promotions_trips_members WHERE promotion_id = :id');
+            $stmtCount->bindValue(':id',$id);
+            $stmtCount->execute();
+            $number_rows = $stmtCount->fetchColumn();
+            $promotion['availability_number'] > $number_rows ? $reponse = true: $reponse = false;
+            return $reponse;
+        }
+    }
+
+    // register use of the promotion by a member
+    public static function recordPromotionUse($id, $trip_id, $member_id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM promotions_trip_members WHERE promotion_id = :id and trip_id = :trip_id');
+        $stmt->bindValue(':id',$id,PDO::PARAM_INT);
+        $stmt->bindValue(':trip_id',$trip_id,PDO::PARAM_INT);
+        $stmt->execute();
+        $promotion_trip_circuit = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if(!$promotion_trip_circuit)
+        {
+            $stmtI = $db->prepare('INSERT INTO promotions_trips_members (promotion_id, member_id, trip_id, promotion_code, applied)
+            VALUES (:id, :member_id, :trip_id, null, true)');
+            $stmtI->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmtI->bindValue(':member_id', $member_id, PDO::PARAM_INT);
+            $stmtI->bindValue(':trip_id',$trip_id,PDO::PARAM_INT);
+            $stmtI->execute();
+        }
+        else
+        {
+            $stmtI = $db->prepare('UPDATE promotions_trips_members SET applied = true WHERE id = :id');
+            $stmtI->bindValue(':id', $promotion_trip_circuit['id'], PDO::PARAM_INT);
+            $stmtI->execute();
+        }
+    }
+
+    // Get all members that used the promotion
+    public static function getPromotionUsers($id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM promotions_trips_members WHERE promotion_id = :id');
+        $stmt->bindValue(':id',$id,PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }
