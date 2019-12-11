@@ -27,14 +27,14 @@ USE `labernoisdb`;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `accomodations`
+-- Structure de la table `accommodations`
 --
 
-CREATE TABLE `accomodations` (
+CREATE TABLE `accommodations` (
   `id` int(11) NOT NULL,
   `location_id` int(11) DEFAULT NULL,
-  `accomodation_type` enum('HOTEL','TENT','BOAT','HOUSE','CONDO','OTHER') COLLATE utf8mb4_bin NOT NULL,
-  `link` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `accommodation_type` enum('HOTEL','TENT','BOAT','HOUSE','CONDO','MOTEL','OTHER') COLLATE utf8mb4_bin NOT NULL,
+  `link` varchar(2083) CHARACTER SET utf8 DEFAULT NULL,
   `rating` tinyint(4) DEFAULT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
@@ -42,37 +42,37 @@ CREATE TABLE `accomodations` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `accomodations_locations`
+-- Structure de la table `accommodations_locations`
 --
 
-CREATE TABLE `accomodations_locations` (
+CREATE TABLE `accommodations_locations` (
   `id` int(11) NOT NULL,
-  `accomodation_id` int(11) NOT NULL,
+  `accommodation_id` int(11) NOT NULL,
   `location_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `accomodations_media`
+-- Structure de la table `accommodations_media`
 --
 
-CREATE TABLE `accomodations_media` (
+CREATE TABLE `accommodations_media` (
   `id` int(11) NOT NULL,
-  `accomodation_id` int(11) NOT NULL,
+  `accommodation_id` int(11) NOT NULL,
   `media_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `accomodations_periods`
+-- Structure de la table `accommodations_periods`
 --
 
-CREATE TABLE `accomodations_periods` (
+CREATE TABLE `accommodations_periods` (
   `id` int(11) NOT NULL,
   `period_id` int(11) NOT NULL,
-  `accomodation_id` int(11) NOT NULL
+  `accommodation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -83,9 +83,9 @@ CREATE TABLE `accomodations_periods` (
 
 CREATE TABLE `activities` (
   `id` int(11) NOT NULL,
-  `activity_type` enum('TRANSPORT','RELAXING','ACTION','DISCOVERY','ARTS') COLLATE utf8mb4_bin NOT NULL,
-  `link` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  `description` text COLLATE utf8mb4_bin,
+  `activity_type` enum('TRANSPORT','RELAXING','ACTION','DISCOVERY','ARTS','OTHER') COLLATE utf8mb4_bin NOT NULL,
+  `link` varchar(2083) COLLATE utf8mb4_bin DEFAULT NULL,
+  `description` text COLLATE utf8mb4_bin DEFAULT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -124,8 +124,8 @@ CREATE TABLE `addresses` (
   `country` varchar(50) CHARACTER SET utf8 NOT NULL,
   `city` varchar(100) CHARACTER SET utf8 NOT NULL,
   `region` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `adress` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `adress2` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `adress_line_1` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `adress_line_2` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `postal_code` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -155,7 +155,7 @@ CREATE TABLE `cards` (
   `show_price` tinyint(1) NOT NULL,
   `show_promotion` tinyint(1) NOT NULL,
   `show_upcoming_departure` tinyint(1) NOT NULL,
-  `description` text COLLATE utf8mb4_bin
+  `description` text COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -167,7 +167,7 @@ CREATE TABLE `cards` (
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `description` text COLLATE utf8mb4_bin
+  `description` text COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -194,10 +194,10 @@ CREATE TABLE `circuits` (
   `id` int(11) NOT NULL,
   `media_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `categorie_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `description` text COLLATE utf8mb4_bin,
-  `is_public` tinyint(1) NOT NULL
+  `description` text COLLATE utf8mb4_bin DEFAULT NULL,
+  `is_public` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -228,7 +228,7 @@ CREATE TABLE `circuits_trips` (
   `cancellation_fee` decimal(10,2) NOT NULL,
   `places` int(11) NOT NULL,
   `quorum` int(11) NOT NULL,
-  `is_public` tinyint(1) NOT NULL
+  `is_public` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -241,7 +241,7 @@ CREATE TABLE `circuits_trips_employees` (
   `id` int(11) NOT NULL,
   `employee_id` int(11) NOT NULL,
   `circuit_trip_id` int(11) NOT NULL,
-  `description` text COLLATE utf8mb4_bin
+  `description` text COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -280,7 +280,7 @@ CREATE TABLE `employees` (
   `first_name` varchar(100) CHARACTER SET utf8 NOT NULL,
   `last_name` varchar(100) CHARACTER SET utf8 NOT NULL,
   `date_of_birth` date NOT NULL,
-  `active` tinyint(1) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `media_id` int(11) DEFAULT NULL,
   `phone_number` varchar(15) COLLATE utf8mb4_bin DEFAULT NULL,
   `email` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -350,7 +350,7 @@ CREATE TABLE `flights` (
   `landing_city` varchar(100) CHARACTER SET utf8 NOT NULL,
   `duration` time NOT NULL,
   `company_name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `link` varchar(255) CHARACTER SET utf8 DEFAULT NULL
+  `link` varchar(2083) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -415,7 +415,7 @@ CREATE TABLE `landing_pages` (
 CREATE TABLE `landing_pages_items` (
   `id` int(11) NOT NULL,
   `landing_page_id` int(11) NOT NULL,
-  `landing_page_selection_id` int(11) NOT NULL,
+  `landing_page_section_id` int(11) NOT NULL,
   `position` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -490,6 +490,7 @@ CREATE TABLE `media` (
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
   `media_type` varchar(127) COLLATE utf8mb4_bin NOT NULL,
   `description` text COLLATE utf8mb4_bin,
+  `path` VARCHAR(255) COLLATE utf8mb4_bin NOT NULL,
   `header` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -635,7 +636,7 @@ CREATE TABLE `promotions` (
   `promotion_type_id` int(11) NOT NULL,
   `promo_code` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `value` decimal(10,2) NOT NULL,
-  `description` text COLLATE utf8mb4_bin NOT NULL,
+  `description` text COLLATE utf8mb4_bin DEFAULT NULL,
   `availability_number` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -678,7 +679,7 @@ CREATE TABLE `promotions_types` (
   `is_percentage_based` tinyint(1) NOT NULL,
   `is_gift_based` tinyint(1) NOT NULL,
   `is_exclusive` tinyint(1) NOT NULL,
-  `group_discount_travelers_count` int(11) NOT NULL
+  `group_discount_travelers_count` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -689,7 +690,7 @@ CREATE TABLE `promotions_types` (
 
 CREATE TABLE `restaurants` (
   `id` int(11) NOT NULL,
-  `link` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  `link` varchar(2083) COLLATE utf8mb4_bin DEFAULT NULL,
   `description` text COLLATE utf8mb4_bin,
   `location_id` int(11) NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL
@@ -738,7 +739,7 @@ CREATE TABLE `roles_permissions` (
 
 CREATE TABLE `rooms` (
   `id` int(11) NOT NULL,
-  `accomodation_id` int(11) NOT NULL,
+  `accommodation_id` int(11) NOT NULL,
   `description` text COLLATE utf8mb4_bin NOT NULL,
   `occupation` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
@@ -804,10 +805,10 @@ CREATE TABLE `templates` (
 
 CREATE TABLE `transactions` (
   `id` int(11) NOT NULL,
-  `curency_code` varchar(6) COLLATE utf8mb4_bin NOT NULL,
+  `currency_code` varchar(6) COLLATE utf8mb4_bin NOT NULL,
   `gross_amount` decimal(10,2) NOT NULL,
   `transaction_order` int(11) NOT NULL,
-  `STATUS` int(11) NOT NULL
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -826,7 +827,7 @@ CREATE TABLE `travelers` (
   `phone_number` varchar(15) COLLATE utf8mb4_bin NOT NULL,
   `gender` enum('MALE','FEMALE','OTHER') COLLATE utf8mb4_bin NOT NULL,
   `redress_number` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL,
-  `needs_special_assistance` tinyint(1) NOT NULL
+  `needs_special_assistance` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -890,35 +891,35 @@ CREATE TABLE `waiting_lists` (
 --
 
 --
--- Index pour la table `accomodations`
+-- Index pour la table `accommodations`
 --
-ALTER TABLE `accomodations`
+ALTER TABLE `accommodations`
   ADD PRIMARY KEY (`id`),
   ADD KEY `location_id` (`location_id`);
 
 --
--- Index pour la table `accomodations_locations`
+-- Index pour la table `accommodations_locations`
 --
-ALTER TABLE `accomodations_locations`
+ALTER TABLE `accommodations_locations`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `accomodation_id` (`accomodation_id`),
+  ADD KEY `accommodation_id` (`accommodation_id`),
   ADD KEY `location_id` (`location_id`);
 
 --
--- Index pour la table `accomodations_media`
+-- Index pour la table `accommodations_media`
 --
-ALTER TABLE `accomodations_media`
+ALTER TABLE `accommodations_media`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `accomodation_id` (`accomodation_id`),
+  ADD KEY `accommodation_id` (`accommodation_id`),
   ADD KEY `media_id` (`media_id`);
 
 --
--- Index pour la table `accomodations_periods`
+-- Index pour la table `accommodations_periods`
 --
-ALTER TABLE `accomodations_periods`
+ALTER TABLE `accommodations_periods`
   ADD PRIMARY KEY (`id`),
   ADD KEY `period_id` (`period_id`),
-  ADD KEY `accomodation_id` (`accomodation_id`);
+  ADD KEY `accommodation_id` (`accommodation_id`);
 
 --
 -- Index pour la table `activities`
@@ -985,7 +986,7 @@ ALTER TABLE `circuits`
   ADD PRIMARY KEY (`id`),
   ADD KEY `media_id` (`media_id`),
   ADD KEY `language_id` (`language_id`),
-  ADD KEY `categorie_id` (`categorie_id`);
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Index pour la table `circuits_media`
@@ -1110,7 +1111,7 @@ ALTER TABLE `landing_pages`
 ALTER TABLE `landing_pages_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `landing_page_id` (`landing_page_id`),
-  ADD KEY `landing_page_selection_id` (`landing_page_selection_id`);
+  ADD KEY `landing_page_section_id` (`landing_page_section_id`);
 
 --
 -- Index pour la table `landing_pages_items_cards`
@@ -1286,7 +1287,7 @@ ALTER TABLE `roles_permissions`
 --
 ALTER TABLE `rooms`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `accomodation_id` (`accomodation_id`);
+  ADD KEY `accommodation_id` (`accommodation_id`);
 
 --
 -- Index pour la table `steps`
@@ -1368,24 +1369,24 @@ ALTER TABLE `waiting_lists`
 --
 
 --
--- AUTO_INCREMENT pour la table `accomodations`
+-- AUTO_INCREMENT pour la table `accommodations`
 --
-ALTER TABLE `accomodations`
+ALTER TABLE `accommodations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `accomodations_locations`
+-- AUTO_INCREMENT pour la table `accommodations_locations`
 --
-ALTER TABLE `accomodations_locations`
+ALTER TABLE `accommodations_locations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `accomodations_media`
+-- AUTO_INCREMENT pour la table `accommodations_media`
 --
-ALTER TABLE `accomodations_media`
+ALTER TABLE `accommodations_media`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `accomodations_periods`
+-- AUTO_INCREMENT pour la table `accommodations_periods`
 --
-ALTER TABLE `accomodations_periods`
+ALTER TABLE `accommodations_periods`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `activities`
@@ -1692,31 +1693,31 @@ ALTER TABLE `waiting_lists`
 --
 
 --
--- Contraintes pour la table `accomodations`
+-- Contraintes pour la table `accommodations`
 --
-ALTER TABLE `accomodations`
-  ADD CONSTRAINT `accomodations_ibfk_1` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`);
+ALTER TABLE `accommodations`
+  ADD CONSTRAINT `accommodations_ibfk_1` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`);
 
 --
--- Contraintes pour la table `accomodations_locations`
+-- Contraintes pour la table `accommodations_locations`
 --
-ALTER TABLE `accomodations_locations`
-  ADD CONSTRAINT `accomodations_locations_ibfk_1` FOREIGN KEY (`accomodation_id`) REFERENCES `accoomodations` (`id`),
-  ADD CONSTRAINT `accomodations_locations_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`);
+ALTER TABLE `accommodations_locations`
+  ADD CONSTRAINT `accommodations_locations_ibfk_1` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`),
+  ADD CONSTRAINT `accommodations_locations_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`);
 
 --
--- Contraintes pour la table `accomodations_media`
+-- Contraintes pour la table `accommodations_media`
 --
-ALTER TABLE `accomodations_media`
-  ADD CONSTRAINT `accomodations_media_ibfk_1` FOREIGN KEY (`accomodation_id`) REFERENCES `accomodations` (`id`),
-  ADD CONSTRAINT `accomodations_media_ibfk_2` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`);
+ALTER TABLE `accommodations_media`
+  ADD CONSTRAINT `accommodations_media_ibfk_1` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`),
+  ADD CONSTRAINT `accommodations_media_ibfk_2` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`);
 
 --
--- Contraintes pour la table `accomodations_periods`
+-- Contraintes pour la table `accommodations_periods`
 --
-ALTER TABLE `accomodations_periods`
-  ADD CONSTRAINT `accomodations_periods_ibfk_1` FOREIGN KEY (`period_id`) REFERENCES `periods` (`id`),
-  ADD CONSTRAINT `accomodations_periods_ibfk_2` FOREIGN KEY (`accomodation_id`) REFERENCES `accomodations` (`id`);
+ALTER TABLE `accommodations_periods`
+  ADD CONSTRAINT `accommodations_periods_ibfk_1` FOREIGN KEY (`period_id`) REFERENCES `periods` (`id`),
+  ADD CONSTRAINT `accommodations_periods_ibfk_2` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`);
 
 --
 -- Contraintes pour la table `activities_locations`
@@ -1759,7 +1760,7 @@ ALTER TABLE `chat_lines`
 ALTER TABLE `circuits`
   ADD CONSTRAINT `circuits_ibfk_1` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`),
   ADD CONSTRAINT `circuits_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `languages` (`id`),
-  ADD CONSTRAINT `circuits_ibfk_3` FOREIGN KEY (`categorie_id`) REFERENCES `categories` (`id`);
+  ADD CONSTRAINT `circuits_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 
 --
 -- Contraintes pour la table `circuits_media`
@@ -1863,7 +1864,7 @@ ALTER TABLE `landing_pages`
 --
 ALTER TABLE `landing_pages_items`
   ADD CONSTRAINT `landing_pages_items_ibfk_1` FOREIGN KEY (`landing_page_id`) REFERENCES `landing_pages` (`id`),
-  ADD CONSTRAINT `landing_pages_items_ibfk_2` FOREIGN KEY (`landing_page_selection_id`) REFERENCES `landing_pages_sections` (`id`);
+  ADD CONSTRAINT `landing_pages_items_ibfk_2` FOREIGN KEY (`landing_page_section_id`) REFERENCES `landing_pages_sections` (`id`);
 
 --
 -- Contraintes pour la table `landing_pages_items_cards`
@@ -1890,7 +1891,7 @@ ALTER TABLE `locations`
 --
 ALTER TABLE `members`
   ADD CONSTRAINT `members_ibfk_1` FOREIGN KEY (`password_id`) REFERENCES `passwords` (`id`),
-  ADD CONSTRAINT `members_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `addreses` (`id`),
+  ADD CONSTRAINT `members_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
   ADD CONSTRAINT `members_ibfk_3` FOREIGN KEY (`language_id`) REFERENCES `languages` (`id`);
 
 --
@@ -1969,7 +1970,7 @@ ALTER TABLE `roles_permissions`
 -- Contraintes pour la table `rooms`
 --
 ALTER TABLE `rooms`
-  ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`accomodation_id`) REFERENCES `accoomodations` (`id`);
+  ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`);
 
 --
 -- Contraintes pour la table `steps`
