@@ -16,7 +16,7 @@ class Admin extends \Core\Controller
         View::renderTemplate('admin_base.html.twig');
     }
 
-    public function createAction(){
+    public function circuitsCreateAction(){
         View::renderTemplate('Admin/creation_circuit.html.twig');
     }
 }

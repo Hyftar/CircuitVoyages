@@ -59,8 +59,8 @@ $router->add(
 );
 
 $router->add(
-    'createIndex',
-    ['controller' => 'Admin', 'action' => 'createIndex']
+    'admin_circuits_create',
+    ['controller' => 'Admin', 'action' => 'circuitsCreate']
 );
 
 // Send the URI and Method to the dispatcher

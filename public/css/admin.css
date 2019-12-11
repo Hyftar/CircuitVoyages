@@ -289,3 +289,10 @@ a:focus {
     text-decoration: none !important;
     color: rgb(51, 51, 51) !important;
 }
+
+
+/* Création circuits */
+
+.form_create_circuit {
+    margin-bottom: 50px;
+}
