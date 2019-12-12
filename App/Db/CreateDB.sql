@@ -1972,7 +1972,6 @@ ALTER TABLE `roles_permissions`
 ALTER TABLE `rooms`
   ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`);
 
-
 --
 -- Contraintes pour la table `steps`
 --
