@@ -6,6 +6,12 @@ Login form
   --input-padding-y: .75rem;
 }
 
+@media (max-height: 900px) {
+  #register-user-form {
+    overflow-y: scroll;
+  }
+}
+
 #login-modal, #register-modal {
   position: fixed;
   z-index: 999;
@@ -21,8 +27,13 @@ Login form
   align-items: center;
 }
 
-#register-user-form, #reset-modal-container .panel {
+#reset-modal-container .panel {
   padding: 2em;
+  border-radius: 1rem;
+}
+
+#register-user-form {
+  padding: 0.75em;
   border-radius: 1rem;
 }
 

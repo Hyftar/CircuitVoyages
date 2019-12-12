@@ -1,14 +1,14 @@
 <div id="register-user-form" class="card bg-light hidden">
   <div class="card-body mx-auto" style="max-width: 400px;">
-    <h4 class="card-title mt-3 text-center">Créez un compte</h4>
-    <form>
+    <h4 class="card-title mt-3 text-center">S'enregistrer</h4>
+    <form id="register-form" onsubmit="return false">
       <div class="form-group input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
             <i class="fa fa-user"></i>
           </span>
         </div>
-        <input name="" id="user-prenom" class="form-control" placeholder="Prenom" type="text">
+        <input id="first-name" name="first_name" class="form-control" placeholder="Prénom" type="text" required/>
       </div>
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -16,15 +16,15 @@
             <i class="fa fa-user"></i>
           </span>
         </div>
-        <input name="" id="user-nom" class="form-control" placeholder="Nom" type="text">
+        <input id="last-name" name="last_name" class="form-control" placeholder="Nom" type="text" required/>
       </div>
       <div class="form-group input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <i class="fa fa-envelope"></i>
+            <i class="fa fa-at"></i>
           </span>
         </div>
-        <input name="" id="email-admin-adress" class="form-control" placeholder="Adresse courriel" type="email">
+        <input id="email" name="email" class="form-control" placeholder="Adresse courriel" type="email" required/>
       </div>
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -32,7 +32,7 @@
             <i class="fa fa-calendar"></i>
           </span>
         </div>
-        <input type="text" id="birthdate" class="form-control" placeholder="Date de naissance">
+        <input id="date-of-birth" name="dob" type="date" class="form-control" placeholder="Date de naissance" required/>
       </div>
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -40,19 +40,72 @@
             <i class="fa fa-phone"></i>
           </span>
         </div>
-        <select class="custom-select" style="max-width: 120px;">
-          <option selected="">514</option>
-          <option value="1">450</option>
-        </select>
-        <input name="" id="phone" class="form-control" placeholder="Téléphone" type="text">
+        <input id="phone" name="phone" class="form-control" placeholder="Téléphone" type="text" required/>
       </div>
+
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-globe"></i>
+          </span>
+        </div>
+        <input id="country" name="country" class="form-control" placeholder="Pays" type="text" required/>
+      </div>
+
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-map-pin"></i>
+          </span>
+        </div>
+        <input id="region" name="region" class="form-control" placeholder="Province" type="text" required/>
+      </div>
+
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-city"></i>
+          </span>
+        </div>
+        <input id="city" name="city" class="form-control" placeholder="Ville" type="text" required/>
+      </div>
+
       <div class="form-group input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
             <i class="fa fa-building"></i>
           </span>
         </div>
-        <input name="" id="adress" class="form-control" placeholder="Adresse" type="email">
+        <input id="address-line-1" name="address_line_1" class="form-control" placeholder="Ligne d'adresse 1" type="text" required/>
+      </div>
+
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-building"></i>
+          </span>
+        </div>
+        <input id="address-line-2" name="address_line_2"class="form-control" placeholder="Ligne d'adresse 2" type="text"/>
+      </div>
+
+      <div class="form-group input-group">
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fa fa-mail-bulk"></i>
+            </span>
+          </div>
+          <input id="postal-code" name="postal_code" class="form-control" placeholder="Code postal" type="text"/>
+        </div>
+      </div>
+
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-lock"></i>
+          </span>
+        </div>
+        <input id="password" name="password" class="form-control" placeholder="Créez un mot de passe" type="password" required/>
       </div>
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -60,19 +113,11 @@
             <i class="fa fa-lock"></i>
           </span>
         </div>
-        <input id="user-register-password" class="form-control" placeholder="Créez mot de passe" type="password">
-      </div>
-      <div class="form-group input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <i class="fa fa-lock"></i>
-          </span>
-        </div>
-        <input id="user-repeat-password" class="form-control" placeholder="Répéter mot de passe" type="password">
+        <input id="password-confirmation" class="form-control" placeholder="Confirmation du mot de passe" type="password" required/>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block">
-          Créez un compte
+        <button id="register-submit" type="submit" class="btn btn-primary btn-block">
+          Créer un compte
         </button>
       </div>
       <p id="register-login-link" class="text-center">
