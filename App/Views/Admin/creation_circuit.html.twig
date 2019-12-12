@@ -1,8 +1,52 @@
 <form class="form_create_circuit">
   <div class="form-group">
-    <label for="nom_circuit">Nom du circuit</label>
+    <label for="nom_circuit"><h5>Nom du circuit :</h5></label>
     <input type="email" class="form-control" id="nom_circuit" placeholder="Ex. : Circuit Méditerrannéen">
   </div>
+
+<div class="select_container">
+{# // multiple selectpicker for circuit categories #}
+<div>
+  <label for="">Catégorie(s) : </label>
+  <select class="selectpicker" title="Aucune catégorie" multiple>
+  <option>Mustard</option>
+  <option>Ketchup</option>
+  <option>Relish</option>
+  </select>
+</div>
+
+
+{# // multiple selectpicker for circuit languages #}
+<div>
+<label for="">Langue(s) disponible(s) pour le circuit  : </label>
+<select class="selectpicker" title="Aucune langue" multiple>
+  <option>Français</option>
+  <option>Anglais</option>
+  <option>Espagnol</option>
+  </select>
+</div>
+</div>
+
+
+
+
+{# // File input for circuit image #}
+
+
+  <div class="custom-file">
+  <input type="file" class="custom-file-input" id="customFile" lang="fr">
+  <label class="custom-file-label" for="customFile">Choisir une image</label>
+</div>
+
+
+{# text area for small back-end circuit desc #}
+
+<div class="form-group">
+    <label for="exampleFormControlTextarea1">Description du circuit : </label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+
+
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Étape 1</a>
@@ -16,18 +60,202 @@
 </ul>
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    ...
+
+    {# GRILLE HORAIRE  1 #}
+
+    <div class="etape">
+      <div class="grille">
+        <div class="time_column">
+          <div class="heures">
+          00:00<br>
+          01:00<br>
+          02:00<br>
+          03:00<br>
+          04:00<br>
+          05:00<br>
+          06:00<br>
+          07:00<br>
+          08:00<br>
+          09:00<br>
+          10:00<br>
+          11:00<br>
+          12:00<br>
+          13:00<br>
+          14:00<br>
+          15:00<br>
+          16:00<br>
+          17:00<br>
+          18:00<br>
+          19:00<br>
+          20:00<br>
+          21:00<br>
+          22:00 <br>
+          23:00 <br>
+          </div>
+          <div class="lignes">
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          </div>
+        </div>
+        <div class="grille_horaire">
+          <div class="header">Jour 1</div>
+          <div class="header">Jour 2</div>
+          <div class="header">Jour 3</div>
+          <div class="header">Jour 4</div>
+          <div class="header"><i class="fas fa-plus"></i></div>
+          <div class="activity"></div>
+          <div class="activity"></div>
+          <div class="activity"></div>
+          <div class="activity"></div>
+        </div>
+      </div>
+      <div class="hebergement_container">
+        <h6 class="hebergement_titre">Hébergements :</h6>
+        <div class="grille_hebergement">
+          <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
+          <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
+          <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
+          <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
+        </div>
+      </div>
+      <div class="hebergement_container">
+        <h6 class="hebergement_titre">Restaurants :</h6>
+        <div class="grille_hebergement">
+          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
+          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
+          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
+          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
+        </div>
+      </div>
     </div>
+  </div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-    ...
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+    {# GRILLE HORAIRE  1 #}
+
+    <div class="etape">
+      <div class="grille">
+        <div class="time_column">
+          <div class="heures">
+          00:00<br>
+          01:00<br>
+          02:00<br>
+          03:00<br>
+          04:00<br>
+          05:00<br>
+          06:00<br>
+          07:00<br>
+          08:00<br>
+          09:00<br>
+          10:00<br>
+          11:00<br>
+          12:00<br>
+          13:00<br>
+          14:00<br>
+          15:00<br>
+          16:00<br>
+          17:00<br>
+          18:00<br>
+          19:00<br>
+          20:00<br>
+          21:00<br>
+          22:00 <br>
+          23:00 <br>
+          </div>
+          <div class="lignes">
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          <hr>
+          </div>
+        </div>
+        <div class="grille_horaire">
+          <div class="header">Jour 1</div>
+          <div class="header">Jour 2</div>
+          <div class="header">Jour 3</div>
+          <div class="header">Jour 4</div>
+          <div class="header"><i class="fas fa-plus"></i></div>
+          <div class="activity"></div>
+          <div class="activity"></div>
+          <div class="activity"></div>
+          <div class="activity"></div>
+        </div>
+      </div>
+      <div class="hebergement_container">
+        <h6 class="hebergement_titre">Hébergements :</h6>
+        <div class="grille_hebergement">
+          <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
+          <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
+          <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
+          <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
+        </div>
+      </div>
+      <div class="hebergement_container">
+        <h6 class="hebergement_titre">Restaurants :</h6>
+        <div class="grille_hebergement">
+          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
+          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
+          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
+          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
+        </div>
+      </div>
     </div>
+  </div>
+  </div>
 </div>
 
 
 
-
+<div class="button_panel">
+<button type="button" class="btn btn-dark mr-auto" onClick="getCircuits()">Retour à la liste des circuits</button>
+<button type="button" class="btn btn-secondary">Enregistrer le circuit</button>
+<button type="button" class="btn btn-success">Organiser le circuit</button>
+</div>
 
 </form>
 
 
-<button type="button" class="btn btn-dark" onClick="getCircuits()">Retour à la liste des circuits</button>
+

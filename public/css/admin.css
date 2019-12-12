@@ -294,5 +294,153 @@ a:focus {
 /* Création circuits */
 
 .form_create_circuit {
-    margin-bottom: 50px;
+    margin: 0 100px 50px 0;
+}
+
+.select_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.form_create_circuit>* {
+    margin: 20px 0;
+}
+
+.custom-file-input~.custom-file-label::after {
+    content: "Parcourir";
+}
+
+.nav-pills li {
+    display: grid;
+    place-items: center;
+    padding: 5px;
+}
+
+.nav-pills li:last-of-type {
+    padding: 15px;
+}
+
+.nav-pills i:hover {
+    opacity: 0.8;
+    transition: 0.2s;
+}
+
+.heures {
+    text-align: right;
+    padding-right: 5px;
+    padding-top: 7px;
+}
+
+.time_column {
+    display: flex;
+    flex-direction: row;
+    padding-top: 64px
+}
+
+.lignes {
+    width: 15px;
+    padding-right: 5px;
+}
+
+.lignes hr {
+    height: 4px;
+}
+
+.grille_horaire {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 9fr;
+    grid-gap: 5px;
+    width: 80%;
+    padding: 10px 0;
+}
+
+.grille_horaire div {
+    background-color: rgb(242, 245, 255);
+    border-radius: 5px;
+    transition: 0.4s;
+}
+
+.grille_horaire div:hover {
+    background-color: rgba(242, 245, 255, 0.6);
+    cursor: pointer;
+}
+
+.grille {
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    display: grid;
+    place-items: center;
+    background-color: lavender !important;
+}
+
+.header:hover {
+    background-color: rgba(230, 230, 250, 0.6) !important;
+}
+
+.hebergement_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.grille_hebergement {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+    width: 80%;
+    margin-left: 54px;
+    text-align: center;
+}
+
+.hebergement {
+    background-color: rgb(255, 202, 202);
+    border-radius: 4px;
+    transition: 0.4s;
+}
+
+.hebergement:hover {
+    background-color: rgb(255, 202, 202, 0.6);
+    cursor: pointer;
+}
+
+.hebergement_titre {
+    padding-top: 15px;
+}
+
+.hebergement_container hr {
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    border-width: 1px;
+}
+
+.restaurant {
+    background-color: rgb(220, 252, 217);
+    border-radius: 4px;
+    transition: 0.4s;
+}
+
+.restaurant:hover {
+    background-color: rgb(220, 252, 217, 0.6);
+    cursor: pointer;
+}
+
+.restaurant,
+.hebergement {
+    display: grid;
+    place-items: end center;
+    padding: 15px;
+}
+
+.button_panel {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+}
+
+.button_panel button {
+    margin: 10px;
 }

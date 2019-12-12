@@ -39,6 +39,13 @@ function getCircuits_create() {
         success: (data) => {
             let containter = document.getElementById('contenu')
             containter.innerHTML = data
+            $(".selectpicker").selectpicker();
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+
         }
+
     })
 }
