@@ -2,23 +2,11 @@
 
 namespace App\Models;
 
+use App\Helpers\LoginHelpers;
 use PDO;
 
 class Member extends \Core\Model
 {
-    // CREATE TABLE `members` (
-    //   `id` int(11) NOT NULL,
-    //   `email` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-    //   `password_id` int(11) DEFAULT NULL,
-    //   `address_id` int(11) NOT NULL,
-    //   `language_id` int(11) NOT NULL,
-    //   `first_name` varchar(100) CHARACTER SET utf8 NOT NULL,
-    //   `last_name` varchar(100) CHARACTER SET utf8 NOT NULL,
-    //   `phone_number` varchar(15) COLLATE utf8mb4_bin NOT NULL,
-    //   `date_of_birth` date NOT NULL,
-    //   `facebook_id` bigint(20) UNSIGNED DEFAULT NULL
-    // ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
     public static function createMember(
         $email,
         $password,
@@ -26,11 +14,102 @@ class Member extends \Core\Model
         $last_name,
         $phone_number,
         $date_of_birth,
-        $address
+        $country,
+        $city,
+        $region,
+        $address_line_1,
+        $address_line_2,
+        $postal_code
     )
     {
         $db = static::getDB();
+        $db->beginTransaction();
+        $stmt = $db->prepare(
+            'INSERT INTO addresses(
+                country,
+                city,
+                region,
+                address_line_1,
+                address_line_2,
+                postal_code
+            ) VALUES (
+                :country,
+                :city,
+                :region,
+                :address_line_1,
+                :address_line_2,
+                :postal_code
+            )'
+        );
 
+        $stmt->bindValue(':country', $country, PDO::PARAM_STR);
+        $stmt->bindValue(':city', $city, PDO::PARAM_STR);
+        $stmt->bindValue(':region', $region, PDO::PARAM_STR);
+        $stmt->bindValue(':address_line_1', $address_line_1, PDO::PARAM_STR);
+        $stmt->bindValue(':address_line_2', $address_line_2, PDO::PARAM_STR);
+        $stmt->bindValue(':postal_code', $postal_code, PDO::PARAM_STR);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $address_id = $db->lastInsertId();
+
+        $stmt = $db->prepare(
+            'INSERT INTO passwords(password_salt, password_hash)
+             VALUES (:password_salt, :password_hash)'
+        );
+
+        $salt = LoginHelpers::generateRandomSalt();
+        $hash = LoginHelpers::encryptPassword($password, $salt);
+
+        $stmt->bindValue(':password_salt', $salt, PDO::PARAM_STR);
+        $stmt->bindValue(':password_hash', $hash, PDO::PARAM_STR);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $password_id = $db->lastInsertId();
+
+        $stmt = $db->prepare(
+            'INSERT INTO members(
+                email,
+                password_id,
+                address_id,
+                language_id,
+                first_name,
+                last_name,
+                phone_number,
+                date_of_birth
+            ) VALUES (
+                :email,
+                :password_id,
+                :address_id,
+                1,
+                :first_name,
+                :last_name,
+                :phone_number,
+                :dob
+            )'
+        );
+
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':password_id', $password_id, PDO::PARAM_INT);
+        $stmt->bindValue(':address_id', $address_id, PDO::PARAM_INT);
+        $stmt->bindValue(':first_name', $first_name, PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
+        $stmt->bindValue(':phone_number', $phone_number, PDO::PARAM_STR);
+        $stmt->bindValue(':dob', $date_of_birth, PDO::PARAM_STR);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
     }
 
     public static function exists($email)
@@ -72,7 +151,7 @@ class Member extends \Core\Model
 
         list($id, $password_hash, $password_salt) = $result;
 
-        $hash = LoginHelper::encryptPassword($password, $password_salt);
+        $hash = LoginHelpers::encryptPassword($password, $password_salt);
 
         $stmt = $db->prepare(
             'SELECT id FROM passwords
@@ -85,5 +164,14 @@ class Member extends \Core\Model
         $stmt->execute();
 
         return $stmt->fetch() !== false;
+    }
+
+    public static function getByEmail($email)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM members WHERE email = :email');
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 }

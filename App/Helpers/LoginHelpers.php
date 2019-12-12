@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Config;
+
 class LoginHelpers
 {
     private static $password_patterns = [
@@ -11,6 +13,10 @@ class LoginHelpers
         ['pattern' => '/(?=.*[!@#\$%\^&])/', 'message' => 'Le mot de passe doit contenir au moins 1 caractère parmis !, @, #, $, %, ^ et &'],
         ['pattern' => '/(?=.{8,})/', 'message' => 'Le mot de passe doit contenir au moins 8 caractères']
     ];
+
+    private static $postal_code_pattern = '/^([ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z])[ -]?(\d[ABCEGHJ-NPRSTV-Z]\d)$/i';
+
+    private static $phone_number_pattern = '/^(?<country_code>\+\d{1})?[\s.-]?(?<phone>\(?\d{3}\)?[\s.-]?\d{3}[\s-.]?\d{4})$/';
 
     public static function encryptPassword($clear_password, $salt)
     {
@@ -37,5 +43,23 @@ class LoginHelpers
         }
 
         return $errors;
+    }
+
+    public static function validatePhoneNumber($phone_number)
+    {
+        $errors = [];
+        if (!preg_match(static::$phone_number_pattern, $phone_number, $matches)) {
+            $errors[] = 'Numéro de téléphone invalide';
+        }
+    }
+
+    public static function validatePostalCode($postal_code)
+    {
+        $errors = [];
+        if (!preg_match(static::$postal_code_pattern, $postal_code, $matches, PREG_UNMATCHED_AS_NULL)) {
+            $errors[] = 'Code postal invalide';
+        }
+
+        return [$matches[1] . $matches[2], $errors];
     }
 }

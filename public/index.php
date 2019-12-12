@@ -42,6 +42,11 @@ $router->add(
     'POST'
 );
 
+$router->add(
+    'register',
+    ['controller' => 'Members', 'action' => 'create'],
+    'POST'
+);
 
 $router->add(
     'circuits',

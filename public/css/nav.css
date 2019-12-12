@@ -145,6 +145,7 @@ nav {
 }
 
 .nav-link:hover {
-  -webkit-text-decoration: underline 2px solid #212529;
-  text-decoration: underline 2px solid #212529;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: #212529;
 }
