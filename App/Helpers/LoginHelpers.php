@@ -16,7 +16,7 @@ class LoginHelpers
 
     private static $postal_code_pattern = '/^([ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z])[ -]?(\d[ABCEGHJ-NPRSTV-Z]\d)$/i';
 
-    private static $phone_number_pattern = '/^(?<country_code>\+\d{1})?[\s.-]?(?<phone>\(?\d{3}\)?[\s.-]?\d{3}[\s-.]?\d{4})$/';
+    private static $phone_number_pattern = '/^(?<country_code>\+\d{1})?[\s\.\-]?(?<phone>\(?\d{3}\)?[\s\.\-]?\d{3}[\s\-\.]?\d{4})$/';
 
     public static function encryptPassword($clear_password, $salt)
     {
@@ -51,6 +51,8 @@ class LoginHelpers
         if (!preg_match(static::$phone_number_pattern, $phone_number, $matches)) {
             $errors[] = 'Numéro de téléphone invalide';
         }
+
+        return $errors;
     }
 
     public static function validatePostalCode($postal_code)

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Helpers\LoginHelpers;
+use \App\Helpers\ApplicationHelpers;
 use \App\Models\Member;
 
 class Members extends \Core\Controller
@@ -78,39 +79,39 @@ class Members extends \Core\Controller
         // Check if all the required parameters are set
 
         if (empty($first_name)) {
-            $errors['first_name'] = 'Veuillez fournir un prénom';
+            $errors['first_name'][] = 'Veuillez fournir un prénom';
         }
 
         if (empty($last_name)) {
-            $errors['last_name'] = 'Veuillez fournir un nom';
+            $errors['last_name'][] = 'Veuillez fournir un nom';
         }
 
         if (empty($email)) {
-          $errors['email'] = 'Veuillez fournir un email';
+          $errors['email'][] = 'Veuillez fournir un email';
         }
 
         if (empty($address_line_1)) {
-            $errors['address_line_1'] = 'Veuillez fournir une adresse';
+            $errors['address_line_1'][] = 'Veuillez fournir une adresse';
         }
 
         if (empty($region)) {
-            $errors['region'] = 'Veuillez fournir une province';
+            $errors['region'][] = 'Veuillez fournir une province';
         }
 
         if (empty($phone)) {
-            $errors['phone'] = 'Veuillez fournir un numéro de téléphone';
+            $errors['phone'][] = 'Veuillez fournir un numéro de téléphone';
         }
 
         if (empty($country)) {
-            $errors['country'] = 'Veuillez fournir un pays';
+            $errors['country'][] = 'Veuillez fournir un pays';
         }
 
         if (empty($dob)) {
-            $errors['dob'] = 'Veuillez fournir une date de naissance';
+            $errors['date_of_birth'][] = 'Veuillez fournir une date de naissance';
         }
 
         if (empty($city)) {
-            $errors['city'] = 'Veuillez fournir une ville dans votre adresse';
+            $errors['city'][] = 'Veuillez fournir une ville dans votre adresse';
         }
 
         if (!empty($errors)) {
@@ -121,22 +122,50 @@ class Members extends \Core\Controller
 
         // Validate parameters content
 
+        // Email
+
         if (!LoginHelpers::isValidEmail($_POST['email'])) {
-            $errors['email'] = 'Format du email invalide';
+            $errors['email'][] = ['Format du email invalide'];
         }
 
-        $errors['password'] =
+        if (Member::exists($email)) {
+            $errors['email'][] = 'Un compte existe deja pour ce email';
+        }
+
+        // Password
+
+        $password_errors =
             LoginHelpers::validatePassword($password);
 
-        $postal_code_validation =
-            LoginHelpers::validatePostalCode($postal_code);
-        $postal_code = $postal_code_validation[0];
-        $errors['postal_code'] =
-            $postal_code_validation[1];
+        if (!empty($password_errors)) {
+            $errors['password'] = $password_errors;
+        }
 
-        if (!empty($errors['pasword']) ||
-            !empty($errors['postal_code']) ||
-            !empty($errors['email'])) {
+        // Postal code
+
+        list($postal_code, $postal_code_errors) =
+            LoginHelpers::validatePostalCode($postal_code);
+
+        if (!empty($postal_code_errors)) {
+            $errors['postal_code'][] = $postal_code_errors;
+        }
+
+        // Phone
+
+        $phone_errors = LoginHelpers::validatePhoneNumber($phone);
+        if (!empty($phone_errors)) {
+            $errors['phone'] = $phone_errors;
+        }
+
+        // Date of birth
+
+        // 16 years old minimum
+        $dob_errors = ApplicationHelpers::validateDate($dob, 16);
+        if (!empty($dob_errors)) {
+            $errors['date_of_birth'] = $dob_errors;
+        }
+
+        if (!empty($errors)) {
             http_response_code(400);
             View::renderJSON(['errors' => $errors]);
             return;
