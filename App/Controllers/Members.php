@@ -61,56 +61,43 @@ class Members extends \Core\Controller
 
     public function createAction()
     {
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-        $email = $_POST['email'];
-        $dob = $_POST['dob']; // Date of birth
-        $address_line_1 = $_POST['address_line_1'];
-        $address_line_2 = $_POST['address_line_2'];
-        $country = $_POST['country'];
-        $region = $_POST['region'];
-        $phone = $_POST['phone'];
-        $city = $_POST['city'];
-        $postal_code = $_POST['postal_code'];
-        $password = $_POST['password'];
-
         $errors = [];
 
         // Check if all the required parameters are set
 
-        if (empty($first_name)) {
+        if (empty($_POST['first_name'])) {
             $errors['first_name'][] = 'Veuillez fournir un prénom';
         }
 
-        if (empty($last_name)) {
+        if (empty($_POST['last_name'])) {
             $errors['last_name'][] = 'Veuillez fournir un nom';
         }
 
-        if (empty($email)) {
+        if (empty($_POST['email'])) {
           $errors['email'][] = 'Veuillez fournir un email';
         }
 
-        if (empty($address_line_1)) {
+        if (empty($_POST['address_line_1'])) {
             $errors['address_line_1'][] = 'Veuillez fournir une adresse';
         }
 
-        if (empty($region)) {
+        if (empty($_POST['region'])) {
             $errors['region'][] = 'Veuillez fournir une province';
         }
 
-        if (empty($phone)) {
+        if (empty($_POST['phone'])) {
             $errors['phone'][] = 'Veuillez fournir un numéro de téléphone';
         }
 
-        if (empty($country)) {
+        if (empty($_POST['country'])) {
             $errors['country'][] = 'Veuillez fournir un pays';
         }
 
-        if (empty($dob)) {
+        if (empty($_POST['dob'])) {
             $errors['date_of_birth'][] = 'Veuillez fournir une date de naissance';
         }
 
-        if (empty($city)) {
+        if (empty($_POST['city'])) {
             $errors['city'][] = 'Veuillez fournir une ville dans votre adresse';
         }
 
@@ -118,6 +105,27 @@ class Members extends \Core\Controller
             http_response_code(400); // Bad request (missing parameters)
             View::renderJSON(['errors' => $errors]);
             return;
+        }
+
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $email = $_POST['email'];
+        $dob = $_POST['dob']; // Date of birth
+        $address_line_1 = $_POST['address_line_1'];
+        $address_line_2 = null;
+        $country = $_POST['country'];
+        $region = $_POST['region'];
+        $phone = $_POST['phone'];
+        $city = $_POST['city'];
+        $postal_code = null;
+        $password = $_POST['password'];
+
+        if (!empty($_POST['address_line_2'])) {
+            $address_line_2 = $_POST['address_line_2'];
+        }
+
+        if (!empty($_POST['postal_code'])) {
+            $postal_code = $_POST['postal_code'];
         }
 
         // Validate parameters content

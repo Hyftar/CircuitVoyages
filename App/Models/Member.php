@@ -24,6 +24,11 @@ class Member extends \Core\Model
     {
         $db = static::getDB();
         $db->beginTransaction();
+
+        $stmt = $db->query('SELECT id FROM languages WHERE name = \'FRENCH\' LIMIT 1');
+        $stmt->execute();
+        $language_id = $stmt->fetch()['id'];
+
         $stmt = $db->prepare(
             'INSERT INTO addresses(
                 country,
@@ -88,7 +93,7 @@ class Member extends \Core\Model
                 :email,
                 :password_id,
                 :address_id,
-                1,
+                :language_id,
                 :first_name,
                 :last_name,
                 :phone_number,
@@ -103,6 +108,7 @@ class Member extends \Core\Model
         $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
         $stmt->bindValue(':phone_number', $phone_number, PDO::PARAM_STR);
         $stmt->bindValue(':dob', $date_of_birth, PDO::PARAM_STR);
+        $stmt->bindValue(':language_id', $language_id, PDO::PARAM_INT);
 
         if (!$stmt->execute()) {
             $db->rollBack();

@@ -57,11 +57,10 @@ class LoginHelpers
 
     public static function validatePostalCode($postal_code)
     {
-        $errors = [];
         if (!preg_match(static::$postal_code_pattern, $postal_code, $matches, PREG_UNMATCHED_AS_NULL)) {
-            $errors[] = 'Code postal invalide';
+            return [null, 'Code postal invalide'];
         }
 
-        return [$matches[1] . $matches[2], $errors];
+        return [$matches[1] . $matches[2], ''];
     }
 }
