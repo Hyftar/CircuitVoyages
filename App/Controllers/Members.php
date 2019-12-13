@@ -51,7 +51,7 @@ class Members extends \Core\Controller
         session_destroy();
         session_start();
 
-        $_SESSION['user'] = Member::getByEmail($_POST['email']);
+        $_SESSION['member'] = Member::getByEmail($_POST['email']);
     }
 
     public function logoutAction()

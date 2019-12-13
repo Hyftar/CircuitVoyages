@@ -284,8 +284,8 @@ CREATE TABLE `employees` (
   `media_id` int(11) DEFAULT NULL,
   `phone_number` varchar(15) COLLATE utf8mb4_bin DEFAULT NULL,
   `email` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `password_id` int(11) NOT NULL
+  `role_id` int(11) DEFAULT NULL,
+  `password_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
