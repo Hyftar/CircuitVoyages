@@ -83,7 +83,7 @@ CREATE TABLE `accommodations_periods` (
 
 CREATE TABLE `activities` (
   `id` int(11) NOT NULL,
-  `activity_type` enum('TRANSPORT','RELAXING','ACTION','DISCOVERY','ARTS','OTHER') COLLATE utf8mb4_bin NOT NULL,
+  `activity_type` enum('TRANSPORT','RELAXING','ACTION','DISCOVERY','ARTS','RESTAURANTS','OTHER') COLLATE utf8mb4_bin NOT NULL,
   `link` varchar(2083) COLLATE utf8mb4_bin DEFAULT NULL,
   `description` text COLLATE utf8mb4_bin DEFAULT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL
@@ -322,18 +322,6 @@ CREATE TABLE `exclusions_activities` (
   `id` int(11) NOT NULL,
   `trip_id` int(11) NOT NULL,
   `step_activity_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `exclusions_restaurants`
---
-
-CREATE TABLE `exclusions_restaurants` (
-  `id` int(11) NOT NULL,
-  `trip_id` int(11) NOT NULL,
-  `step_restaurant_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -685,32 +673,6 @@ CREATE TABLE `promotions_types` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `restaurants`
---
-
-CREATE TABLE `restaurants` (
-  `id` int(11) NOT NULL,
-  `link` varchar(2083) COLLATE utf8mb4_bin DEFAULT NULL,
-  `description` text COLLATE utf8mb4_bin,
-  `location_id` int(11) NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `restaurants_media`
---
-
-CREATE TABLE `restaurants_media` (
-  `id` int(11) NOT NULL,
-  `restaurant_id` int(11) NOT NULL,
-  `media_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `roles`
 --
 
@@ -769,20 +731,6 @@ CREATE TABLE `steps_activities` (
   `activity_id` int(11) NOT NULL,
   `step_id` int(11) NOT NULL,
   `time_after_last_step` mediumint(9) NOT NULL,
-  `duration` mediumint(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `steps_restaurants`
---
-
-CREATE TABLE `steps_restaurants` (
-  `id` int(11) NOT NULL,
-  `restaurant_id` int(11) NOT NULL,
-  `step_id` int(11) NOT NULL,
-  `time_after_step_start` mediumint(9) NOT NULL,
   `duration` mediumint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -1061,14 +1009,6 @@ ALTER TABLE `exclusions_activities`
   ADD KEY `step_activity_id` (`step_activity_id`);
 
 --
--- Index pour la table `exclusions_restaurants`
---
-ALTER TABLE `exclusions_restaurants`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `trip_id` (`trip_id`),
-  ADD KEY `step_restaurant_id` (`step_restaurant_id`);
-
---
 -- Index pour la table `flights`
 --
 ALTER TABLE `flights`
@@ -1255,20 +1195,6 @@ ALTER TABLE `promotions_types`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `restaurants`
---
-ALTER TABLE `restaurants`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `restaurants_media`
---
-ALTER TABLE `restaurants_media`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `restaurant_id` (`restaurant_id`),
-  ADD KEY `media_id` (`media_id`);
-
---
 -- Index pour la table `roles`
 --
 ALTER TABLE `roles`
@@ -1302,14 +1228,6 @@ ALTER TABLE `steps`
 ALTER TABLE `steps_activities`
   ADD PRIMARY KEY (`id`),
   ADD KEY `activity_id` (`activity_id`);
-
---
--- Index pour la table `steps_restaurants`
---
-ALTER TABLE `steps_restaurants`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `restaurant_id` (`restaurant_id`),
-  ADD KEY `step_id` (`step_id`);
 
 --
 -- Index pour la table `templates`
@@ -1479,11 +1397,6 @@ ALTER TABLE `exclusions`
 ALTER TABLE `exclusions_activities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `exclusions_restaurants`
---
-ALTER TABLE `exclusions_restaurants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT pour la table `flights`
 --
 ALTER TABLE `flights`
@@ -1614,16 +1527,6 @@ ALTER TABLE `promotions_trips_members`
 ALTER TABLE `promotions_types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `restaurants`
---
-ALTER TABLE `restaurants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `restaurants_media`
---
-ALTER TABLE `restaurants_media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT pour la table `roles`
 --
 ALTER TABLE `roles`
@@ -1647,11 +1550,6 @@ ALTER TABLE `steps`
 -- AUTO_INCREMENT pour la table `steps_activities`
 --
 ALTER TABLE `steps_activities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `steps_restaurants`
---
-ALTER TABLE `steps_restaurants`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `templates`
@@ -1826,13 +1724,6 @@ ALTER TABLE `exclusions_activities`
   ADD CONSTRAINT `exclusions_activities_ibfk_2` FOREIGN KEY (`step_activity_id`) REFERENCES `steps_activities` (`id`);
 
 --
--- Contraintes pour la table `exclusions_restaurants`
---
-ALTER TABLE `exclusions_restaurants`
-  ADD CONSTRAINT `exclusions_restaurants_ibfk_1` FOREIGN KEY (`trip_id`) REFERENCES `trips` (`id`),
-  ADD CONSTRAINT `exclusions_restaurants_ibfk_2` FOREIGN KEY (`step_restaurant_id`) REFERENCES `steps_restaurants` (`id`);
-
---
 -- Contraintes pour la table `galleries`
 --
 ALTER TABLE `galleries`
@@ -1953,13 +1844,6 @@ ALTER TABLE `promotions_trips_members`
   ADD CONSTRAINT `promotions_trips_members_ibfk_3` FOREIGN KEY (`trip_id`) REFERENCES `trips` (`id`);
 
 --
--- Contraintes pour la table `restaurants_media`
---
-ALTER TABLE `restaurants_media`
-  ADD CONSTRAINT `restaurants_media_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`),
-  ADD CONSTRAINT `restaurants_media_ibfk_2` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`);
-
---
 -- Contraintes pour la table `roles_permissions`
 --
 ALTER TABLE `roles_permissions`
@@ -1984,13 +1868,6 @@ ALTER TABLE `steps`
 ALTER TABLE `steps_activities`
   ADD CONSTRAINT `steps_activities_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activities` (`id`),
   ADD CONSTRAINT `steps_activities_ibfk_2` FOREIGN KEY (`id`) REFERENCES `steps` (`id`);
-
---
--- Contraintes pour la table `steps_restaurants`
---
-ALTER TABLE `steps_restaurants`
-  ADD CONSTRAINT `steps_restaurants_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`),
-  ADD CONSTRAINT `steps_restaurants_ibfk_2` FOREIGN KEY (`step_id`) REFERENCES `steps` (`id`);
 
 --
 -- Contraintes pour la table `travelers`
