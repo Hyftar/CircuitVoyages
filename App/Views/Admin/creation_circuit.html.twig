@@ -67,56 +67,18 @@
       <div class="grille">
         <div class="time_column">
           <div class="heures">
-          00:00<br>
-          01:00<br>
-          02:00<br>
-          03:00<br>
-          04:00<br>
-          05:00<br>
-          06:00<br>
-          07:00<br>
-          08:00<br>
-          09:00<br>
-          10:00<br>
-          11:00<br>
-          12:00<br>
-          13:00<br>
-          14:00<br>
-          15:00<br>
-          16:00<br>
-          17:00<br>
-          18:00<br>
-          19:00<br>
-          20:00<br>
-          21:00<br>
-          22:00 <br>
-          23:00 <br>
+          {% for i in 0..23 %}
+            {% if i < 10 %}
+              0{{i}}:00<br>
+            {% else %}
+              {{i}}:00<br>
+              {% endif %}
+          {% endfor %}
           </div>
           <div class="lignes">
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
+          {% for i in 0..23 %}
+            <hr>
+          {% endfor %}
           </div>
         </div>
         <div class="grille_horaire">
@@ -125,10 +87,10 @@
           <div class="header">Jour 3</div>
           <div class="header">Jour 4</div>
           <div class="header"><i class="fas fa-plus"></i></div>
-          <div class="activity"></div>
-          <div class="activity"></div>
-          <div class="activity"></div>
-          <div class="activity"></div>
+          <div class="activity" onclick="showActivity()"></div>
+          <div class="activity" onclick="showActivity()"></div>
+          <div class="activity" onclick="showActivity()"></div>
+          <div class="activity" onclick="showActivity()"></div>
         </div>
       </div>
       <div class="hebergement_container">
@@ -138,15 +100,6 @@
           <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
           <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
           <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
-        </div>
-      </div>
-      <div class="hebergement_container">
-        <h6 class="hebergement_titre">Restaurants :</h6>
-        <div class="grille_hebergement">
-          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
-          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
-          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
-          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
         </div>
       </div>
     </div>
@@ -160,56 +113,18 @@
       <div class="grille">
         <div class="time_column">
           <div class="heures">
-          00:00<br>
-          01:00<br>
-          02:00<br>
-          03:00<br>
-          04:00<br>
-          05:00<br>
-          06:00<br>
-          07:00<br>
-          08:00<br>
-          09:00<br>
-          10:00<br>
-          11:00<br>
-          12:00<br>
-          13:00<br>
-          14:00<br>
-          15:00<br>
-          16:00<br>
-          17:00<br>
-          18:00<br>
-          19:00<br>
-          20:00<br>
-          21:00<br>
-          22:00 <br>
-          23:00 <br>
+          {% for i in 0..23 %}
+            {% if i < 10 %}
+              0{{i}}:00<br>
+            {% else %}
+              {{i}}:00<br>
+              {% endif %}
+          {% endfor %}
           </div>
           <div class="lignes">
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
-          <hr>
+          {% for i in 0..23 %}
+            <hr>
+          {% endfor %}
           </div>
         </div>
         <div class="grille_horaire">
@@ -218,10 +133,10 @@
           <div class="header">Jour 3</div>
           <div class="header">Jour 4</div>
           <div class="header"><i class="fas fa-plus"></i></div>
-          <div class="activity"></div>
-          <div class="activity"></div>
-          <div class="activity"></div>
-          <div class="activity"></div>
+          <div class="activity" onclick="showActivity()"></div>
+          <div class="activity" onclick="showActivity()"></div>
+          <div class="activity" onclick="showActivity()"></div>
+          <div class="activity" onclick="showActivity()"></div>
         </div>
       </div>
       <div class="hebergement_container">
@@ -233,19 +148,11 @@
           <div class="hebergement"><p>Ajouter un hébergement</p><i class="fas fa-plus"></i></div>
         </div>
       </div>
-      <div class="hebergement_container">
-        <h6 class="hebergement_titre">Restaurants :</h6>
-        <div class="grille_hebergement">
-          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
-          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
-          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
-          <div class="restaurant"><p>Ajouter un restaurant</p><i class="fas fa-plus"></i></div>
-        </div>
-      </div>
     </div>
   </div>
   </div>
 </div>
+
 
 
 
@@ -256,6 +163,76 @@
 </div>
 
 </form>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Créer une activité</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Nom de l'activité</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Type d'activité</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>Transport</option>
+      <option>Action</option>
+      <option>Relaxation</option>
+      <option>Découverte</option>
+      <option>Autres</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput2">Lien vers la page de l'activité</label>
+    <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description de l'activité</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Heure</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01">
+    <option selected>Choisir ...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect02">Durée</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect02">
+    <option selected>Choisir ... </option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>
+<div class="custom-file">
+  <input type="file" class="custom-file-input" id="customFile2" lang="fr">
+  <label class="custom-file-label" for="customFile2">Choisir une image</label>
+</div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Ajouter</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

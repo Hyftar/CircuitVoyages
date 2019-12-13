@@ -357,13 +357,13 @@ a:focus {
 }
 
 .grille_horaire div {
-    background-color: rgb(242, 245, 255);
+    background-color: rgb(223, 230, 255);
     border-radius: 5px;
     transition: 0.4s;
 }
 
 .grille_horaire div:hover {
-    background-color: rgba(242, 245, 255, 0.6);
+    background-color: rgba(223, 230, 255, 0.6);
     cursor: pointer;
 }
 
@@ -417,18 +417,6 @@ a:focus {
     border-width: 1px;
 }
 
-.restaurant {
-    background-color: rgb(220, 252, 217);
-    border-radius: 4px;
-    transition: 0.4s;
-}
-
-.restaurant:hover {
-    background-color: rgb(220, 252, 217, 0.6);
-    cursor: pointer;
-}
-
-.restaurant,
 .hebergement {
     display: grid;
     place-items: end center;

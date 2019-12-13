@@ -49,3 +49,7 @@ function getCircuits_create() {
 
     })
 }
+
+function showActivity() {
+    $('#exampleModalScrollable').modal('show');
+}
