@@ -38,6 +38,24 @@ $router->add(
 );
 
 $router->add(
+    'admin',
+    ['controller' => 'Admin', 'action' => 'niceIndex'],
+    'GET'
+);
+
+$router->add(
+    'admin/login',
+    ['controller' => 'Employees', 'action' => 'showLogin'],
+    'GET'
+);
+
+$router->add(
+    'admin/login',
+    ['controller' => 'Employees', 'action' => 'login'],
+    'POST'
+);
+
+$router->add(
     'register',
     ['controller' => 'Members', 'action' => 'create'],
     'POST'

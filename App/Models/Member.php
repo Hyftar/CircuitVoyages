@@ -153,17 +153,7 @@ class Member extends \Core\Model
 
         $hash = LoginHelpers::encryptPassword($password, $password_salt);
 
-        $stmt = $db->prepare(
-            'SELECT id FROM passwords
-             WHERE id = :id AND password_hash = :hash
-             LIMIT 1'
-        );
-
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':hash', $hash, PDO::PARAM_STR);
-        $stmt->execute();
-
-        return $stmt->fetch() !== false;
+        return $hash === $password_hash;
     }
 
     public static function getByEmail($email)
