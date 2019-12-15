@@ -281,3 +281,4 @@ TSWLatexianTemp*
 /logs/*.txt
 .env
 .idea/
+/public/css/generated/
