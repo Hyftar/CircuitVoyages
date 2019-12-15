@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< Updated upstream
-    "content-hash": "50204fe7078bbf22c2b6f49246f9888d",
-=======
     "content-hash": "54796c0af7823f0c59470cdab5e7917a",
->>>>>>> Stashed changes
     "packages": [
         {
             "name": "phpoption/phpoption",
@@ -1869,6 +1865,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-pdo": "*"
+    },
     "platform-dev": []
 }

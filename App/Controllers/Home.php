@@ -6,14 +6,13 @@ use \Core\View;
 
 class Home extends \Core\Controller
 {
-
     public function indexAction()
     {
-        View::renderTemplate('Home/index.html.twig');
-    }
+        $member = null;
+        if (!empty($_SESSION['member'])) {
+            $member = $_SESSION['member'];
+        }
 
-    public function indexPostAction()
-    {
-        View::renderTemplate('Home/post.html.twig');
+        View::renderTemplate('Home/index.html.twig', ['member' => $member]);
     }
 }

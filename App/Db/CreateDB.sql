@@ -124,8 +124,8 @@ CREATE TABLE `addresses` (
   `country` varchar(50) CHARACTER SET utf8 NOT NULL,
   `city` varchar(100) CHARACTER SET utf8 NOT NULL,
   `region` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `adress_line_1` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `adress_line_2` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `address_line_1` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `address_line_2` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `postal_code` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -284,8 +284,8 @@ CREATE TABLE `employees` (
   `media_id` int(11) DEFAULT NULL,
   `phone_number` varchar(15) COLLATE utf8mb4_bin DEFAULT NULL,
   `email` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `password_id` int(11) NOT NULL
+  `role_id` int(11) DEFAULT NULL,
+  `password_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -559,8 +559,8 @@ CREATE TABLE `newsletters_messages` (
 
 CREATE TABLE `passwords` (
   `id` int(11) NOT NULL,
-  `password_salt` varchar(128) CHARACTER SET utf8 NOT NULL,
-  `password_hash` char(60) COLLATE utf8mb4_bin NOT NULL
+  `password_salt` varchar(64) CHARACTER SET utf8 NOT NULL,
+  `password_hash` varchar(64) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------

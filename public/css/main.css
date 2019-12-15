@@ -112,6 +112,7 @@ main {
 }
 
 .banner__text {
+  user-select: none;
   color: white;
   text-align: center;
   font-family: 'Dancing Script', cursive;
@@ -120,4 +121,32 @@ main {
 
 #footer {
   background-color: var(--sand);
+}
+
+.hidden {
+  display: none !important;
+}
+
+#toast-container {
+  position: fixed;
+  min-height: 200px;
+  z-index: 400;
+  bottom: 0;
+  left: 1rem;
+}
+
+.toast {
+  position: absolute;
+}
+
+.toast-header__logo {
+  height: 2rem;
+}
+
+.toast-header__title {
+  min-width: 8rem;
+}
+
+.toast-header__supporting-text {
+  min-width: 4rem;
 }

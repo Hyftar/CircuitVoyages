@@ -1,68 +1,80 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Fugaz+One|Permanent+Marker&display=swap" rel="stylesheet">
-  <link rel="shortcut icon" type="image/png" href="/images/labernois_logo.png" />
-  <link rel="stylesheet" href="/css/custom_bootstrap.css" />
-  <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="/css/nav.css" />
-  <link rel="stylesheet" href="/css/hamburger.css" />
-  <link rel="stylesheet" href="/css/badge.css" />
-  <link rel="stylesheet" href="/css/ribbon.css" />
-  <link rel="stylesheet" href="/css/footer.css" />
-  {% block head %}{% endblock %}
-  <title>{% block title %}{% endblock %}</title>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="/images/labernois_logo.png"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script|Fugaz+One|Permanent+Marker&display=swap">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <link rel="stylesheet" href="/css/custom_bootstrap.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/nav.css"/>
+    <link rel="stylesheet" href="/css/hamburger.css"/>
+    <link rel="stylesheet" href="/css/promotions/badge.css"/>
+    <link rel="stylesheet" href="/css/promotions/ribbon.css"/>
+    <link rel="stylesheet" href="/css/footer.css"/>
+    <link rel="stylesheet" href="/css/login/login.css"/>
+    <title>{% block title %}{% endblock %}| Le Labernois</title>
+  </head>
 
-<body>
-  <div id="drawer" class="hidden">
-    <div id="drawer-nav" class="drawer__nav">
-      <a href="" class="nav-link">Circuits</a>
-      <a href="" class="nav-link">Promotions</a>
-      <a href="" class="nav-link">About us</a>
-      <a href="" class="nav-link">Login</a>
+  <body>
+    <div id="toast-container" aria-live="polite" aria-atomic="true">
+      <div class="toast">
+        <div class="toast-header">
+          <img src="/images/labernois_logo.png" class="rounded mr-2 toast-header__logo" alt="toast-logo">
+          <strong id="toast-title" class="mr-auto toast-header__title"></strong>
+          <small id="toast-supporting-text" class="toast-header__supporting-text"></small>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="toast-body" class="toast-body toast-body__text">
+        </div>
+      </div>
     </div>
-    <div id="drawer-mask" class="drawer__mask"></div>
-  </div>
-  <header>
-    <a href="/" class="logo">
-      <img alt="logo_with_text" src="/images/labernois_logo_text.png" />
-    </a>
-    <nav>
-      <a href="circuits/" class="nav-link">Circuits</a>
-      <a href="" class="nav-link">Promotions</a>
-      <a href="" class="nav-link">About us</a>
-      <a href="" class="nav-link">Login</a>
-    </nav>
-    <button id="menu-hamburger" class="hamburger hamburger--squeeze" type="button">
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
-    </button>
-  </header>
-  <main>
-  {% block body %}
-  {% endblock %}
-  </main>
-  <footer id="footer">
-    <div class="footer__left">
-      <img alt="logo" src="/images/labernois_logo.png" />
+    <div id="login-modal" class="hidden">
+      {% include '/Members/login.html.twig' %}
+      {% include '/Members/register.html.twig' %}
+      {% include '/Members/reset.html.twig' %}
     </div>
-    <div class="footer__right">
-    </div>
-  </footer>
-</body>
-<script>
-  let burger = document.getElementById('menu-hamburger')
-  burger.onclick = () => {
-    burger.classList.toggle('is-active')
-  }
-</script>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <header>
+      <a href="/" class="logo">
+        <img alt="logo_with_text" src="/images/labernois_logo_text.png"/>
+      </a>
+      <button id="menu-hamburger" class="hamburger hamburger--squeeze" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <nav>
+        <a href="#" class="nav-link">Circuits</a>
+        <a href="#" class="nav-link">Promotions</a>
+        <a id="nav-login-link" href="#" class="nav-link {{ user is not null ? 'hidden' : '' }} ">Connexion</a>
+        <a id="nav-account-link" href="#" class="nav-link {{ user is null ? 'hidden' : '' }}">Mon compte</a>
+        <a id="nav-logout-link" href="#" class="nav-link {{ user is null ? 'hidden' : ''  }}">Déconnexion</a>
+      </nav>
+    </header>
+    <main>
+      {% block body %}{% endblock %}
+    </main>
+    <footer id="footer">
+      <div class="footer__left">
+        <img alt="logo" src="/images/labernois_logo.png"/>
+      </div>
+      <div class="footer__right"></div>
+    </footer>
+  </body>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <script src="/js/login.js"></script>
+  <script src="/js/register.js"></script>
+  <script src="/js/reset.js"></script>
+  <script src="/js/drawer.js"></script>
+  <script src="/js/main.js"></script>
 </html>

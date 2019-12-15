@@ -37,11 +37,40 @@ $router->add(
 );
 
 $router->add(
-    '',
-    ['controller' => 'Home', 'action' => 'indexPost'],
+    'login',
+    ['controller' => 'Members', 'action' => 'login'],
     'POST'
 );
 
+$router->add(
+    'logout',
+    ['controller' => 'Members', 'action' => 'logout'],
+    'DELETE'
+);
+
+$router->add(
+    'admin',
+    ['controller' => 'Admin', 'action' => 'niceIndex'],
+    'GET'
+);
+
+$router->add(
+    'admin/login',
+    ['controller' => 'Employees', 'action' => 'showLogin'],
+    'GET'
+);
+
+$router->add(
+    'admin/login',
+    ['controller' => 'Employees', 'action' => 'login'],
+    'POST'
+);
+
+$router->add(
+    'register',
+    ['controller' => 'Members', 'action' => 'create'],
+    'POST'
+);
 
 $router->add(
     'circuits',

@@ -280,4 +280,5 @@ TSWLatexianTemp*
 /cypress/videos/
 /logs/*.txt
 .env
+.idea/
 /public/css/generated/
