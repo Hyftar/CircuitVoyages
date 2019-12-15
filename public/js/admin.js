@@ -19,6 +19,15 @@ $(function() {
 
 $(() => {
     getCircuits()
+    $('#admin-logout-link').on('click', () => {
+      $.ajax({
+        url: 'logout',
+        type: 'DELETE',
+        success: (data) => {
+          window.location.href = '/admin/login'
+        }
+      })
+    })
 })
 
 function getCircuits() {

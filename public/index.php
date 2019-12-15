@@ -9,7 +9,7 @@ $dotenv->load();
 $dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD', 'APPLICATION_ENV']);
 
 
-if ($_ENV['APPLICATION_ENV'] == 'development') {
+if (false && $_ENV['APPLICATION_ENV'] == 'development') {
     SassCompiler::run(dirname(__DIR__) . '/App/Views/Scss/', dirname(__DIR__) . '/public/css/generated/');
 }
 
@@ -26,7 +26,7 @@ set_exception_handler('Core\Error::exceptionHandler');
 session_start();
 
 /**
- * Routing
+ * Routig
  */
 $router = new Core\Router();
 
@@ -49,12 +49,6 @@ $router->add(
 );
 
 $router->add(
-    'admin',
-    ['controller' => 'Admin', 'action' => 'niceIndex'],
-    'GET'
-);
-
-$router->add(
     'admin/login',
     ['controller' => 'Employees', 'action' => 'showLogin'],
     'GET'
@@ -64,6 +58,12 @@ $router->add(
     'admin/login',
     ['controller' => 'Employees', 'action' => 'login'],
     'POST'
+);
+
+$router->add(
+    'admin/logout',
+    ['controller' => 'Employees', 'action' => 'logout'],
+    'DELETE'
 );
 
 $router->add(

@@ -130,6 +130,12 @@ class Employees extends Controller
 
     }
 
+    public function logoutAction()
+    {
+        session_destroy();
+        session_start();
+    }
+
     public function loginAction()
     {
         $errors = [];
