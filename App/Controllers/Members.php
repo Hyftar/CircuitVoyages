@@ -57,6 +57,7 @@ class Members extends \Core\Controller
     public function logoutAction()
     {
         session_destroy();
+        session_start();
     }
 
     public function createAction()
@@ -170,7 +171,7 @@ class Members extends \Core\Controller
         // 16 years old minimum
         $dob_errors = ApplicationHelpers::validateDate($dob, 16);
         if (!empty($dob_errors)) {
-            $errors['date_of_birth'] = $dob_errors;
+            $errors['dob'] = $dob_errors;
         }
 
         if (!empty($errors)) {

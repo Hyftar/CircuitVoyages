@@ -1,8 +1,8 @@
 @media (min-width: 1040px) {
   header {
-    -ms-grid-columns: 1fr 180px 4fr 6fr 1fr;
-    grid-template-columns: 1fr 180px 4fr 6fr 1fr;
-    grid-template-areas: ". logo . nav ."
+    -ms-grid-columns: 1fr 180px 2fr 6fr;
+    grid-template-columns: 1fr 180px 2fr 6fr;
+    grid-template-areas: ". logo . nav"
   }
 
   nav {

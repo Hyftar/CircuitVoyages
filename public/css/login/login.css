@@ -7,8 +7,13 @@ Login form
 }
 
 @media (max-height: 900px) {
-  #register-user-form {
+  #register-user-form,
+  #login-modal {
     overflow-y: scroll;
+  }
+
+  #login-modal-container {
+    padding-top: 5em;
   }
 }
 
@@ -71,6 +76,10 @@ Login form
 .form-label-group {
   position: relative;
   margin-bottom: 1rem;
+}
+
+.cursor-text {
+  cursor: text;
 }
 
 .form-label-group input {

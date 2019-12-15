@@ -8,6 +8,11 @@ class Home extends \Core\Controller
 {
     public function indexAction()
     {
-        View::renderTemplate('Home/index.html.twig');
+        $member = null;
+        if (!empty($_SESSION['member'])) {
+            $member = $_SESSION['member'];
+        }
+
+        View::renderTemplate('Home/index.html.twig', ['member' => $member]);
     }
 }

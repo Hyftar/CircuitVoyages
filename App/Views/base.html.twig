@@ -52,8 +52,9 @@
       <nav>
         <a href="#" class="nav-link">Circuits</a>
         <a href="#" class="nav-link">Promotions</a>
-        <a href="#" class="nav-link">About us</a>
-        <a id="nav-login-link" href="#" class="nav-link">Login</a>
+        <a id="nav-login-link" href="#" class="nav-link {{ user is not null ? 'hidden' : '' }} ">Connexion</a>
+        <a id="nav-account-link" href="#" class="nav-link {{ user is null ? 'hidden' : '' }}">Mon compte</a>
+        <a id="nav-logout-link" href="#" class="nav-link {{ user is null ? 'hidden' : ''  }}">Déconnexion</a>
       </nav>
     </header>
     <main>
