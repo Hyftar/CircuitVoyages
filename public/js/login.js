@@ -11,10 +11,35 @@
     loginContainer.classList.add('hidden')
   }
 
+  // Account link
+  accountLink = document.getElementById('nav-account-link')
 
   // Open the login modal when login link is clicked
-  link = document.getElementById('nav-login-link')
-  link.onclick = () => loginContainer.classList.remove('hidden')
+  loginLink = document.getElementById('nav-login-link')
+  loginLink.onclick = () => loginContainer.classList.remove('hidden')
+
+  // Logout button
+  logoutLink = document.getElementById('nav-logout-link')
+  logoutLink.onclick = () => {
+    $.ajax({
+      url: 'logout',
+      type: 'DELETE',
+      success: () => {
+        // TODO: i18n
+        showToast('Déconnecté', '', 'Aurevoir! Vous vous êtes déconnecté avec succès.')
+
+        accountLink.classList.add('hidden')
+        logoutLink.classList.add('hidden')
+        loginLink.classList.remove('hidden')
+      },
+      error: () => {
+        // TODO: i18n
+        showToast('Erreur', '', 'Une erreur est survenue lors de la déconnexion, veuillez essayer à nouveau.')
+      }
+    })
+  }
+
+
 
   // Open reset and register modals
   let loginModalContainer = document.getElementById('login-modal-container')
@@ -52,6 +77,11 @@
         $('#input-email').val('')
         $('#input-password').val('')
         loginContainer.classList.add('hidden')
+        loginLink.classList.add('hidden')
+        accountLink.classList.remove('hidden')
+        logoutLink.classList.remove('hidden')
+        // TODO: i18n
+        showToast('Connecté', '', 'Bienvenue! Vous êtes maintenant connecté.')
       },
       error: (data) => {
         errors.removeClass('hidden')

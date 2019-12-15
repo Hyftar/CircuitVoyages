@@ -43,6 +43,12 @@ $router->add(
 );
 
 $router->add(
+    'logout',
+    ['controller' => 'Members', 'action' => 'logout'],
+    'DELETE'
+);
+
+$router->add(
     'admin',
     ['controller' => 'Admin', 'action' => 'niceIndex'],
     'GET'
