@@ -1,0 +1,75 @@
+<div class="modal fade" id="modalModifPromotion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modification de la promotion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="formUpdate">
+          <input type="hidden" name="promo-id" value="{{ promotions.id }}">
+          <div class="form-group">
+            <label for="promo-date-start" class="col-form-label">Début de la promotion</label>
+            <input type="date" class="form-control" id="promo-date-start" name="promo-date-start" value="{{ promotions.start_date|date("Y-m-d") }}">
+          </div>
+          <div class="form-group">
+            <label for="promo-end-date" class="col-form-label">Fin de la promotion</label>
+            <input type="date" class="form-control" id="promo-end-date" name="promo-end-date" value="{{ promotions.end_date|date("Y-m-d") }}">
+          </div>
+          {% if promotions.is_percentage_based %}
+            <div class="form-group">
+              <label for="promo-value" class="col-form-label">Valeur en pourcentage</label>
+              <input type="number" class="form-control" id="promo-value" name="promo-value"  min="0" max ="100" value="{{ promotions.value }}">
+            </div>
+          {% else %}
+            <div class="form-group">
+              <label for="promo-value" class="col-form-label">Valeur en argent</label>
+              <input type="number" class="form-control" id="promo-value" name="promo-value" value="{{ promotions.value }}">
+            </div>
+          {% endif %}
+          {% if promotions.availability_number == -1 %}
+            <div class="form-group">
+              <label for="promo-availability" class="col-form-label">Nombre de promotions</label>
+              <input type="number" class="form-control" disabled id="promo-availability" min="0" name="promo-availability">
+            </div>
+            <div class="form-group">
+              <label for="promo-unlimited" class="col-form-label">Est illimité</label>
+              <input type="checkbox" class="form-control" id="promo-unlimited" name="promo-unlimited" checked onclick="availabilityChange()">
+            </div>
+          {% else %}
+            <div class="form-group">
+              <label for="promo-availability" class="col-form-label">Nombre de promotions</label>
+              <input type="number" class="form-control " id="promo-availability" min="0" name="promo-availability" value="{{ promotions.availability_number }}">
+            </div>
+            <div class="form-group">
+              <label for="promo-unlimited" class="col-form-label">
+              <input type="checkbox" class="form-control" id="promo-unlimited" onclick="availabilityChange()" name="promo-unlimited">Est illimité</label>
+            </div>
+          {% endif %}
+          <div class="form-group">
+            <label for="promo-description" class="col-form-label">Description</label>
+            <textarea rows="6" cols="30" class="form-control" id="promo-description" name="promo-description">{{ promotions.description }}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="promo-type-id" class="col-form-label">Type de promotion</label>
+            <select name="promo-type-id" id="promo-type-id">
+              {% for type in types %}
+                {% if promotions.promotion_type_id == type.id %}
+                  <option value="{{ type.id }}" selected="selected">{{ type.name }}</option>
+                {% else %}
+                  <option value="{{ type.id }}">{{ type.name }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <input type="submit" class="btn btn-primary" value="Enregistrer les changements" onclick="return modifierPromotionEnreg()">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

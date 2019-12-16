@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/custom_bootstrap.css">
+  <script src="https://kit.fontawesome.com/d86f4f4a45.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<button type="button" class="float-sm-right btn btn-primary" onclick="ajouterPromotion()">Ajouter une promotion</button>
+<table class="table">
+  <caption>Promotions</caption>
+  <thead>
+  <tr>
+    <th scope="col">Type</th>
+    <th scope="col">Description</th>
+    <th scope="col">Date de début</th>
+    <th scope="col">Date de fin</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for promotion in promotions %}
+    <tr>
+      <td>
+        {{ promotion.name }}
+      </td>
+      <td>
+        {{ promotion.description }}
+      </td>
+      <td>
+        {{ promotion.start_date|date('Y-m-d') }}
+      </td>
+      <td>
+        {{ promotion.end_date|date('Y-m-d') }}
+      </td>
+      <td>
+        <button type="button" class="btn btn-info" onclick="listerDetailsPromotion({{ promotion.id }})"><i class="fas fa-search-plus"></i></button>
+        <button type="button" class="btn btn-secondary" onclick="modifierPromotion({{ promotion.id }})"><i class="fas fa-edit"></i></button>
+        <button type="button" class="btn btn-secondary" onclick="ajouterApplication({{ promotion.id }})"><i class="fas fa-stamp"></i></button>
+        <button type="button" class="btn btn-danger" onclick="supprimerPromotion({{ promotion.id }})"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div id="modalCreationPromo"></div>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/promotions.js"></script>
+

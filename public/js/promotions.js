@@ -1,0 +1,161 @@
+function listerDetailsPromotion(id){
+  $.ajax({
+    url: 'promotions/id',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    dataType: 'html',
+    success: (data) => {
+      document.getElementById("modalCreationPromo").innerHTML = data;
+      $("#modalDetailsPromotion").modal()
+    }
+  })
+}
+
+function modifierPromotion(id){
+  $.ajax({
+    url: 'promotions/idModal',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    dataType: 'html',
+    success: (data) => {
+      document.getElementById("modalCreationPromo").innerHTML = data;
+      $("#modalModifPromotion").modal()
+    }
+  })
+}
+
+function modifierPromotionEnreg(){
+  let form = new FormData(document.getElementById('formUpdate'));
+  $.ajax({
+    url: 'promotions/updatePromo',
+    type: 'POST',
+    data : form,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      $('#modalModifPromotion').modal('toggle');
+    }
+  })
+  return false;
+}
+
+function ajouterPromotion(){
+  $.ajax({
+    url: 'promotions/emptyModal',
+    success: (data) => {
+      document.getElementById("modalCreationPromo").innerHTML = data;
+      $("#modalCreerPromotion").modal()
+    }
+  })
+}
+
+function ajouterPromotionEnreg(){
+  let form = new FormData(document.getElementById('formCreate'));
+  $.ajax({
+    url: 'promotions/createPromo',
+    type: 'POST',
+    data : form,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      $('#modalCreerPromotion').modal('toggle');
+    }
+  })
+  return false;
+}
+
+function ajouterApplication(id){
+  $.ajax({
+    url: 'promotions/application',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    dataType: 'html',
+    success: (data) => {
+      document.getElementById("modalCreationPromo").innerHTML = data;
+      $("#modalApplicationPromotion").modal()
+    }
+  })
+}
+
+function ajouterApplicationEnreg(){
+  let form = new FormData(document.getElementById('formApplication'));
+  $.ajax({
+    url: 'promotions/createApplication',
+    type: 'POST',
+    data : form,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      $('#modalApplicationPromotion').modal('toggle');
+    }
+  })
+  return false;
+}
+
+function supprimerPromotion(id){
+  let test = confirm("Êtes-vous certain de retirer cette promotion ? Elle existera encore, mais elle aura pris fin hier.")
+  if(test == true){
+    $.ajax({
+      url: 'promotions/deactivate',
+      type: 'POST',
+      data: {
+        id: id
+      },
+      dataType: 'html',
+      success: (data) => {
+      }
+    })
+  }
+}
+
+
+$('#modalModifPromotion').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+
+$('#modalDetailsPromotion').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+
+$('#modalCreerPromotion').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+
+$('#modalApplicationPromotion').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+
+function availabilityChange(){
+  let value = document.getElementById("promo-availability")
+  let checkbox = document.getElementById('promo-unlimited')
+  if (checkbox.checked){
+    value.disabled = true;
+    value.value = "0";
+  }
+  else{
+    value.disabled = false;
+    value.value = "0";
+  }
+}
+
+function allCircuitChange(){
+  let value = document.getElementById("circuit-trip-id")
+  let checkbox = document.getElementById('circuit-unlimited')
+  if (checkbox.checked){
+    value.disabled = true;
+    value.value = "0";
+  }
+  else{
+    value.disabled = false;
+    value.value = "0";
+  }
+}
