@@ -1,0 +1,78 @@
+:root {
+  --ribbon-red: #f00;
+  --ribbon-red-side: #BF0000;
+  --ribbon-red-accent: #700909;
+
+  --ribbon-green: #006F26;
+  --ribbon-green-side: #026100;
+  --ribbon-green-accent: #014618;
+
+  --ribbon-blue: #0F6EA3;
+  --ribbon-blue-side: #0B6C75;
+  --ribbon-blue-accent: #003D54;
+}
+
+.ribbon {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  width: 100%;
+  height: 50%;
+}
+
+.ribbon__center {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ribbon__center > div {
+  text-align: center;
+  background-color: var(--ribbon-red);
+  border-top: 3px solid var(--ribbon-red-accent);
+  border-bottom: 3px solid var(--ribbon-red-accent);
+  transform: rotate(-25deg);
+  top: 2rem;
+  left: -4rem;
+  position: relative;
+  font-family: 'Fugaz One', cursive;
+  text-shadow: black 1px 1px 1px;
+  color: white;
+  font-style: italic;
+}
+
+.ribbon__bottom {
+  position: absolute;
+  top: 70px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-top: 15px solid var(--ribbon-red-side);
+  border-bottom: 15px solid var(--ribbon-red-side);
+  background-color: transparent;
+}
+
+.ribbon.ribbon--green > .ribbon__center > div {
+  background-color: var(--ribbon-green);
+  border-top: 3px solid var(--ribbon-green-accent);
+  border-bottom: 3px solid var(--ribbon-green-accent);
+}
+
+.ribbon.ribbon--green > .ribbon__bottom {
+  border-top: 15px solid var(--ribbon-green-side);
+  border-bottom: 15px solid var(--ribbon-green-side);
+}
+
+.ribbon.ribbon--blue > .ribbon__center > div {
+  background-color: var(--ribbon-blue);
+  border-top: 3px solid var(--ribbon-blue-accent);
+  border-bottom: 3px solid var(--ribbon-blue-accent);
+}
+
+.ribbon.ribbon--blue > .ribbon__bottom {
+  border-top: 15px solid var(--ribbon-blue-side);
+  border-bottom: 15px solid var(--ribbon-blue-side);
+}

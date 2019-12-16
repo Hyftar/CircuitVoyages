@@ -273,3 +273,11 @@ TSWLatexianTemp*
 *.glstex
 
 # End of https://www.gitignore.io/api/latex
+
+/vendor/
+/node_modules/
+/cypress/screenshots/
+/cypress/videos/
+/logs/*.txt
+.env
+.idea/
