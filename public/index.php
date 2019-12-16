@@ -92,5 +92,10 @@ $router->add(
     ['controller' => 'Admin', 'action' => 'circuitsCreate']
 );
 
+$router->add(
+    'admin_circuits_organize',
+    ['controller' => 'Admin', 'action' => 'circuitsOrganize']
+);
+
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

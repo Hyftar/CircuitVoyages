@@ -28,4 +28,8 @@ class Admin extends \Core\Controller
     public function circuitsCreateAction(){
         View::renderTemplate('Admin/creation_circuit.html.twig');
     }
+
+    public function circuitsOrganizeAction(){
+        View::renderTemplate('Admin/organisation_circuit.html.twig');
+    }
 }

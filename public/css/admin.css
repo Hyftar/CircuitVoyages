@@ -407,7 +407,7 @@ a:focus {
 }
 
 .hebergement:hover {
-    background-color: rgb(255, 202, 202, 0.6);
+    background-color: rgba(255, 202, 202, 0.6);
     cursor: pointer;
 }
 
@@ -435,4 +435,31 @@ a:focus {
 
 .button_panel button {
     margin: 10px;
+
 }
+
+.button_panel {
+  margin-bottom: 20px;
+}
+
+/*ORGANISATION CIRCUITS*/
+
+.datepicker {
+  border: 1px solid #ced4da;
+}
+
+input {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.form-group {
+  display:flex;
+  flex-direction: column;
+  max-width: 512px;
+}
+
+.form-group > * {
+  margin: 10px 0;
+}
+
