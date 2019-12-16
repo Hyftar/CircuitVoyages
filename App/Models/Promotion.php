@@ -11,7 +11,7 @@ class Promotions extends \Core\Model
     {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT * FROM promotions');
-        $stmt->execute();
+        $stmt-> execute();
         return $stmt->fetchAll();
     }
 
@@ -88,6 +88,7 @@ class Promotions extends \Core\Model
             $possible_characters = '23456789qwrtpsdfghjklzxcvbnm';
             $promo_code = '';
             $characters_length = strlen($possible_characters);
+            $string = '';
             for ($i = 0; $i < $length; $i++) {
                 $string .= $possible_characters[mt_rand(0, $characters_length - 1)];
             }
@@ -167,12 +168,10 @@ class Promotions extends \Core\Model
         $stmt->execute();
         $promotion_trip_circuit = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$promotion_trip_circuit)
-        {
+        if (!$promotion_trip_circuit) {
             return false;
         }
-        else
-        {
+        else {
             return $promotion_trip_circuit['applied'];
         }
     }
@@ -186,16 +185,13 @@ class Promotions extends \Core\Model
         $stmt->execute();
         $promotion = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$promotion)
-        {
+        if (!$promotion) {
             return false;
         }
-        elseif ($promotion['availability_number'] == -1)
-        {
+        elseif ($promotion['availability_number'] == -1) {
             return true;
         }
-        else
-        {
+        else {
             $stmtCount = $db->prepare('SELECT COUNT(*) FROM promotions_trips_members WHERE promotion_id = :id');
             $stmtCount->bindValue(':id',$id);
             $stmtCount->execute();
