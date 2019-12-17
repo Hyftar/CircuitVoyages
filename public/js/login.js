@@ -22,7 +22,7 @@
   logoutLink = document.getElementById('nav-logout-link')
   logoutLink.onclick = () => {
     $.ajax({
-      url: 'logout',
+      url: '/logout',
       type: 'DELETE',
       success: () => {
         // TODO: i18n
@@ -70,7 +70,7 @@
     errors.addClass('hidden')
 
     $.ajax({
-      url: 'login',
+      url: '/login',
       type: 'post',
       data: { email, password },
       success: () => {

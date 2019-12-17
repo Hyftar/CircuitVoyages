@@ -37,7 +37,7 @@
 
     $.ajax({
       data,
-      url: 'register',
+      url: '/register',
       type: 'POST',
       success: () => {
         document.getElementById('register-form').reset()

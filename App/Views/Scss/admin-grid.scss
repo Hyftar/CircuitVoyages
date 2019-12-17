@@ -25,13 +25,11 @@
 }
 
 @for $i from 0 through 365 {
-    $nbJours: "64px";
-    @for $j from 0 through $i {
-        @if $j>0 {
-            $nbJours: $nbJours + " 1fr";
-        }
+  .step-duration-#{($i)} {
+    @if $j>0 {
+      grid-template-columns: 64px repeat($i, 1fr);
+    } @else {
+      grid-template-columns: 64px;
     }
-    .step-duration-#{($i)} {
-        grid-template-columns: $nbJours;
-    }
+  }
 }

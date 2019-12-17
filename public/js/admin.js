@@ -21,7 +21,7 @@ $(() => {
     getCircuits()
     $('#admin-logout-link').on('click', () => {
       $.ajax({
-        url: 'logout',
+        url: '/admin/logout',
         type: 'DELETE',
         success: (data) => {
           window.location.href = '/admin/login'
@@ -34,7 +34,7 @@ $(() => {
 
 function indexAccomodations() {
   $.ajax({
-    url: 'admin_accommodation',
+    url: '/admin_accommodation',
     type: 'GET',
     success: (data) => {
       document.getElementById('contenu').innerHTML = data
@@ -46,7 +46,7 @@ function indexAccomodations() {
 function sendAccommodation() {
   $.ajax({
     data: $('#accommodation-add-form').serialize(),
-    url: 'admin_accommodation',
+    url: '/admin_accommodation',
     type: 'POST',
     success: () => {
       $('#accommodation-add-modal').modal('hide')
@@ -62,7 +62,7 @@ function sendAccommodation() {
 
 function getCircuits() {
   $.ajax({
-    url: 'admin_circuits',
+    url: '/admin_circuits',
     type: 'GET',
     success: (data) => {
       let containter = document.getElementById('contenu')
@@ -73,7 +73,7 @@ function getCircuits() {
 
 function getCircuits_create() {
   $.ajax({
-    url: 'admin_circuits_create',
+    url: '/admin_circuits_create',
     type: 'GET',
     success: (data) => {
       let container = document.getElementById('contenu');
@@ -95,7 +95,7 @@ function showActivity() {
 
 function getCircuits_organize() {
   $.ajax({
-    url: 'admin_circuits_organize',
+    url: '/admin_circuits_organize',
     type: 'GET',
     success: (data) => {
       let container = document.getElementById('contenu');
