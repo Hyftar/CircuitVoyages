@@ -43,9 +43,9 @@
               <label for="promo-availability" class="col-form-label">Nombre de promotions</label>
               <input type="number" class="form-control " id="promo-availability" min="0" name="promo-availability" value="{{ promotions.availability_number }}">
             </div>
-            <div class="form-group">
-              <label for="promo-unlimited" class="col-form-label">
-              <input type="checkbox" class="form-control" id="promo-unlimited" onclick="availabilityChange()" name="promo-unlimited">Est illimité</label>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="promo-unlimited" onclick="availabilityChange()" name="promo-unlimited">
+              <label for="promo-unlimited" class="form-check-label">Est illimité</label>
             </div>
           {% endif %}
           <div class="form-group">
