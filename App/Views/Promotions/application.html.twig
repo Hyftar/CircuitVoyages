@@ -1,0 +1,67 @@
+<div class="modal fade" id="modalApplicationPromotion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Voyages concernés par la promotion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="formApplication" onsubmit="return ajouterApplicationEnreg()">
+          <input type="hidden" name="promo-id" value="{{ promotions.id }}">
+          <div class="form-group">
+            <label for="promo-description" class="col-form-label">Description</label>
+            <textarea disabled rows="6" cols="30" class="form-control" id="promo-description" name="promo-description">{{ promotions.description }}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="promo-type-name" class="col-form-label">Type de promotion</label>
+            <input disabled type="text" class="form-control" id="promo-type-name" value="{{ promotions.name }}">
+          </div>
+          {% if circuits[0].circuit_trip_id is null and circuits[0].id is not null %}
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="circuit-unlimited" onclick="allCircuitChange()" name="circuit-unlimited" checked>S'applique à tous les voyages</label>
+              <label for="circuit-unlimited" class="form-check-label">
+            </div>
+            <div class="form-group">
+              <label for="circuit-trip-id" class="col-form-label">Type de promotion</label>
+              <select disabled name="circuit-trip-id[]" id="circuit-trip-id" multiple="multiple">
+                {% for voyage in voyages %}
+                  <option value="{{ voyage.id }}" selected>{{ voyage.name }} {{ voyage.departure_date }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          {% else %}
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="circuit-unlimited" onclick="allCircuitChange()" name="circuit-unlimited">S'applique à tous les voyages</label>
+              <label for="circuit-unlimited" class="form-check-label">
+            </div>
+              <div class="form-group">
+                <label for="circuit-trip-id">Promotion applicable aux voyages suivants :</label>
+                <select class="form-control" name="circuit-trip-id[]" id="circuit-trip-id" multiple="multiple">
+                  {% for voyage in voyages %}
+                    {% set trouve = false %}
+                    {% for circuit in circuits %}
+                      {% if circuit.circuit_trip_id == voyage.id %}
+                        {% set trouve = true %}
+                      {% endif %}
+                    {% endfor %}
+                    {% if trouve == true %}
+                      <option value="{{ voyage.id }}" selected>{{ voyage.name }} - {{ voyage.departure_date|date("Y-m-d")}}</option>
+                    {% else %}
+                      <option value="{{ voyage.id }}">{{ voyage.name }} - {{ voyage.departure_date|date("Y-m-d")}}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+          {% endif %}
+
+          <div class="form-group">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <input type="submit" class="btn btn-primary" value="Enregistrer les applications">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

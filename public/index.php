@@ -33,7 +33,46 @@ $router = new Core\Router();
 // Add the routes
 $router->add(
     '',
-    ['controller' => 'Home', 'action' => 'index'],
+    ['controller' => 'Home', 'action' => 'index']
+);
+
+$router->add(
+    'promotions',
+    ['controller' => 'Promotions', 'action' => 'indexCurrent']
+);
+
+$router->add(
+    'promotions/all',
+    ['controller' => 'Promotions', 'action' => 'index']
+);
+
+$router->add(
+    'promotions/updatePromo',
+    ['controller' => 'Promotions', 'action' => 'update'],
+    'POST'
+);
+
+$router->add(
+    'promotions/id',
+    ['controller' => 'Promotions', 'action' => 'indexId'],
+    'POST'
+);
+
+$router->add(
+    'promotions/idModal',
+    ['controller' => 'Promotions', 'action' => 'indexIdModal'],
+    'POST'
+);
+
+$router->add(
+    'promotions/emptyModal',
+    ['controller' => 'Promotions', 'action' => 'emptyModal']
+);
+
+$router->add(
+    'promotions/createPromo',
+    ['controller' => 'Promotions', 'action' => 'create'],
+    'POST'
 );
 
 $router->add(
@@ -74,7 +113,25 @@ $router->add(
 
 $router->add(
     'circuits',
-    ['controller' => 'Circuits', 'action' => 'show'],
+    ['controller' => 'Circuits', 'action' => 'show']
+);
+
+$router->add(
+    'promotions/application',
+    ['controller' => 'Promotions', 'action' => 'getApplication'],
+    'POST'
+);
+
+$router->add(
+    'promotions/createApplication',
+    ['controller' => 'Promotions', 'action' => 'updatePromotionCircuits'],
+    'POST'
+);
+
+$router->add(
+    'promotions/deactivate',
+    ['controller' => 'Promotions', 'action' => 'deactivate'],
+    'POST'
 );
 
 // Send the URI and Method to the dispatcher
