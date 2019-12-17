@@ -8,18 +8,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" id="formCreate">
+        <form method="post" id="formCreate" onsubmit="return ajouterPromotionEnreg()">
           <div class="form-group">
             <label for="promo-date-start" class="col-form-label">Début de la promotion</label>
-            <input type="date" class="form-control" id="promo-date-start" name="promo-date-start" value="{{ 'now'|date("Y-m-d") }}">
+            <input type="date" class="form-control" id="promo-date-start" name="promo-date-start" value="{{ 'now'|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
             <label for="promo-end-date" class="col-form-label">Fin de la promotion</label>
-            <input type="date" class="form-control" id="promo-end-date" name="promo-end-date" value="{{ 'now'|date_modify("+7 day")|date("Y-m-d") }}">
+            <input type="date" class="form-control" id="promo-end-date" name="promo-end-date" value="{{ 'now'|date_modify("+7 day")|date("Y-m-d") }}" required>
           </div>
           <div class="form-group">
             <label for="promo-value" class="col-form-label">Valeur en argent</label>
-            <input type="number" class="form-control" id="promo-value" name="promo-value" value="0">
+            <input type="number" class="form-control" id="promo-value" name="promo-value" value="0" required>
           </div>
           <div class="form-group">
             <label for="promo-availability" class="col-form-label">Nombre de places restantes</label>
@@ -35,7 +35,7 @@
           </div>
           <div class="form-group">
             <label for="promo-type-id" class="col-form-label">Type de promotion</label>
-            <select name="promo-type-id" id="promo-type-id">
+            <select name="promo-type-id" id="promo-type-id" required>
               {% for type in types %}
                 <option value="{{ type.id }}">{{ type.name }}</option>
               {% endfor %}
@@ -43,7 +43,7 @@
           </div>
           <div class="form-group">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-            <input type="submit" class="btn btn-primary" value="Ajouter la nouvelle promotion" onclick="return ajouterPromotionEnreg()">
+            <input type="submit" class="btn btn-primary" value="Ajouter la nouvelle promotion">
           </div>
         </form>
       </div>

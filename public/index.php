@@ -28,7 +28,7 @@ $router = new Core\Router();
 // Add the routes
 $router->add(
     '',
-    ['controller' => 'Home', 'action' => 'indexCurrent']
+    ['controller' => 'Home', 'action' => 'index']
 );
 
 $router->add(
