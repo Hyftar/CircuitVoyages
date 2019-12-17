@@ -18,17 +18,47 @@ $(function () {
 });
 
 $(() => {
-  getCircuits()
-  $('#admin-logout-link').on('click', () => {
-    $.ajax({
-      url: 'logout',
-      type: 'DELETE',
-      success: (data) => {
-        window.location.href = '/admin/login'
-      }
+    getCircuits()
+    $('#admin-logout-link').on('click', () => {
+      $.ajax({
+        url: 'logout',
+        type: 'DELETE',
+        success: (data) => {
+          window.location.href = '/admin/login'
+        }
+      })
     })
-  })
+
+    $('#link-accommodation').on('click', indexAccomodations)
 })
+
+function indexAccomodations() {
+  $.ajax({
+    url: 'admin_accommodation',
+    type: 'GET',
+    success: (data) => {
+      document.getElementById('contenu').innerHTML = data
+      $('#accommodation-add-form__submit').on('click', sendAccommodation)
+    }
+  })
+}
+
+function sendAccommodation() {
+  $.ajax({
+    data: $('#accommodation-add-form').serialize(),
+    url: 'admin_accommodation',
+    type: 'POST',
+    success: () => {
+      $('#accommodation-add-modal').modal('hide')
+      indexAccomodations()
+    },
+    error: (data) => {
+      document
+        .getElementById('accommodation-errors')
+        .innerHTML
+    }
+  })
+}
 
 function getCircuits() {
   $.ajax({

@@ -37,8 +37,19 @@ $router->add(
 );
 
 $router->add(
+    'circuits',
+    ['controller' => 'Circuits', 'action' => 'show'],
+);
+
+$router->add(
     'login',
     ['controller' => 'Members', 'action' => 'login'],
+    'POST'
+);
+
+$router->add(
+    'register',
+    ['controller' => 'Members', 'action' => 'create'],
     'POST'
 );
 
@@ -46,6 +57,11 @@ $router->add(
     'logout',
     ['controller' => 'Members', 'action' => 'logout'],
     'DELETE'
+);
+
+$router->add(
+    'admin',
+    ['controller' => 'Admin', 'action' => 'admin'],
 );
 
 $router->add(
@@ -67,19 +83,14 @@ $router->add(
 );
 
 $router->add(
-    'register',
-    ['controller' => 'Members', 'action' => 'create'],
+    'admin_accommodation',
+    ['controller' => 'Admin', 'action' => 'accommodationIndex'],
+);
+
+$router->add(
+    'admin_accommodation',
+    ['controller' => 'Admin', 'action' => 'accommodationCreate'],
     'POST'
-);
-
-$router->add(
-    'circuits',
-    ['controller' => 'Circuits', 'action' => 'show'],
-);
-
-$router->add(
-    'admin',
-    ['controller' => 'Admin', 'action' => 'admin'],
 );
 
 $router->add(

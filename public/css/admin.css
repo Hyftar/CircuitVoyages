@@ -435,7 +435,6 @@ a:focus {
 
 .button_panel button {
     margin: 10px;
-
 }
 
 .button_panel {
@@ -463,3 +462,171 @@ input {
   margin: 10px 0;
 }
 
+/* Hébergements */
+
+#contenu {
+  padding-right: 5em;
+}
+
+
+#accommodation-new-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+}
+
+#accommodation-new-btn:hover {
+  color: #ddd;
+}
+
+#accommodation-new-btn > span {
+  margin-right: 1em;
+}
+
+h2 {
+  text-align: center;
+}
+
+.accommodation-grid {
+  flex-direction: column;
+  flex-basis: fill;
+}
+
+.accommodation-grid__controls {
+  justify-content: flex-end;
+  margin-bottom: 1.5em;
+}
+
+.accommodation-grid,
+.accommodation-grid__controls,
+.accommodation-grid__header,
+.accommodation-grid__body,
+.accommodation-grid__body__row {
+  display: flex;
+}
+
+.accommodation-grid__body {
+  flex-direction: column;
+}
+
+.accommodation-grid__body__row {
+  min-height: 3em;
+}
+
+.accommodation-grid__header__elem,
+.accommodation-grid__body__row__elem {
+  flex-basis: 25%;
+  flex-grow: 1;
+  text-align: center;
+  overflow: hidden;
+}
+
+.accommodation-grid__header__elem:nth-child(2),
+.accommodation-grid__body__row__elem:nth-child(2) {
+  flex-basis: 15%;
+}
+.accommodation-grid__header__elem:nth-child(4),
+.accommodation-grid__body__row__elem:nth-child(4) {
+  flex-basis: 10%;
+}
+
+.accommodation-grid__header__elem {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.3em;
+}
+
+.accommodation-grid__body__row {
+  width: 100%;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+.accommodation-grid__body__row:not(:first-child) {
+  border-top: 1px solid grey;
+}
+
+.accommodation-grid__body__row:last-child {
+  border-bottom: 1px solid grey;
+}
+
+.accommodation-grid__body__row {
+  background-color: rgb(237,237,237);
+  align-items: center;
+}
+
+.accommodation-grid__body__row:hover {
+  background-color: rgb(201,201,201);
+}
+
+
+.accommodation-grid__body__row__elem a {
+  color: rgb(16,38,185);
+}
+
+.accommodation-grid,
+.accommodation-grid__header {
+  border: 1px solid grey;
+}
+
+.accommodation-grid__header__elem {
+  background-color: #d1d1d1;
+}
+
+.accommodation-grid__header__elem:not(:last-child) {
+  border-right: 1px solid grey;
+}
+
+#accommodation-add-modal {
+  padding-top: 5em;
+}
+
+
+/* SOURCE: https://codepen.io/jamesbarnett/pen/vlpkh */
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+label[for="rating"] {
+  display: block;
+}
+
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; }
+.rating > label:before {
+  margin: 5px;
+  font-size: 2em;
+  font-family: "FontAwesome";
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label {
+  color: #ddd;
+  float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
