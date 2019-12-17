@@ -17,9 +17,12 @@ class Circuit extends Model
     }
      */
 
-    public static function getAllCircuit(){
+    /* GETTERS */
+
+    public static function getAllCircuit()
+    {
         $db = static::getDB();
-        $stmt = $db-> prepare('SELECT
+        $stmt = $db->prepare('SELECT
             circuits.id,
             circuits.media_id,
             circuits.language_id,
@@ -32,13 +35,14 @@ class Circuit extends Model
             FROM circuits
             INNER JOIN categories ON categories.id = circuits.category_id
             INNER JOIN languages ON languages.id = circuits.language_id;');
-        $stmt ->execute();
+        $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public static function getAllPublicCircuit(){
+    public static function getAllPublicCircuit()
+    {
         $db = static::getDB();
-        $stmt = $db-> prepare('SELECT
+        $stmt = $db->prepare('SELECT
             circuits.id,
             circuits.media_id,
             circuits.language_id,
@@ -52,13 +56,14 @@ class Circuit extends Model
             INNER JOIN categories ON categories.id = circuits.category_id
             INNER JOIN languages ON languages.id = circuits.language_id
             WHERE is_public = 1;');
-        $stmt ->execute();
+        $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public static function getCircuit($id){
+    public static function getCircuit($id)
+    {
         $db = static::getDB();
-        $stmt = $db-> prepare('SELECT
+        $stmt = $db->prepare('SELECT
             circuits.id,
             circuits.media_id,
             circuits.language_id,
@@ -72,20 +77,22 @@ class Circuit extends Model
             INNER JOIN categories ON categories.id = circuits.category_id
             INNER JOIN languages ON languages.id = circuits.language_id
             WHERE circuits.id =:id;');
-        $stmt->bindValue(':id',$id,PDO::PARAM_INT);
-        $stmt ->execute();
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function getActivity($id){
+    public static function getActivity($id)
+    {
         $db = static::getDB();
-        $stmt = $db-> prepare('SELECT * FROM activities WHERE id=:id;');
-        $stmt->bindValue(':id',$id,PDO::PARAM_INT);
-        $stmt ->execute();
+        $stmt = $db->prepare('SELECT * FROM activities WHERE id=:id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function getActivityLocations($id){
+    public static function getActivityLocations($id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
             activities_locations.id,
@@ -103,12 +110,13 @@ class Circuit extends Model
             INNER JOIN locations ON locations.id = activities_locations.location_id
             INNER JOIN addresses ON adresses.id = locations.address_id
             WHERE activities.locations.activity_id = :id');
-        $stmt->bindValue(':id',$id,PDO::PARAM_INT);
-        $stmt ->execute();
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchall();
     }
 
-    public static function getActivitiesCity($city){
+    public static function getActivitiesCity($city)
+    {
         $db = static::getDB();
         $stmt = $db->prepare("SELECT
             activities_locations.id,
@@ -131,12 +139,13 @@ class Circuit extends Model
             INNER JOIN addresses ON adresses.id = locations.address_id
             INNER JOIN activities ON activities_locations.activity_id = activities.id
             WHERE UPPER(addresses.city) LIKE UPPER('%:city%')");
-        $stmt->bindValue(':city',$city,PDO::PARAM_INT);
-        $stmt ->execute();
+        $stmt->bindValue(':city', $city, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchall();
     }
 
-    public static function getActivitiesCountry($country){
+    public static function getActivitiesCountry($country)
+    {
         $db = static::getDB();
         $stmt = $db->prepare("SELECT
             activities_locations.id,
@@ -159,12 +168,13 @@ class Circuit extends Model
             INNER JOIN addresses ON adresses.id = locations.address_id
             INNER JOIN activities ON activities_locations.activity_id = activities.id
             WHERE UPPER(addresses.country) LIKE UPPER('%:country%')");
-        $stmt->bindValue(':country',$country,PDO::PARAM_INT);
-        $stmt ->execute();
+        $stmt->bindValue(':country', $country, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchall();
     }
 
-    public static function getActivitiesRegion($region){
+    public static function getActivitiesRegion($region)
+    {
         $db = static::getDB();
         $stmt = $db->prepare("SELECT
             activities_locations.id,
@@ -187,8 +197,8 @@ class Circuit extends Model
             INNER JOIN addresses ON adresses.id = locations.address_id
             INNER JOIN activities ON activities_locations.activity_id = activities.id
             WHERE UPPER(addresses.region) LIKE UPPER('%:region%')");
-        $stmt->bindValue(':region',$region,PDO::PARAM_INT);
-        $stmt ->execute();
+        $stmt->bindValue(':region', $region, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchall();
     }
 
@@ -214,21 +224,24 @@ class Circuit extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function getAllCategories(){
+    public static function getAllCategories()
+    {
         $db = static::getDB();
-        $stmt = $db-> prepare('SELECT * FROM categories;');
-        $stmt ->execute();
+        $stmt = $db->prepare('SELECT * FROM categories;');
+        $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public static function getLanguages() {
+    public static function getLanguages()
+    {
         $db = static::getDB();
-        $stmt = $db-> prepare('SELECT * FROM languages;');
-        $stmt ->execute();
+        $stmt = $db->prepare('SELECT * FROM languages;');
+        $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public static function getStepsForCircuit($circuit_id) {
+    public static function getStepsForCircuit($circuit_id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
             *
@@ -239,7 +252,8 @@ class Circuit extends Model
         return $stmt->fetchAll();
     }
 
-    public static function getActivitiesForStep($step_id){
+    public static function getActivitiesForStep($step_id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
             *
@@ -250,7 +264,8 @@ class Circuit extends Model
         return $stmt->fetchAll();
     }
 
-    public static function getPeriodsForStep($step_id) {
+    public static function getPeriodsForStep($step_id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
             *
@@ -261,7 +276,8 @@ class Circuit extends Model
         return $stmt->fetchAll();
     }
 
-    public static function getAccommodationsForLocation($location_id){
+    public static function getAccommodationsForLocation($location_id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
             *
@@ -272,7 +288,8 @@ class Circuit extends Model
         return $stmt->fetchAll();
     }
 
-    public static function getGuidesForLanguage($language_id) {
+    public static function getGuidesForLanguage($language_id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
             employees_languages.employee_id
@@ -283,7 +300,8 @@ class Circuit extends Model
         return $stmt->fetchAll();
     }
 
-    public static function getGuideById($id) {
+    public static function getGuideById($id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
             *
@@ -294,7 +312,8 @@ class Circuit extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function getCircuitTripForCircuit($circuit_id) {
+    public static function getCircuitTripForCircuit($circuit_id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
             *
@@ -305,7 +324,8 @@ class Circuit extends Model
         return $stmt->fetchAll();
     }
 
-    public static function getGuidesForCircuitTrip($circuit_trip_id){
+    public static function getGuidesForCircuitTrip($circuit_trip_id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
             *
@@ -316,7 +336,8 @@ class Circuit extends Model
         return $stmt->fetchAll();
     }
 
-    public static function getPaymentPlanForCircuitTrip($circuit_trip_id){
+    public static function getPaymentPlanForCircuitTrip($circuit_trip_id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
             *
@@ -327,7 +348,8 @@ class Circuit extends Model
         return $stmt->fetch();
     }
 
-    public static function getTripPaymentsForPaymentPlan($payment_plan_id){
+    public static function getTripPaymentsForPaymentPlan($payment_plan_id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
             *
@@ -337,6 +359,430 @@ class Circuit extends Model
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public static function getMediaById($id) {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM media
+            WHERE media.id =:id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+
+
+    /* ---------------------------- CREATES --------------------------  */
+
+
+
+
+
+    public static function createActivity(
+        $activity_type,
+        $link,
+        $description,
+        $name
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO activities(
+            activity_type,
+            link,
+            description,
+            name
+        ) VALUES (
+            :activity_type,
+            :link,
+            :description,
+            :name
+            )'
+        );
+
+        $stmt->bindValue(':activity_type', $activity_type, PDO::PARAM_STR);
+        $stmt->bindValue(':link', $link, PDO::PARAM_STR);
+        $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+    public static function createActivityLocation(
+        $activity_id,
+        $location_id
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO activities_locations(
+            activity_id,
+            location_id
+        ) VALUES (
+            :activity_id,
+            :location_id
+            )'
+        );
+
+        $stmt->bindValue(':activity_id', $activity_id, PDO::PARAM_INT);
+        $stmt->bindValue(':location_id', $location_id , PDO::PARAM_INT);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+    public static function createCategory(
+        $name,
+        $description
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO activities_locations(
+            name,
+            description
+        ) VALUES (
+            :name,
+            :description
+            )'
+        );
+
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':description', $description , PDO::PARAM_STR);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+    public static function createCircuitMedia(
+        $circuit_id,
+        $media_id
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO circuits_media(
+            circuit_id,
+            media_id,
+        ) VALUES (
+            :circuit_id,
+            :media_id
+            )'
+        );
+
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->bindValue(':media_id', $media_id , PDO::PARAM_INT);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+
+    public static function createCircuit(
+        $media_id,
+        $language_id,
+        $category_id,
+        $name,
+        $description,
+        $is_public
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO circuits(
+            media_id,
+            language_id,
+            category_id,
+            name,
+            description,
+            is_public
+        ) VALUES (
+            :media_id,
+            :language_id,
+            :category_id,
+            :name,
+            :description,
+            :is_public
+            )'
+        );
+
+
+        $stmt->bindValue(':media_id', $media_id, PDO::PARAM_INT);
+        $stmt->bindValue(':language_id', $language_id, PDO::PARAM_INT);
+        $stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+        $stmt->bindValue(':is_public', $is_public);
+
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+    public static function createCircuits_trips(
+        $circuit_id,
+        $departure_date,
+        $price,
+        $refund_date,
+        $cancellation_date,
+        $cancellation_fee,
+        $places,
+        $quorum,
+        $is_public
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO circuits_trips(
+            circuit_id,
+            departure_date,
+            price,
+            refund_date,
+            cancellation_date,
+            cancellation_fee,
+            places,
+            quorum,
+            is_public
+        ) VALUES (
+            :circuit_id,
+            :departure_date,
+            :price,
+            :refund_date,
+            :cancellation_date,
+            :cancellation_fee,
+            :places,
+            :quorum,
+            :is_public
+            )'
+        );
+
+
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->bindValue(':departure_date', $departure_date);
+        $stmt->bindValue(':price', $price);
+        $stmt->bindValue(':refund_date', $refund_date);
+        $stmt->bindValue(':cancellation_date', $cancellation_date);
+        $stmt->bindValue(':cancellation_fee', $cancellation_fee);
+        $stmt->bindValue(':places', $places, PDO::PARAM_INT);
+        $stmt->bindValue(':quorum', $quorum, PDO::PARAM_INT);
+        $stmt->bindValue(':is_public', $is_public);
+
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+    public static function createCircuits_trips_employees(
+        $employee_id,
+        $circuit_trip_id,
+        $description
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO circuits_trips_employees(
+            employee_id,
+            circuit_trip_id,
+            description
+        ) VALUES (
+            :employee_id,
+            :circuit_trip_id,
+            :description
+            )'
+        );
+
+        $stmt->bindValue(':employee_id', $employee_id, PDO::PARAM_INT);
+        $stmt->bindValue(':circuit_trip_id', $circuit_trip_id , PDO::PARAM_INT);
+        $stmt->bindValue(':description', $description , PDO::PARAM_STR);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+    public static function createPayment(
+        $payment_plan_id,
+        $amount_due,
+        $date_due
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO payments(
+            payment_plan_id,
+            amount_due,
+            date_due
+        ) VALUES (
+            :payment_plan_id,
+            :amount_due,
+            :date_due
+            )'
+        );
+
+        $stmt->bindValue(':payment_plan_id', $payment_plan_id, PDO::PARAM_INT);
+        $stmt->bindValue(':amount_due', $amount_due);
+        $stmt->bindValue(':date_due', $date_due);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+    public static function createPaymentPlan(
+        $circuit_trip_id,
+        $name
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO payments_plans(
+            circuit_trip_id,
+            name
+        ) VALUES (
+            :circuit_trip_id,
+            :name
+            )'
+        );
+
+        $stmt->bindValue(':circuit_trip_id', $circuit_trip_id, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+    public static function createStep(
+        $circuit_id,
+        $description,
+        $position,
+        $time_after_last_step
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO steps(
+            circuit_id,
+            description,
+            position,
+            time_after_last_step
+        ) VALUES (
+            :circuit_id,
+            :description,
+            :position,
+            :time_after_last_step
+            )'
+        );
+
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+        $stmt->bindValue(':position', $position, PDO::PARAM_INT);
+        $stmt->bindValue(':time_after_last_step', $time_after_last_step);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+    public static function createSteps_activities(
+        $activity_id,
+        $step_id,
+        $time_after_last_step,
+        $duration
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO steps_activities(
+            activity_id,
+            step_id,
+            time_after_last_step,
+            duration
+        ) VALUES (
+            :activity_id,
+            :step_id,
+            :time_after_last_step,
+            :duration
+            )'
+        );
+
+        $stmt->bindValue(':activity_id', $activity_id, PDO::PARAM_INT);
+        $stmt->bindValue(':step_id', $step_id, PDO::PARAM_INT);
+        $stmt->bindValue(':time_after_last_step', $time_after_last_step);
+        $stmt->bindValue(':duration', $duration);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+
+
+
+
 
 
 
