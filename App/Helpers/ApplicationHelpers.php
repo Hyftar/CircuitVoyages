@@ -3,6 +3,7 @@
 
 namespace App\Helpers;
 
+
 class ApplicationHelpers
 {
     private static $date_pattern = '/^(?<year>\d{4})[- \/]?(?<month>[0-1]?\d)[- \/]?(?<day>[0-3]?\d)$/';

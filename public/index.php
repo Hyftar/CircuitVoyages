@@ -48,6 +48,24 @@ $router->add(
 );
 
 $router->add(
+    'logout',
+    ['controller' => 'Members', 'action' => 'logout'],
+    'DELETE'
+);
+
+$router->add(
+    'admin/login',
+    ['controller' => 'Employees', 'action' => 'showLogin'],
+    'GET'
+);
+
+$router->add(
+    'admin/login',
+    ['controller' => 'Employees', 'action' => 'login'],
+    'POST'
+);
+
+$router->add(
     'register',
     ['controller' => 'Members', 'action' => 'create'],
     'POST'
