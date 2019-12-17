@@ -191,4 +191,155 @@ class Circuit extends Model
         $stmt ->execute();
         return $stmt->fetchall();
     }
+
+    public static function getCircuitByName($name)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            circuits.id,
+            circuits.media_id,
+            circuits.language_id,
+            circuits.category_id,
+            circuits.name,
+            circuits.description,
+            circuits.is_public,
+            categories.name,
+            languages.name,
+            FROM circuits
+            INNER JOIN categories ON categories.id = circuits.category_id
+            INNER JOIN languages ON languages.id = circuits.language_id
+            WHERE circuits.name =:name;');
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function getAllCategories(){
+        $db = static::getDB();
+        $stmt = $db-> prepare('SELECT * FROM categories;');
+        $stmt ->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function getLanguages() {
+        $db = static::getDB();
+        $stmt = $db-> prepare('SELECT * FROM languages;');
+        $stmt ->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function getStepsForCircuit($circuit_id) {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM steps
+            WHERE steps.circuit_id =:circuit_id;');
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function getActivitiesForStep($step_id){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM steps_activities
+            WHERE steps_activities.step_id =:step_id;');
+        $stmt->bindValue(':step_id', $step_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function getPeriodsForStep($step_id) {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM periods
+            WHERE periods.step_id =:step_id;');
+        $stmt->bindValue(':step_id', $step_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function getAccommodationsForLocation($location_id){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM accommodations
+            WHERE accomodations.location_id =:location_id;');
+        $stmt->bindValue(':location_id', $location_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function getGuidesForLanguage($language_id) {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            employees_languages.employee_id
+            FROM employees_languages
+            WHERE employees_languages.language_id =:language_id;');
+        $stmt->bindValue(':language_id', $language_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function getGuideById($id) {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM employees
+            WHERE employees.id =:$id;');
+        $stmt->bindValue(':$id', $$id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function getCircuitTripForCircuit($circuit_id) {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM circuits_trips
+            WHERE circuits_trips.circuit_id =:circuit_id;');
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function getGuidesForCircuitTrip($circuit_trip_id){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM circuits_trips_employees
+            WHERE circuits_trips_employees.circuit_trip_id =:circuit_trip_id;');
+        $stmt->bindValue(':circuit_trip_id', $circuit_trip_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function getPaymentPlanForCircuitTrip($circuit_trip_id){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM payments_plans
+            WHERE payments_plans.circuit_trip_id =:circuit_trip_id;');
+        $stmt->bindValue(':circuit_trip_id', $circuit_trip_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public static function getTripPaymentsForPaymentPlan($payment_plan_id){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM trips_payments
+            WHERE trips_payments.payment_plan_id =:payment_plan_id;');
+        $stmt->bindValue(':payment_plan_id', $payment_plan_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+
+
+
+
 }
