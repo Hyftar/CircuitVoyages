@@ -37,7 +37,6 @@ class Promotions extends \Core\Controller
             $_POST["promo-value"],
             $_POST["promo-description"],
             $promoPlaces);
-        http_response_code(200);
     }
 
     public function indexIdAction(){
@@ -77,7 +76,6 @@ class Promotions extends \Core\Controller
             $_POST["promo-value"],
             $_POST["promo-description"],
             $promoPlaces);
-        http_response_code(200);
     }
 
     public function getApplicationAction(){
@@ -103,12 +101,10 @@ class Promotions extends \Core\Controller
                     $ctid);
             }
         }
-        http_response_code(200);
    }
 
    public function deactivateAction(){
         Promotion::setExpired($_POST["id"]);
-        http_response_code(200);
    }
 
 }

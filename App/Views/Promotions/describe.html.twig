@@ -34,9 +34,9 @@
             </div>
           {% endif %}
           {% if promotions.availability_number == -1 %}
-            <div class="form-group">
-              <label for="promo-unlimited" class="col-form-label">Est illimité</label>
-              <input disabled type="checkbox" class="form-control" id="promo-unlimited" name="promo-unlimited" checked onclick="availabilityChange()">
+            <div class="form-group form-check">
+              <input disabled type="checkbox" class="form-check-input" id="promo-unlimited" name="promo-unlimited" checked onclick="availabilityChange()">
+              <label for="promo-unlimited" class="form-check-label">Est illimité</label>
             </div>
           {% else %}
             <div class="form-group">
