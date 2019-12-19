@@ -18,7 +18,6 @@ $(function () {
 });
 
 $(() => {
-
     getCircuits()
     $('#admin-logout-link').on('click', () => {
       $.ajax({
@@ -89,23 +88,6 @@ function getCircuits() {
   })
 }
 
-function getCircuits_create() {
-  $.ajax({
-    url: '/admin_circuits_create',
-    type: 'GET',
-    success: (data) => {
-      let container = document.getElementById('contenu');
-      container.innerHTML = data;
-      $(".selectpicker").selectpicker();
-      $(".custom-file-input").on("change", function () {
-        var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-      });
-
-    }
-
-  })
-}
 
 function showActivity() {
   $('#exampleModalScrollable').modal('show');
@@ -122,8 +104,6 @@ function getCircuits_organize() {
       $('.datepicker').each(function () {
         $(this).datepicker()
       });
-
-
     }
   })
 }
@@ -249,7 +229,98 @@ function createActivity() {
         $('#activity_form').modal('hide');
       }
     })
+}
 
+// Code de Keven
+
+function getCircuits_create() {
+  $.ajax({
+    url: '/admin_circuits_create',
+    type: 'GET',
+    success: (data) => {
+      let container = document.getElementById('modalContenuCircuit');
+      container.innerHTML = data;
+      $(".selectpicker").selectpicker();
+      $('#modalCreationCircuit').modal('toggle')
+      $("select").imagepicker({show_label: true})
+    }
+  })
+}
+
+function getCircuits_update(id) {
+  $.ajax({
+    url: 'admin_circuit_update',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    success: (data) => {
+      let container = document.getElementById('modalContenuCircuit');
+      container.innerHTML = data;
+      $(".selectpicker").selectpicker();
+      $('#modalUpdateCircuit').modal('toggle')
+      $("select").imagepicker({show_label: true})
+    }
+  })
+}
+
+function creerCircuit(){
+  let form = new FormData(document.getElementById('formCreateCircuit'));
+  $.ajax({
+    url: 'admin/circuit_create_simple',
+    type: 'POST',
+    data : form,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      $('#modalCreationCircuit').modal('toggle');
+    }
+  })
+  return false;
+}
+
+function modifierCircuit(){
+  let form = new FormData(document.getElementById('formUpdateCircuit'));
+  $.ajax({
+    url: 'admin/circuit_update_simple',
+    type: 'POST',
+    data : form,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      $('#modalUpdateCircuit').modal('toggle');
+    }
+  })
+  return false;
+}
+
+function supprimerCircuit(id){
+  let test = confirm("Êtes-vous certain de retirer ce circuit ? Ce changement est définitif.")
+  if(test == true){
+    $.ajax({
+      url: 'admin/deleteCircuit',
+      type: 'POST',
+      data: {
+        id: id
+      },
+      dataType: 'html',
+      success: (data) => {
+      }
+    })
+  }
+}
+
+function createCircuit_simple(){
+
+}
+
+function getCircuits_Detail(){
+
+}
+
+function editCircuit(id){
 
 }
 

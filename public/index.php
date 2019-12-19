@@ -9,7 +9,7 @@ $dotenv->load();
 $dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD', 'APPLICATION_ENV']);
 
 
-if (false && $_ENV['APPLICATION_ENV'] == 'development') {
+if ($_ENV['APPLICATION_ENV'] == 'development') {
     SassCompiler::run(dirname(__DIR__) . '/App/Views/Scss/', dirname(__DIR__) . '/public/css/generated/');
 }
 
@@ -45,6 +45,7 @@ $router->add(
 $router->add(
     'admin/media',
     ['controller' => 'Medias', 'action' => 'upload'],
+    'POST'
 );
 
 $router->add(
@@ -214,6 +215,30 @@ $router->add(
 $router->add(
     'admin_circuits_organize',
     ['controller' => 'Admin', 'action' => 'circuitsOrganize']
+);
+
+$router->add(
+    'admin/circuit_create_simple',
+    ['controller' => 'Admin', 'action' => 'circuitsCreateSimple'],
+    'POST'
+);
+
+$router->add(
+    'admin_circuit_update',
+    ['controller' => 'Admin', 'action' => 'circuitUpdateIndex'],
+    'POST'
+);
+
+$router->add(
+    'admin/circuit_update_simple',
+    ['controller' => 'Admin', 'action' => 'circuitsUpdateSimple'],
+    'POST'
+);
+
+$router->add(
+    'admin/deleteCircuit',
+    ['controller' => 'Admin', 'action' => 'deleteCircuit'],
+    'POST'
 );
 
 // Send the URI and Method to the dispatcher

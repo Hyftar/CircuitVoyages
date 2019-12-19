@@ -6,98 +6,42 @@
   <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
-<div class="input-group mb-3 w-50">
-  <input type="text" class="form-control" placeholder="Entrez un ou plusieurs mot-clé(s)" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-    <span class="input-group-text" id="basic-addon2">Chercher</span>
-  </div>
-</div>
-<div class="column">
+
+<div class="column my-2">
   <div class="col-10">
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
         <li>Nom du circuit</li>
-        <li>Date de création</li>
-        <li>En cours</li>
-        <li>Auteur</li>
+        <li>Description</li>
         <li>Actions</li>
         </ul>
         </a>
+      {% for circuit in circuits %}
       <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
         <ul class="circuit_ul">
-        <li>Circuit Méditerrannéen</li>
-        <li>2019-10-02</li>
-        <li>2</li>
-        <li>Tony Marcoux</li>
-        <li><i class="fas fa-pen"></i><i class="fas fa-trash"></i></li>
+          <li>{{ circuit.name }}</li>
+          <li>{{ circuit.description }}</li>
+          <li>
+            <button type="button" class="btn-primary" onclick="getCircuits_update({{ circuit.id|e }})"><i class="fas fa-edit"></i></button>
+            <button type="button" class="btn-primary" onclick="supprimerCircuit({{ circuit.id|e }})"><i class="fas fa-trash"></i></button>
+          </li>
         </ul>
         </a>
-      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
-        <ul class="circuit_ul">
-        <li>Circuit Désertique</li>
-        <li>2019-02-24</li>
-        <li>0</li>
-        <li>Martin Houde</li>
-        <li><i class="fas fa-pen"></i><i class="fas fa-trash"></i></li>
-        </ul>
+      {% else %}
+        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
+          <ul class="circuit_ul">
+            <li>N/A</li>
+            <li>N/A</li>
+            <li>
+              <button type="button" class="btn-primary" disabled><i class="fas fa-edit"></i></button>
+              <button type="button" class="btn-primary" disabled><i class="fas fa-trash"></i></button>
+            </li>
+          </ul>
         </a>
-      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">
-        <ul class="circuit_ul">
-        <li >Circuit Nordique</li>
-        <li >2018-08-11</li>
-        <li >1</li>
-        <li >Suzie Lemire</li>
-        <li><i class="fas fa-pen"></i><i class="fas fa-trash"></i></li>
-        </ul>
-        </a>
-    </div>
-  </div>
-  <nav aria-label="...">
-  <ul class="pagination pagination-sm">
-    <li class="page-item active" aria-current="page">
-      <span class="page-link">
-        1
-        <span class="sr-only">(current)</span>
-      </span>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-  </ul>
-</nav>
-  <div class="col-8">
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-        <div class="circuit_preview">
-          <div>
-            <h3>Circuit Méditérrannéen</h3>
-          <h4>Description : </h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dolorem exercitationem beatae laudantium sequi sapiente autem aut nisi nostrum distinctio, vitae, iure eos ratione quod necessitatibus animi natus cumque hic!</p>
-          </div>
-          <img src="/images/beach.jpg" alt="">
-        </div>
-      </div>
-      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-        <div class="circuit_preview">
-          <div>
-            <h3>Circuit Désertique</h3>
-          <h4>Description : </h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dolorem exercitationem beatae laudantium sequi sapiente autem aut nisi nostrum distinctio, vitae, iure eos ratione quod necessitatibus animi natus cumque hic!</p>
-          </div>
-          <img src="/images/hawaii.jpg" alt="">
-        </div>
-      </div>
-      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-        <div class="circuit_preview">
-          <div>
-            <h3>Circuit Nordique</h3>
-          <h4>Description : </h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dolorem exercitationem beatae laudantium sequi sapiente autem aut nisi nostrum distinctio, vitae, iure eos ratione quod necessitatibus animi natus cumque hic!</p>
-          </div>
-          <img src="/images/iceberg.jpg" alt="">
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
+<div id="modalContenuCircuit"></div>
 <button type="button" class="btn btn-dark">Retour à l'accueil</button>

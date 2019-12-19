@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Helpers\ApplicationHelpers;
 use App\Models\Accommodation;
 use App\Models\Circuit;
+use App\Models\Media;
 use \Core\View;
 
 class Admin extends \Core\Controller
@@ -121,28 +122,16 @@ class Admin extends \Core\Controller
 
     public function circuitsIndexAction()
     {
-//        $circuits = Circuit::getAllCircuit();
-        View::renderTemplate('Admin/gestion_circuits.html.twig'
-//            [
-//                'circuits' => $circuits
-//            ]
+        $circuits = Circuit::getAllCircuit();
+        View::renderTemplate('Admin/gestion_circuits.html.twig',
+            [
+                'circuits' => $circuits
+            ]
         );
     }
 
     public function adminAction() {
         View::renderTemplate('admin_base.html.twig');
-    }
-
-    public function circuitsCreateIndexAction(){
-        $categories = Circuit::getAllCategories();
-        $languages = Circuit::getLanguages();
-        $accommodations = Accommodation::getAll();
-        View::renderTemplate('Admin/creation_circuit.html.twig',
-            [
-                'categories' => $categories,
-                'languages' => $languages,
-                'accommodations' => $accommodations
-            ]);
     }
 
     public function circuitsAddStepLinkAction(){
@@ -180,6 +169,49 @@ class Admin extends \Core\Controller
         View::renderJSON([
             'id' => $activity_id
         ]);
+    }
+
+    // Ajouts de Keven
+
+    public function circuitsCreateSimpleAction(){
+        $ajout = Circuit::createSimpleCircuit($_POST['image'],
+            $_POST['language'], $_POST['category'], $_POST['nomCircuit'], $_POST['descriptionCircuit'],0);
+    }
+
+    public function circuitsUpdateSimpleAction(){
+        $update = Circuit::updateSimpleCircuit($_POST['image'],
+            $_POST['language'], $_POST['category'], $_POST['nomCircuit'], $_POST['descriptionCircuit'],0);
+    }
+
+    public function circuitsCreateIndexAction(){
+        $categories = Circuit::getAllCategories();
+        $languages = Circuit::getLanguages();
+        $images = Media::getAll();
+        View::renderTemplate('Admin/create_circuit_first.html.twig',
+            [
+                'categories' => $categories,
+                'languages' => $languages,
+                'images' => $images
+            ]);
+    }
+
+    public function circuitUpdateIndexAction(){
+        $circuit = Circuit::getCircuit($_POST['id']);
+        $categories = Circuit::getAllCategories();
+        $languages = Circuit::getLanguages();
+        $images = Media::getAll();
+        View::renderTemplate('Admin/update_circuit_first.html.twig',
+            [
+                'categories' => $categories,
+                'languages' => $languages,
+                'images' => $images,
+                'circuit' => $circuit
+            ]);
+    }
+
+    public function deleteCircuitAction(){
+        $delete = Circuit::deleteSimpleCircuit($_POST['id']);
 
     }
+
 }
