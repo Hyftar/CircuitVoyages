@@ -283,3 +283,5 @@ TSWLatexianTemp*
 .idea/
 /public/css/generated/
 .idea/
+/public/uploaded_files/*
+!/public/uploaded_files/.keep

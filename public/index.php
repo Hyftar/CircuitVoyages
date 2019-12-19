@@ -37,6 +37,18 @@ $router->add(
 );
 
 $router->add(
+    'admin/media',
+    ['controller' => 'Medias', 'action' => 'index'],
+);
+
+
+$router->add(
+    'admin/media',
+    ['controller' => 'Medias', 'action' => 'upload'],
+    'POST'
+);
+
+$router->add(
     'circuits',
     ['controller' => 'Circuits', 'action' => 'show']
 );

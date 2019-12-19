@@ -493,6 +493,7 @@ input {
 }
 
 
+#media-new-btn,
 #accommodation-new-btn {
   display: flex;
   justify-content: space-between;
@@ -500,12 +501,19 @@ input {
   color: black;
 }
 
+#media-new-btn:hover,
 #accommodation-new-btn:hover {
   color: #ddd;
 }
 
+#media-new-btn > span,
 #accommodation-new-btn > span {
   margin-right: 1em;
+}
+
+#media-add-modal,
+#accommodation-add-modal {
+  padding-top: 5em;
 }
 
 h2 {
@@ -601,10 +609,6 @@ h2 {
 
 .accommodation-grid__header__elem:not(:last-child) {
   border-right: 1px solid grey;
-}
-
-#accommodation-add-modal {
-  padding-top: 5em;
 }
 
 

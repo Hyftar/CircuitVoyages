@@ -31,7 +31,24 @@ $(() => {
     })
     $('#link-circuits').on('click', getCircuits)
     $('#link-accommodation').on('click', indexAccomodations)
+    $('#link-media').on('click', indexMedia)
 })
+
+function indexMedia() {
+  $.ajax({
+    url: '/admin/media',
+    type: 'GET',
+    success: (data) => {
+      document.getElementById('contenu').innerHTML = data
+      $('#media-add-form').ajaxForm({
+        success: () => {
+          $('#media-add-modal').modal('hide')
+          indexMedia()
+        }
+      })
+    }
+  })
+}
 
 function indexAccomodations() {
   $.ajax({
