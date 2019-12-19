@@ -192,10 +192,10 @@ CREATE TABLE `chat_lines` (
 
 CREATE TABLE `circuits` (
   `id` int(11) NOT NULL,
-  `media_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `media_id` int(11) NULL,
+  `language_id` int(11) NULL,
+  `category_id` int(11) NULL,
+  `name` varchar(100) CHARACTER SET utf8 NULL,
   `description` text COLLATE utf8mb4_bin DEFAULT NULL,
   `is_public` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;

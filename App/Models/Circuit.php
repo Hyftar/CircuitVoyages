@@ -412,7 +412,11 @@ class Circuit extends Model
             return;
         }
 
+        $rep = $db->lastInsertId();
+
         $db->commit();
+
+        return $rep;
 
     }
 
@@ -776,6 +780,28 @@ class Circuit extends Model
         }
 
         $db->commit();
+
+    }
+
+    public static function createEmptyCircuit()
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO circuits(
+        ) VALUES (NULL)'
+        );
+
+        $row = $stmt->execute();
+
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+        return $row;
 
     }
 

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Helpers\ApplicationHelpers;
 use App\Models\Accommodation;
+use App\Models\Circuit;
 use \Core\View;
 
 class Admin extends \Core\Controller
@@ -120,18 +121,65 @@ class Admin extends \Core\Controller
 
     public function circuitsIndexAction()
     {
-        View::renderTemplate('Admin/gestion_circuits.html.twig');
+//        $circuits = Circuit::getAllCircuit();
+        View::renderTemplate('Admin/gestion_circuits.html.twig'
+//            [
+//                'circuits' => $circuits
+//            ]
+        );
     }
 
     public function adminAction() {
         View::renderTemplate('admin_base.html.twig');
     }
 
-    public function circuitsCreateAction(){
-        View::renderTemplate('Admin/creation_circuit.html.twig');
+    public function circuitsCreateIndexAction(){
+        $categories = Circuit::getAllCategories();
+        $languages = Circuit::getLanguages();
+        $accommodations = Accommodation::getAll();
+        View::renderTemplate('Admin/creation_circuit.html.twig',
+            [
+                'categories' => $categories,
+                'languages' => $languages,
+                'accommodations' => $accommodations
+            ]);
+    }
+
+    public function circuitsAddStepLinkAction(){
+        $nbEtapes = $_POST['nbEtapes'];
+        $nbEtapes += 1;
+        View::renderTemplate('Admin/step_link.html.twig',
+            [
+                'nbEtapes' => $nbEtapes
+            ]);
+    }
+
+    public function circuitsAddStepTabAction(){
+        $nbEtapes = $_POST['nbEtapes'];
+        $nbEtapes += 1;
+        View::renderTemplate('Admin/step_tab.html.twig',
+            [
+                'nbEtapes' => $nbEtapes
+            ]);
     }
 
     public function circuitsOrganizeAction(){
         View::renderTemplate('Admin/organisation_circuit.html.twig');
+    }
+
+    public function circuitsActivityCreateAction() {
+        $name = $_POST['name'];
+        $type = $_POST['type'];
+        $desc = $_POST['desc'];
+        $link = $_POST['link'];
+        $start_time = $_POST['start_time'];
+        $end_time = $_POST['end_time'];
+
+        $activity_id = Circuit::createActivity($type, $link, $desc, $name);
+
+        View::renderJSON([
+            'id' => $activity_id
+        ]);
+
     }
 }

@@ -33,12 +33,12 @@ $router = new Core\Router();
 // Add the routes
 $router->add(
     '',
-    ['controller' => 'Home', 'action' => 'index'],
+    ['controller' => 'Home', 'action' => 'index']
 );
 
 $router->add(
     'circuits',
-    ['controller' => 'Circuits', 'action' => 'show'],
+    ['controller' => 'Circuits', 'action' => 'show']
 );
 
 $router->add(
@@ -79,7 +79,7 @@ $router->add(
 
 $router->add(
     'admin',
-    ['controller' => 'Admin', 'action' => 'admin'],
+    ['controller' => 'Admin', 'action' => 'admin']
 );
 
 $router->add(
@@ -102,7 +102,7 @@ $router->add(
 
 $router->add(
     'admin_accommodation',
-    ['controller' => 'Admin', 'action' => 'accommodationIndex'],
+    ['controller' => 'Admin', 'action' => 'accommodationIndex']
 );
 
 $router->add(
@@ -113,13 +113,41 @@ $router->add(
 
 $router->add(
     'admin_circuits',
-    ['controller' => 'Admin', 'action' => 'circuitsIndex'],
+    ['controller' => 'Admin', 'action' => 'circuitsIndex']
 );
 
 $router->add(
     'admin_circuits_create',
+    ['controller' => 'Admin', 'action' => 'circuitsCreateIndex']
+);
+
+$router->add(
+    'admin_circuits_create_save',
     ['controller' => 'Admin', 'action' => 'circuitsCreate']
 );
+
+$router->add(
+    'admin_circuits_addstep_link',
+    ['controller' => 'Admin', 'action' => 'circuitsAddStepLink'],
+    'POST'
+);
+
+$router->add(
+    'admin_circuits_addstep_tab',
+    ['controller' => 'Admin', 'action' => 'circuitsAddStepTab'],
+    'POST'
+);
+
+$router->add(
+    'admin_circuits_activity_create',
+    ['controller' => 'Admin', 'action' => 'circuitsActivityCreate'],
+    'POST'
+);
+
+
+
+
+
 
 $router->add(
     'admin_circuits_organize',

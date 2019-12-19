@@ -357,13 +357,23 @@ a:focus {
 }
 
 .activity {
-    grid-row: 2/-1;
+    background-color: #bbf9e1 !important;
+    display:grid;
+  place-items: center;
+  text-align: center;
+  padding:5px;
+  font-size: 10px;
+}
+
+.activity:hover {
+  background-color: rgba(187, 249, 225, 0.61) !important;
 }
 
 .grille_horaire div {
     background-color: rgb(223, 230, 255);
     border-radius: 5px;
     transition: 0.4s;
+
 }
 
 .grille_horaire div:hover {
@@ -423,8 +433,22 @@ a:focus {
 
 .hebergement {
     display: grid;
-    place-items: end center;
-    padding: 15px;
+    place-items: center;
+  height:64px;
+}
+
+.activity_ajout {
+    display: grid;
+    place-items: center;
+    background-color: #a4ffc3 !important;
+    height:64px;
+  border-radius: 4px;
+  transition: 0.4s;
+}
+
+.activity_ajout:hover {
+  background-color: rgba(164, 255, 195, 0.61) !important;
+  cursor: pointer;
 }
 
 .button_panel {

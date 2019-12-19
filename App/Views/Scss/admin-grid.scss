@@ -26,10 +26,6 @@
 
 @for $i from 0 through 365 {
   .step-duration-#{($i)} {
-    @if $j>0 {
-      grid-template-columns: 64px repeat($i, 1fr);
-    } @else {
-      grid-template-columns: 64px;
-    }
+      grid-template-columns: repeat($i + 1, 1fr);
   }
 }

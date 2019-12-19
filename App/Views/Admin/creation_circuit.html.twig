@@ -1,29 +1,31 @@
 <form class="form_create_circuit">
   <div class="form-group">
     <label for="nom_circuit"><h5>Nom du circuit :</h5></label>
-    <input type="email" class="form-control" id="nom_circuit"
+    <input type="email" class="form-control" id="nom_circuit" name="nom_circuit"
            placeholder="Ex. : Circuit Méditerrannéen">
   </div>
 
   <div class="select_container">
     {# // multiple selectpicker for circuit categories #}
     <div>
-      <label for="">Catégorie(s) : </label>
-      <select class="selectpicker" title="Aucune catégorie" multiple>
-        <option>Mustard</option>
-        <option>Ketchup</option>
-        <option>Relish</option>
+      <label for="category">Catégorie(s) : </label>
+      <select class="selectpicker" title="Aucune catégorie" name="category"
+              multiple>
+        {% for category in categories %}
+          <option>{{ category.name }}</option>
+        {% endfor %}
       </select>
     </div>
 
 
     {# // multiple selectpicker for circuit languages #}
     <div>
-      <label for="">Langue(s) disponible(s) pour le circuit : </label>
-      <select class="selectpicker" title="Aucune langue" multiple>
-        <option>Français</option>
-        <option>Anglais</option>
-        <option>Espagnol</option>
+      <label for="language">Langue(s) disponible(s) pour le circuit : </label>
+      <select class="selectpicker" title="Aucune langue" name="language"
+              multiple>
+        {% for language in languages %}
+          <option>{{ language.name }}</option>
+        {% endfor %}
       </select>
     </div>
   </div>
@@ -33,7 +35,8 @@
 
 
   <div class="custom-file">
-    <input type="file" class="custom-file-input" id="customFile" lang="fr">
+    <input type="file" class="custom-file-input" id="customFile"
+           name="customFile" lang="fr">
     <label class="custom-file-label" for="customFile">Choisir une image</label>
   </div>
 
@@ -41,84 +44,37 @@
   {# text area for small back-end circuit desc #}
 
   <div class="form-group">
-    <label for="exampleFormControlTextarea1">Description du circuit : </label>
-    <textarea class="form-control" id="exampleFormControlTextarea1"
-              rows="3"></textarea>
+    <label for="desc">Description du circuit : </label>
+    <textarea class="form-control" name="desc"
+              rows="3" style="resize: none"></textarea>
   </div>
 
+  {#    LISTE D'ÉTAPES #}
 
-  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
-         href="#pills-home" role="tab" aria-controls="pills-home"
-         aria-selected="true">Étape 1</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-profile-tab" data-toggle="pill"
-         href="#pills-profile" role="tab" aria-controls="pills-profile"
-         aria-selected="false">Étape 2</a>
-    </li>
-    <li class="nav-item">
-      <i class="fas fa-plus-circle icone_ajout"></i>
-    </li>
-  </ul>
-  <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-         aria-labelledby="pills-home-tab">
+  <div id="etapes_container">
 
+
+    <ul id="steplist" class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-step-1-tab" data-toggle="pill"
+           href="#pills-step-1" role="tab" aria-controls="pills-step-1"
+           aria-selected="true">Étape 1</a>
+      </li>
+
+      <li id="addstep_button" class="nav-item">
+        <i class="fas fa-plus-circle icone_ajout" onclick="addStep()"></i>
+      </li>
+
+    </ul>
+
+
+    <div class="tab-content" id="pills-tabContent">
       {# GRILLE HORAIRE  1 #}
+      <div class="tab-pane fade show active" id="pills-step-1" role="tabpanel"
+           aria-labelledby="pills-step-1-tab">
 
-      <div class="etape">
-        <div class="grille">
-          <div class="time_column">
-            <div class="heures">
-              {% for i in 0..23 %}
-                {% if i < 10 %}
-                  0{{ i }}:00<br>
-                {% else %}
-                  {{ i }}:00<br>
-                {% endif %}
-              {% endfor %}
-            </div>
-            <div class="lignes">
-              {% for i in 0..23 %}
-                <hr>
-              {% endfor %}
-            </div>
-          </div>
-          <div class="grille_horaire">
-            <div class="header">Jour 1</div>
-            <div class="header">Jour 2</div>
-            <div class="header">Jour 3</div>
-            <div class="header">Jour 4</div>
-            <div class="header"><i class="fas fa-plus"></i></div>
-            <div class="activity" onclick="showActivity()"></div>
-            <div class="activity" onclick="showActivity()"></div>
-            <div class="activity" onclick="showActivity()"></div>
-            <div class="activity" onclick="showActivity()"></div>
-          </div>
-        </div>
-        <div class="hebergement_container">
-          <h6 class="hebergement_titre">Hébergements :</h6>
-          <div class="grille_hebergement">
-            <div class="hebergement"><p>Ajouter un hébergement</p><i
-                class="fas fa-plus"></i></div>
-            <div class="hebergement"><p>Ajouter un hébergement</p><i
-                class="fas fa-plus"></i></div>
-            <div class="hebergement"><p>Ajouter un hébergement</p><i
-                class="fas fa-plus"></i></div>
-            <div class="hebergement"><p>Ajouter un hébergement</p><i
-                class="fas fa-plus"></i></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-         aria-labelledby="pills-profile-tab">
-      <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-           aria-labelledby="pills-home-tab">
 
-        {# GRILLE HORAIRE  1 #}
 
         <div class="etape">
           <div class="grille">
@@ -138,29 +94,20 @@
                 {% endfor %}
               </div>
             </div>
-            <div class="grille_horaire">
-              <div class="header">Jour 1</div>
-              <div class="header">Jour 2</div>
-              <div class="header">Jour 3</div>
-              <div class="header">Jour 4</div>
-              <div class="header"><i class="fas fa-plus"></i></div>
-              <div class="activity" onclick="showActivity()"></div>
-              <div class="activity" onclick="showActivity()"></div>
-              <div class="activity" onclick="showActivity()"></div>
-              <div class="activity" onclick="showActivity()"></div>
+            <div id="daysForStep1" class="grille_horaire step-duration-0">
+              <div id="addDay_button" onclick="addDay(1)" class="header"><i class="fas fa-plus"></i></div>
+            </div>
+          </div>
+          <div class="hebergement_container">
+            <h6 class="hebergement_titre">Ajouter une activité</h6>
+            <div class="grille_hebergement step-duration-0" id="grille_ajout1">
+
             </div>
           </div>
           <div class="hebergement_container">
             <h6 class="hebergement_titre">Hébergements :</h6>
-            <div class="grille_hebergement">
-              <div class="hebergement"><p>Ajouter un hébergement</p><i
-                  class="fas fa-plus"></i></div>
-              <div class="hebergement"><p>Ajouter un hébergement</p><i
-                  class="fas fa-plus"></i></div>
-              <div class="hebergement"><p>Ajouter un hébergement</p><i
-                  class="fas fa-plus"></i></div>
-              <div class="hebergement"><p>Ajouter un hébergement</p><i
-                  class="fas fa-plus"></i></div>
+            <div class="grille_hebergement step-duration-0" id="grille_hebergement1">
+
             </div>
           </div>
         </div>
@@ -168,12 +115,15 @@
     </div>
   </div>
 
+  {#          FIN LISTE D'ÉTAPES #}
 
   <div class="button_panel">
-    <button type="button" class="btn btn-dark mr-auto" onClick="getCircuits()">
+    <button type="button" class="btn btn-dark mr-auto"
+            onClick="getCircuits()">
       Retour à la liste des circuits
     </button>
-    <button type="button" class="btn btn-secondary">Enregistrer le circuit
+    <button type="button" id="circuit-add-form_submit" type="submit"
+            class="btn btn-secondary">Enregistrer le circuit
     </button>
     <button type="button" class="btn btn-success"
             onclick="getCircuits_organize()">Organiser le circuit
@@ -183,7 +133,7 @@
 </form>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+<div class="modal fade" id="activity_form" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
        role="document">
@@ -199,54 +149,62 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="exampleFormControlInput1">Nom de l'activité</label>
+            <label for="activity_name">Nom de l'activité</label>
             <input type="email" class="form-control"
-                   id="exampleFormControlInput1" placeholder="">
+                   id="activity_name" placeholder="">
           </div>
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Type d'activité</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>Transport</option>
-              <option>Action</option>
-              <option>Relaxation</option>
-              <option>Découverte</option>
-              <option>Autres</option>
+            <label for="activity_type">Type d'activité</label>
+            <select class="form-control" id="activity_type">
+              <option value="TRANSPORT">Transport</option>
+              <option value="ACTION">Action</option>
+              <option value="RELAXING">Relaxation</option>
+              <option value="DISCOVERY">Découverte</option>
+              <option value="ARTS">Arts</option>
+              <option value="RESTAURANTS">Restaurants</option>
+              <option value="OTHER">Autres</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput2">Lien vers la page de
+            <label for="activity_link">Lien vers la page de
               l'activité</label>
-            <input type="email" class="form-control"
-                   id="exampleFormControlInput2" placeholder="">
+            <input type="text" class="form-control"
+                   id="activity_link" placeholder="">
           </div>
           <div class="form-group">
-            <label for="exampleFormControlTextarea1">Description de
+            <label for="activity_desc">Description de
               l'activité</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1"
+            <textarea class="form-control" id="activity_desc"
                       rows="3"></textarea>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text"
-                     for="inputGroupSelect01">Heure</label>
+                     for="activity_start">Début</label>
             </div>
-            <select class="custom-select" id="inputGroupSelect01">
+            <select class="custom-select" id="activity_start">
               <option selected>Choisir ...</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              {% for i in 0 .. 96 %}
+                <option>
+                  {{ (i/4)|round(0, 'floor') }}h{{ (i%4)*15 }}{% if i%4 == 0 %}0
+                  {% endif %}
+                </option>
+              {% endfor %}
             </select>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text"
-                     for="inputGroupSelect02">Durée</label>
+                     for="activity_duration">Fin</label>
             </div>
-            <select class="custom-select" id="inputGroupSelect02">
+            <select class="custom-select" id="activity_duration">
               <option selected>Choisir ...</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              {% for i in 0 .. 96 %}
+                <option>
+                  {{ (i/4)|round(0, 'floor') }}h{{ (i%4)*15 }}{% if i%4 == 0 %}0
+                  {% endif %}
+                </option>
+              {% endfor %}
             </select>
           </div>
           <div class="custom-file">
@@ -255,13 +213,15 @@
             <label class="custom-file-label" for="customFile2">Choisir une
               image</label>
           </div>
+          <input style="display: none" id="day_nb" type="text" value="1">
+          <input style="display: none" id="step_nb" type="text" value="1">
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Fermer
         </button>
-        <button type="button" class="btn btn-primary">Ajouter</button>
+        <button type="button" class="btn btn-primary" onclick="createActivity()">Ajouter</button>
       </div>
     </div>
   </div>
