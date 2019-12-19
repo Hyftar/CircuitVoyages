@@ -45,12 +45,56 @@ $router->add(
 $router->add(
     'admin/media',
     ['controller' => 'Medias', 'action' => 'upload'],
+);
+
+$router->add(
+    'promotions',
+    ['controller' => 'Promotions', 'action' => 'indexCurrent']
+);
+
+$router->add(
+    'promotions/all',
+    ['controller' => 'Promotions', 'action' => 'index']
+);
+
+$router->add(
+    'promotions/updatePromo',
+    ['controller' => 'Promotions', 'action' => 'update'],
     'POST'
 );
 
 $router->add(
-    'circuits',
-    ['controller' => 'Circuits', 'action' => 'show']
+    'promotions/id',
+    ['controller' => 'Promotions', 'action' => 'indexId'],
+    'POST'
+);
+
+$router->add(
+    'promotions/idModal',
+    ['controller' => 'Promotions', 'action' => 'indexIdModal'],
+    'POST'
+);
+
+$router->add(
+    'promotions/deactivate',
+    ['controller' => 'Promotions', 'action' => 'deactivate'],
+    'POST'
+);
+
+$router->add(
+    'promotions/emptyModal',
+    ['controller' => 'Promotions', 'action' => 'emptyModal']
+);
+
+$router->add(
+    'promotions/createPromo',
+    ['controller' => 'Promotions', 'action' => 'create'],
+    'POST'
+);
+
+$router->add(
+    'promotions/application',
+    ['controller' => 'Promotions', 'action' => 'getApplication'],
 );
 
 $router->add(
@@ -151,9 +195,14 @@ $router->add(
 );
 
 $router->add(
+    'promotions/createApplication',
+    ['controller' => 'Promotions', 'action' => 'updatePromotionCircuits'],
+    'POST'
+);
+
+$router->add(
     'admin_circuits_addstep_tab',
     ['controller' => 'Admin', 'action' => 'circuitsAddStepTab'],
-    'POST'
 );
 
 $router->add(
@@ -161,11 +210,6 @@ $router->add(
     ['controller' => 'Admin', 'action' => 'circuitsActivityCreate'],
     'POST'
 );
-
-
-
-
-
 
 $router->add(
     'admin_circuits_organize',

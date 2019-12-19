@@ -614,7 +614,7 @@ CREATE TABLE `permissions` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `promotions`
+-- Structure de la table `promotions.js`
 --
 
 CREATE TABLE `promotions` (
@@ -637,7 +637,7 @@ CREATE TABLE `promotions` (
 CREATE TABLE `promotions_circuits_trips` (
   `id` int(11) NOT NULL,
   `promotion_id` int(11) NOT NULL,
-  `circuit_trip_id` int(11) NOT NULL
+  `circuit_trip_id` int(11) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -1165,7 +1165,7 @@ ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `promotions`
+-- Index pour la table `promotions.js`
 --
 ALTER TABLE `promotions`
   ADD PRIMARY KEY (`id`),
@@ -1507,7 +1507,7 @@ ALTER TABLE `periods`
 ALTER TABLE `permissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `promotions`
+-- AUTO_INCREMENT pour la table `promotions.js`
 --
 ALTER TABLE `promotions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
@@ -1823,7 +1823,7 @@ ALTER TABLE `periods`
   ADD CONSTRAINT `periods_ibfk_1` FOREIGN KEY (`step_id`) REFERENCES `steps` (`id`);
 
 --
--- Contraintes pour la table `promotions`
+-- Contraintes pour la table `promotions.js`
 --
 ALTER TABLE `promotions`
   ADD CONSTRAINT `promotions_ibfk_1` FOREIGN KEY (`promotion_type_id`) REFERENCES `promotions_types` (`id`);
