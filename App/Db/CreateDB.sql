@@ -490,14 +490,14 @@ CREATE TABLE `media` (
 
 CREATE TABLE `members` (
   `id` int(11) NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_bin NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `password_id` int(11) DEFAULT NULL,
-  `address_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
+  `address_id` int(11) DEFAULT NULL,
+  `language_id` int(11) DEFAULT NULL,
   `first_name` varchar(100) CHARACTER SET utf8 NOT NULL,
   `last_name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `phone_number` varchar(15) COLLATE utf8mb4_bin NOT NULL,
-  `date_of_birth` date NOT NULL,
+  `phone_number` varchar(15) COLLATE utf8mb4_bin DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
   `facebook_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 

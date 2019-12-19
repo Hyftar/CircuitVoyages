@@ -48,6 +48,12 @@ $router->add(
 );
 
 $router->add(
+    'login/facebook',
+    ['controller' => 'Members', 'action' => 'facebookLogin'],
+    'POST'
+);
+
+$router->add(
     'logout',
     ['controller' => 'Members', 'action' => 'logout'],
     'DELETE'

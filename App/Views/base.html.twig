@@ -3,6 +3,7 @@
 
   <head>
     <meta charset="utf-8">
+    <meta name="google-signin-client_id" content="962979274048-adacd895cdoejt2lj7cr4g7jqpi8fete.apps.googleusercontent.com">
     <link rel="shortcut icon" type="image/png" href="/images/labernois_logo.png"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script|Fugaz+One|Permanent+Marker&display=swap">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -77,4 +78,14 @@
   <script src="/js/reset.js"></script>
   <script src="/js/drawer.js"></script>
   <script src="/js/main.js"></script>
+  <script src="/js/facebook_login.js"></script>
+  <script>
+    (function(d, s, id) {
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'))
+  </script>
 </html>

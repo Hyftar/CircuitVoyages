@@ -9,6 +9,36 @@ use \App\Models\Member;
 
 class Members extends \Core\Controller
 {
+    public function facebookLoginAction()
+    {
+        if (empty($_POST['name'])) {
+            // TODO: use i18n string instead
+            $errors[] = 'Veuillez fournir un nom';
+        }
+
+        if (empty($_POST['id'])) {
+            $errors[] = 'Veuillez fournir un id';
+        }
+
+        if (!empty($errors)) {
+            http_response_code(401);
+            View::renderJSON(['errors' => $errors]);
+            return;
+        }
+
+        $names = explode(' ', $_POST['name']);
+        $first_name = $names[0];
+        $last_name = $names[array_key_last($names)];
+        $member = Member::facebookIdExists($_POST['id']);
+
+        if (empty($member)) {
+            Member::createMemberForFacebook($_POST['id'], $first_name, $last_name);
+            $member = Member::facebookIdExists($_POST['id']);
+        }
+
+        $_SESSION['member'] = $member;
+    }
+
     public function loginAction()
     {
         $errors = [];
