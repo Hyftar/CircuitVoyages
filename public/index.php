@@ -45,6 +45,7 @@ $router->add(
 $router->add(
     'admin/media',
     ['controller' => 'Medias', 'action' => 'upload'],
+    'POST'
 );
 
 $router->add(
@@ -95,6 +96,7 @@ $router->add(
 $router->add(
     'promotions/application',
     ['controller' => 'Promotions', 'action' => 'getApplication'],
+    'POST'
 );
 
 $router->add(

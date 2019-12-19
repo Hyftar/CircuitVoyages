@@ -7,6 +7,15 @@ use \App\Models\Promotion;
 
 class Promotions extends \Core\Controller
 {
+    public function before()
+    {
+        if (empty($_SESSION['employee'])) {
+            http_response_code(401);
+            header('Location: /admin/login');
+            return false;
+        }
+    }
+
     public function indexAction(){
         $promotions = Promotion::getAll();
         View::renderTemplate(

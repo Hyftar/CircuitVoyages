@@ -7,12 +7,12 @@ function myFunction(x) {
   sidebar.classList.toggle('sidebar-show');
 }
 
-$(function () {
-  $('#myGroup li a').hover(function () {
+$(() => {
+  $('#myGroup li a').hover(() => {
     $(this).next().collapse('show');
   });
 
-  $('#myGroup').mouseleave(function () {
+  $('#myGroup').mouseleave(() => {
     $('#myGroup .collapse').collapse('hide');
   });
 });
@@ -29,10 +29,22 @@ $(() => {
         }
       })
     })
+
+    $('#link-promotions').on('click', indexPromotions)
     $('#link-circuits').on('click', getCircuits)
     $('#link-accommodation').on('click', indexAccomodations)
     $('#link-media').on('click', indexMedia)
 })
+
+function indexPromotions() {
+  $.ajax({
+    url: 'promotions',
+    type: 'GET',
+    success: (data) => {
+      document.getElementById('contenu').innerHTML = data
+    }
+  })
+}
 
 function indexMedia() {
   $.ajax({
@@ -97,7 +109,7 @@ function getCircuits_create() {
       let container = document.getElementById('contenu');
       container.innerHTML = data;
       $(".selectpicker").selectpicker();
-      $(".custom-file-input").on("change", function () {
+      $(".custom-file-input").on("change", () => {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
       });
@@ -119,7 +131,7 @@ function getCircuits_organize() {
       let container = document.getElementById('contenu');
       container.innerHTML = data;
       $(".selectpicker").selectpicker();
-      $('.datepicker').each(function () {
+      $('.datepicker').each(() => {
         $(this).datepicker()
       });
 
@@ -220,38 +232,35 @@ function createActivity() {
     let e2 = document.getElementById('activity_duration');
     let end_time = e2.options[e2.selectedIndex].text;
 
-    $.ajax({
-      url: '/admin_circuits_activity_create',
-      type: 'POST',
-      data: {name, type, link, desc, start_time, end_time},
-      success: (data) => {
-        let activity = document.createElement('div');
-        activity.classList.add('activity');
-        activity.classList.add('activity--start-' + start_time, 'activity--end-' + end_time);
-        let dayNb = document.getElementById('day_nb');
-        activity.style.gridColumn = dayNb.value;
-        let stepNb = document.getElementById('step_nb');
-        let days_container = document.getElementById('daysForStep' + stepNb.value);
+    $.ajax(
+      {
+        url: '/admin_circuits_activity_create',
+        type: 'POST',
+        data: {name, type, link, desc, start_time, end_time},
+        success: (data) => {
+          let activity = document.createElement('div');
+          activity.classList.add('activity');
+          activity.classList.add('activity--start-' + start_time, 'activity--end-' + end_time);
+          let dayNb = document.getElementById('day_nb');
+          activity.style.gridColumn = dayNb.value;
+          let stepNb = document.getElementById('step_nb');
+          let days_container = document.getElementById('daysForStep' + stepNb.value);
 
-        let p = document.createElement('p');
-        p.innerHTML = name;
+          let p = document.createElement('p');
+          p.innerHTML = name;
 
-        activity.appendChild(p);
+          activity.appendChild(p);
 
-        let p2 = document.createElement('input');
-        p2.style.display = "none";
-        p2.innerHTML = data.id;
+          let p2 = document.createElement('input');
+          p2.style.display = "none";
+          p2.innerHTML = data.id;
 
-        activity.appendChild(p2);
-
-
-        days_container.appendChild(activity);
-        $('#activity_form').modal('hide');
-      }
-    })
+          activity.appendChild(p2);
 
 
+          days_container.appendChild(activity);
+          $('#activity_form').modal('hide');
+        }
+    }
+  )
 }
-
-
-
