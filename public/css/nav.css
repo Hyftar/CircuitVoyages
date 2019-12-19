@@ -88,6 +88,7 @@ body {
 }
 
 header {
+  min-height: 100px;
   position: fixed;
   width: 100%;
   -webkit-box-sizing: border-box;
