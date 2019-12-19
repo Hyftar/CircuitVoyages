@@ -9,6 +9,35 @@ use \App\Models\Member;
 
 class Members extends \Core\Controller
 {
+    public function googleLoginAction()
+    {
+        if (empty($_POST['name'])) {
+            // TODO: use i18n string instead
+            $errors[] = 'Veuillez fournir un nom';
+        }
+        if (empty($_POST['id'])) {
+            $errors[] = 'Veuillez fournir un id';
+        }
+        if (empty($_POST['email'])) {
+            $errors[] = 'Veuillez fournir un email';
+        }
+        if (!empty($errors)) {
+            http_response_code(401);
+            View::renderJSON(['errors' => $errors]);
+            return;
+        }
+        $names = explode(' ', $_POST['name']);
+        $first_name = $names[0];
+        $last_name = $names[array_key_last($names)];
+        $member = Member::googleIdExists($_POST['id']);
+        $email = $_POST['email'];
+        if (empty($member)) {
+            Member::createMemberForGoogle($_POST['id'], $first_name, $last_name, $email);
+            $member = Member::googleIdExists($_POST['id']);
+        }
+        $_SESSION['member'] = $member;
+    }
+
     public function facebookLoginAction()
     {
         if (empty($_POST['name'])) {

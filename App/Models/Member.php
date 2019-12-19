@@ -118,6 +118,20 @@ class Member extends \Core\Model
         $db->commit();
     }
 
+    public static function createMemberForGoogle($id, $first_name, $last_name, $email)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'INSERT INTO members(first_name, last_name, google_id, email)
+             VALUES (:first_name, :last_name, :google_id, :email)'
+        );
+        $stmt->bindValue(':first_name', $first_name, PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
+        $stmt->bindValue(':google_id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
     public static function createMemberForFacebook($id, $first_name, $last_name)
     {
         $db = static::getDB();
@@ -131,6 +145,19 @@ class Member extends \Core\Model
         $stmt->bindValue(':facebook_id', $id, PDO::PARAM_INT);
 
         $stmt->execute();
+    }
+
+    public static function googleIdExists($id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'SELECT * FROM members
+             WHERE google_id = :google_id
+             LIMIT 1'
+        );
+        $stmt->bindValue('google_id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
     public static function facebookIdExists($id)

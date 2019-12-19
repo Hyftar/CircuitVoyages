@@ -106,6 +106,12 @@ $router->add(
 );
 
 $router->add(
+    'login/google',
+    ['controller' => 'Members', 'action' => 'googleLogin'],
+    'POST'
+);
+
+$router->add(
     'login/facebook',
     ['controller' => 'Members', 'action' => 'facebookLogin'],
     'POST'

@@ -498,7 +498,8 @@ CREATE TABLE `members` (
   `last_name` varchar(100) CHARACTER SET utf8 NOT NULL,
   `phone_number` varchar(15) COLLATE utf8mb4_bin DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
-  `facebook_id` bigint(20) UNSIGNED DEFAULT NULL
+  `facebook_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `google_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
