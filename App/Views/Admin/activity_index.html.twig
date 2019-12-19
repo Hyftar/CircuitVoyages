@@ -1,0 +1,33 @@
+<h2>Gestion des activités</h2>
+
+{% include 'Admin/activity_add.html.twig' %}
+
+<div class="activity-grid__controls">
+  <a id="activity-new-btn" href="#" data-toggle="modal" data-target="#activity-add-modal">
+    <span>Ajouter une activité</span>
+    <i class="fas fa-plus-circle icone_ajout" aria-hidden="true"></i>
+  </a>
+</div>
+
+<div class="activity-grid">
+  <div class="activity-grid__header">
+    <div class="activity-grid__header__elem">Nom</div>
+    <div class="activity-grid__header__elem">Type</div>
+    <div class="activity-grid__header__elem">Lien</div>
+    <div class="activity-grid__header__elem">Pays</div>
+    <div class="activity-grid__header__elem">Ville</div>
+  </div>
+  {% for activity in activities %}
+    <div class="activity-grid__body">
+      <div class="activity-grid__body__row">
+        <div class="activity-grid__body__row__elem">{{ activity.name }}</div>
+        <div class="activity-grid__body__row__elem">{{ activity.activity_type }}</div>
+        <div class="activity-grid__body__row__elem">
+          <a href="{{ activity.link }}">lien</a>
+        </div>
+        <div class="activity-grid__body__row__elem">{{ activity.country }}</div>
+        <div class="activity-grid__body__row__elem">{{ activity.city }}</div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

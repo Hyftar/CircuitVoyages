@@ -612,6 +612,99 @@ h2 {
 }
 
 
+/* Activités */
+
+.activity-grid {
+  flex-direction: column;
+  flex-basis: fill;
+}
+
+.activity-grid__controls {
+  justify-content: flex-end;
+  margin-bottom: 1.5em;
+}
+
+.activity-grid,
+.activity-grid__controls,
+.activity-grid__header,
+.activity-grid__body,
+.activity-grid__body__row {
+  display: flex;
+}
+
+.activity-grid__body {
+  flex-direction: column;
+}
+
+.activity-grid__body__row {
+  min-height: 3em;
+}
+
+.activity-grid__header__elem,
+.activity-grid__body__row__elem {
+  flex-basis: 25%;
+  flex-grow: 1;
+  text-align: center;
+  overflow: hidden;
+}
+
+.activity-grid__header__elem:nth-child(2),
+.activity-grid__body__row__elem:nth-child(2) {
+  flex-basis: 15%;
+}
+.activity-grid__header__elem:nth-child(4),
+.activity-grid__body__row__elem:nth-child(4) {
+  flex-basis: 10%;
+}
+
+.activity-grid__header__elem {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.3em;
+}
+
+.activity-grid__body__row {
+  width: 100%;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+.activity-grid__body__row:not(:first-child) {
+  border-top: 1px solid grey;
+}
+
+.activity-grid__body__row:last-child {
+  border-bottom: 1px solid grey;
+}
+
+.activity-grid__body__row {
+  background-color: rgb(237,237,237);
+  align-items: center;
+}
+
+.activity-grid__body__row:hover {
+  background-color: rgb(201,201,201);
+}
+
+
+.activity-grid__body__row__elem a {
+  color: rgb(16,38,185);
+}
+
+.activity-grid,
+.activity-grid__header {
+  border: 1px solid grey;
+}
+
+.activity-grid__header__elem {
+  background-color: #d1d1d1;
+}
+
+.activity-grid__header__elem:not(:last-child) {
+  border-right: 1px solid grey;
+}
+
 /* SOURCE: https://codepen.io/jamesbarnett/pen/vlpkh */
 
 fieldset, label { margin: 0; padding: 0; }
@@ -658,3 +751,4 @@ label[for="rating"] {
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+

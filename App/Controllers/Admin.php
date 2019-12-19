@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Helpers\ApplicationHelpers;
 use App\Models\Accommodation;
+use App\Models\Activity;
 use App\Models\Circuit;
+use App\Models\Media;
 use \Core\View;
 
 class Admin extends \Core\Controller
@@ -119,30 +121,118 @@ class Admin extends \Core\Controller
         );
     }
 
+    public function activityIndexAction()
+    {
+        $types = Activity::getActivityTypes();
+        $activities = Activity::getAll();
+        View::renderTemplate(
+            'Admin/activity_index.html.twig',
+            [
+                'types' => $types,
+                'activities' => $activities
+            ]
+        );
+    }
+
+    public function activityCreateAction()
+    {
+        if (empty($_POST['name'])) {
+            $errors['name'][] = 'Veuillez fournir un nom pour l\'activité';
+        }
+
+        if (empty($_POST['type'])) {
+            $errors['type'][] = 'Veuillez fournir un type d\'activité';
+        }
+
+        if (empty($_POST['address_line_1'])) {
+            $errors['address_line_1'][] = 'Veuillez fournir une adresse';
+        }
+
+        if (empty($_POST['region'])) {
+            $errors['region'][] = 'Veuillez fournir une province';
+        }
+
+        if (empty($_POST['phone'])) {
+            $errors['phone'][] = 'Veuillez fournir un numéro de téléphone';
+        }
+
+        if (empty($_POST['country'])) {
+            $errors['country'][] = 'Veuillez fournir un pays';
+        }
+
+        if (empty($_POST['city'])) {
+            $errors['city'][] = 'Veuillez fournir une ville dans votre adresse';
+        }
+
+        if (!empty($errors)) {
+            http_response_code(400);
+            View::renderJSON(['errors' => $errors]);
+            return;
+        }
+
+        $link = null;
+        $postal_code = null;
+        $address_line_2 = null;
+        $description = null;
+        $email = null;
+
+        $address_line_1 = $_POST['address_line_1'];
+        $description = $_POST['description'];
+        $city = $_POST['city'];
+        $phone = $_POST['phone'];
+        $region = $_POST['region'];
+        $county = $_POST['country'];
+        $name = $_POST['name'];
+        $type = $_POST['type'];
+
+        if (!empty($_POST['email'])) {
+            $email = $_POST['email'];
+        }
+
+        if (!empty($_POST['link'])) {
+            $link = $_POST['link'];
+        }
+
+        if (!empty($_POST['description'])) {
+            $description = $_POST['description'];
+        }
+
+        if (!empty($_POST['postal_code'])) {
+            $postal_code = $_POST['postal_code'];
+        }
+
+        if (!empty($_POST['address_line_2'])) {
+            $address_line_2 = $_POST['address_line_2'];
+        }
+
+        Activity::create(
+            $name,
+            $type,
+            $email,
+            $phone,
+            $description,
+            $region,
+            $city,
+            $county,
+            $address_line_1,
+            $address_line_2,
+            $postal_code,
+            $link
+        );
+    }
+
     public function circuitsIndexAction()
     {
-//        $circuits = Circuit::getAllCircuit();
-        View::renderTemplate('Admin/gestion_circuits.html.twig'
-//            [
-//                'circuits' => $circuits
-//            ]
+        $circuits = Circuit::getAllCircuit();
+        View::renderTemplate('Admin/gestion_circuits.html.twig',
+            [
+                'circuits' => $circuits
+            ]
         );
     }
 
     public function adminAction() {
         View::renderTemplate('admin_base.html.twig');
-    }
-
-    public function circuitsCreateIndexAction(){
-        $categories = Circuit::getAllCategories();
-        $languages = Circuit::getLanguages();
-        $accommodations = Accommodation::getAll();
-        View::renderTemplate('Admin/creation_circuit.html.twig',
-            [
-                'categories' => $categories,
-                'languages' => $languages,
-                'accommodations' => $accommodations
-            ]);
     }
 
     public function circuitsAddStepLinkAction(){
@@ -180,6 +270,49 @@ class Admin extends \Core\Controller
         View::renderJSON([
             'id' => $activity_id
         ]);
+    }
+
+    // Ajouts de Keven
+
+    public function circuitsCreateSimpleAction(){
+        $ajout = Circuit::createSimpleCircuit($_POST['image'],
+            $_POST['language'], $_POST['category'], $_POST['nomCircuit'], $_POST['descriptionCircuit'],0);
+    }
+
+    public function circuitsUpdateSimpleAction(){
+        $update = Circuit::updateSimpleCircuit($_POST['image'],
+            $_POST['language'], $_POST['category'], $_POST['nomCircuit'], $_POST['descriptionCircuit'],0, $_POST['id']);
+    }
+
+    public function circuitsCreateIndexAction(){
+        $categories = Circuit::getAllCategories();
+        $languages = Circuit::getLanguages();
+        $images = Media::getAll();
+        View::renderTemplate('Admin/create_circuit_first.html.twig',
+            [
+                'categories' => $categories,
+                'languages' => $languages,
+                'images' => $images
+            ]);
+    }
+
+    public function circuitUpdateIndexAction(){
+        $circuit = Circuit::getCircuit($_POST['id']);
+        $categories = Circuit::getAllCategories();
+        $languages = Circuit::getLanguages();
+        $images = Media::getAll();
+        View::renderTemplate('Admin/update_circuit_first.html.twig',
+            [
+                'categories' => $categories,
+                'languages' => $languages,
+                'images' => $images,
+                'circuit' => $circuit
+            ]);
+    }
+
+    public function deleteCircuitAction(){
+        $delete = Circuit::deleteSimpleCircuit($_POST['id']);
 
     }
+
 }
