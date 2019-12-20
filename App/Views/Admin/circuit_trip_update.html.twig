@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id="formCreateCircuitTrip" onsubmit="return modifierCircuitTrip()" enctype="multipart/form-data">
+      <form id="formModifyCircuitTrip" onsubmit="return modifierCircuitTrip()" enctype="multipart/form-data">
         <input type="hidden" name="circuit_id" value="{{ circuit.id|e }}">
         <input type="hidden" name="id" value="{{ circuit_trip.id|e }}">
         <div class="modal-body">
@@ -24,7 +24,7 @@
             <input type="date" class="form-control" id="refund_date" name="refund_date" value="{{ circuit_trip.refund_date |date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
-            <label for="cancellation_date" class="col-form-label">Date d'annulation'</label>
+            <label for="cancellation_date" class="col-form-label">Date d'annulation</label>
             <input type="date" class="form-control" id="cancellation_date" name="cancellation_date" value="{{ circuit_trip.cancellation_date |date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
@@ -49,7 +49,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Créer le départ</button>
+          <button type="submit" class="btn btn-primary">Modifier le départ</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
         </div>
       </form>

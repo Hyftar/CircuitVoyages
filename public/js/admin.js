@@ -345,10 +345,27 @@ function modifierCircuit(id){
 }
 
 function supprimerCircuit(id){
-  let test = confirm("Êtes-vous certain de retirer ce circuit ? Ce changement est définitif.")
+  let test = confirm("Êtes-vous certain de retirer ce circuit ? \nCe changement sera définitif.\nTous les départs de ce circuit seront supprimés.")
   if(test == true){
     $.ajax({
       url: 'admin/deleteCircuit',
+      type: 'POST',
+      data: {
+        id: id
+      },
+      dataType: 'html',
+      success: (data) => {
+        getCircuits()
+      }
+    })
+  }
+}
+
+function supprimerCircuitTrip(id){
+  let test = confirm("Êtes-vous certain de retirer ce départ ? Ce changement sera définitif.")
+  if(test == true){
+    $.ajax({
+      url: 'admin/deleteCircuitTrip',
       type: 'POST',
       data: {
         id: id
@@ -404,6 +421,23 @@ function creerCircuitTrip(){
     contentType: false,
     success: (data) => {
       $('#modalCreateCircuitTrip').modal('toggle');
+      getCircuitTrips(form.get('circuit_id'))
+    }
+  })
+  return false;
+}
+
+function modifierCircuitTrip(){
+  let form = new FormData(document.getElementById('formModifyCircuitTrip'));
+  $.ajax({
+    url: 'admin/circuit_trip_update',
+    type: 'POST',
+    data : form,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      $('#modalModifyCircuitTrip').modal('toggle');
       getCircuitTrips(form.get('circuit_id'))
     }
   })

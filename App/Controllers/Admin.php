@@ -384,4 +384,8 @@ class Admin extends \Core\Controller
             $public);
     }
 
+    public function deleteCircuitTripAction(){
+        $delete = CircuitTrip::deleteCircuitTrip($_POST['id']);
+    }
+
 }

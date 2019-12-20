@@ -860,6 +860,14 @@ class Circuit extends Model
         $db = static::getDB();
         $db->beginTransaction();
 
+        $stmt = $db->prepare('DELETE FROM circuits_trips WHERE circuit_id = :id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+
         $stmt = $db->prepare('DELETE FROM circuits WHERE id = :id;');
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $row = $stmt->execute();
@@ -868,6 +876,7 @@ class Circuit extends Model
             $db->rollBack();
             return;
         }
+
         $db->commit();
         return $row;
     }

@@ -26,7 +26,7 @@ class CircuitTrip extends Model
             WHERE id = :id;');
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function createCircuitTrip($circuit_id,
@@ -68,7 +68,7 @@ class CircuitTrip extends Model
          $is_public){
         $db = static::getDB();
         $stmt = $db->prepare('UPDATE circuits_trips SET
-            departure_date = :departure_date, price = :price, refund_date = :price,
+            departure_date = :departure_date, price = :price, refund_date = :refund_date,
             cancellation_date = :cancellation_date,
             cancellation_fee = :cancellation_fee, places = :places, quorum = :quorum, is_public = :is_public
             WHERE id = :id;');
@@ -82,5 +82,21 @@ class CircuitTrip extends Model
         $stmt->bindValue(':is_public', $is_public, PDO::PARAM_INT);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
+    }
+
+    public static function deleteCircuitTrip($id){
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('DELETE FROM circuits_trips WHERE id = :id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
     }
 }
