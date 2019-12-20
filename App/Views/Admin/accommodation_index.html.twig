@@ -15,10 +15,9 @@
     <div class="accommodation-grid__header__elem">Type</div>
     <div class="accommodation-grid__header__elem">Lien</div>
     <div class="accommodation-grid__header__elem">Cote</div>
-    <div class="accommodation-grid__header__elem">Actions</div>
   </div>
-  {% for accommodation in accommodations %}
   <div class="accommodation-grid__body">
+    {% for accommodation in accommodations %}
     <div class="accommodation-grid__body__row">
       <div class="accommodation-grid__body__row__elem">{{ accommodation.name }}</div>
       <div class="accommodation-grid__body__row__elem">{{ accommodation.accommodation_type }}</div>
@@ -26,8 +25,16 @@
         <a href="{{ accommodation.link }}">lien</a>
       </div>
       <div class="accommodation-grid__body__row__elem">{{ accommodation.rating }}/5</div>
-      <div class="accommodation-grid__body__row__elem"></div>
     </div>
+    {% else %}
+      <div class="accommodation-grid__body__row">
+        <div class="accommodation-grid__body__row__elem">N/A</div>
+        <div class="accommodation-grid__body__row__elem">N/A</div>
+        <div class="accommodation-grid__body__row__elem">
+          N/A
+        </div>
+        <div class="accommodation-grid__body__row__elem">N/A</div>
+      </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </div>

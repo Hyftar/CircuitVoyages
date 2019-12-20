@@ -18,7 +18,6 @@ $(() => {
 });
 
 $(() => {
-
     getCircuits()
     $('#admin-logout-link').on('click', () => {
       $.ajax({
@@ -34,6 +33,7 @@ $(() => {
     $('#link-circuits').on('click', getCircuits)
     $('#link-accommodation').on('click', indexAccomodations)
     $('#link-media').on('click', indexMedia)
+    $('#link-activity').on('click', indexActivity)
 })
 
 function indexPromotions() {
@@ -62,6 +62,33 @@ function indexMedia() {
   })
 }
 
+function indexMedia() {
+  $.ajax({
+    url: '/admin/media',
+    type: 'GET',
+    success: (data) => {
+      document.getElementById('contenu').innerHTML = data
+      $('#media-add-form').ajaxForm({
+        success: () => {
+          $('#media-add-modal').modal('hide')
+          indexMedia()
+        }
+      })
+    }
+  })
+}
+
+function indexActivity() {
+  $.ajax({
+    url: '/admin/activity',
+    type: 'GET',
+    success: (data) => {
+      document.getElementById('contenu').innerHTML = data
+      $('#activity-add-form__submit').on('click', sendActivity)
+    }
+  })
+}
+
 function indexAccomodations() {
   $.ajax({
     url: '/admin_accommodation',
@@ -69,6 +96,23 @@ function indexAccomodations() {
     success: (data) => {
       document.getElementById('contenu').innerHTML = data
       $('#accommodation-add-form__submit').on('click', sendAccommodation)
+    }
+  })
+}
+
+function sendActivity() {
+  $.ajax({
+    data: $('#activity-add-form').serialize(),
+    url: '/admin/activity',
+    type: 'POST',
+    success: () => {
+      $('#activity-add-modal').modal('hide')
+      indexActivity()
+    },
+    error: (data) => {
+      document
+        .getElementById('activity-errors')
+        .innerHTML
     }
   })
 }
@@ -95,8 +139,8 @@ function getCircuits() {
     url: '/admin_circuits',
     type: 'GET',
     success: (data) => {
-      let containter = document.getElementById('contenu')
-      containter.innerHTML = data
+      let container = document.getElementById('contenu')
+      container.innerHTML = data
     }
   })
 }
@@ -134,8 +178,6 @@ function getCircuits_organize() {
       $('.datepicker').each(() => {
         $(this).datepicker()
       });
-
-
     }
   })
 }
@@ -255,12 +297,208 @@ function createActivity() {
           p2.style.display = "none";
           p2.innerHTML = data.id;
 
-          activity.appendChild(p2);
 
+        days_container.appendChild(activity);
+        $('#activity_form').modal('hide');
+      }
+    })
+}
 
-          days_container.appendChild(activity);
-          $('#activity_form').modal('hide');
-        }
+// Code de Keven
+
+function getCircuits_create() {
+  $.ajax({
+    url: '/admin_circuits_create',
+    type: 'GET',
+    success: (data) => {
+      let container = document.getElementById('modalContenuCircuit');
+      container.innerHTML = data;
+      $(".selectpicker").selectpicker();
+      $('#modalCreationCircuit').modal('toggle')
+      $("select").imagepicker({show_label: true})
     }
-  )
+  })
+}
+
+function getCircuits_update(id) {
+  $.ajax({
+    url: 'admin_circuit_update',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    success: (data) => {
+      let container = document.getElementById('modalContenuCircuit');
+      container.innerHTML = data;
+      $(".selectpicker").selectpicker();
+      $('#modalUpdateCircuit').modal('toggle')
+      $("select").imagepicker({show_label: true})
+    }
+  })
+}
+
+function creerCircuit(){
+  let form = new FormData(document.getElementById('formCreateCircuit'));
+  $.ajax({
+    url: 'admin/circuit_create_simple',
+    type: 'POST',
+    data : form,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      $('#modalCreationCircuit').modal('toggle');
+      getCircuits()
+    }
+  })
+  return false;
+}
+
+function modifierCircuit(id){
+  let form = new FormData(document.getElementById('formUpdateCircuit'));
+  form.append('id', id)
+  $.ajax({
+    url: 'admin/circuit_update_simple',
+    type: 'POST',
+    data : form,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      $('#modalUpdateCircuit').modal('toggle');
+      getCircuits()
+    }
+  })
+  return false;
+}
+
+function supprimerCircuit(id){
+  let test = confirm("Êtes-vous certain de retirer ce circuit ? \nCe changement sera définitif.\nTous les départs de ce circuit seront supprimés.")
+  if(test == true){
+    $.ajax({
+      url: 'admin/deleteCircuit',
+      type: 'POST',
+      data: {
+        id: id
+      },
+      dataType: 'html',
+      success: (data) => {
+        getCircuits()
+      }
+    })
+  }
+}
+
+function supprimerCircuitTrip(id){
+  let test = confirm("Êtes-vous certain de retirer ce départ ? Ce changement sera définitif.")
+  if(test == true){
+    $.ajax({
+      url: 'admin/deleteCircuitTrip',
+      type: 'POST',
+      data: {
+        id: id
+      },
+      dataType: 'html',
+      success: (data) => {
+        getCircuits()
+      }
+    })
+  }
+}
+
+function getCircuitTrips(id){
+  $.ajax({
+    url: 'admin/circuitTrips',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    success: (data) => {
+      let container = document.getElementById('contenu')
+      container.innerHTML = data
+    }
+  })
+}
+
+function getCircuitTrips(id){
+  $.ajax({
+    url: 'admin/circuitTrips',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    success: (data) => {
+      let container = document.getElementById('contenu')
+      container.innerHTML = data
+    }
+  })
+}
+
+function retourAccueil(){
+  getCircuits()
+}
+
+function creerCircuitTrip(){
+  let form = new FormData(document.getElementById('formCreateCircuitTrip'));
+  $.ajax({
+    url: 'admin/circuit_trip_create',
+    type: 'POST',
+    data : form,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      $('#modalCreateCircuitTrip').modal('toggle');
+      getCircuitTrips(form.get('circuit_id'))
+    }
+  })
+  return false;
+}
+
+function modifierCircuitTrip(){
+  let form = new FormData(document.getElementById('formModifyCircuitTrip'));
+  $.ajax({
+    url: 'admin/circuit_trip_update',
+    type: 'POST',
+    data : form,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      $('#modalModifyCircuitTrip').modal('toggle');
+      getCircuitTrips(form.get('circuit_id'))
+    }
+  })
+  return false;
+}
+
+function getCircuitsTrip_create(id){
+  $.ajax({
+    url: 'admin/circuit_trip_create_modal',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    success: (data) => {
+      let container = document.getElementById('modalContenuCircuit')
+      container.innerHTML = data
+      $('#modalCreateCircuitTrip').modal('toggle');
+    }
+  })
+}
+
+function getCircuitTrip_update(circuit_id, id){
+  $.ajax({
+    url: 'admin/circuit_trip_update_modal',
+    type: 'POST',
+    data: {
+      circuit_id: circuit_id,
+      id: id
+    },
+    success: (data) => {
+      let container = document.getElementById('modalContenuCircuit')
+      container.innerHTML = data
+      $('#modalModifyCircuitTrip').modal('toggle');
+    }
+  })
 }

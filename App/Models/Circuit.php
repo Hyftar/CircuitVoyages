@@ -65,8 +65,8 @@ class Circuit extends Model
             circuits.name,
             circuits.description,
             circuits.is_public,
-            categories.name,
-            languages.name,
+            categories.name AS category_name,
+            languages.name AS language_name
             FROM circuits
             INNER JOIN categories ON categories.id = circuits.category_id
             INNER JOIN languages ON languages.id = circuits.language_id;');
@@ -86,7 +86,7 @@ class Circuit extends Model
             circuits.description,
             circuits.is_public,
             categories.name,
-            languages.name,
+            languages.name
             FROM circuits
             INNER JOIN categories ON categories.id = circuits.category_id
             INNER JOIN languages ON languages.id = circuits.language_id
@@ -106,8 +106,8 @@ class Circuit extends Model
             circuits.name,
             circuits.description,
             circuits.is_public,
-            categories.name,
-            languages.name,
+            categories.name AS category_name,
+            languages.name AS language_name
             FROM circuits
             INNER JOIN categories ON categories.id = circuits.category_id
             INNER JOIN languages ON languages.id = circuits.language_id
@@ -771,14 +771,11 @@ class Circuit extends Model
         $stmt->bindValue(':description', $description, PDO::PARAM_STR);
         $stmt->bindValue(':position', $position, PDO::PARAM_INT);
         $stmt->bindValue(':time_after_last_step', $time_after_last_step);
-
         if (!$stmt->execute()) {
             $db->rollBack();
             return;
         }
-
         $db->commit();
-
     }
 
     public static function createSteps_activities(
@@ -833,20 +830,89 @@ class Circuit extends Model
             $db->rollBack();
             return;
         }
-
         $db->commit();
-
         return $row;
-
     }
 
+    public static function createSimpleCircuit($media_id, $language_id, $category_id, $name, $description, $is_public){
+        $db = static::getDB();
+        $db->beginTransaction();
 
+        $stmt = $db->prepare('INSERT INTO circuits(media_id,
+            language_id,
+            category_id,
+            name,
+            description,
+            is_public)
+            VALUES (:media_id, :language_id, :category_id, :name, :description, false);'
+        );
+        $stmt->bindValue(':media_id', $media_id, PDO::PARAM_INT);
+        $stmt->bindValue(':language_id', $language_id, PDO::PARAM_INT);
+        $stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':description', $description, PDO::PARAM_STR);
 
+        $row = $stmt->execute();
 
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
 
+    public static function updateSimpleCircuit($media_id, $language_id, $category_id, $name, $description, $is_public, $id){
+        $db = static::getDB();
+        $db->beginTransaction();
 
+        $stmt = $db->prepare('UPDATE circuits SET media_id = :media_id,
+            language_id = :language_id,
+            category_id = :category_id,
+            name = :name,
+            description = :description,
+            is_public = :is_public
+            WHERE id = :id;'
+        );
+        $stmt->bindValue(':media_id', $media_id, PDO::PARAM_INT);
+        $stmt->bindValue(':language_id', $language_id, PDO::PARAM_INT);
+        $stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':is_public', $is_public, PDO::PARAM_INT);
+        $row = $stmt->execute();
 
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
 
+    public static function deleteSimpleCircuit($id){
+        $db = static::getDB();
+        $db->beginTransaction();
 
+        $stmt = $db->prepare('DELETE FROM circuits_trips WHERE circuit_id = :id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
 
+        $stmt = $db->prepare('DELETE FROM circuits WHERE id = :id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+        return $row;
+    }
 }

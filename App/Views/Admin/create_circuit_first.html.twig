@@ -1,0 +1,61 @@
+<div class="modal" tabindex="-1" role="dialog" id="modalCreationCircuit">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content pt-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Création d'un circuit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="formCreateCircuit" onsubmit="return creerCircuit()" enctype="multipart/form-data">
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="nomCircuit">Nom du circuit</label>
+            <input type="text" class="form-control" id="nomCircuit" name="nomCircuit" required>
+          </div>
+          <div class="form-group">
+            <label for="descriptionCircuit">Description du circuit</label>
+            <textarea id="descriptionCircuit" name="descriptionCircuit" rows="5"></textarea>
+          </div>
+
+            {# // multiple selectpicker for circuit categories #}
+
+          <div class="form-group">
+            <label for="category">Catégorie(s) : </label>
+            <select class="selectpicker" title="Aucune catégorie" name="category">
+              {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          {# // multiple selectpicker for circuit languages #}
+
+          <div class="form-group">
+            <label for="language">Langue(s) disponible(s) pour le circuit : </label>
+            <select class="selectpicker" title="Aucune langue" name="language" required>
+              {% for language in languages %}
+                <option value="{{ language.id }}">{{ language.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          {# // File input for circuit image #}
+
+          <div class="custom-file form-group">
+            <label for="image">Image utilisée sur le header : </label>
+            <select class="image-picker show-labels show-html" title="Choisir une image" name="image" required>
+              {% for image in images %}
+                <option class="image" data-img-label="{{image.name|e}}" value="{{ image.id|e }}" data-img-src='{{image.path|e}}'></option>
+              {% endfor %}
+            </select>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Créer le circuit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
