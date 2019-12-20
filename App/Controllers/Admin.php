@@ -6,6 +6,7 @@ use App\Helpers\ApplicationHelpers;
 use App\Models\Accommodation;
 use App\Models\Activity;
 use App\Models\Circuit;
+use App\Models\CircuitTrip;
 use App\Models\Media;
 use \Core\View;
 
@@ -280,8 +281,14 @@ class Admin extends \Core\Controller
     }
 
     public function circuitsUpdateSimpleAction(){
+        if (isset($_POST['public'])){
+            $public = 1;
+        }
+        else{
+            $public = 0;
+        }
         $update = Circuit::updateSimpleCircuit($_POST['image'],
-            $_POST['language'], $_POST['category'], $_POST['nomCircuit'], $_POST['descriptionCircuit'],0, $_POST['id']);
+            $_POST['language'], $_POST['category'], $_POST['nomCircuit'], $_POST['descriptionCircuit'],$public, $_POST['id']);
     }
 
     public function circuitsCreateIndexAction(){
@@ -312,6 +319,42 @@ class Admin extends \Core\Controller
 
     public function deleteCircuitAction(){
         $delete = Circuit::deleteSimpleCircuit($_POST['id']);
+    }
+
+    public function getCircuitTripsAction(){
+        $circuit = Circuit::getCircuit($_POST['id']);
+        $circuitsTrips = CircuitTrip::getAllFromCircuit($_POST['id']);
+        View::renderTemplate('Admin/circuit_trip_index.html.twig',
+            [
+                'circuit' => $circuit, 'circuits_trips' =>$circuitsTrips
+            ]
+        );
+    }
+
+    public function getCircuitTripCreateModalAction(){
+        $circuit = Circuit::getCircuit($_POST['id']);
+        View::renderTemplate('Admin/circuit_trip_create.html.twig',
+            [
+                'circuit' => $circuit
+            ]);
+    }
+
+    public function getCircuitTripCreateAction(){
+        if (isset($_POST['public'])){
+            $public = 1;
+        }
+        else{
+            $public = 0;
+        }
+        $ajout = CircuitTrip::createCircuitTrip($_POST['circuit_id'],
+            $_POST['departure_date'],
+            $_POST['price'],
+            $_POST['refund_date'],
+            $_POST['cancellation_date'],
+            $_POST['cancellation_fee'],
+            $_POST['places'],
+            $_POST['quorum'],
+            $public);
 
     }
 

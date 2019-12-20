@@ -836,7 +836,7 @@ class Circuit extends Model
             category_id = :category_id,
             name = :name,
             description = :description,
-            is_public = false
+            is_public = :is_public
             WHERE id = :id;'
         );
         $stmt->bindValue(':media_id', $media_id, PDO::PARAM_INT);
@@ -845,6 +845,7 @@ class Circuit extends Model
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
         $stmt->bindValue(':description', $description, PDO::PARAM_STR);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':is_public', $is_public, PDO::PARAM_INT);
         $row = $stmt->execute();
 
         if (!$row) {

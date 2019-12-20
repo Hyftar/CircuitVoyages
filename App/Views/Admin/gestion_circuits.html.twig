@@ -14,6 +14,7 @@
         <ul class="circuit_ul">
         <li>Nom du circuit</li>
         <li>Description</li>
+        <li>Est public</li>
         <li>Actions</li>
         </ul>
         </a>
@@ -23,7 +24,15 @@
           <li>{{ circuit.name }}</li>
           <li>{{ circuit.description }}</li>
           <li>
+            {% if circuit.is_public == 1 %}
+              Vrai
+            {% else %}
+              Faux
+            {% endif %}
+          </li>
+          <li>
             <button type="button" class="btn-primary" onclick="getCircuits_update({{ circuit.id|e }})"><i class="fas fa-edit"></i></button>
+            <button type="button" class="btn-primary" onclick="getCircuitTrips({{ circuit.id|e }})"><i class="fas fa-calendar-alt"></i></button>
             <button type="button" class="btn-primary" onclick="supprimerCircuit({{ circuit.id|e }})"><i class="fas fa-trash"></i></button>
           </li>
         </ul>
@@ -44,4 +53,3 @@
   </div>
 </div>
 <div id="modalContenuCircuit"></div>
-<button type="button" class="btn btn-dark">Retour à l'accueil</button>

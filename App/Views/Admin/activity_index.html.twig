@@ -17,8 +17,8 @@
     <div class="activity-grid__header__elem">Pays</div>
     <div class="activity-grid__header__elem">Ville</div>
   </div>
-  {% for activity in activities %}
     <div class="activity-grid__body">
+      {% for activity in activities %}
       <div class="activity-grid__body__row">
         <div class="activity-grid__body__row__elem">{{ activity.name }}</div>
         <div class="activity-grid__body__row__elem">{{ activity.activity_type }}</div>
@@ -28,6 +28,16 @@
         <div class="activity-grid__body__row__elem">{{ activity.country }}</div>
         <div class="activity-grid__body__row__elem">{{ activity.city }}</div>
       </div>
+      {% else %}
+        <div class="activity-grid__body__row">
+          <div class="activity-grid__body__row__elem">N/A</div>
+          <div class="activity-grid__body__row__elem">N/A</div>
+          <div class="activity-grid__body__row__elem">
+            N/A
+          </div>
+          <div class="activity-grid__body__row__elem">N/A</div>
+          <div class="activity-grid__body__row__elem">N/A</div>
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
 </div>

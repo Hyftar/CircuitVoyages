@@ -361,6 +361,71 @@ function supprimerCircuit(id){
   }
 }
 
+function getCircuitTrips(id){
+  $.ajax({
+    url: 'admin/circuitTrips',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    success: (data) => {
+      let container = document.getElementById('contenu')
+      container.innerHTML = data
+    }
+  })
+}
 
+function getCircuitTrips(id){
+  $.ajax({
+    url: 'admin/circuitTrips',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    success: (data) => {
+      let container = document.getElementById('contenu')
+      container.innerHTML = data
+    }
+  })
+}
 
+function retourAccueil(){
+  getCircuits()
+}
+
+function creerCircuitTrip(){
+  let form = new FormData(document.getElementById('formCreateCircuitTrip'));
+  $.ajax({
+    url: 'admin/circuit_trip_create',
+    type: 'POST',
+    data : form,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      $('#modalCreateCircuitTrip').modal('toggle');
+      getCircuitTrips(form.get('circuit_id'))
+    }
+  })
+  return false;
+}
+
+function getCircuitsTrip_create(id){
+  $.ajax({
+    url: 'admin/circuit_trip_create_modal',
+    type: 'POST',
+    data: {
+      id: id
+    },
+    success: (data) => {
+      let container = document.getElementById('contenu')
+      container.innerHTML = data
+      showModalCircuitTrip()
+    }
+  })
+}
+
+function showModalCircuitTrip() {
+  $('#modalCreateCircuitTrip').modal('show');
+}
 

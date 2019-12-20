@@ -18,6 +18,15 @@
             <textarea id="descriptionCircuit" name="descriptionCircuit" rows="5">{{ circuit.description }}</textarea>
           </div>
 
+          <div class="custom-control custom-checkbox">
+            {% if circuit.is_public == 1 %}
+              <input type="checkbox" class="custom-control-input" id="public" name="public" checked>
+            {% else %}
+              <input type="checkbox" class="custom-control-input" id="public" name="public">
+            {% endif %}
+            <label class="custom-control-label" for="public">Ce circuit est public et affiché aux clients</label>
+          </div>
+
           {# // multiple selectpicker for circuit categories #}
 
           <div class="form-group">
