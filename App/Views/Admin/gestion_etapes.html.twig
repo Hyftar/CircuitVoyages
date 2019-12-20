@@ -1,0 +1,49 @@
+<h1>Gestion des étapes</h1>
+<div class="choix_circuit">
+  <p class="mr-auto">Veuillez choisir une étape à modifier</p>
+  <div class="bouton_creer" onClick="getSteps_create({{ circuit_id }})">
+    <p>Créer une nouvelle étape</p>
+    <i class="fas fa-plus-circle icone_ajout"></i>
+  </div>
+</div>
+
+<div class="column my-2">
+  <div class="col-10">
+    <div class="list-group list-group-flush" id="list-tab" role="tablist">
+      <a class="list-group-item disabled">
+        <ul class="circuit_ul">
+          <li>Position</li>
+          <li>Description</li>
+          <li>Actions</li>
+        </ul>
+      </a>
+      {% for etape in steps %}
+        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
+          <ul class="circuit_ul">
+            <li>{{ etape.description }}</li>
+            <li>{{ etape.position }}</li>
+            <li>
+              <button type="button" class="btn-primary" onclick="getSteps_update({{ etape.id|e }})"><i class="fas fa-edit"></i></button>
+              <button type="button" class="btn-primary" onclick="supprimerStep({{ etape.id|e }})"><i class="fas fa-trash"></i></button>
+              <button type="button" class="btn-primary" onclick="getStepActivities({{ etape.id|e }})"><i class="fas fa-calendar"></i></button>
+            </li>
+          </ul>
+        </a>
+      {% else %}
+        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
+          <ul class="circuit_ul">
+            <li>N/A</li>
+            <li>N/A</li>
+            <li>
+              <button type="button" class="btn-primary" disabled><i class="fas fa-edit"></i></button>
+              <button type="button" class="btn-primary" disabled><i class="fas fa-trash"></i></button>
+              <button type="button" class="btn-primary" disabled><i class="fas fa-calendar"></i></button>
+            </li>
+          </ul>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div id="modalContenuEtape"></div>
+<button type="button" class="btn btn-dark" onclick="getCircuits()">Retour aux circuits</button>

@@ -20,10 +20,9 @@
           </div>
 
             {# // multiple selectpicker for circuit categories #}
-
           <div class="form-group">
             <label for="category">Catégorie(s) : </label>
-            <select class="selectpicker" title="Aucune catégorie" name="category">
+            <select class="selectpicker" title="Aucune catégorie" name="category" multiple>
               {% for category in categories %}
                 <option value="{{ category.id }}">{{ category.name }}</option>
               {% endfor %}
@@ -31,13 +30,10 @@
           </div>
 
           {# // multiple selectpicker for circuit languages #}
-
+          {{ h }}
           <div class="form-group">
             <label for="language">Langue(s) disponible(s) pour le circuit : </label>
-            <select class="selectpicker" title="Aucune langue" name="language" required>
-              {% for language in languages %}
-                <option value="{{ language.id }}">{{ language.name }}</option>
-              {% endfor %}
+            <select class="selectpicker" title="Aucune langue" name="language" multiple required>
               {% for language in languages %}
                 <option value="{{ language.id }}">{{ language.name }}</option>
               {% endfor %}

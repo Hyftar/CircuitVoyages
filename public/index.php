@@ -9,7 +9,7 @@ $dotenv->load();
 $dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD', 'APPLICATION_ENV']);
 
 
-if ($_ENV['APPLICATION_ENV'] == 'development') {
+if (false && $_ENV['APPLICATION_ENV'] == 'development') {
     SassCompiler::run(dirname(__DIR__) . '/App/Views/Scss/', dirname(__DIR__) . '/public/css/generated/');
 }
 
@@ -38,7 +38,7 @@ $router->add(
 
 $router->add(
     'admin/media',
-    ['controller' => 'Medias', 'action' => 'index'],
+    ['controller' => 'Medias', 'action' => 'index']
 );
 
 
@@ -95,7 +95,7 @@ $router->add(
 
 $router->add(
     'promotions/application',
-    ['controller' => 'Promotions', 'action' => 'getApplication'],
+    ['controller' => 'Promotions', 'action' => 'getApplication']
 );
 
 $router->add(
@@ -203,7 +203,7 @@ $router->add(
 
 $router->add(
     'admin_circuits_addstep_tab',
-    ['controller' => 'Admin', 'action' => 'circuitsAddStepTab'],
+    ['controller' => 'Admin', 'action' => 'circuitsAddStepTab']
 );
 
 $router->add(
@@ -238,6 +238,54 @@ $router->add(
 $router->add(
     'admin/deleteCircuit',
     ['controller' => 'Admin', 'action' => 'deleteCircuit'],
+    'POST'
+);
+
+$router->add(
+    'admin_circuits_etapes',
+    ['controller' => 'Admin', 'action' => 'etapesIndex'],
+    'POST'
+);
+
+$router->add(
+    'admin_creation_etape_simple',
+    ['controller' => 'Admin', 'action' => 'etapesCreateIndex'],
+    'POST'
+);
+
+$router->add(
+    'admin_etape_simple_create',
+    ['controller' => 'Admin', 'action' => 'etapesCreate'],
+    'POST'
+);
+
+$router->add(
+    'admin_etape_getupdate',
+    ['controller' => 'Admin', 'action' => 'etapeUpdateIndex'],
+    'POST'
+);
+
+$router->add(
+    'admin_etape_update',
+    ['controller' => 'Admin', 'action' => 'etapeUpdate'],
+    'POST'
+);
+
+$router->add(
+    'admin_delete_etape',
+    ['controller' => 'Admin', 'action' => 'etapeDelete'],
+    'POST'
+);
+
+$router->add(
+    'admin_activity_list',
+    ['controller' => 'Admin', 'action' => 'listActivities'],
+    'POST'
+);
+
+$router->add(
+  'admin_activity_add',
+    ['controller' => 'Admin', 'action' => 'addActivity'],
     'POST'
 );
 

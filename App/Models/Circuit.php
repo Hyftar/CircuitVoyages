@@ -255,9 +255,10 @@ class Circuit extends Model
     public static function getActivitiesForStep($step_id)
     {
         $db = static::getDB();
-        $stmt = $db->prepare('SELECT
+        $stmt = $db->prepare('SELECT DISTINCT
             *
             FROM steps_activities
+            INNER JOIN activities ON activities.id = steps_activities.activity_id
             WHERE steps_activities.step_id =:step_id;');
         $stmt->bindValue(':step_id', $step_id, PDO::PARAM_INT);
         $stmt->execute();
@@ -366,6 +367,17 @@ class Circuit extends Model
             *
             FROM media
             WHERE media.id =:id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public static function getStep($id){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+        *
+        FROM steps
+        WHERE steps.id =:id;');
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
@@ -867,5 +879,50 @@ class Circuit extends Model
         }
         $db->commit();
         return $row;
+    }
+
+    public static function updateStep($id, $description, $position, $time_after_last_step){
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('UPDATE steps SET
+            description = :description,
+            position = :position,
+            time_after_last_step = :time_after_last_step'
+        );
+        $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+        $stmt->bindValue(':position', $position, PDO::PARAM_INT);
+        $stmt->bindValue(':time_after_last_step', $time_after_last_step);
+        $row = $stmt->execute();
+
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
+
+    public static function deleteEtape($id){
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('DELETE FROM steps WHERE id = :id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
+
+    public static function getAllActivities(){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM activities');
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }

@@ -36,7 +36,7 @@ class Admin extends \Core\Controller
     public function accommodationCreateAction()
     {
         if (empty($_POST['name'])) {
-          $errors['name'][] = 'Veuillez fournir un nom pour l\'hébergement';
+            $errors['name'][] = 'Veuillez fournir un nom pour l\'hébergement';
         }
 
         if (empty($_POST['type'])) {
@@ -130,11 +130,13 @@ class Admin extends \Core\Controller
         );
     }
 
-    public function adminAction() {
+    public function adminAction()
+    {
         View::renderTemplate('admin_base.html.twig');
     }
 
-    public function circuitsAddStepLinkAction(){
+    public function circuitsAddStepLinkAction()
+    {
         $nbEtapes = $_POST['nbEtapes'];
         $nbEtapes += 1;
         View::renderTemplate('Admin/step_link.html.twig',
@@ -143,7 +145,8 @@ class Admin extends \Core\Controller
             ]);
     }
 
-    public function circuitsAddStepTabAction(){
+    public function circuitsAddStepTabAction()
+    {
         $nbEtapes = $_POST['nbEtapes'];
         $nbEtapes += 1;
         View::renderTemplate('Admin/step_tab.html.twig',
@@ -152,11 +155,13 @@ class Admin extends \Core\Controller
             ]);
     }
 
-    public function circuitsOrganizeAction(){
+    public function circuitsOrganizeAction()
+    {
         View::renderTemplate('Admin/organisation_circuit.html.twig');
     }
 
-    public function circuitsActivityCreateAction() {
+    public function circuitsActivityCreateAction()
+    {
         $name = $_POST['name'];
         $type = $_POST['type'];
         $desc = $_POST['desc'];
@@ -173,17 +178,20 @@ class Admin extends \Core\Controller
 
     // Ajouts de Keven
 
-    public function circuitsCreateSimpleAction(){
+    public function circuitsCreateSimpleAction()
+    {
         $ajout = Circuit::createSimpleCircuit($_POST['image'],
-            $_POST['language'], $_POST['category'], $_POST['nomCircuit'], $_POST['descriptionCircuit'],0);
+            $_POST['language'], $_POST['category'], $_POST['nomCircuit'], $_POST['descriptionCircuit'], 0);
     }
 
-    public function circuitsUpdateSimpleAction(){
+    public function circuitsUpdateSimpleAction()
+    {
         $update = Circuit::updateSimpleCircuit($_POST['image'],
-            $_POST['language'], $_POST['category'], $_POST['nomCircuit'], $_POST['descriptionCircuit'],0);
+            $_POST['language'], $_POST['category'], $_POST['nomCircuit'], $_POST['descriptionCircuit'], 0);
     }
 
-    public function circuitsCreateIndexAction(){
+    public function circuitsCreateIndexAction()
+    {
         $categories = Circuit::getAllCategories();
         $languages = Circuit::getLanguages();
         $images = Media::getAll();
@@ -195,7 +203,8 @@ class Admin extends \Core\Controller
             ]);
     }
 
-    public function circuitUpdateIndexAction(){
+    public function circuitUpdateIndexAction()
+    {
         $circuit = Circuit::getCircuit($_POST['id']);
         $categories = Circuit::getAllCategories();
         $languages = Circuit::getLanguages();
@@ -209,9 +218,72 @@ class Admin extends \Core\Controller
             ]);
     }
 
-    public function deleteCircuitAction(){
+    public function deleteCircuitAction()
+    {
         $delete = Circuit::deleteSimpleCircuit($_POST['id']);
 
+    }
+
+    public function etapesIndexAction()
+    {
+        $circuit_id = $_POST['circuit_id'];
+        $steps = Circuit::getStepsForCircuit($circuit_id);
+        View::renderTemplate('Admin/gestion_etapes.html.twig',
+            [
+                'steps' => $steps,
+                'circuit_id' => $circuit_id
+            ]);
+    }
+
+    public function etapesCreateIndexAction()
+    {
+        View::renderTemplate('Admin/creation_etape_simple.html.twig',
+            [
+                'circuit_id' => $_POST['circuit_id']
+            ]);
+    }
+
+    public function etapesCreateAction()
+    {
+        $ajout = Circuit::createStep($_POST['circuit_id'], $_POST['descriptionEtape'],
+            $_POST['positionEtape'], 0);
+    }
+
+    public function etapeUpdateIndexAction()
+    {
+        $step = Circuit::getStep($_POST['id']);
+        View::renderTemplate('Admin/update_etape.html.twig',
+            [
+                'etape' => $step
+            ]);
+    }
+
+    public function etapeUpdateAction(){
+        $update = Circuit::updateStep($_POST['step_id'], $_POST['descriptionEtape'],
+            $_POST['positionEtape'], 0);
+    }
+
+    public function etapeDeleteAction(){
+        $delete = Circuit::deleteEtape($_POST['id']);
+    }
+
+    public function listActivitiesAction() {
+        $id = $_POST['step_id'];
+        $activities = Circuit::getActivitiesForStep($id);
+        $activities_all = Circuit::getAllActivities();
+        $step = Circuit::getStep($id);
+        $circuit = Circuit::getCircuit($step[1]);
+        View::renderTemplate('Admin/days_activities.html.twig',
+            [
+                'activities' => $activities,
+                'activities_all' => $activities_all,
+                'step' => $step,
+                'circuit' => $circuit
+            ]);
+    }
+
+    public function addActivityAction(){
+        $ajout = Circuit::createSteps_activities($_POST['activity_id'], $_POST['step_id'], 0 , 0);
     }
 
 }
