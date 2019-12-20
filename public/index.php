@@ -295,5 +295,17 @@ $router->add(
     'POST'
 );
 
+$router->add(
+    'admin_delete_accommodation_step',
+    ['controller' => 'Admin', 'action' => 'deleteAccStep'],
+    'POST'
+);
+
+$router->add(
+    'admin_accommodation_step_add',
+    ['controller' => 'Admin', 'action' => 'addAccStep'],
+    'POST'
+);
+
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

@@ -247,6 +247,7 @@ class Admin extends \Core\Controller
     {
         $ajout = Circuit::createStep($_POST['circuit_id'], $_POST['descriptionEtape'],
             $_POST['positionEtape'], 0);
+        $periodCreate = Circuit::createPeriod($ajout[0], 0);
     }
 
     public function etapeUpdateIndexAction()
@@ -265,6 +266,7 @@ class Admin extends \Core\Controller
 
     public function etapeDeleteAction(){
         $delete = Circuit::deleteEtape($_POST['id']);
+        $periodDelete = Circuit::deletePeriod($_POST['id']);
     }
 
     public function listActivitiesAction() {
@@ -273,12 +275,16 @@ class Admin extends \Core\Controller
         $activities_all = Circuit::getAllActivities();
         $step = Circuit::getStep($id);
         $circuit = Circuit::getCircuit($step[1]);
+        $accommodations = Circuit::getAccommodationsForPeriod($id);
+        $accommodations_all = Accommodation::getAll();
         View::renderTemplate('Admin/days_activities.html.twig',
             [
                 'activities' => $activities,
                 'activities_all' => $activities_all,
                 'step' => $step,
-                'circuit' => $circuit
+                'circuit' => $circuit,
+                'accommodations' => $accommodations,
+                'accommodations_all' => $accommodations_all
             ]);
     }
 
@@ -288,6 +294,14 @@ class Admin extends \Core\Controller
 
     public function deleteActivityStepAction(){
         $delete = Circuit::deleteActivityStep($_POST['step_id'], $_POST['activity_id']);
+    }
+
+    public function addAccStep(){
+        $ajout = Circuit::createAccommodations_periods($_POST['period_id'], $_POST['accommodation_id']);
+    }
+
+    public function deleteAccStep(){
+        $delete = Circuit::deleteAccommodationPeriods($_POST['period_id'], $_POST['accommodation_id']);
     }
 
 }

@@ -943,4 +943,107 @@ class Circuit extends Model
         $db->commit();
         return $row;
     }
+
+    public static function createPeriod(
+        $step_id,
+        $time_after_step_start
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO periods(
+            step_id,
+            time_after_step_start
+        ) VALUES (
+            :step_id,
+            :time_after_step_start
+            )'
+        );
+
+        $stmt->bindValue(':step_id', $step_id, PDO::PARAM_STR);
+        $stmt->bindValue(':time_after_step_start', $time_after_step_start);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+    }
+
+    public static function deletePeriod($id){
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('DELETE FROM periods WHERE id = :id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
+
+
+    public static function createAccommodations_periods(
+        $period_id,
+        $accommodation_id
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('INSERT INTO accommodations_periods(
+            period_id,
+            accommodation_id
+        ) VALUES (
+            :period_id,
+            :accommodation_id
+            )'
+        );
+
+        $stmt->bindValue(':period_id', $period_id, PDO::PARAM_INT);
+        $stmt->bindValue(':accommodation_id', $accommodation_id, PDO::PARAM_INT);
+
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+
+        $db->commit();
+
+    }
+
+    public static function deleteAccommodationPeriods($period_id, $accommodation_id){
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('DELETE FROM accommodations_periods
+        WHERE period_id = :period_id AND accommodation_id = :accommodation_id;');
+        $stmt->bindValue(':period_id', $period_id, PDO::PARAM_INT);
+        $stmt->bindValue(':accommodation_id', $accommodation_id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
+
+    public static function getAccommodationsForPeriod($period_id){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM accommodations_periods
+            INNER JOIN accommodations ON accommodations.id = accommodations_periods.accommodation_id
+            WHERE accommodations_periods.period_id =:period_id;');
+        $stmt->bindValue(':period_id', $period_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

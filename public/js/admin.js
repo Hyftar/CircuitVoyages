@@ -476,4 +476,44 @@ function supprimerActivity(activity_id, step_id){
   }
 }
 
+function supprimerHebergement(accommodation_id, period_id){
+  let test = confirm("Êtes-vous certain de retirer cette étape ? Ce changement est définitif.")
+  if(test == true){
+    $.ajax({
+      url: 'admin_delete_accommodation_step',
+      type: 'POST',
+      data: {
+        accommodation_id,
+        period_id
+      },
+      success: (data) => {
+
+      }
+    })
+  }
+}
+
+function getHebergement_add(){
+  $('#hebergement_form_add').modal('show');
+}
+
+function addHebergement(period_id){
+  let select = document.getElementById('accommodation_id');
+  let accommodation_id = select.options[select.selectedIndex].value;
+
+  $.ajax({
+    url: 'admin_accommodation_step_add',
+    type: 'POST',
+    data : {
+      accommodation_id,
+      period_id
+    },
+    success: (data) => {
+      $('#hebergement_form_add').modal('hide');
+    }
+  })
+}
+
+
+
 
