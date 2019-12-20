@@ -289,5 +289,11 @@ $router->add(
     'POST'
 );
 
+$router->add(
+    'admin_delete_activity_step',
+    ['controller' => 'Admin', 'action' => 'deleteActivityStep'],
+    'POST'
+);
+
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

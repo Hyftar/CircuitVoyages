@@ -35,11 +35,11 @@
         <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
           <ul class="circuit_ul">
             <li>{{ activity.name }}</li>
-            <li>{{ activity.type }}</li>
+            <li>{{ activity.activity_type }}</li>
             <li>{{ activity.time_after_last_step }}</li>
             <li>{{ activity.time_after_last_step + activity.duration }}</li>
             <li>
-              <button type="button" class="btn-primary" onclick="supprimerActivity({{ step.id|e }})"><i class="fas fa-trash"></i></button>
+              <button type="button" class="btn-primary" onclick="supprimerActivity({{ activity.id }}, {{ step.id }})"><i class="fas fa-trash"></i></button>
             </li>
           </ul>
         </a>

@@ -286,4 +286,8 @@ class Admin extends \Core\Controller
         $ajout = Circuit::createSteps_activities($_POST['activity_id'], $_POST['step_id'], 0 , 0);
     }
 
+    public function deleteActivityStepAction(){
+        $delete = Circuit::deleteActivityStep($_POST['step_id'], $_POST['activity_id']);
+    }
+
 }

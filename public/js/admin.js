@@ -459,4 +459,21 @@ function addActivity(step_id){
   })
 }
 
+function supprimerActivity(activity_id, step_id){
+  let test = confirm("Êtes-vous certain de retirer cette étape ? Ce changement est définitif.")
+  if(test == true){
+    $.ajax({
+      url: 'admin_delete_activity_step',
+      type: 'POST',
+      data: {
+        activity_id,
+        step_id
+      },
+      success: (data) => {
+
+      }
+    })
+  }
+}
+
 

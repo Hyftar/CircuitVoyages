@@ -925,4 +925,22 @@ class Circuit extends Model
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public static function deleteActivityStep($step_id, $activity_id){
+        $db = static::getDB();
+        $db->beginTransaction();
+
+        $stmt = $db->prepare('DELETE FROM steps_activities
+        WHERE step_id = :step_id AND activity_id = :activity_id;');
+        $stmt->bindValue(':step_id', $step_id, PDO::PARAM_INT);
+        $stmt->bindValue(':activity_id', $activity_id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
 }
