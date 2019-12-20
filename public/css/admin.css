@@ -470,7 +470,7 @@ a:focus {
 }
 
 /*ORGANISATION CIRCUITS*/
-
+/*
 .datepicker {
   border: 1px solid #ced4da;
 }
@@ -488,7 +488,7 @@ input {
 
 .form-group > * {
   margin: 10px 0;
-}
+} */
 
 /* Hébergements */
 
@@ -496,7 +496,7 @@ input {
   padding-right: 5em;
 }
 
-
+#activity-new-btn,
 #media-new-btn,
 #accommodation-new-btn {
   display: flex;
@@ -505,11 +505,13 @@ input {
   color: black;
 }
 
+#activity-new-btn:hover,
 #media-new-btn:hover,
 #accommodation-new-btn:hover {
   color: #ddd;
 }
 
+#activity-new-btn > span,
 #media-new-btn > span,
 #accommodation-new-btn > span {
   margin-right: 1em;
@@ -755,4 +757,3 @@ label[for="rating"] {
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
-

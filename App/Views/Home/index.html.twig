@@ -28,9 +28,6 @@
           {{ circuit.description }}
         </p>
         <a href="#" class="btn btn-primary">Explorer</a>
-        {% if member is not null and circuit.trip_id is not null %}
-          <a href="#" class="btn btn-primary" data-circuit-id="{{ circuit.trip_id }}">Acheter</a>
-        {% endif %}
       </div>
     </div>
     {% endfor %}
