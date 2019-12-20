@@ -8,14 +8,49 @@ use PDO;
 
 class Circuit extends Model
 {
-    /*
-    public static function getAllCircuit(){
+    public static function getCircuitInfo()
+    {
         $db = static::getDB();
-        $stmt = $db-> prepare();
+        $stmt = $db->prepare(
+            'SELECT
+                 c.id AS id,
+                 c.name AS name,
+                 c.description AS description,
+                 promotions.id AS promotion_id,
+                 m.path AS media_path,
+                 m.description AS media_description
+             FROM circuits AS c
+             LEFT OUTER JOIN circuits_trips ct ON ct.circuit_id = c.id
+             LEFT OUTER JOIN promotions_circuits_trips ON ct.id = promotions_circuits_trips.circuit_trip_id
+             LEFT OUTER JOIN promotions ON promotions_circuits_trips.promotion_id = promotions.id
+             LEFT OUTER JOIN media m on c.media_id = m.id'
+        );
+        $stmt ->execute();
+        return $stmt->fetch();
+
+    }
+
+    public static function getLandingPageCircuits()
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'SELECT
+                 c.id AS id,
+                 c.name AS name,
+                 c.description AS description,
+                 promotions.id AS promotion_id,
+                 m.path AS media_path,
+                 m.description AS media_description,
+                 ct.id AS trip_id
+             FROM circuits AS c
+             LEFT OUTER JOIN circuits_trips ct ON ct.circuit_id = c.id
+             LEFT OUTER JOIN promotions_circuits_trips ON ct.id = promotions_circuits_trips.circuit_trip_id
+             LEFT OUTER JOIN promotions ON promotions_circuits_trips.promotion_id = promotions.id
+             LEFT OUTER JOIN media m on c.media_id = m.id'
+        );
         $stmt ->execute();
         return $stmt->fetchAll();
     }
-     */
 
     /* GETTERS */
 

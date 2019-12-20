@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use \Core\View;
+use \App\Models\Circuit;
 
 class Home extends \Core\Controller
 {
@@ -13,6 +14,8 @@ class Home extends \Core\Controller
             $member = $_SESSION['member'];
         }
 
-        View::renderTemplate('Home/index.html.twig', ['member' => $member]);
+        $circuits = Circuit::getLandingPageCircuits();
+
+        View::renderTemplate('Home/index.html.twig', ['member' => $member, 'circuits' => $circuits]);
     }
 }
