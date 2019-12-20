@@ -339,6 +339,15 @@ class Admin extends \Core\Controller
             ]);
     }
 
+    public function getCircuitTripUpdateModalAction(){
+        $circuit = Circuit::getCircuit($_POST['circuit_id']);
+        $circuit_trip = CircuitTrip::getCircuitTrip($_POST['id']);
+        View::renderTemplate('Admin/circuit_trip_update.html.twig',
+            [
+                'circuit' => $circuit, 'circuit_trip' => $circuit_trip
+            ]);
+    }
+
     public function getCircuitTripCreateAction(){
         if (isset($_POST['public'])){
             $public = 1;
@@ -355,7 +364,24 @@ class Admin extends \Core\Controller
             $_POST['places'],
             $_POST['quorum'],
             $public);
+    }
 
+    public function getCircuitTripUpdateAction(){
+        if (isset($_POST['public'])){
+            $public = 1;
+        }
+        else{
+            $public = 0;
+        }
+        $modif = CircuitTrip::updateCircuitTrip($_POST['id'],
+            $_POST['departure_date'],
+            $_POST['price'],
+            $_POST['refund_date'],
+            $_POST['cancellation_date'],
+            $_POST['cancellation_fee'],
+            $_POST['places'],
+            $_POST['quorum'],
+            $public);
     }
 
 }

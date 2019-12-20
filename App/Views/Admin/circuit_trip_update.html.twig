@@ -1,0 +1,58 @@
+<div class="modal" tabindex="-1" role="dialog" id="modalModifyCircuitTrip">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content pt-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Modification d'un départ du circuit {{ circuit.name }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="formCreateCircuitTrip" onsubmit="return modifierCircuitTrip()" enctype="multipart/form-data">
+        <input type="hidden" name="circuit_id" value="{{ circuit.id|e }}">
+        <input type="hidden" name="id" value="{{ circuit_trip.id|e }}">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="departure_date" class="col-form-label">Date du départ</label>
+            <input type="date" class="form-control" id="departure_date" name="departure_date" value="{{ circuit_trip.departure_date |date("Y-m-d")}}" required>
+          </div>
+          <div class="form-group">
+            <label for="price">Prix du circuit</label>
+            <input type="number" min="0" step="any" class="form-control" id="price" name="price" value="{{ circuit_trip.price|e }}" required>
+          </div>
+          <div class="form-group">
+            <label for="refund_date" class="col-form-label">Date maximale de remboursement</label>
+            <input type="date" class="form-control" id="refund_date" name="refund_date" value="{{ circuit_trip.refund_date |date("Y-m-d")}}" required>
+          </div>
+          <div class="form-group">
+            <label for="cancellation_date" class="col-form-label">Date d'annulation'</label>
+            <input type="date" class="form-control" id="cancellation_date" name="cancellation_date" value="{{ circuit_trip.cancellation_date |date("Y-m-d")}}" required>
+          </div>
+          <div class="form-group">
+            <label for="cancellation_fee">Prix de l'annulation</label>
+            <input type="number" min="0" step="any" class="form-control" id="cancellation_fee" name="cancellation_fee" value="{{ circuit_trip.cancellation_fee }}" required>
+          </div>
+          <div class="form-group">
+            <label for="places">Nombre de places</label>
+            <input type="number" min="1" step="1" class="form-control" id="places" name="places" value="{{ circuit_trip.places }}" required>
+          </div>
+          <div class="form-group">
+            <label for="quorum">Nombre de places minimal pour offrir le départ</label>
+            <input type="number" min="1" step="1" class="form-control" id="quorum" name="quorum" value="{{ circuit_trip.quorum }}" required>
+          </div>
+          <div class="custom-control custom-checkbox">
+            {% if circuit_trip.is_public == 1 %}
+              <input type="checkbox" class="custom-control-input" id="public" name="public" checked>
+            {% else %}
+              <input type="checkbox" class="custom-control-input" id="public" name="public">
+            {% endif %}
+            <label class="custom-control-label" for="public">Ce départ est public et affiché aux clients</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Créer le départ</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

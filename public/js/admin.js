@@ -418,14 +418,25 @@ function getCircuitsTrip_create(id){
       id: id
     },
     success: (data) => {
-      let container = document.getElementById('contenu')
+      let container = document.getElementById('modalContenuCircuit')
       container.innerHTML = data
-      showModalCircuitTrip()
+      $('#modalCreateCircuitTrip').modal('toggle');
     }
   })
 }
 
-function showModalCircuitTrip() {
-  $('#modalCreateCircuitTrip').modal('show');
+function getCircuitTrip_update(circuit_id, id){
+  $.ajax({
+    url: 'admin/circuit_trip_update_modal',
+    type: 'POST',
+    data: {
+      circuit_id: circuit_id,
+      id: id
+    },
+    success: (data) => {
+      let container = document.getElementById('modalContenuCircuit')
+      container.innerHTML = data
+      $('#modalModifyCircuitTrip').modal('toggle');
+    }
+  })
 }
-

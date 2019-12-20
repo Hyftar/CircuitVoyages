@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content pt-3">
       <div class="modal-header">
-        <h5 class="modal-title">Création d'un départ</h5>
+        <h5 class="modal-title">Création d'un départ du circuit {{ circuit.name }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -23,7 +23,7 @@
             <input type="date" class="form-control" id="refund_date" name="refund_date" value="{{ 'now'|date_modify("+10 day")|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
-            <label for="cancellation_date" class="col-form-label">Date d'annulation'</label>
+            <label for="cancellation_date" class="col-form-label">Date d'annulation</label>
             <input type="date" class="form-control" id="cancellation_date" name="cancellation_date" value="{{ 'now'|date_modify("+70 day")|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">

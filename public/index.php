@@ -269,5 +269,11 @@ $router->add(
     ['controller' => 'Admin', 'action' => 'getCircuitTripCreate'],
     'POST'
 );
+
+$router->add(
+    'admin/circuit_trip_update_modal',
+    ['controller' => 'Admin', 'action' => 'getCircuitTripUpdateModal'],
+    'POST'
+);
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
