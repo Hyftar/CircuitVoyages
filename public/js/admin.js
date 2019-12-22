@@ -21,7 +21,7 @@ $(() => {
     getCircuits()
     $('#admin-logout-link').on('click', () => {
       $.ajax({
-        url: '/admin/logout',
+        url: '/admin/login',
         type: 'DELETE',
         success: (data) => {
           window.location.href = '/admin/login'
@@ -38,7 +38,7 @@ $(() => {
 
 function indexPromotions() {
   $.ajax({
-    url: 'promotions',
+    url: '/admin/promotions',
     type: 'GET',
     success: (data) => {
       document.getElementById('contenu').innerHTML = data
@@ -91,7 +91,7 @@ function indexActivity() {
 
 function indexAccomodations() {
   $.ajax({
-    url: '/admin_accommodation',
+    url: '/admin/accommodation',
     type: 'GET',
     success: (data) => {
       document.getElementById('contenu').innerHTML = data
@@ -120,7 +120,7 @@ function sendActivity() {
 function sendAccommodation() {
   $.ajax({
     data: $('#accommodation-add-form').serialize(),
-    url: '/admin_accommodation',
+    url: '/admin/accommodation',
     type: 'POST',
     success: () => {
       $('#accommodation-add-modal').modal('hide')
@@ -136,7 +136,7 @@ function sendAccommodation() {
 
 function getCircuits() {
   $.ajax({
-    url: '/admin_circuits',
+    url: '/admin/circuits',
     type: 'GET',
     success: (data) => {
       let container = document.getElementById('contenu')
@@ -147,7 +147,7 @@ function getCircuits() {
 
 function getCircuits_create() {
   $.ajax({
-    url: '/admin_circuits_create',
+    url: '/admin/circuits/create',
     type: 'GET',
     success: (data) => {
       let container = document.getElementById('contenu');
@@ -169,7 +169,7 @@ function showActivity() {
 
 function getCircuits_organize() {
   $.ajax({
-    url: '/admin_circuits_organize',
+    url: '/admin/circuits/organize',
     type: 'GET',
     success: (data) => {
       let container = document.getElementById('contenu');
@@ -186,7 +186,7 @@ function addStep() {
   let steplist = document.getElementById('steplist');
   let nbEtapes = steplist.childElementCount - 1;
   $.ajax({
-    url: '/admin_circuits_addstep_link',
+    url: '/admin/circuits/addstep_link',
     type: 'POST',
     data: {nbEtapes},
     success: (data) => {
@@ -196,7 +196,7 @@ function addStep() {
     }
   })
   $.ajax({
-    url: '/admin_circuits_addstep_tab',
+    url: '/admin/circuits/addstep_tab',
     type: 'POST',
     data: {nbEtapes},
     success: (data) => {
@@ -276,7 +276,7 @@ function createActivity() {
 
     $.ajax(
       {
-        url: '/admin_circuits_activity_create',
+        url: '/admin/circuits/activity_create',
         type: 'POST',
         data: {name, type, link, desc, start_time, end_time},
         success: (data) => {
@@ -308,7 +308,7 @@ function createActivity() {
 
 function getCircuits_create() {
   $.ajax({
-    url: '/admin_circuits_create',
+    url: '/admin/circuits/create',
     type: 'GET',
     success: (data) => {
       let container = document.getElementById('modalContenuCircuit');
@@ -322,7 +322,7 @@ function getCircuits_create() {
 
 function getCircuits_update(id) {
   $.ajax({
-    url: 'admin_circuit_update',
+    url: 'admin/circuit_update',
     type: 'POST',
     data: {
       id: id
@@ -376,7 +376,7 @@ function supprimerCircuit(id){
   let test = confirm("Êtes-vous certain de retirer ce circuit ? \nCe changement sera définitif.\nTous les départs de ce circuit seront supprimés.")
   if(test == true){
     $.ajax({
-      url: 'admin/deleteCircuit',
+      url: 'admin/delete_circuit',
       type: 'POST',
       data: {
         id: id
@@ -393,7 +393,7 @@ function supprimerCircuitTrip(id){
   let test = confirm("Êtes-vous certain de retirer ce départ ? Ce changement sera définitif.")
   if(test == true){
     $.ajax({
-      url: 'admin/deleteCircuitTrip',
+      url: 'admin/delete_circuit_trip',
       type: 'POST',
       data: {
         id: id
@@ -408,7 +408,7 @@ function supprimerCircuitTrip(id){
 
 function getCircuitTrips(id){
   $.ajax({
-    url: 'admin/circuitTrips',
+    url: 'admin/circuit_trips',
     type: 'POST',
     data: {
       id: id
@@ -422,7 +422,7 @@ function getCircuitTrips(id){
 
 function getCircuitTrips(id){
   $.ajax({
-    url: 'admin/circuitTrips',
+    url: 'admin/circuit_trips',
     type: 'POST',
     data: {
       id: id
@@ -458,8 +458,8 @@ function creerCircuitTrip(){
 function modifierCircuitTrip(){
   let form = new FormData(document.getElementById('formModifyCircuitTrip'));
   $.ajax({
-    url: 'admin/circuit_trip_update',
-    type: 'POST',
+    url: 'admin/circuit_trip',
+    type: 'UPDATE',
     data : form,
     cache: false,
     processData: false,

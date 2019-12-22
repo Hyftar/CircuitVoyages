@@ -1,6 +1,6 @@
 function listerDetailsPromotion(id) {
   $.ajax({
-    url: 'promotions/id',
+    url: '/admin/promotions/id',
     type: 'POST',
     data: {
       id: id
@@ -15,7 +15,7 @@ function listerDetailsPromotion(id) {
 
 function modifierPromotion(id) {
   $.ajax({
-    url: 'promotions/idModal',
+    url: '/admin/promotions/idModal',
     type: 'POST',
     data: {
       id: id
@@ -31,7 +31,7 @@ function modifierPromotion(id) {
 function modifierPromotionEnreg() {
   let form = new FormData(document.getElementById('formUpdate'))
   $.ajax({
-    url: 'promotions/updatePromo',
+    url: '/admin/promotions/updatePromo',
     type: 'POST',
     data: form,
     cache: false,
@@ -47,7 +47,7 @@ function modifierPromotionEnreg() {
 
 function ajouterPromotion() {
   $.ajax({
-    url: 'promotions/emptyModal',
+    url: '/admin/promotions/emptyModal',
     success: (data) => {
       document.getElementById("modalCreationPromo").innerHTML = data
       $("#modalCreerPromotion").modal()
@@ -58,7 +58,7 @@ function ajouterPromotion() {
 function ajouterPromotionEnreg() {
   let form = new FormData(document.getElementById('formCreate'))
   $.ajax({
-    url: 'promotions/createPromo',
+    url: '/admin/promotions/createPromo',
     type: 'POST',
     data: form,
     cache: false,
@@ -74,7 +74,7 @@ function ajouterPromotionEnreg() {
 
 function ajouterApplication(id) {
   $.ajax({
-    url: 'promotions/application',
+    url: '/admin/promotions/application',
     type: 'POST',
     data: {
       id: id
@@ -90,7 +90,7 @@ function ajouterApplication(id) {
 function ajouterApplicationEnreg() {
   let form = new FormData(document.getElementById('formApplication'))
   $.ajax({
-    url: 'promotions/createApplication',
+    url: '/admin/promotions/createApplication',
     type: 'POST',
     data: form,
     cache: false,
@@ -108,7 +108,7 @@ function supprimerPromotion(id) {
   let test = confirm("Êtes-vous certain de retirer cette promotion ? Elle existera encore, mais elle aura pris fin hier.")
   if (test == true) {
     $.ajax({
-      url: 'promotions/deactivate',
+      url: '/admin/promotions/deactivate',
       type: 'POST',
       data: {
         id: id
