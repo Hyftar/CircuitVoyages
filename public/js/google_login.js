@@ -1,35 +1,36 @@
 (() => {
-  let loginContainer = document.getElementById('login-modal')
+  const loginContainer = document.getElementById('login-modal')
   const client_id = '939832340047-eu00arp5mh0c7m8erakq54mmu0af89mk.apps.googleusercontent.com'
-  //Wait for google api to load
-  window.onLoadCallback = function(){
-    gapi.auth2.init({
-      client_id
-    });
+  // Wait for google api to load
+  window.onLoadCallback = () => {
+    gapi.auth2.init(
+      {
+        client_id
+      }
+    )
   }
 
-  var googleUser = {};
-  var startApp = function() {
-    gapi.load('auth2', function(){
+  const googleUser = {}
+  const startApp = () => {
+    gapi.load('auth2', () => {
       // Retrieve the singleton for the GoogleAuth library and set up the client.
       auth2 = gapi.auth2.init({
         client_id,
         cookiepolicy: 'single_host_origin',
         // Request scopes in addition to 'profile' and 'email'
         //scope: 'additional_scope'
-      });
-      attachSignin(document.getElementById('btn-google'));
-    });
-  };
+      })
+      attachSignin(document.getElementById('btn-google'))
+    })
+  }
 
   function attachSignin(element) {
     auth2.attachClickHandler(element, {},
-      function(googleUser) {
-        onSignIn(googleUser);
-        var profile = googleUser.getBasicProfile();
-        var id = profile.getId();
-        var name = profile.getName();
-        var email = profile.getEmail();
+      (googleUser) => {
+        const profile = googleUser.getBasicProfile()
+        const id = profile.getId()
+        const name = profile.getName()
+        const email = profile.getEmail()
         $.ajax(
           {
             url: 'login/google',
@@ -45,14 +46,9 @@
             }
           }
         )
-      }, function(error) {
-        alert(JSON.stringify(error, undefined, 2));
-      });
+      }
+    )
   }
 
-  function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-  }
-
-  startApp();
+  startApp()
 })()

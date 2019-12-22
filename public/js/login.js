@@ -1,6 +1,6 @@
 (() => {
   // Close the login modal when grey area is clicked
-  let loginContainer = document.getElementById('login-modal')
+  const loginContainer = document.getElementById('login-modal')
   loginContainer.onclick = (e) => {
     for (let element of document.querySelectorAll('#login-modal .card, #login-modal .panel')) {
       if (element.contains(e.target)) {
@@ -39,8 +39,6 @@
     })
   }
 
-
-
   // Open reset and register modals
   let loginModalContainer = document.getElementById('login-modal-container')
   let loginRegisterLink = document.getElementById('login-register-link')
@@ -57,7 +55,6 @@
     loginModalContainer.classList.add('hidden')
     resetForm.classList.remove('hidden')
   }
-
 
   // Send the POST request when login button is clicked
   // and form is filled correctly

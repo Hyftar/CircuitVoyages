@@ -134,8 +134,8 @@ function availabilityChange() {
 }
 
 function allCircuitChange() {
-  let value = document.getElementById("circuit-trip-id")
-  let checkbox = document.getElementById('circuit-unlimited')
+  const value = document.getElementById("circuit-trip-id")
+  const checkbox = document.getElementById('circuit-unlimited')
   if (checkbox.checked) {
     value.disabled = true
     value.value = "0"

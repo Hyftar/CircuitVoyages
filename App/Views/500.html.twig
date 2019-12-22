@@ -1,10 +1,13 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Error{% endblock %}
-
-{% block body %}
-
-  <h1>An error occurred</h1>
-  <p>Sorry, an error has occurred.</p>
-
+{% block title %}Erreur{% endblock %}
+{% block body_class %}error_page{% endblock %}
+{% block main %}
+  <div class="home-content">
+    <div class="home-content__banner">
+      <div class="banner__text">
+        Désolé, une erreur interne est survenue.
+      </div>
+    </div>
+  </div>
 {% endblock %}

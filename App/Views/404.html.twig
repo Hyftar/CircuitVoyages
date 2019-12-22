@@ -1,10 +1,13 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Page not found{% endblock %}
-
-{% block body %}
-
-  <h1>Page not found</h1>
-  <p>Sorry, that page doesn't exist.</p>
-
+{% block title %}404{% endblock %}
+{% block body_class %}error_page{% endblock %}
+{% block main %}
+  <div class="home-content">
+    <div class="home-content__banner">
+      <div class="banner__text">
+        Désolé, cette page n'existe pas.
+      </div>
+    </div>
+  </div>
 {% endblock %}

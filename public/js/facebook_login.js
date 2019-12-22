@@ -1,29 +1,16 @@
 (() => {
-  let loginContainer = document.getElementById('login-modal')
-  window.fbAsyncInit = function() {
+  const loginContainer = document.getElementById('login-modal')
+  window.fbAsyncInit = () => {
     FB.init({
       appId      : '769979593517613',
       cookie     : true,
       xfbml      : true,
       version    : 'v5.0'
-    });
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  };
-
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    if (response.status === 'connected') {
-      console.log('Welcome!  Fetching your information.... ');
-      FB.api('/me', function (response) {
-      });
-    }
+    })
   }
 
   // Send the POST request when facebook button is clicked
-  let registerFacebook = document.getElementById('btn-facebook')
+  const registerFacebook = document.getElementById('btn-facebook')
   registerFacebook.onclick = (e) => {
     FB.login((response) => {
       if (response.authResponse) {
@@ -48,8 +35,6 @@
             )
           }
         )
-      } else {
-        console.log('User cancelled login or did not fully authorize.');
       }
     })
   }

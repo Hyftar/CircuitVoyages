@@ -1,35 +1,36 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Home {{ parent() }}{% endblock %}
+{% block title %}Home{% endblock %}
 
-{% block body %}
-  <div class="banner">
-    <div class="banner__text">
-      Traveling has never been <span style="font-style: italic;">this</span> easy.
+{% block main %}
+  <div class="home-content">
+    <div class="home-content__banner">
+      <div class="banner__text">
+        Voyager n'aura jamais été <span style="font-style: italic;">aussi</span> facile.
+      </div>
     </div>
-  </div>
-
-  <h2 class="content-header">Tous nos circuits</h2>
-  <div id="circuits" class="content">
-    {% for circuit in circuits %}
-    <div class="card">
-      {% if circuit.promotion_id is not null %}
-      <div class="ribbon ribbon--green">
-        <div class="ribbon__bottom"></div>
-        <div class="ribbon__center">
-          <div>En promotion!</div>
+    <h2 class="home-content__header">Tous nos circuits</h2>
+    <div class="home-content__circuits">
+      {% for circuit in circuits %}
+        <div class="card">
+          {% if circuit.promotion_id is not null %}
+            <div class="ribbon ribbon--green">
+              <div class="ribbon__bottom"></div>
+              <div class="ribbon__center">
+                <div>En promotion!</div>
+              </div>
+            </div>
+          {% endif %}
+          <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
+          <div class="card-body">
+            <h5 class="card-title">{{circuit.name }}</h5>
+            <p class="card-text">
+              {{ circuit.description }}
+            </p>
+            <a href="#" class="btn btn-primary">Explorer</a>
+          </div>
         </div>
-      </div>
-      {% endif %}
-      <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
-      <div class="card-body">
-        <h5 class="card-title">{{circuit.name }}</h5>
-        <p class="card-text">
-          {{ circuit.description }}
-        </p>
-        <a href="#" class="btn btn-primary">Explorer</a>
-      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 {% endblock %}

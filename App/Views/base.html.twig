@@ -19,11 +19,10 @@
     <link rel="stylesheet" href="/css/login/login.css"/>
     <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async="async" defer="defer"></script>
 
-    <title>
-      {% block title %}{% endblock %}| Le Labernois</title>
+    <title>{% block title %}{% endblock %} | Le Labernois</title>
   </head>
 
-  <body>
+  <body class="{% block body_class %}{% endblock %}">
     <div id="toast-container" aria-live="polite" aria-atomic="true">
       <div class="toast">
         <div class="toast-header">
@@ -61,7 +60,7 @@
       </nav>
     </header>
     <main>
-      {% block body %}{% endblock %}
+      {% block main %}{% endblock %}
     </main>
     <footer id="footer">
       <div class="footer__left">
@@ -93,15 +92,15 @@
   <script src="/js/facebook_login.js"></script>
   <script>
     (function(d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0];
+      let js, fjs = d.getElementsByTagName(s)[0]
       if (d.getElementById(id)) {
-        return;
+        return
       }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
+
+      js = d.createElement(s)
+      js.id = id
+      js.src = "https://connect.facebook.net/en_US/sdk.js"
+      fjs.parentNode.insertBefore(js, fjs)
     }(document, 'script', 'facebook-jssdk'))
   </script>
 </html>

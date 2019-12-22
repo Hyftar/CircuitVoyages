@@ -27,7 +27,7 @@ class Admin extends \Core\Controller
         $types = Accommodation::getAccommodationTypes();
         $accommodations = Accommodation::getAll();
         View::renderTemplate(
-            'Admin/accommodation_index.html.twig',
+            'Accommodations/accommodation_index.html.twig',
             [
                 'types' => $types,
                 'accommodations' => $accommodations
