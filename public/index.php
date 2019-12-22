@@ -9,10 +9,6 @@ $dotenv->load();
 $dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD', 'APPLICATION_ENV']);
 
 
-if ($_ENV['APPLICATION_ENV'] == 'development') {
-    SassCompiler::run(dirname(__DIR__) . '/App/Views/Scss/', dirname(__DIR__) . '/public/css/generated/');
-}
-
 /**
  * Error and Exception handling
  */
