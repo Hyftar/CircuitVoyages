@@ -1,0 +1,35 @@
+<div id="support-chat__chat-box" class="fixed-chat-box hidden">
+  <div class="fixed-chat-box__title-bar">
+    <div class="title-bar__title">
+      Messagerie de support technique
+    </div>
+    <div id="support-chat__exit" class="title-bar__exit">
+      <i class="fas fa-times"></i>
+    </div>
+  </div>
+  <div id="support-chat__content" class="fixed-chat-box__content">
+  </div>
+  <div id="support-chat__sidebar" class="fixed-chat-box__sidebar">
+    <div class="sidebar__chat-session">
+      <div class="chat-session__orb chat-session__orb--active"></div>
+      <div class="chat-session__name">Ian Marcos</div>
+      <div class="chat-session__last-message">Nov 12th</div>
+    </div>
+    <div class="sidebar__chat-session">
+      <div class="chat-session__orb chat-session__orb--hold"></div>
+      <div class="chat-session__name">Denis Marcoux</div>
+      <div class="chat-session__last-message">Nov 12th</div>
+    </div>
+    <div class="sidebar__chat-session">
+      <div class="chat-session__orb"></div>
+      <div class="chat-session__name">Ivette Roger</div>
+      <div class="chat-session__last-message">Nov 12th</div>
+    </div>
+    {% if member is not null %}
+    <div class="sidebar__new-session">
+      Nouvelle session
+      <i class="fas fa-plus"></i>
+    </div>
+    {% endif %}
+  </div>
+</div>

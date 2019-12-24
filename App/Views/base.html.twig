@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/css/promotions/ribbon.css"/>
     <link rel="stylesheet" href="/css/footer.css"/>
     <link rel="stylesheet" href="/css/login/login.css"/>
+    <link rel="stylesheet" href="/css/support_chat.css"/>
     <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async="async" defer="defer"></script>
 
     <title>{% block title %}{% endblock %} | Le Labernois</title>
@@ -36,6 +37,12 @@
         <div id="toast-body" class="toast-body toast-body__text"></div>
       </div>
     </div>
+
+    {% if member is not null %}
+      {% include '/Support_Chat/button.html.twig' %}
+      {% include '/Support_Chat/chat_box.html.twig' %}
+    {% endif %}
+
     <div id="login-modal" class="hidden">
       {% include '/Members/login.html.twig' %}
       {% include '/Members/register.html.twig' %}
@@ -88,6 +95,7 @@
   <script src="/js/reset.js"></script>
   <script src="/js/drawer.js"></script>
   <script src="/js/main.js"></script>
+  <script src="/js/support_chat.js"></script>
   <script src="/js/google_login.js"></script>
   <script src="/js/facebook_login.js"></script>
   <script>
