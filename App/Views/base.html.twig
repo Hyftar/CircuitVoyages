@@ -38,10 +38,8 @@
       </div>
     </div>
 
-    {% if member is not null %}
-      {% include '/Support_Chat/button.html.twig' %}
-      {% include '/Support_Chat/chat_box.html.twig' %}
-    {% endif %}
+    {% include '/Support_Chat/button.html.twig' %}
+    {% include '/Support_Chat/chat_box.html.twig' %}
 
     <div id="login-modal" class="hidden">
       {% include '/Members/login.html.twig' %}
@@ -90,6 +88,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <script src="http://malsup.github.com/jquery.form.js"></script>
   <script src="/js/login.js"></script>
   <script src="/js/register.js"></script>
   <script src="/js/reset.js"></script>

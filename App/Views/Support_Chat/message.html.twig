@@ -1,0 +1,11 @@
+{% for message in messages %}
+  {% if message.member_id is not null %}
+  <div class="support-chat__message message--to">
+  {% elseif message.employee_id is not null %}
+  <div class="support-chat__message message--from">
+  {% else %}
+  <div class="message--server">
+  {% endif %}
+    {{ message.content|e }}
+  </div>
+{% endfor %}

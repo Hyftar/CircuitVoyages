@@ -8,28 +8,25 @@
     </div>
   </div>
   <div id="support-chat__content" class="fixed-chat-box__content">
+    <div id="support-chat__actions" class="support-chat__actions hidden">
+      <div class="support-chat__action">
+        <i class="fas fa-check"></i>
+        <span>
+          Marquer comme résolu
+        </span>
+      </div>
+    </div>
+    <div id="support-chat__messages-container" class="support-chat__messages">
+    </div>
+    <div class="support-chat__input">
+      <form id="support-chat__form" action="chat" method="post">
+        <input id="support-chat__roomid" name="room_id" type="hidden" required />
+        <textarea id="support-chat__textarea" name="content" rows="2" required disabled></textarea>
+        <input id="support-chat__sendbtn" class="btn btn-primary" type="submit" value="Envoyer" disabled/>
+      </form>
+    </div>
   </div>
   <div id="support-chat__sidebar" class="fixed-chat-box__sidebar">
-    <div class="sidebar__chat-session">
-      <div class="chat-session__orb chat-session__orb--active"></div>
-      <div class="chat-session__name">Ian Marcos</div>
-      <div class="chat-session__last-message">Nov 12th</div>
-    </div>
-    <div class="sidebar__chat-session">
-      <div class="chat-session__orb chat-session__orb--hold"></div>
-      <div class="chat-session__name">Denis Marcoux</div>
-      <div class="chat-session__last-message">Nov 12th</div>
-    </div>
-    <div class="sidebar__chat-session">
-      <div class="chat-session__orb"></div>
-      <div class="chat-session__name">Ivette Roger</div>
-      <div class="chat-session__last-message">Nov 12th</div>
-    </div>
-    {% if member is not null %}
-    <div class="sidebar__new-session">
-      Nouvelle session
-      <i class="fas fa-plus"></i>
-    </div>
-    {% endif %}
+    {% include 'Support_Chat/sidebar.html.twig' %}
   </div>
 </div>

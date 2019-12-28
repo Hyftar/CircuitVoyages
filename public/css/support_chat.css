@@ -65,7 +65,7 @@
 
   .fixed-chat-box {
     width: 80vw;
-    height: 60vh;
+    height: 80vh;
     grid-template:
       "title" 2.5rem
       "side" 1fr
@@ -100,7 +100,7 @@
 .fixed-chat-box__content {
   grid-area: content;
   background-color: var(--wet-sand);
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .fixed-chat-box__sidebar {
@@ -146,8 +146,12 @@
   order: 999;
 }
 
-.sidebar__chat-session {
+.chat-session__name {
+  flex: 0 0 40%;
+}
 
+.chat-session__last-message {
+  flex: 0 0 30%;
 }
 
 .chat-session__orb {
@@ -156,6 +160,8 @@
   height: var(--orb-size);
   border-radius: 50%;
   position: relative;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 @keyframes glow {
@@ -193,4 +199,109 @@
 
 .chat-session__orb--hold::after {
   background-color: var(--orb-hold-color);
+}
+
+/* Chat box mark as resolved button */
+
+.support-chat__actions {
+  position: sticky;
+  right: 0;
+  top: 1em;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.support-chat__action:hover {
+  max-width: 100%;
+  padding-right: 1em;
+}
+
+.support-chat__action > i {
+  order: 1;
+  margin-right: 0.6em;
+}
+
+.support-chat__action > span {
+  white-space: nowrap;
+  order: 2;
+}
+
+.support-chat__action {
+  cursor: pointer;
+  background-color: rgb(94,209,75);
+  max-width: 2em;
+  width: auto;
+  height: 1em;
+  border-radius: 1em;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 0.5em;
+  padding-right: 0;
+  transition: max-width 1.5s, padding-right 1.5s;
+}
+
+
+
+/* Chat box content (messages) */
+
+.fixed-chat-box__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.support-chat__messages {
+  flex-grow: 1;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+.support-chat__input > form {
+  display: flex;
+}
+
+.support-chat__input > form > textarea {
+  flex-grow: 1;
+  margin-right: 0.5em;
+  resize: none;
+}
+
+.support-chat__message {
+  width: 65%;
+  margin-top: 1em;
+  padding: 1em;
+}
+
+.support-chat__message:last-of-type {
+  margin-bottom: 2em;
+}
+
+.message--from {
+  background-color: rgb(50, 80, 180);
+  color: white;
+  align-self: flex-start;
+  border-radius: 1em 1em 1em 0;
+}
+
+.message--to {
+  background-color: rgb(180, 180, 220);
+  color: black;
+  align-self: flex-end;
+  border-radius: 1em 1em 0 1em;
+}
+
+.message--server {
+  align-self: center;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  width: 100%;
+  text-align: center;
+  color: grey;
 }

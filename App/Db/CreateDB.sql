@@ -173,15 +173,34 @@ CREATE TABLE `categories` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `chat_lines`
+-- Structure des tables pour le système de messagerie
 --
 
+CREATE TABLE `chat_rooms` (
+  `id` int(11) NOT NULL,
+  `opened_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `member_id` int(11) NOT NULL,
+  `employee_id` int(11) DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
 CREATE TABLE `chat_lines` (
-                              `id` int(11) NOT NULL,
-                              `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                              `member_id` int(11) NOT NULL,
-                              `employee_id` int(11) DEFAULT NULL,
-                              `line` text COLLATE utf8mb4_bin NOT NULL
+  `id` int(11) NOT NULL,
+  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `content` text NOT NULL,
+  `room_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+CREATE TABLE `employees_chat_lines` (
+  `id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `chat_line_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+CREATE TABLE `members_chat_lines` (
+  `id` int(11) NOT NULL,
+  `member_id` int(11) DEFAULT NULL,
+  `chat_line_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -921,14 +940,6 @@ ALTER TABLE `categories`
     ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `chat_lines`
---
-ALTER TABLE `chat_lines`
-    ADD PRIMARY KEY (`id`),
-    ADD KEY `member_id` (`member_id`),
-    ADD KEY `employee_id` (`employee_id`);
-
---
 -- Index pour la table `circuits`
 --
 ALTER TABLE `circuits`
@@ -1284,9 +1295,25 @@ ALTER TABLE `waiting_lists`
     ADD KEY `circuit_trip_id` (`circuit_trip_id`),
     ADD KEY `member_id` (`member_id`);
 
---
--- AUTO_INCREMENT pour les tables déchargées
---
+ALTER TABLE `chat_rooms`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `member_id` (`member_id`),
+  ADD KEY `employee_id` (`employee_id`);
+
+ALTER TABLE `chat_lines`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `room_id` (`room_id`);
+
+ALTER TABLE `employees_chat_lines`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `employee_id` (`employee_id`),
+  ADD KEY `chat_line_id` (`chat_line_id`);
+
+ALTER TABLE `members_chat_lines`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `member_id` (`member_id`),
+  ADD KEY `chat_line_id` (`chat_line_id`);
+
 
 --
 -- AUTO_INCREMENT pour la table `accommodations`
@@ -1342,11 +1369,6 @@ ALTER TABLE `cards`
 -- AUTO_INCREMENT pour la table `categories`
 --
 ALTER TABLE `categories`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `chat_lines`
---
-ALTER TABLE `chat_lines`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `circuits`
@@ -1587,7 +1609,21 @@ ALTER TABLE `trips_payments`
 -- AUTO_INCREMENT pour la table `waiting_lists`
 --
 ALTER TABLE `waiting_lists`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `chat_rooms`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `chat_lines`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `employees_chat_lines`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `members_chat_lines`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
 --
 -- Contraintes pour les tables déchargées
 --
@@ -1646,13 +1682,6 @@ ALTER TABLE `cancellations`
 ALTER TABLE `cards`
     ADD CONSTRAINT `cards_ibfk_1` FOREIGN KEY (`circuit_id`) REFERENCES `circuits` (`id`),
     ADD CONSTRAINT `cards_ibfk_2` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`);
-
---
--- Contraintes pour la table `chat_lines`
---
-ALTER TABLE `chat_lines`
-    ADD CONSTRAINT `chat_lines_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`),
-    ADD CONSTRAINT `chat_lines_ibfk_2` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
 
 --
 -- Contraintes pour la table `circuits`
@@ -1904,8 +1933,28 @@ ALTER TABLE `trips_payments`
 -- Contraintes pour la table `waiting_lists`
 --
 ALTER TABLE `waiting_lists`
-    ADD CONSTRAINT `waiting_lists_ibfk_1` FOREIGN KEY (`circuit_trip_id`) REFERENCES `circuits_trips` (`id`),
-    ADD CONSTRAINT `waiting_lists_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`);
+  ADD CONSTRAINT `waiting_lists_ibfk_1` FOREIGN KEY (`circuit_trip_id`) REFERENCES `circuits_trips` (`id`),
+  ADD CONSTRAINT `waiting_lists_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`);
+
+--
+-- Contraintes pour les tables du système de messagerie
+--
+
+ALTER TABLE `chat_rooms`
+  ADD CONSTRAINT `chat_rooms_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
+  ADD CONSTRAINT `chat_rooms_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`);
+
+ALTER TABLE `chat_lines`
+  ADD CONSTRAINT `chat_lines_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
+
+ALTER TABLE `employees_chat_lines`
+  ADD CONSTRAINT `employees_chat_lines_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
+  ADD CONSTRAINT `employees_chat_lines_ibfk_2` FOREIGN KEY (`chat_line_id`) REFERENCES `chat_lines` (`id`);
+
+ALTER TABLE `members_chat_lines`
+ADD CONSTRAINT `members_chat_lines_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`),
+ADD CONSTRAINT `members_chat_lines_ibfk_2` FOREIGN KEY (`chat_line_id`) REFERENCES `chat_lines` (`id`);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
