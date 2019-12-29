@@ -1,8 +1,8 @@
 {% for message in messages %}
   <div title="{{ message.date_time|date("F jS \\a\\t g:ia") }}" class="
-  {% if message.member_id is not null %}
+  {% if message.employee_id is not null %}
   support-chat__message message--to
-  {% elseif message.employee_id is not null %}
+  {% elseif message.member_id is not null %}
   support-chat__message message--from
   {% else %}
   message--server

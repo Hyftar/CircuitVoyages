@@ -6,6 +6,7 @@
     <title>Administration | Le Labernois</title>
     <link rel="shortcut icon" type="image/png" href="/images/labernois_logo.png"/>
 
+    <link rel="stylesheet" href="/css/support_chat.css">
     <link rel="stylesheet" href="/css/admin.css">
     <link rel="stylesheet" href="/css/generated/admin-grid.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
@@ -30,6 +31,7 @@
   </head>
 
   <body>
+    {% include 'Support_Chat/chat_box_admin.html.twig' %}
     <div class="main-grid">
       <div class="navbar-admin">
         <nav id="navTop" class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -64,6 +66,7 @@
           <li class="nav-item">
             <a classs="nav-link" href="#collapseComptes" data-toggle="collapse" aria-expanded="false" aria-controls="collapseComptes"><img src="/images/people-24px.svg"></a>
             <div id="collapseComptes" class="collapse" data-parent="#myGroup">
+              <p id="link-support-chat">Support Technique</p>
               <p>Comptes employés</p>
               <p>Comptes clients</p>
             </div>
@@ -101,4 +104,5 @@
       <div id="contenu" class="interface-content"></div>
     </div>
   </body>
+  <script src="/js/support_chat_admin.js"></script>
 </html>

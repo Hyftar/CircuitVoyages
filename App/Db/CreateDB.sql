@@ -1945,7 +1945,7 @@ ALTER TABLE `chat_rooms`
   ADD CONSTRAINT `chat_rooms_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`);
 
 ALTER TABLE `chat_lines`
-  ADD CONSTRAINT `chat_lines_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
+  ADD CONSTRAINT `chat_lines_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `chat_rooms` (`id`);
 
 ALTER TABLE `employees_chat_lines`
   ADD CONSTRAINT `employees_chat_lines_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),

@@ -102,10 +102,10 @@ $router->add('chat/rooms', ['controller' => 'SupportChats', 'action' => 'getAllR
 // Admin side
 $router->add('admin/chat', ['controller' => 'SupportChatAdmin', 'action' => 'sendMessage'], 'POST');
 $router->add('admin/chat/join', ['controller' => 'SupportChatAdmin', 'action' => 'join'], 'POST');
-$router->add('admin/chat/leave', ['controller' => 'SupportChatAdmin', 'action' => 'leave'], 'DELETE');
-$router->add('admin/chat/check_messages', ['controller' => 'SupportChatAdmin', 'action' => 'checkMessages'], 'GET');
-$router->add('admin/chat/messages/{index:/\d+/}', ['controller' => 'SupportChatAdmin', 'action' => 'getMessageAt'], 'GET');
-$router->add('admin/chat/messages/all', ['controller' => 'SupportChatAdmin', 'action' => 'getAllMessages'], 'GET');
+$router->add('admin/chat/leave/{roomid:/\d+/}', ['controller' => 'SupportChatAdmin', 'action' => 'leave'], 'DELETE');
+$router->add('admin/chat/messages/{roomid:/\d+/}/{index:/\d+/}', ['controller' => 'SupportChatAdmin', 'action' => 'getMessageAt'], 'GET');
+$router->add('admin/chat/messages/{roomid:/\d+/}/check', ['controller' => 'SupportChatAdmin', 'action' => 'checkMessages'], 'GET');
+$router->add('admin/chat/messages/{roomid:/\d+/}/all', ['controller' => 'SupportChatAdmin', 'action' => 'getAllMessages'], 'GET');
 $router->add('admin/chat/rooms', ['controller' => 'SupportChatAdmin', 'action' => 'getAllRooms'], 'GET');
 
 

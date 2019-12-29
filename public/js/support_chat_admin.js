@@ -1,5 +1,5 @@
 (() => {
-  const button = document.getElementById('support-chat__button')
+  const button = document.getElementById('link-support-chat')
   const chat_box = document.getElementById('support-chat__chat-box')
   const exit = document.getElementById('support-chat__exit')
   const content = document.getElementById('support-chat__content')
@@ -10,7 +10,8 @@
   const room_id_input = document.getElementById('support-chat__roomid')
   const messages_container = document.getElementById('support-chat__messages-container')
   const actions_bar = document.getElementById('support-chat__actions')
-  const resolve_action = document.getElementById('support-chat__resolve-btn')
+  const join_action = document.getElementById('support-chat__join-btn')
+  const leave_action = document.getElementById('support-chat__leave-btn')
 
   let selected_room_id = null
   let messages_count = 0
@@ -19,7 +20,7 @@
   let chat_checker = null // Event fired to check message status
 
   // Changes the current selected chat room
-  const select_room = (id, active) => {
+  const select_room = (id, active, employee_id, can_leave) => {
     if (id == selected_room_id) {
       return
     }
@@ -37,10 +38,20 @@
       actions_bar.classList.add('hidden')
     }
 
+    leave_action.classList.add('hidden')
+    join_action.classList.add('hidden')
+
+    if (employee_id == "") {
+      join_action.classList.remove('hidden')
+    }
+    else if (can_leave) {
+      leave_action.classList.remove('hidden')
+    }
+
     selected_room_id = id
     $.ajax(
       {
-        url: `chat/messages/${id}/all`,
+        url: `admin/chat/messages/${id}/all`,
         type: 'GET',
         success: (data) => {
           messages_container.innerHTML = ''
@@ -58,28 +69,21 @@
     for (const session of sidebar_sessions) {
       const id = session.attributes['data-id'].value
       const active = session.attributes['data-active'].value == 1
-      session.onclick = () => {
-        select_room(id, active)
+      const employee_id = session.attributes['data-admin-id'].value
+      const can_leave = session.attributes['data-can-leave'].value == "true"
+      if (id == selected_room_id && active == 0) {
+        leave_action.classList.add('hidden')
       }
-    }
-    const new_session = document.getElementById('support-chat__new-session')
-    new_session.onclick = () => {
-      $.ajax(
-        {
-          url: 'chat/join',
-          type: 'POST',
-          success: (data) => {
-            select_room(data.id, true)
-          }
-        }
-      )
+      session.onclick = () => {
+        select_room(id, active, employee_id, can_leave)
+      }
     }
   }
 
   // Update the rooms
   const check_rooms = () => {
     $.ajax({
-      url: 'chat/rooms',
+      url: 'admin/chat/rooms',
       type: 'HEAD',
       success: (data, status, xhr) => {
         let new_length = xhr.getResponseHeader('Content-Length')
@@ -90,7 +94,7 @@
         rooms_content_length = new_length
 
         $.ajax({
-          url: 'chat/rooms',
+          url: 'admin/chat/rooms',
           type: 'GET',
           success: (data) => {
             let sidebar = document.getElementById('support-chat__sidebar')
@@ -111,7 +115,7 @@
 
     $.ajax(
       {
-        url: `chat/messages/${selected_room_id}/check`,
+        url: `admin/chat/messages/${selected_room_id}/check`,
         type: 'GET',
         success: (data) => {
           if (data.messages_count == messages_count) {
@@ -121,7 +125,7 @@
           for (let i = messages_count; i < data.messages_count; i++) {
             $.ajax(
               {
-                url: `chat/messages/${selected_room_id}/${i}`,
+                url: `admin/chat/messages/${selected_room_id}/${i}`,
                 type: 'GET',
                 success: (data) => {
                   messages_container.insertAdjacentHTML('beforeend', data)
@@ -159,18 +163,38 @@
     clearInterval(chat_checker)
   }
 
-  resolve_action.onclick = (e) => {
+  join_action.onclick = (e) => {
     if (selected_room_id == null)
       return
 
     $.ajax(
       {
-        url: `chat/leave/${selected_room_id}`,
+        url: `admin/chat/join/`,
+        data: { room_id: selected_room_id },
+        type: 'POST',
+        success: () => {
+          text_area.removeAttribute('disabled')
+          send_btn.removeAttribute('disabled')
+          join_action.classList.add('hidden')
+          leave_action.classList.remove('hidden')
+        }
+      }
+    )
+  }
+
+  leave_action.onclick = () => {
+    if (selected_room_id == null)
+      return
+
+    $.ajax(
+      {
+        url: `admin/chat/leave/${selected_room_id}`,
         type: 'DELETE',
         success: () => {
           text_area.setAttribute('disabled', '')
           send_btn.setAttribute('disabled', '')
-          actions_bar.classList.add('hidden')
+          join_action.classList.remove('hidden')
+          leave_action.classList.add('hidden')
         }
       }
     )

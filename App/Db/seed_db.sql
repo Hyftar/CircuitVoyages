@@ -18,11 +18,11 @@ INSERT INTO employees(
     email,
     password_id)
 VALUES (
-           'John',
-           'Doe',
+           'Mark',
+           'Lemay',
            '1982-05-12',
            1,
-           '5148398564',
+           '5148394392',
            'john_doe@example.com',
            LAST_INSERT_ID()
        );

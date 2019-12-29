@@ -5,6 +5,17 @@
 
   --orb-hold-color: rgb(0,87,150);
   --orb-hold-glow-color: rgb(8,116,168);
+
+  --sand: #e3ce8b;
+  --wet-sand: #fff5e1;
+  --foam: #fbfbfb;
+  --water: #5dbde6;
+  --deep-water: #1a7da8;
+  --mute-gray: #767676;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .fixed-button {
@@ -147,11 +158,7 @@
 }
 
 .chat-session__name {
-  flex: 0 0 40%;
-}
-
-.chat-session__last-message {
-  flex: 0 0 30%;
+  flex: 0 0 70%;
 }
 
 .chat-session__orb {
@@ -245,7 +252,14 @@
   transition: max-width 1.5s, padding-right 1.5s;
 }
 
+#support-chat__leave-btn {
+  background-color: rgb(227,57,40);
+}
 
+#support-chat__leave-btn > i {
+  margin-right: 0.75em;
+  margin-left: 0.15em;
+}
 
 /* Chat box content (messages) */
 

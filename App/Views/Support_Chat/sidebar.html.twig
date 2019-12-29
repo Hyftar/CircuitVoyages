@@ -22,12 +22,9 @@
     {{ room.employee_first_name }} {{ room.employee_last_name}}
     {% endif %}
   </div>
-  <div class="chat-session__last-message"></div>
 </div>
 {% endfor %}
-{% if member is not null %}
 <div id="support-chat__new-session" class="sidebar__new-session">
   Nouvelle session
   <i class="fas fa-plus"></i>
 </div>
-{% endif %}

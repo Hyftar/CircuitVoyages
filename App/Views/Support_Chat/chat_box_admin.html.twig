@@ -9,17 +9,23 @@
   </div>
   <div id="support-chat__content" class="fixed-chat-box__content">
     <div id="support-chat__actions" class="support-chat__actions hidden">
-      <div id="support-chat__resolve-btn" class="support-chat__action">
-        <i class="fas fa-check"></i>
+      <div id="support-chat__join-btn" class="support-chat__action hidden">
+        <i class="fas fa-plus"></i>
         <span>
-          Marquer comme résolu
+          Joindre
+        </span>
+      </div>
+      <div id="support-chat__leave-btn" class="support-chat__action hidden">
+        <i class="fas fa-times"></i>
+        <span>
+          Quitter
         </span>
       </div>
     </div>
     <div id="support-chat__messages-container" class="support-chat__messages">
     </div>
     <div class="support-chat__input">
-      <form id="support-chat__form" action="chat" method="post">
+      <form id="support-chat__form" action="admin/chat" method="post">
         <input id="support-chat__roomid" name="room_id" type="hidden" required />
         <textarea id="support-chat__textarea" name="content" rows="2" required disabled></textarea>
         <input id="support-chat__sendbtn" class="btn btn-primary" type="submit" value="Envoyer" disabled/>
@@ -27,6 +33,6 @@
     </div>
   </div>
   <div id="support-chat__sidebar" class="fixed-chat-box__sidebar">
-    {% include 'Support_Chat/sidebar.html.twig' %}
+    {% include 'Support_Chat/sidebar_admin.html.twig' %}
   </div>
 </div>

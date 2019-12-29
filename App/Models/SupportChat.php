@@ -130,7 +130,18 @@ class SupportChat extends Model
     {
         $db = static::getDB();
         $stmt = $db->prepare(
-            'SELECT * FROM chat_rooms
+            'SELECT
+                 cr.id AS id,
+                 cr.is_active,
+                 cr.opened_at,
+                 e.id AS employee_id,
+                 e.first_name AS employee_first_name,
+                 e.last_name AS employee_last_name,
+                 m.first_name AS member_first_name,
+                 m.last_name AS member_last_name
+             FROM chat_rooms cr
+             LEFT JOIN employees e on cr.employee_id = e.id
+             LEFT JOIN members m on cr.member_id = m.id
              ORDER BY
                  is_active DESC,
                  employee_id ASC,
@@ -170,6 +181,36 @@ class SupportChat extends Model
         return [$errors, $db->lastInsertId()];
     }
 
+    public static function employeeJoin($employee_id, $room_id)
+    {
+        $db = static::getDB();
+
+        $stmt = $db->prepare(
+            'SELECT id FROM chat_rooms
+             WHERE employee_id = :employee_id AND id = :room_id
+             LIMIT 1'
+        );
+
+        $stmt->bindValue(':employee_id', $employee_id, PDO::PARAM_INT);
+        $stmt->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if ($stmt->fetch() != false) {
+            return false;
+        }
+
+        $stmt = $db->prepare(
+            'UPDATE chat_rooms
+             SET employee_id = :employee_id
+             WHERE id = :room_id'
+        );
+
+        $stmt->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+        $stmt->bindValue(':employee_id', $employee_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return true;
+    }
+
     public static function memberSendMessage($member_id, $room_id, $content)
     {
         $db = static::getDB();
@@ -196,6 +237,63 @@ class SupportChat extends Model
         $stmt->execute();
 
         $db->commit();
+    }
+
+    public static function employeeSendMessage($employee_id, $room_id, $content)
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+        $stmt = $db->prepare(
+            'INSERT INTO chat_lines (content, room_id)
+             VALUES (:content, :room_id)'
+        );
+
+        $stmt->bindValue(':content', $content, PDO::PARAM_STR);
+        $stmt->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $chat_line_id = $db->lastInsertId();
+
+        $stmt = $db->prepare(
+            'INSERT INTO employees_chat_lines (employee_id, chat_line_id)
+             VALUES (:employee_id, :chat_line_id)'
+        );
+
+
+        $stmt->bindValue(':employee_id', $employee_id, PDO::PARAM_INT);
+        $stmt->bindValue(':chat_line_id', $chat_line_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $db->commit();
+    }
+
+    public static function employeeLeave($employee_id, $room_id)
+    {
+        $db = static::getDB();
+
+        $stmt = $db->prepare(
+            'SELECT id FROM chat_rooms
+             WHERE employee_id = :employee_id AND id = :room_id AND is_active = 1
+             LIMIT 1'
+        );
+
+        $stmt->bindValue(':employee_id', $employee_id, PDO::PARAM_INT);
+        $stmt->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if ($stmt->fetch() == false) {
+            return false;
+        }
+
+        $stmt = $db->prepare(
+            'UPDATE chat_rooms
+             SET employee_id = null
+             WHERE id = :room_id'
+        );
+
+        $stmt->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return true;
     }
 
     public static function serverSendMessage($room_id, $content)
