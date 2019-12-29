@@ -16,11 +16,6 @@ VALUES (
 
 SELECT @id1 := id FROM addresses WHERE address_line_1 = '9235 Avenue Papineau';
 
-INSERT INTO languages(name)
-VALUES ('FRENCH'), ('ENGLISH'), ('SPANISH');
-
-SELECT @idL1 := id FROM languages WHERE name = 'FRENCH';
-
 INSERT INTO passwords(password_salt, password_hash) /* Values were manually changed! */
 VALUES ('7ddf7fbfe664d535294c5abc58cc1d79f2ffc8b22cb70281101eb32cb2f72acf', '151197a06073cfe29e24d2367b2b1403073fde21401bfd08d9c6dece9f8259d0');
 
@@ -1725,12 +1720,5 @@ VALUES (
  ('Rabais en pourcentage avec code pour groupe de 10', 1, 0, 1, 10),
  ('Cadeau gratuit pour groupe de 10', 0, 1, 0, 10),
  ('Cadeau gratuit avec code pour groupe de 10', 0, 1, 0, 10);
-
-/* FROM categories .sql files */
-
-INSERT INTO categories (name, description)
-VALUES
-("Les grands lieux d'histoire","Visitez les lieux des plus importants moments de l'histoire. Marchez dans les pas des plus grands."),
-("Les plus beaux paysages", "Voyez la nature comme jamais. Explorez les plus grandes beautés du monde.");
 
 COMMIT;
