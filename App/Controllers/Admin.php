@@ -125,6 +125,16 @@ class Admin extends \Core\Controller
         );
     }
 
+    public function addAccStepAction(){
+        $period = Circuit::getPeriodsForStep($_POST['period_id']);
+        $ajout = Circuit::createAccommodations_periods($period[0], $_POST['accommodation_id']);
+    }
+    public function deleteAccStepAction(){
+        $period = Circuit::getPeriodsForStep($_POST['period_id']);
+        $delete = Circuit::deleteAccommodationPeriods($period[0]
+            , $_POST['accommodation_id']);
+    }
+
     /* ACTIVITIES */
 
     public function activityIndexAction()
@@ -242,6 +252,32 @@ class Admin extends \Core\Controller
         View::renderJSON([
             'id' => $activity_id
         ]);
+    }
+
+    public function listActivitiesAction() {
+        $id = $_POST['step_id'];
+        $activities = Circuit::getActivitiesForStep($id);
+        $activities_all = Circuit::getAllActivities();
+        $step = Circuit::getStep($id);
+        $circuit = Circuit::getCircuit($step[1]);
+        $period = Circuit::getPeriodsForStep($id);
+        $accommodations = Circuit::getAccommodationsForPeriod($period[0]);
+        $accommodations_all = Accommodation::getAll();
+        View::renderTemplate('Admin/days_activities.html.twig',
+            [
+                'activities' => $activities,
+                'activities_all' => $activities_all,
+                'step' => $step,
+                'circuit' => $circuit,
+                'accommodations' => $accommodations,
+                'accommodations_all' => $accommodations_all
+            ]);
+    }
+    public function addActivityAction(){
+        $ajout = Circuit::createSteps_activities($_POST['activity_id'], $_POST['step_id'], 0 , 0);
+    }
+    public function deleteActivityStepAction(){
+        $delete = Circuit::deleteActivityStep($_POST['step_id'], $_POST['activity_id']);
     }
 
     /* ADMIN */
@@ -375,6 +411,50 @@ class Admin extends \Core\Controller
 
     public function deleteCircuitTripAction(){
         $delete = CircuitTrip::deleteCircuitTrip($_POST['id']);
+    }
+
+    /* ETAPES */
+
+    public function etapesIndexAction()
+    {
+        $circuit_id = $_POST['circuit_id'];
+        $steps = Circuit::getStepsForCircuit($circuit_id);
+        View::renderTemplate('Admin/gestion_etapes.html.twig',
+            [
+                'steps' => $steps,
+                'circuit_id' => $circuit_id
+            ]);
+    }
+    public function etapesCreateIndexAction()
+    {
+        View::renderTemplate('Admin/creation_etape_simple.html.twig',
+            [
+                'circuit_id' => $_POST['circuit_id']
+            ]);
+    }
+
+    public function etapesCreateAction()
+    {
+        $ajout = Circuit::createStep($_POST['circuit_id'], $_POST['descriptionEtape'],
+            $_POST['positionEtape'], 0);
+        $periodCreate = Circuit::createPeriod($ajout, 0);
+    }
+
+    public function etapeUpdateIndexAction()
+    {
+        $step = Circuit::getStep($_POST['id']);
+        View::renderTemplate('Admin/update_etape.html.twig',
+            [
+                'etape' => $step
+            ]);
+    }
+    public function etapeUpdateAction(){
+        $update = Circuit::updateStep($_POST['step_id'], $_POST['descriptionEtape'],
+            $_POST['positionEtape'], 0);
+    }
+    public function etapeDeleteAction(){
+        $periodDelete = Circuit::deletePeriod($_POST['id']);
+        $delete = Circuit::deleteEtape($_POST['id']);
     }
 
     /* DEPRECATED */

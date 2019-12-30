@@ -33,9 +33,14 @@ $router->add('admin', ['controller' => 'Admin', 'action' => 'admin']);
 
 $router->add('admin/accommodation', ['controller' => 'Admin', 'action' => 'accommodationIndex']);
 $router->add('admin/accommodation', ['controller' => 'Admin', 'action' => 'accommodationCreate'], 'POST');
+$router->add('admin_delete_accommodation_step', ['controller' => 'Admin', 'action' => 'deleteAccStep'], 'POST');
+$router->add('admin_accommodation_step_add', ['controller' => 'Admin', 'action' => 'addAccStep'], 'POST');
 
 $router->add('admin/activity', ['controller' => 'Admin', 'action' => 'activityIndex']);
 $router->add('admin/activity', ['controller' => 'Admin', 'action' => 'activityCreate'], 'POST');
+$router->add('admin_activity_list', ['controller' => 'Admin', 'action' => 'listActivities'], 'POST');
+$router->add('admin_activity_add', ['controller' => 'Admin', 'action' => 'addActivity'], 'POST');
+$router->add('admin_delete_activity_step', ['controller' => 'Admin', 'action' => 'deleteActivityStep'], 'POST');
 
 $router->add('admin/circuit_create_simple', ['controller' => 'Admin', 'action' => 'circuitsCreateSimple'], 'POST');
 
@@ -43,7 +48,7 @@ $router->add('admin/circuit_trips', ['controller' => 'Admin', 'action' => 'getCi
 $router->add('admin/circuit_trip_create_modal', ['controller' => 'Admin', 'action' => 'getCircuitTripCreateModal'], 'POST');
 $router->add('admin/circuit_trip_create', ['controller' => 'Admin', 'action' => 'getCircuitTripCreate'], 'POST');
 $router->add('admin/circuit_trip_update_modal', ['controller' => 'Admin', 'action' => 'getCircuitTripUpdateModal'], 'POST');
-$router->add('admin/circuit_trip', ['controller' => 'Admin', 'action' => 'getCircuitTripUpdate'], 'PATCH');
+$router->add('admin/circuit_trip', ['controller' => 'Admin', 'action' => 'getCircuitTripUpdate'], 'POST');
 
 $router->add('admin/circuit_update', ['controller' => 'Admin', 'action' => 'circuitUpdateIndex'], 'POST');
 $router->add('admin/circuit_update_simple', ['controller' => 'Admin', 'action' => 'circuitsUpdateSimple'], 'POST');
@@ -53,6 +58,13 @@ $router->add('admin/circuits/create', ['controller' => 'Admin', 'action' => 'cir
 
 $router->add('admin/delete_circuit', ['controller' => 'Admin', 'action' => 'deleteCircuit'], 'POST');
 $router->add('admin/delete_circuit_trip', ['controller' => 'Admin', 'action' => 'deleteCircuitTrip'], 'POST');
+
+$router->add('admin_circuits_etapes', ['controller' => 'Admin', 'action' => 'etapesIndex'], 'POST');
+$router->add('admin_creation_etape_simple', ['controller' => 'Admin', 'action' => 'etapesCreateIndex'], 'POST');
+$router->add('admin_etape_simple_create', ['controller' => 'Admin', 'action' => 'etapesCreate'], 'POST');
+$router->add('admin_etape_getupdate', ['controller' => 'Admin', 'action' => 'etapeUpdateIndex'], 'POST');
+$router->add('admin_etape_update', ['controller' => 'Admin', 'action' => 'etapeUpdate'], 'POST');
+$router->add('admin_delete_etape', ['controller' => 'Admin', 'action' => 'etapeDelete'], 'POST');
 
 /* -- ADMIN DEPRECATED -- */
 $router->add('admin/circuits/addstep_link', ['controller' => 'Admin', 'action' => 'circuitsAddStepLink'], 'POST');

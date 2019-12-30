@@ -60,8 +60,6 @@ function getCircuitTrip_update(circuit_id, id) {
   })
 }
 
-/* DEPRECATED */
-
 function creerCircuitTrip() {
   let form = new FormData(document.getElementById('formCreateCircuitTrip'))
   $.ajax({
@@ -83,7 +81,7 @@ function modifierCircuitTrip() {
   let form = new FormData(document.getElementById('formModifyCircuitTrip'))
   $.ajax({
     url: 'admin/circuit_trip',
-    type: 'PATCH',
+    type: 'POST',
     data: form,
     cache: false,
     processData: false,

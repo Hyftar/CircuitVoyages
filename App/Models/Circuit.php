@@ -293,7 +293,8 @@ class Circuit extends Model
         $stmt = $db->prepare('SELECT
             *
             FROM steps_activities
-            WHERE steps_activities.step_id =:step_id;');
+            INNER JOIN activities ON steps_activities.activity_id = activities.id
+            WHERE steps_activities.step_id = :step_id;');
         $stmt->bindValue(':step_id', $step_id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -401,6 +402,17 @@ class Circuit extends Model
             *
             FROM media
             WHERE media.id =:id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public static function getStep($id){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+        *
+        FROM steps
+        WHERE steps.id =:id;');
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
@@ -771,11 +783,15 @@ class Circuit extends Model
         $stmt->bindValue(':description', $description, PDO::PARAM_STR);
         $stmt->bindValue(':position', $position, PDO::PARAM_INT);
         $stmt->bindValue(':time_after_last_step', $time_after_last_step);
+
         if (!$stmt->execute()) {
             $db->rollBack();
             return;
         }
+
+        $id = $db->lastInsertId();
         $db->commit();
+        return $id;
     }
 
     public static function createSteps_activities(
@@ -915,4 +931,146 @@ class Circuit extends Model
         $db->commit();
         return $row;
     }
+
+    public static function updateStep($id, $description, $position, $time_after_last_step){
+        $db = static::getDB();
+        $db->beginTransaction();
+        $stmt = $db->prepare('UPDATE steps SET
+            description = :description,
+            position = :position,
+            time_after_last_step = :time_after_last_step
+            WHERE id = :id'
+        );
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+        $stmt->bindValue(':position', $position, PDO::PARAM_INT);
+        $stmt->bindValue(':time_after_last_step', $time_after_last_step);
+        $row = $stmt->execute();
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
+    public static function deleteEtape($id){
+        $db = static::getDB();
+        $db->beginTransaction();
+        $stmt = $db->prepare('DELETE FROM steps WHERE id = :id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
+    public static function getAllActivities(){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT * FROM activities');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public static function deleteActivityStep($step_id, $activity_id){
+        $db = static::getDB();
+        $db->beginTransaction();
+        $stmt = $db->prepare('DELETE FROM steps_activities
+        WHERE step_id = :step_id AND activity_id = :activity_id;');
+        $stmt->bindValue(':step_id', $step_id, PDO::PARAM_INT);
+        $stmt->bindValue(':activity_id', $activity_id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
+    public static function createPeriod(
+        $step_id,
+        $time_after_step_start
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+        $stmt = $db->prepare('INSERT INTO periods(
+            step_id,
+            time_after_step_start
+        ) VALUES (
+            :step_id,
+            :time_after_step_start
+            )'
+        );
+        $stmt->bindValue(':step_id', $step_id, PDO::PARAM_STR);
+        $stmt->bindValue(':time_after_step_start', $time_after_step_start);
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+    }
+    public static function deletePeriod($id){
+        $db = static::getDB();
+        $db->beginTransaction();
+        $stmt = $db->prepare('DELETE FROM periods WHERE step_id = :id;');
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
+    public static function createAccommodations_periods(
+        $period_id,
+        $accommodation_id
+    )
+    {
+        $db = static::getDB();
+        $db->beginTransaction();
+        $stmt = $db->prepare('INSERT INTO accommodations_periods(
+            period_id,
+            accommodation_id
+        ) VALUES (
+            :period_id,
+            :accommodation_id
+            )'
+        );
+        $stmt->bindValue(':period_id', $period_id, PDO::PARAM_INT);
+        $stmt->bindValue(':accommodation_id', $accommodation_id, PDO::PARAM_INT);
+        if (!$stmt->execute()) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+    }
+    public static function deleteAccommodationPeriods($period_id, $accommodation_id){
+        $db = static::getDB();
+        $db->beginTransaction();
+        $stmt = $db->prepare('DELETE FROM accommodations_periods
+        WHERE period_id = :period_id AND accommodation_id = :accommodation_id;');
+        $stmt->bindValue(':period_id', $period_id, PDO::PARAM_INT);
+        $stmt->bindValue(':accommodation_id', $accommodation_id, PDO::PARAM_INT);
+        $row = $stmt->execute();
+        if (!$row) {
+            $db->rollBack();
+            return;
+        }
+        $db->commit();
+        return $row;
+    }
+    public static function getAccommodationsForPeriod($period_id){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT
+            *
+            FROM accommodations_periods
+            INNER JOIN accommodations ON accommodations.id = accommodations_periods.accommodation_id
+            WHERE accommodations_periods.period_id =:period_id;');
+        $stmt->bindValue(':period_id', $period_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 }

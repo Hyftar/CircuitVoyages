@@ -27,6 +27,7 @@ class Accommodation extends Model
         $db = static::getDB();
         $stmt = $db->query(
             'SELECT
+                accommodations.id,
                 name,
                 accommodation_type,
                 rating,

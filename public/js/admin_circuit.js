@@ -9,29 +9,6 @@ function getCircuits() {
   })
 }
 
-function getCircuits_create() {
-  $.ajax({
-    url: '/admin/circuits/create',
-    type: 'GET',
-    success: (data) => {
-      const container = document.getElementById('contenu')
-      container.innerHTML = data
-      $(".selectpicker").selectpicker()
-      $(".custom-file-input").on("change", () => {
-        const fileName =
-          $(this)
-            .val()
-            .split("\\")
-            .pop()
-        $(this)
-          .siblings(".custom-file-label")
-          .addClass("selected")
-          .html(fileName)
-      })
-    }
-  })
-}
-
 // Code de Keven
 
 function getCircuits_create() {

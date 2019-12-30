@@ -1,0 +1,248 @@
+<h1>Gestion des étapes</h1>
+<div class="choix_circuit">
+  <p class="mr-auto">Gestion des activités - Étape {{ step.position }}</p>
+  <div class="bouton_creer" onClick="getActivity_add({{ step.id }})">
+    <p>Ajouter une activité à l'étape</p>
+    <i class="fas fa-plus-circle icone_ajout"></i>
+  </div>
+</div>
+
+<div class="column my-2">
+  <div class="col-10">
+    <div class="list-group list-group-flush" id="list-tab" role="tablist">
+      <a class="list-group-item disabled">
+        <ul class="circuit_ul">
+          <li>Nom</li>
+          <li>Type</li>
+          <li>Début</li>
+          <li>Fin</li>
+          <li>Actions</li>
+        </ul>
+      </a>
+      {% set day = 1 %}
+      {% set hours = 0 %}
+      {% for activity in activities %}
+        {% set hours = hours + activity.duration %}
+        {% if day*24 < hours %}
+          <a class="list-groupitem list-group-item-action">
+            <ul>
+              <li>
+                Jour {{ day }}
+              </li>
+            </ul>
+          </a>
+        {% endif %}
+        <a class="list-group-item list-group-item-action active"
+           id="list-home-list" data-toggle="list" href="#list-home" role="tab"
+           aria-controls="home">
+          <ul class="circuit_ul">
+            <li>{{ activity.name }}</li>
+            <li>{{ activity.activity_type }}</li>
+            <li>{{ activity.time_after_last_step }}</li>
+            <li>{{ activity.time_after_last_step + activity.duration }}</li>
+            <li>
+              <button type="button" class="btn-primary"
+                      onclick="supprimerActivity({{ activity.id }}, {{ step.id }})">
+                <i class="fas fa-trash"></i></button>
+            </li>
+          </ul>
+        </a>
+      {% else %}
+        <a class="list-group-item list-group-item-action active"
+           id="list-home-list" data-toggle="list" href="#list-home" role="tab"
+           aria-controls="home">
+          <ul class="circuit_ul">
+            <li>N/A</li>
+            <li>N/A</li>
+            <li>N/A</li>
+            <li>N/A</li>
+            <li>
+              <button type="button" class="btn-primary" disabled><i
+                  class="fas fa-trash"></i></button>
+            </li>
+          </ul>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="choix_circuit">
+  <p style="margin-top: 50px" class="mr-auto">Gestion des hébergements - Étape {{ step.position }}</p>
+  <div style="margin-top: 50px" class="bouton_creer" onClick="getHebergement_add({{ step.id }})">
+    <p >Ajouter un hébergement à l'étape</p>
+    <i class="fas fa-plus-circle icone_ajout"></i>
+  </div>
+</div>
+
+
+<div class="column my-2">
+  <div class="col-10">
+    <div class="list-group list-group-flush" id="list-tab" role="tablist">
+      <a class="list-group-item disabled">
+        <ul class="circuit_ul">
+          <li>Nom</li>
+          <li>Type</li>
+          <li>Rating</li>
+          <li>Actions</li>
+        </ul>
+      </a>
+      {% for accommodation in accommodations %}
+        <a class="list-group-item list-group-item-action active"
+           id="list-home-list" data-toggle="list" href="#list-home"
+           role="tab" aria-controls="home">
+          <ul class="circuit_ul">
+            <li>{{ accommodation.name }}</li>
+            <li>{{ accommodation.accommodation_type }}</li>
+            <li>{{ accommodation.rating }}</li>
+            <li>
+              <button type="button" class="btn-primary"
+                      onclick="supprimerHebergement({{ accommodation.id }}, {{ step.id }})">
+                <i class="fas fa-trash"></i></button>
+            </li>
+          </ul>
+        </a>
+      {% else %}
+        <a class="list-group-item list-group-item-action active"
+           id="list-home-list" data-toggle="list" href="#list-home"
+           role="tab" aria-controls="home">
+          <ul class="circuit_ul">
+            <li>N/A</li>
+            <li>N/A</li>
+            <li>N/A</li>
+            <li>
+              <button type="button" class="btn-primary" disabled><i
+                  class="fas fa-trash"></i></button>
+            </li>
+          </ul>
+        </a>
+      {% endfor %}
+
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<button type="button" class="btn btn-dark"
+        onclick="getCircuitEtapes({{ circuit.id }})">Retour à l'étape
+</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="activity_form_add" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
+       role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Ajouter
+          une
+          activité</h5>
+        <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="activity_id">Activité(s) : </label>
+            <select class="form-control" id="activity_id">
+              {% for activity in activities_all %}
+                <option
+                  value="{{ activity.id }}">{{ activity.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text"
+                     for="activity_start">Début</label>
+            </div>
+            <select class="custom-select" id="activity_start">
+              <option selected>Choisir ...</option>
+              {% for i in 0 .. 96 %}
+                <option>
+                  {{ (i/4)|round(0, 'floor') }}
+                  h{{ (i%4)*15 }}{% if i%4 == 0 %}0
+                  {% endif %}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text"
+                     for="activity_duration">Fin</label>
+            </div>
+            <select class="custom-select" id="activity_duration">
+              <option selected>Choisir ...</option>
+              {% for i in 0 .. 96 %}
+                <option>
+                  {{ (i/4)|round(0, 'floor') }}
+                  h{{ (i%4)*15 }}{% if i%4 == 0 %}0
+                  {% endif %}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">
+          Fermer
+        </button>
+        <button type="button" class="btn btn-primary"
+                onclick="addActivity({{ step.id }})">Ajouter
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="hebergement_form_add" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
+       role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Ajouter
+          un
+          hébergement</h5>
+        <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="activity_id">Hébergement(s) : </label>
+            <select class="form-control" id="accommodation_id" name="accommodation_id">
+              {% for accommodation in accommodations_all %}
+                <option
+                  value="{{ accommodation.id }}">{{ accommodation.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">
+          Fermer
+        </button>
+        <button type="button" class="btn btn-primary"
+                onclick="addHebergement({{ step.id }})">Ajouter
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

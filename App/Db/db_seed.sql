@@ -1,6 +1,13 @@
 USE labernoisdb;
 START TRANSACTION;
 
+/* Languages needed for circuits and employees */
+
+INSERT INTO languages(name)
+VALUES ('FRENCH'), ('ENGLISH'), ('SPANISH');
+
+SELECT @idL1 := id FROM languages WHERE name = 'FRENCH';
+
 /* for Members */
 
 INSERT INTO addresses(`country`,
@@ -181,12 +188,7 @@ SELECT @idM1 := id FROM media WHERE description = 'Sunset in Hawaii';
 SELECT @idM2 := id FROM media WHERE description = 'Italian Landscape';
 
 
-/* Languages needed for circuits */
 
-INSERT INTO languages(name)
-VALUES ('FRENCH'), ('ENGLISH'), ('SPANISH');
-
-SELECT @idL1 := id FROM languages WHERE name = 'FRENCH';
 
 
 /* Categories needed for circuits */
