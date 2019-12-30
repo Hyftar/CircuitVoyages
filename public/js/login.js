@@ -1,4 +1,7 @@
 (() => {
+  // support chat button
+  const supportButton = document.getElementById('support-chat__button')
+
   // Close the login modal when grey area is clicked
   const loginContainer = document.getElementById('login-modal')
   loginContainer.onclick = (e) => {
@@ -28,6 +31,7 @@
         // TODO: i18n
         showToast('Déconnecté', '', 'Aurevoir! Vous vous êtes déconnecté avec succès.')
 
+        supportButton.classList.add('hidden')
         accountLink.classList.add('hidden')
         logoutLink.classList.add('hidden')
         loginLink.classList.remove('hidden')
@@ -77,6 +81,7 @@
         loginLink.classList.add('hidden')
         accountLink.classList.remove('hidden')
         logoutLink.classList.remove('hidden')
+        supportButton.classList.remove('hidden')
         // TODO: i18n
         showToast('Connecté', '', 'Bienvenue! Vous êtes maintenant connecté.')
       },

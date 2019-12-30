@@ -88,5 +88,26 @@ $router->add('login', ['controller' => 'Members', 'action' => 'logout'], 'DELETE
 $router->add('login/facebook', ['controller' => 'Members', 'action' => 'facebookLogin'], 'POST');
 $router->add('login/google', ['controller' => 'Members', 'action' => 'googleLogin'], 'POST');
 
+
+/* SUPPORT CHAT */
+// Customer side
+$router->add('chat', ['controller' => 'SupportChats', 'action' => 'sendMessage'], 'POST');
+$router->add('chat/join', ['controller' => 'SupportChats', 'action' => 'join'], 'POST');
+$router->add('chat/leave/{roomid:/\d+/}', ['controller' => 'SupportChats', 'action' => 'leave'], 'DELETE');
+$router->add('chat/messages/{roomid:/\d+/}/{index:/\d+/}', ['controller' => 'SupportChats', 'action' => 'getMessageAt'], 'GET');
+$router->add('chat/messages/{roomid:/\d+/}/check', ['controller' => 'SupportChats', 'action' => 'checkMessages'], 'GET');
+$router->add('chat/messages/{roomid:/\d+/}/all', ['controller' => 'SupportChats', 'action' => 'getAllMessages'], 'GET');
+$router->add('chat/rooms', ['controller' => 'SupportChats', 'action' => 'getAllRooms'], 'GET');
+
+// Admin side
+$router->add('admin/chat', ['controller' => 'SupportChatAdmin', 'action' => 'sendMessage'], 'POST');
+$router->add('admin/chat/join', ['controller' => 'SupportChatAdmin', 'action' => 'join'], 'POST');
+$router->add('admin/chat/leave/{roomid:/\d+/}', ['controller' => 'SupportChatAdmin', 'action' => 'leave'], 'DELETE');
+$router->add('admin/chat/messages/{roomid:/\d+/}/{index:/\d+/}', ['controller' => 'SupportChatAdmin', 'action' => 'getMessageAt'], 'GET');
+$router->add('admin/chat/messages/{roomid:/\d+/}/check', ['controller' => 'SupportChatAdmin', 'action' => 'checkMessages'], 'GET');
+$router->add('admin/chat/messages/{roomid:/\d+/}/all', ['controller' => 'SupportChatAdmin', 'action' => 'getAllMessages'], 'GET');
+$router->add('admin/chat/rooms', ['controller' => 'SupportChatAdmin', 'action' => 'getAllRooms'], 'GET');
+
+
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

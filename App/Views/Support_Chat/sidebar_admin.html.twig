@@ -1,0 +1,18 @@
+{% for room in rooms %}
+<div class="sidebar__chat-session" data-id="{{ room.id }}" data-admin-id="{{ room.employee_id }}" data-active="{{ room.is_active }}" data-can-leave="{% if employee != room.employee_id %}true{% else %}false{% endif %}">
+  <div class="
+    chat-session__orb
+    {% if room.is_active == 1 %}
+      {% if room.employee_id is null %}
+        chat-session__orb--hold
+      {% else %}
+        chat-session__orb--active
+      {% endif %}
+    {% endif %}
+    ">
+  </div>
+  <div class="chat-session__name">
+    {{ room.member_first_name }} {{ room.member_last_name}}
+  </div>
+</div>
+{% endfor %}
