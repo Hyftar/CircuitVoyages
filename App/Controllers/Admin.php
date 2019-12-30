@@ -22,6 +22,9 @@ class Admin extends \Core\Controller
         }
     }
 
+
+    /* ACCOMMODATIONS */
+
     public function accommodationIndexAction()
     {
         $types = Accommodation::getAccommodationTypes();
@@ -121,6 +124,8 @@ class Admin extends \Core\Controller
             $link
         );
     }
+
+    /* ACTIVITIES */
 
     public function activityIndexAction()
     {
@@ -222,46 +227,7 @@ class Admin extends \Core\Controller
         );
     }
 
-    public function circuitsIndexAction()
-    {
-        $circuits = Circuit::getAllCircuit();
-        View::renderTemplate('Admin/gestion_circuits.html.twig',
-            [
-                'circuits' => $circuits
-            ]
-        );
-    }
-
-    public function adminAction() {
-        View::renderTemplate(
-            'admin_base.html.twig',
-            [
-                'employee' => $_SESSION['employee']
-            ]
-        );
-    }
-
-    public function circuitsAddStepLinkAction(){
-        $nbEtapes = $_POST['nbEtapes'];
-        $nbEtapes += 1;
-        View::renderTemplate('Admin/step_link.html.twig',
-            [
-                'nbEtapes' => $nbEtapes
-            ]);
-    }
-
-    public function circuitsAddStepTabAction(){
-        $nbEtapes = $_POST['nbEtapes'];
-        $nbEtapes += 1;
-        View::renderTemplate('Admin/step_tab.html.twig',
-            [
-                'nbEtapes' => $nbEtapes
-            ]);
-    }
-
-    public function circuitsOrganizeAction(){
-        View::renderTemplate('Admin/organisation_circuit.html.twig');
-    }
+    /* ACTIVITIES */
 
     public function circuitsActivityCreateAction() {
         $name = $_POST['name'];
@@ -276,6 +242,24 @@ class Admin extends \Core\Controller
         View::renderJSON([
             'id' => $activity_id
         ]);
+    }
+
+    /* ADMIN */
+
+    public function adminAction() {
+        View::renderTemplate('admin_base.html.twig');
+    }
+
+    /* CIRCUITS */
+
+    public function circuitsIndexAction()
+    {
+        $circuits = Circuit::getAllCircuit();
+        View::renderTemplate('Admin/gestion_circuits.html.twig',
+            [
+                'circuits' => $circuits
+            ]
+        );
     }
 
     // Ajouts de Keven
@@ -391,6 +375,30 @@ class Admin extends \Core\Controller
 
     public function deleteCircuitTripAction(){
         $delete = CircuitTrip::deleteCircuitTrip($_POST['id']);
+    }
+
+    /* DEPRECATED */
+
+    public function circuitsAddStepLinkAction(){
+        $nbEtapes = $_POST['nbEtapes'];
+        $nbEtapes += 1;
+        View::renderTemplate('Admin/step_link.html.twig',
+            [
+                'nbEtapes' => $nbEtapes
+            ]);
+    }
+
+    public function circuitsAddStepTabAction(){
+        $nbEtapes = $_POST['nbEtapes'];
+        $nbEtapes += 1;
+        View::renderTemplate('Admin/step_tab.html.twig',
+            [
+                'nbEtapes' => $nbEtapes
+            ]);
+    }
+
+    public function circuitsOrganizeAction(){
+        View::renderTemplate('Admin/organisation_circuit.html.twig');
     }
 
 }

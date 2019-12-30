@@ -49,15 +49,18 @@ $router->add('admin/circuit_update', ['controller' => 'Admin', 'action' => 'circ
 $router->add('admin/circuit_update_simple', ['controller' => 'Admin', 'action' => 'circuitsUpdateSimple'], 'POST');
 
 $router->add('admin/circuits', ['controller' => 'Admin', 'action' => 'circuitsIndex']);
-$router->add('admin/circuits/activity_create', ['controller' => 'Admin', 'action' => 'circuitsActivityCreate'], 'POST');
-$router->add('admin/circuits/addstep_link', ['controller' => 'Admin', 'action' => 'circuitsAddStepLink'], 'POST');
-$router->add('admin/circuits/addstep_tab', ['controller' => 'Admin', 'action' => 'circuitsAddStepTab']);
-$router->add('admin/circuits/create_save', ['controller' => 'Admin', 'action' => 'circuitsCreate']);
 $router->add('admin/circuits/create', ['controller' => 'Admin', 'action' => 'circuitsCreateIndex']);
-$router->add('admin/circuits/organize', ['controller' => 'Admin', 'action' => 'circuitsOrganize']);
 
 $router->add('admin/delete_circuit', ['controller' => 'Admin', 'action' => 'deleteCircuit'], 'POST');
 $router->add('admin/delete_circuit_trip', ['controller' => 'Admin', 'action' => 'deleteCircuitTrip'], 'POST');
+
+/* -- ADMIN DEPRECATED -- */
+$router->add('admin/circuits/addstep_link', ['controller' => 'Admin', 'action' => 'circuitsAddStepLink'], 'POST');
+$router->add('admin/circuits/addstep_tab', ['controller' => 'Admin', 'action' => 'circuitsAddStepTab']);
+$router->add('admin/circuits/activity_create', ['controller' => 'Admin', 'action' => 'circuitsActivityCreate'], 'POST');
+$router->add('admin/circuits/organize', ['controller' => 'Admin', 'action' => 'circuitsOrganize']);
+$router->add('admin/circuits/create_save', ['controller' => 'Admin', 'action' => 'circuitsCreate']);
+/* -- END DEPRECATED -- */
 
 $router->add('admin/media', ['controller' => 'Medias', 'action' => 'index']);
 $router->add('admin/media', ['controller' => 'Medias', 'action' => 'upload'], 'POST');
