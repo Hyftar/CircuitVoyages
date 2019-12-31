@@ -283,7 +283,12 @@ class Admin extends \Core\Controller
     /* ADMIN */
 
     public function adminAction() {
-        View::renderTemplate('admin_base.html.twig');
+        View::renderTemplate(
+            'admin_base.html.twig',
+            [
+                'employee' => $_SESSION['employee']
+            ]
+        );
     }
 
     /* CIRCUITS */
