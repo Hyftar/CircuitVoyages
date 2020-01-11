@@ -28,13 +28,9 @@
     room_id_input.setAttribute('value', id)
 
     if (active) {
-      text_area.removeAttribute('disabled')
-      send_btn.removeAttribute('disabled')
       actions_bar.classList.remove('hidden')
     }
     else {
-      text_area.setAttribute('disabled', '')
-      send_btn.setAttribute('disabled', '')
       actions_bar.classList.add('hidden')
     }
 
@@ -42,9 +38,13 @@
     join_action.classList.add('hidden')
 
     if (employee_id == "") {
+      text_area.setAttribute('disabled', '')
+      send_btn.setAttribute('disabled', '')
       join_action.classList.remove('hidden')
     }
     else if (can_leave) {
+      text_area.removeAttribute('disabled')
+      send_btn.removeAttribute('disabled')
       leave_action.classList.remove('hidden')
     }
 
@@ -143,10 +143,18 @@
   }
 
   $('#support-chat__form').ajaxForm({
-    success: () => {
+    beforeSend: () => {
       form.reset()
     }
   }) // Make the form use Ajax
+
+  $('#support-chat__textarea').keypress((e) => {
+    if (e.which == 13) { // Enter key
+      $('#support-chat__form').submit()
+      $(this).val("")
+      e.preventDefault()
+    }
+  })
 
   button.onclick = () => {
     button.classList.add('hidden')
