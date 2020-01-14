@@ -44,6 +44,27 @@ class SupportChat extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function employeeCanSendIn($employee_id, $room_id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'SELECT id
+             FROM chat_rooms
+             WHERE
+               id = :room_id AND
+               employee_id = :employee_id AND
+               is_active = 1
+             LIMIT 1;'
+        );
+
+        $stmt->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+        $stmt->bindValue(':employee_id', $employee_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+        return $stmt->fetch() != false;
+
+    }
+
     public static function memberCanSendIn($member_id, $room_id)
     {
         $db = static::getDB();
