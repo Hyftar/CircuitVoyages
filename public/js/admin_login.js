@@ -1,7 +1,7 @@
 $(() => {
   $('#admin-login-submit').on('click',() => {
     $.ajax({
-      url: 'login',
+      url: '/admin/login',
       type: 'POST',
       data: {
         email: $('#admin-login-email').val(),

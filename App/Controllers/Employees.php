@@ -130,6 +130,11 @@ class Employees extends Controller
 
     }
 
+    public function logoutAction()
+    {
+        session_destroy();
+    }
+
     public function loginAction()
     {
         $errors = [];
@@ -168,9 +173,6 @@ class Employees extends Controller
             );
             return;
         }
-
-        session_destroy();
-        session_start();
 
         header('Location: /admin');
         $_SESSION['employee'] = Employee::getByEmail($_POST['email']);

@@ -1,0 +1,37 @@
+<div class="tab-pane fade" id="pills-step-{{ nbEtapes }}" role="tabpanel"
+     aria-labelledby="pills-step-{{ nbEtapes }}-tab">
+
+  <div class="etape">
+    <div class="grille">
+      <div class="time_column">
+        <div class="heures">
+          {% for i in 0..23 %}
+            {% if i < 10 %}
+              0{{ i }}:00<br>
+            {% else %}
+              {{ i }}:00<br>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="lignes">
+          {% for i in 0..23 %}
+            <hr>
+          {% endfor %}
+        </div>
+      </div>
+      <div id="daysForStep{{ nbEtapes }}" class="grille_horaire step-duration-0">
+        <div onclick="addDay({{ nbEtapes }})" class="header"><i class="fas fa-plus"></i></div>
+      </div>
+    </div>
+    <div class="hebergement_container">
+      <h6 class="hebergement_titre">Ajouter une activité :</h6>
+      <div class="grille_hebergement step-duration-0" id="grille_ajout{{ nbEtapes }}">
+      </div>
+    </div>
+    <div class="hebergement_container">
+      <h6 class="hebergement_titre">Hébergements :</h6>
+      <div class="grille_hebergement step-duration-0" id="grille_hebergement{{ nbEtapes }}">
+      </div>
+    </div>
+  </div>
+</div>

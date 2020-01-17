@@ -24,6 +24,11 @@ class Member extends \Core\Model
     {
         $db = static::getDB();
         $db->beginTransaction();
+
+        $stmt = $db->query('SELECT id FROM languages WHERE name = \'FRENCH\' LIMIT 1');
+        $stmt->execute();
+        $language_id = $stmt->fetch()['id'];
+
         $stmt = $db->prepare(
             'INSERT INTO addresses(
                 country,
@@ -88,7 +93,7 @@ class Member extends \Core\Model
                 :email,
                 :password_id,
                 :address_id,
-                1,
+                :language_id,
                 :first_name,
                 :last_name,
                 :phone_number,
@@ -103,6 +108,7 @@ class Member extends \Core\Model
         $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
         $stmt->bindValue(':phone_number', $phone_number, PDO::PARAM_STR);
         $stmt->bindValue(':dob', $date_of_birth, PDO::PARAM_STR);
+        $stmt->bindValue(':language_id', $language_id, PDO::PARAM_INT);
 
         if (!$stmt->execute()) {
             $db->rollBack();
@@ -110,6 +116,63 @@ class Member extends \Core\Model
         }
 
         $db->commit();
+    }
+
+    public static function createMemberForGoogle($id, $first_name, $last_name, $email)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'INSERT INTO members(first_name, last_name, google_id, email)
+             VALUES (:first_name, :last_name, :google_id, :email)'
+        );
+        $stmt->bindValue(':first_name', $first_name, PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
+        $stmt->bindValue(':google_id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public static function createMemberForFacebook($id, $first_name, $last_name)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'INSERT INTO members(first_name, last_name, facebook_id)
+             VALUES (:first_name, :last_name, :facebook_id)'
+        );
+
+        $stmt->bindValue(':first_name', $first_name, PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
+        $stmt->bindValue(':facebook_id', $id, PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
+
+    public static function googleIdExists($id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'SELECT * FROM members
+             WHERE google_id = :google_id
+             LIMIT 1'
+        );
+        $stmt->bindValue('google_id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public static function facebookIdExists($id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'SELECT * FROM members
+             WHERE facebook_id = :facebook_id
+             LIMIT 1'
+        );
+
+        $stmt->bindValue('facebook_id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch();
     }
 
     public static function exists($email)

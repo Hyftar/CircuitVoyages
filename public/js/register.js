@@ -1,4 +1,5 @@
 (() => {
+  const container = document.getElementById('login-modal')
   const loginModalContainer = document.getElementById('login-modal-container')
   const registerForm = document.getElementById('register-user-form')
   const registerLoginLink = document.getElementById('register-login-link')
@@ -10,6 +11,16 @@
   const registerSubmit = document.getElementById('register-submit')
   registerSubmit.onclick = (e) => {
     let form = document.getElementById('register-form')
+
+    if ($('#register-form #password-confirmation').val() !=
+        $('#register-form #password').val()) {
+      document
+        .querySelector('#register-form #password-confirmation')
+        .setCustomValidity('Les mot de passe ne concordent pas')
+        // TODO: i18n
+      return
+    }
+
     if (!form.checkValidity())
       return
 
@@ -26,16 +37,24 @@
 
     $.ajax({
       data,
-      url: 'register',
+      url: '/register',
       type: 'POST',
-      dataType: 'application/json',
       success: () => {
-        form.reset()
+        document.getElementById('register-form').reset()
+        container.classList.add('hidden')
         registerForm.classList.add('hidden')
         loginModalContainer.classList.remove('hidden')
       },
-      error: () => {
-        // Show errors via customValidity
+      error: (data) => {
+        const response_data = JSON.parse(data.responseText).errors
+        for (const error in response_data) {
+          const elem = document.querySelector(`#register-user-form [name="${error}"]`)
+          const text = response_data[error].join(', ')
+          elem.setCustomValidity(text)
+          elem.onchange = () => {
+            elem.setCustomValidity('')
+          }
+        }
       }
     })
   }

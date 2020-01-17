@@ -3,13 +3,12 @@
 
   <head>
     <meta charset="utf-8">
-    <meta name="google-signin-client_id" content="939832340047-eu00arp5mh0c7m8erakq54mmu0af89mk.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="962979274048-adacd895cdoejt2lj7cr4g7jqpi8fete.apps.googleusercontent.com">
     <link rel="shortcut icon" type="image/png" href="/images/labernois_logo.png"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script|Fugaz+One|Permanent+Marker&display=swap">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
     <link rel="stylesheet" href="/css/custom_bootstrap.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
     <link rel="stylesheet" href="/css/nav.css"/>
@@ -18,10 +17,13 @@
     <link rel="stylesheet" href="/css/promotions/ribbon.css"/>
     <link rel="stylesheet" href="/css/footer.css"/>
     <link rel="stylesheet" href="/css/login/login.css"/>
-    <title>{% block title %}{% endblock %}| Le Labernois</title>
+    <link rel="stylesheet" href="/css/support_chat.css"/>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async="async" defer="defer"></script>
+
+    <title>{% block title %}{% endblock %} | Le Labernois</title>
   </head>
 
-  <body>
+  <body class="{% block body_class %}{% endblock %}">
     <div id="toast-container" aria-live="polite" aria-atomic="true">
       <div class="toast">
         <div class="toast-header">
@@ -32,16 +34,18 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div id="toast-body" class="toast-body toast-body__text">
-        </div>
+        <div id="toast-body" class="toast-body toast-body__text"></div>
       </div>
     </div>
+
+    {% include '/Support_Chat/button.html.twig' %}
+    {% include '/Support_Chat/chat_box.html.twig' %}
+
     <div id="login-modal" class="hidden">
       {% include '/Members/login.html.twig' %}
       {% include '/Members/register.html.twig' %}
       {% include '/Members/reset.html.twig' %}
     </div>
-
 
     <header>
       <a href="/" class="logo">
@@ -53,18 +57,28 @@
         </span>
       </button>
       <nav>
-        <a href="#" class="nav-link">Circuits</a>
+        <a href="#circuits" class="nav-link">Circuits</a>
         <a href="#" class="nav-link">Promotions</a>
-        <a href="#" class="nav-link">About us</a>
-        <a id="nav-login-link" href="#" class="nav-link">Login</a>
+        <a id="nav-login-link" href="#" class="nav-link {{ member is not null ? 'hidden' : '' }} ">Connexion</a>
+        <a id="nav-account-link" href="#" class="nav-link {{ member is null ? 'hidden' : '' }}">Mon compte</a>
+        <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">Déconnexion</a>
       </nav>
     </header>
     <main>
-      {% block body %}{% endblock %}
+      {% block main %}{% endblock %}
     </main>
     <footer id="footer">
       <div class="footer__left">
         <img alt="logo" src="/images/labernois_logo.png"/>
+      </div>
+      <div class="footer__middle">
+        <div class="footer__links">
+          <a href="" class="link-colors">Contact Us</a>
+          <a href="" class="link-colors">Newsletter</a>
+          <a href="/admin" class="link-colors">Administration</a>
+        </div>
+        <p class="footer-copyright">
+          Copyright © 2019 MBGLA LABERNOIS, Inc. All rights reserved.</p>
       </div>
       <div class="footer__right"></div>
     </footer>
@@ -74,13 +88,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <script src="http://malsup.github.com/jquery.form.js"></script>
   <script src="/js/login.js"></script>
   <script src="/js/register.js"></script>
   <script src="/js/reset.js"></script>
   <script src="/js/drawer.js"></script>
   <script src="/js/main.js"></script>
-  <script src="/js/upload.js"></script>
-  <script src="/js/facebook_login.js"></script>
+  <script src="/js/support_chat.js"></script>
   <script src="/js/google_login.js"></script>
-  <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+  <script src="/js/facebook_login.js"></script>
+  <script>
+    (function(d, s, id) {
+      let js, fjs = d.getElementsByTagName(s)[0]
+      if (d.getElementById(id)) {
+        return
+      }
+
+      js = d.createElement(s)
+      js.id = id
+      js.src = "https://connect.facebook.net/en_US/sdk.js"
+      fjs.parentNode.insertBefore(js, fjs)
+    }(document, 'script', 'facebook-jssdk'))
+  </script>
 </html>

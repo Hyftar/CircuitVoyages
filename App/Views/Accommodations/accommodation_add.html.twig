@@ -1,0 +1,139 @@
+<div class="modal fade" id="accommodation-add-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter un hébergement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="accommodation-add-form" onsubmit="return false">
+          <div class="form-group">
+            <label for="name">Nom de l'hébergement</label>
+            <input id="name" name="name" type="text" class="form-control" placeholder="The Ritz-Carlton" required="required">
+          </div>
+          <div class="form-group">
+            <label for="accommodation-type">Type d'hébergement</label>
+            <select id="accommodation-type" name="type" class="form-control">
+              {% for type in types %}
+                <option value="{{loop.index}}">{{type|capitalize}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rating">Cote de l'hébergement</label>
+            <fieldset class="rating">
+              <input type="radio" id="star5" name="rating" value="5"/>
+              <label class="full" for="star5" title="Exceptionnel - 5 étoiles"></label>
+              <input type="radio" id="star4half" name="rating" value="4.5"/>
+              <label class="half" for="star4half" title="Très bien - 4.5 étoiles"></label>
+              <input type="radio" id="star4" name="rating" value="4"/>
+              <label class="full" for="star4" title="Bien - 4 étoiles"></label>
+              <input type="radio" id="star3half" name="rating" value="3.4"/>
+              <label class="half" for="star3half" title="Satisfaisant - 3.5 étoiles"></label>
+              <input type="radio" id="star3" name="rating" value="3"/>
+              <label class="full" for="star3" title="Correct - 3 étoiles"></label>
+              <input type="radio" id="star2half" name="rating" value="2.5"/>
+              <label class="half" for="star2half" title="Moyen - 2.5 étoiles"></label>
+              <input type="radio" id="star2" name="rating" value="2"/>
+              <label class="full" for="star2" title="Ordinaire - 2 étoiles"></label>
+              <input type="radio" id="star1half" name="rating" value="1.5"/>
+              <label class="half" for="star1half" title="Décevant - 1.5 étoiles"></label>
+              <input type="radio" id="star1" name="rating" value="1"/>
+              <label class="full" for="star1" title="Mauvais - 1 star"></label>
+              <input type="radio" id="starhalf" name="rating" value="0.5"/>
+              <label class="half" for="starhalf" title="Très mauvais - 0.5 étoiles"></label>
+            </fieldset>
+          </div>
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-at"></i>
+              </span>
+            </div>
+            <input id="email" name="email" class="form-control" placeholder="Adresse courriel" type="email"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-link"></i>
+              </span>
+            </div>
+            <input id="link" name="link" class="form-control" placeholder="Lien" type="text"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-phone"></i>
+              </span>
+            </div>
+            <input id="phone" name="phone" class="form-control" placeholder="Téléphone" type="text" required="required" pattern="^(?:\+\d{1})?[\s\.\-]?(?:\(?\d{3}\)?[\s\.\-]?\d{3}[\s\-\.]?\d{4})$"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-globe"></i>
+              </span>
+            </div>
+            <input id="country" name="country" class="form-control" placeholder="Pays" type="text" required="required"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-map-pin"></i>
+              </span>
+            </div>
+            <input id="region" name="region" class="form-control" placeholder="Province" type="text" required="required"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-city"></i>
+              </span>
+            </div>
+            <input id="city" name="city" class="form-control" placeholder="Ville" type="text" required="required"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-building"></i>
+              </span>
+            </div>
+            <input id="address-line-1" name="address_line_1" class="form-control" placeholder="Ligne d'adresse 1" type="text" required="required"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-building"></i>
+              </span>
+            </div>
+            <input id="address-line-2" name="address_line_2" class="form-control" placeholder="Ligne d'adresse 2" type="text"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-mail-bulk"></i>
+                </span>
+              </div>
+              <input id="postal-code" name="postal_code" class="form-control" placeholder="Code postal" type="text" pattern="^([abceghj-nprstvxyABCEGHJ-NPRSTVXY]\d[abceghj-nprstv-zABCEGHJ-NPRSTV-Z])[ -]?(\d[abceghj-nprstv-zABCEGHJ-NPRSTV-Z]\d)$"/>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <input id="accommodation-add-form__submit" type="submit" class="btn btn-primary" value="Enregistrer"></input>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

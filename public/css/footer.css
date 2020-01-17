@@ -2,18 +2,46 @@ footer {
   overflow: hidden;
   display: flex;
   flex-direction: row;
+  flex-basis: 33%;
+  justify-content: space-between;
 }
 
 footer > div {
-  width: 50%;
   overflow: hidden;
 }
 
 .footer__left {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer__middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align:center;
   padding: 20px;
 }
 
 .footer__left > img {
   width: 100px;
   margin-right: auto;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+#footer .link-colors {
+  color: #5c5c5c;
+  margin: 0px 10px;
+
+}
+
+#footer .link-colors:hover {
+  text-decoration: underline;
+}
+
+#footer .footer-copyright {
+  font-style: italic;
 }

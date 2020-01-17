@@ -1,0 +1,116 @@
+<div class="modal fade" id="activity-add-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content pt-3">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter une activité</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="activity-add-form" onsubmit="return false">
+          <div class="form-group">
+            <label for="name">Nom de l'activité'</label>
+            <input id="name" name="name" type="text" class="form-control" placeholder="Promenade en montagne" required="required">
+          </div>
+          <div class="form-group">
+            <label for="activity-type">Type d'activité</label>
+            <select id="activity-type" name="type" class="form-control">
+              {% for type in types %}
+                <option value="{{loop.index}}">{{type|capitalize}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <label for="description">Description</label>
+          <textarea id="description" class="form-control" rows="3" name="description"></textarea>
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-at"></i>
+              </span>
+            </div>
+            <input id="email" name="email" class="form-control" placeholder="Adresse courriel" type="email"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-link"></i>
+              </span>
+            </div>
+            <input id="link" name="link" class="form-control" placeholder="Lien" type="text"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-phone"></i>
+              </span>
+            </div>
+            <input id="phone" name="phone" class="form-control" placeholder="Téléphone" type="text" required="required" pattern="^(?:\+\d{1})?[\s\.\-]?(?:\(?\d{3}\)?[\s\.\-]?\d{3}[\s\-\.]?\d{4})$"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-globe"></i>
+              </span>
+            </div>
+            <input id="country" name="country" class="form-control" placeholder="Pays" type="text" required="required"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-map-pin"></i>
+              </span>
+            </div>
+            <input id="region" name="region" class="form-control" placeholder="Province" type="text" required="required"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-city"></i>
+              </span>
+            </div>
+            <input id="city" name="city" class="form-control" placeholder="Ville" type="text" required="required"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-building"></i>
+              </span>
+            </div>
+            <input id="address-line-1" name="address_line_1" class="form-control" placeholder="Ligne d'adresse 1" type="text" required="required"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-building"></i>
+              </span>
+            </div>
+            <input id="address-line-2" name="address_line_2" class="form-control" placeholder="Ligne d'adresse 2" type="text"/>
+          </div>
+
+          <div class="form-group input-group">
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-mail-bulk"></i>
+                </span>
+              </div>
+              <input id="postal-code" name="postal_code" class="form-control" placeholder="Code postal" type="text" pattern="^([abceghj-nprstvxyABCEGHJ-NPRSTVXY]\d[abceghj-nprstv-zABCEGHJ-NPRSTV-Z])[ -]?(\d[abceghj-nprstv-zABCEGHJ-NPRSTV-Z]\d)$"/>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <input id="activity-add-form__submit" type="submit" class="btn btn-primary" value="Enregistrer"></input>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

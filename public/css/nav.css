@@ -1,8 +1,8 @@
 @media (min-width: 1040px) {
   header {
-    -ms-grid-columns: 1fr 180px 4fr 6fr 1fr;
-    grid-template-columns: 1fr 180px 4fr 6fr 1fr;
-    grid-template-areas: ". logo . nav ."
+    -ms-grid-columns: 1fr 180px 2fr 6fr;
+    grid-template-columns: 1fr 180px 2fr 6fr;
+    grid-template-areas: ". logo . nav"
   }
 
   nav {
@@ -88,6 +88,7 @@ body {
 }
 
 header {
+  min-height: 100px;
   position: fixed;
   width: 100%;
   -webkit-box-sizing: border-box;
@@ -145,7 +146,6 @@ nav {
 }
 
 .nav-link:hover {
-  text-decoration-line: underline;
-  text-decoration-style: solid;
-  text-decoration-color: #212529;
+  transition: background-color 0.4s ease;
+  background-color: rgba(255, 245, 224, .4);
 }

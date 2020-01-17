@@ -30,7 +30,7 @@
 
     Dans le cmd, dans le dossier du projet,
 
-    `php -S localhost:3030 -t public/`
+    `php -S localhost:3030 -f public/`
 
     Par la suite, vous pourrez accéder au site en visitant localhost:3030
 

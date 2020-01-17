@@ -1,47 +1,54 @@
 (() => {
-  let loginContainer = document.getElementById('login-modal')
-  //Wait for google api to load
-  window.onLoadCallback = function(){
-    gapi.auth2.init({
-      client_id: '939832340047-eu00arp5mh0c7m8erakq54mmu0af89mk.apps.googleusercontent.com'
-    });
+  const loginContainer = document.getElementById('login-modal')
+  const client_id = '939832340047-eu00arp5mh0c7m8erakq54mmu0af89mk.apps.googleusercontent.com'
+  // Wait for google api to load
+  window.onLoadCallback = () => {
+    gapi.auth2.init(
+      {
+        client_id
+      }
+    )
   }
 
-  var googleUser = {};
-  var startApp = function() {
-    gapi.load('auth2', function(){
+  const googleUser = {}
+  const startApp = () => {
+    gapi.load('auth2', () => {
       // Retrieve the singleton for the GoogleAuth library and set up the client.
       auth2 = gapi.auth2.init({
-        client_id: '939832340047-eu00arp5mh0c7m8erakq54mmu0af89mk.apps.googleusercontent.com',
+        client_id,
         cookiepolicy: 'single_host_origin',
         // Request scopes in addition to 'profile' and 'email'
         //scope: 'additional_scope'
-      });
-      attachSignin(document.getElementById('btn-google'));
-    });
-  };
+      })
+      attachSignin(document.getElementById('btn-google'))
+    })
+  }
 
   function attachSignin(element) {
-    console.log(element.id);
     auth2.attachClickHandler(element, {},
-      function(googleUser) {
-        alert("Signed in: " +
-          googleUser.getBasicProfile().getName());
-        onSignIn(googleUser);
-        loginContainer.classList.add('hidden');
-      }, function(error) {
-        alert(JSON.stringify(error, undefined, 2));
-      });
+      (googleUser) => {
+        const profile = googleUser.getBasicProfile()
+        const id = profile.getId()
+        const name = profile.getName()
+        const email = profile.getEmail()
+        $.ajax(
+          {
+            url: 'login/google',
+            data: { name, id, email },
+            type: 'POST',
+            success: () => {
+              loginContainer.classList.add('hidden')
+              loginLink.classList.add('hidden')
+              accountLink.classList.remove('hidden')
+              logoutLink.classList.remove('hidden')
+              // TODO: i18n
+              showToast('Connecté', '', 'Bienvenue! Vous êtes maintenant connecté.')
+            }
+          }
+        )
+      }
+    )
   }
 
-  function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  }
-
-  startApp();
-
+  startApp()
 })()

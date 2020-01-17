@@ -1,110 +1,36 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Home {{ parent() }}{% endblock %}
+{% block title %}Home{% endblock %}
 
-{% block body %}
-  <div class="banner">
-    <div class="w-50 p-3 upload-form">
-      <form action="upload.php" method="post" onsubmit="return false">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="customFile" name="image">
-          <label class="custom-file-label" for="customFile">Choose file</label>
+{% block main %}
+  <div class="home-content">
+    <div class="home-content__banner">
+      <div class="banner__text">
+        Voyager n'aura jamais été <span style="font-style: italic;">aussi</span> facile.
+      </div>
+    </div>
+    <h2 class="home-content__header">Tous nos circuits</h2>
+    <div class="home-content__circuits">
+      {% for circuit in circuits %}
+        <div class="card">
+          {% if circuit.promotion_id is not null %}
+            <div class="ribbon ribbon--green">
+              <div class="ribbon__bottom"></div>
+              <div class="ribbon__center">
+                <div>En promotion!</div>
+              </div>
+            </div>
+          {% endif %}
+          <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
+          <div class="card-body">
+            <h5 class="card-title">{{circuit.name }}</h5>
+            <p class="card-text">
+              {{ circuit.description }}
+            </p>
+            <a href="#" class="btn btn-primary">Explorer</a>
+          </div>
         </div>
-        <input class="btn btn-primary" id="upload-submit" type="submit" value="Submit">
-      </form>
-    </div>
-    <div class="banner__text">
-      Traveling has never been <span style="font-style: italic;">this</span> easy.
-    </div>
-  </div>
-
-  <h2 class="content-header">Promotions</h2>
-
-
-  <div class="content">
-    <div class="card">
-      <div class="ribbon ribbon--blue">
-        <div class="ribbon__bottom"></div>
-        <div class="ribbon__center">
-          <div>Few places left!</div>
-        </div>
-      </div>
-
-      <img src="/images/peru.jpg" class="card-img-top hoverZoomLink" alt="peru">
-      <div class="card-body">
-        <h5 class="card-title">The Andes</h5>
-        <p class="card-text">
-          Climb the largest concentration of snow peaks in America in this
-          thrilling and exalting circuit.
-        </p>
-        <a href="#" class="btn btn-primary">Explore</a>
-        <span class="card-price">$25 000</span>
-      </div>
-    </div>
-    <div class="card">
-      <div class="badge">
-        <span>
-          $10 000<br />
-          discount!
-        </span>
-        <div></div>
-      </div>
-      <div class="ribbon ribbon--green">
-        <div class="ribbon__bottom"></div>
-        <div class="ribbon__center">
-          <div>Upcoming departure</div>
-        </div>
-      </div>
-      <img src="/images/hawaii.jpg" class="card-img-top hoverZoomLink" alt="hawaii">
-      <div class="card-body">
-        <h5 class="card-title">Surfing in Hawaii</h5>
-        <p class="card-text">
-          Surf within the breathtaking views of Hawaii, Honolulu and
-          its various beaches and volcanoes.
-        </p>
-        <a href="#" class="btn btn-primary">Explore</a>
-        <span class="card-price card-price--old">$50 000</span>
-        <span class="card-price card-price--new">$40 000</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="badge">
-        <span>20% off!</span>
-        <div></div>
-      </div>
-      <img src="/images/vineyard.jpg" class="card-img-top hoverZoomLink" alt="italy">
-      <div class="card-body">
-        <h5 class="card-title">Italy vineyards</h5>
-        <p class="card-text">
-          Explore the famous italian vineyards while tasting
-          delightful varieties of vines.
-        </p>
-        <a href="#" class="btn btn-primary">Explore</a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="ribbon">
-        <div class="ribbon__bottom"></div>
-        <div class="ribbon__center">
-          <div>New circuit!</div>
-        </div>
-      </div>
-      <div class="badge">
-        <span>50% off!</span>
-        <div></div>
-      </div>
-      <img src="/images/iceberg.jpg" class="card-img-top hoverZoomLink" alt="iceberg">
-      <div class="card-body">
-        <h5 class="card-title">Artic Ocean</h5>
-        <p class="card-text">
-          See the icebergs of the Artic Ocean up close in this astonishing
-          boat trip.
-        </p>
-        <a href="#" class="btn btn-primary">Explore</a>
-        <span class="card-price card-price--old">$50 000</span>
-        <span class="card-price card-price--new">$25 000</span>
-      </div>
+      {% endfor %}
     </div>
   </div>
 {% endblock %}

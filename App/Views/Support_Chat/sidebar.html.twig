@@ -1,0 +1,30 @@
+{% for room in rooms %}
+<div class="sidebar__chat-session" data-id="{{ room.id }}" data-active="{{ room.is_active }}">
+  <div class="
+    chat-session__orb
+    {% if room.is_active == 1 %}
+      {% if room.employee_id is null %}
+        chat-session__orb--hold
+      {% else %}
+        chat-session__orb--active
+      {% endif %}
+    {% endif %}
+    ">
+  </div>
+  <div class="chat-session__name">
+    {% if room.employee_id is null %}
+      {% if room.is_active == 1 %}
+      En attente...
+      {% else %}
+      Terminée avant connexion
+      {% endif %}
+    {% else %}
+    {{ room.employee_first_name }} {{ room.employee_last_name}}
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+<div id="support-chat__new-session" class="sidebar__new-session">
+  Nouvelle session
+  <i class="fas fa-plus"></i>
+</div>
