@@ -139,10 +139,18 @@
   }
 
   $('#support-chat__form').ajaxForm({
-    success: () => {
+    beforeSend: () => {
       form.reset()
     }
   }) // Make the form use Ajax
+
+  $('#support-chat__textarea').keypress((e) => {
+    if (e.which == 13) { // Enter key
+      $('#support-chat__form').submit()
+      $(this).val("")
+      e.preventDefault()
+    }
+  })
 
   button.onclick = () => {
     button.classList.add('hidden')

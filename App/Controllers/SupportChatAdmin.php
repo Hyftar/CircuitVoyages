@@ -21,12 +21,17 @@ class SupportChatAdmin extends Controller
     public function sendMessage()
     {
         $errors = [];
+        // TODO: i18n
         if (empty($_POST['content'])) {
             $errors[] = 'Votre message ne peu être vide';
         }
 
         if (empty($_POST['room_id'])) {
             $errors[] = 'Vous devez fournir une pièce';
+        }
+
+        if (!SupportChat::employeeCanSendIn($_SESSION['employee']['id'], $_POST['room_id'])) {
+            $errors[] = 'Vous ne pouvez envoyer de message dans cette session';
         }
 
         if (!empty($errors)) {
