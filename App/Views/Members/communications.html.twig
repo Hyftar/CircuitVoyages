@@ -1,0 +1,26 @@
+{% if informations.google_id is not defined or informations.google_id is null %}
+  <h3 class="mt-2 mb-1">Modifier l'addresse de messsagerie électronique</h3>
+  <form id="formCommunications" class="mt-2 mb-1" onsubmit="return sendCommunications();">
+    <div class="form-row">
+      <div class="form-group col-md-8">
+        <input type="email" required class="form-control" name="inputEmail" id="inputEmail" value="{{ informations.email }}">
+      </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Sauvegarder">
+    <input type="button" class="btn btn-primary" onclick="getCommunications()" value="Annuler">
+  </form>
+{% endif %}
+<h3 class="mt-2 mb-1">Liste des bulletins d'information</h3>
+{% for newsletter in newsletters %}
+  {% if newsletter.suscribed is defined and newsletter.suscribed is not null %}
+    <form class="form-inline" id="formNewsletter{{ newsletter.id }}" onsubmit="return unsuscribe({{ newsletter.id }})">
+      <p class="form-control mb-2 mr-sm-2">{{ newsletter.name }}</p>
+      <button type="submit" class="btn btn-primary mb-2">Se désinscrire</button>
+    </form>
+  {% else %}
+    <form class="form-inline" id="formNewsletter{{ newsletter.id }}" onsubmit="return suscribe({{ newsletter.id }})">
+      <p class="form-control mb-2 mr-sm-2">{{ newsletter.name }}</p>
+      <button type="submit" class="btn btn-primary mb-2">S'inscrire</button>
+    </form>
+  {% endif %}
+{% endfor %}

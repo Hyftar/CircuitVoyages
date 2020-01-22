@@ -1,0 +1,38 @@
+<form id="formInfos" class="mt-2 mb-1" onsubmit="return sendInformations();">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputFirstName">Prénom</label>
+      <input type="text" required class="form-control" id="inputFirstName" name="inputFirstName" value="{{ infos.first_name }}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputLastName">Nom</label>
+      <input type="text" required class="form-control" id="inputLastName" name="inputLastName" value="{{ infos.last_name }}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputBirthDate">Date de naissance</label>
+      <input type="date" required class="form-control" id="inputBirthDate" name="inputBirthDate" value="{{ infos.date_of_birth }}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPhoneNumber">Numéro de téléphone</label>
+      <input type="text" required class="form-control" id="inputPhoneNumber" name="inputPhoneNumber" value="{{ infos.phone_number }}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputLanguage">Langue</label>
+      <select id="inputLanguage" required name="inputLanguage" class="form-control">
+        {% for language in languages %}
+          {% if language.id == infos.language_id %}
+            <option value="{{ language.id }}" selected>{{language.name}}</option>
+          {% else %}
+            <option value="{{ language.id }}">{{language.name}}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <input type="submit" class="btn btn-primary" value="Sauvegarder">
+  <input type="button" class="btn btn-primary" onclick="getInformations()" value="Annuler">
+</form>

@@ -1,0 +1,51 @@
+{% if allHistory == false %}
+  <h3 class="mt-2 mb-1">Voyages à venir</h3>
+{% else %}
+  <h3 class="mt-2 mb-1">Historique des voyages</h3>
+{% endif %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        Nom
+      </th>
+      <th scope="col">
+        Date de départ
+      </th>
+      <th scope="col">
+        Date de retour
+      </th>
+      <th scope="col">
+        Obtenir des détails
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for trip in trips %}
+      <tr>
+        <td scope="row">
+          {{ trip.name }}
+        </td>
+        <td scope="row">
+          {{ trip.departure_date|date('Y-m-d') }}
+        </td>
+        <td scope="row">
+          {{ trip.return_date|date('Y-m-d') }}
+        </td>
+        <td scope="row">
+          <button class="btn btn-info" onclick="return getTripInformations({{ trip.id }})">
+            <span class="fas fa-info-circle"></span>
+          </button>
+        </td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="2">
+          Aucun paiement trouvé.
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+

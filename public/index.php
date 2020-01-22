@@ -88,6 +88,24 @@ $router->add('login', ['controller' => 'Members', 'action' => 'logout'], 'DELETE
 $router->add('login/facebook', ['controller' => 'Members', 'action' => 'facebookLogin'], 'POST');
 $router->add('login/google', ['controller' => 'Members', 'action' => 'googleLogin'], 'POST');
 
+/* MEMBER ACCOUNT */
+$router->add('member',['controller' => 'Members', 'action' => 'show'], 'GET');
+$router->add('member/informations',['controller' => 'Members', 'action' => 'showInformations'], 'GET');
+$router->add('member/sendInformations',['controller' => 'Members', 'action' => 'sendInformations'], 'POST');
+$router->add('member/coordinates',['controller' => 'Members', 'action' => 'showCoordinates'], 'GET');
+$router->add('member/sendCoordinates',['controller' => 'Members', 'action' => 'sendCoordinates'], 'POST');
+$router->add('member/security',['controller' => 'Members', 'action' => 'showSecurity'], 'GET');
+$router->add('member/sendSecurity',['controller' => 'Members', 'action' => 'sendSecurity'], 'POST');
+$router->add('member/communications',['controller' => 'Members', 'action' => 'showCommunications'], 'GET');
+$router->add('member/sendCommunications',['controller' => 'Members', 'action' => 'sendCommunications'], 'POST');
+$router->add('member/trips',['controller' => 'Members', 'action' => 'showTrips'], 'GET');
+$router->add('member/tripsUpcoming',['controller' => 'Members', 'action' => 'showTripsUpcoming'], 'GET');
+$router->add('member/payments',['controller' => 'Members', 'action' => 'showPayments'], 'GET');
+$router->add('member/paymentsUpcoming',['controller' => 'Members', 'action' => 'showPaymentsUpcoming'], 'GET');
+$router->add('member/suscribe',['controller' => 'Members', 'action' => 'suscribe'], 'POST');
+$router->add('member/unsuscribe',['controller' => 'Members', 'action' => 'unsuscribe'], 'POST');
+
+
 
 /* SUPPORT CHAT */
 // Customer side
