@@ -3,20 +3,28 @@
     <div class="form-group col-md-6">
       <label for="inputFirstName">Prénom</label>
       <input type="text" required class="form-control" id="inputFirstName" name="inputFirstName" value="{{ infos.first_name }}">
+      <div class="invalid-feedback" id="feedbackFirstName">
+      </div>
     </div>
     <div class="form-group col-md-6">
       <label for="inputLastName">Nom</label>
       <input type="text" required class="form-control" id="inputLastName" name="inputLastName" value="{{ infos.last_name }}">
+      <div class="invalid-feedback" id="feedbackLastName">
+      </div>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputBirthDate">Date de naissance</label>
       <input type="date" required class="form-control" id="inputBirthDate" name="inputBirthDate" value="{{ infos.date_of_birth }}">
+      <div class="invalid-feedback" id="feedbackBirthDate">
+      </div>
     </div>
     <div class="form-group col-md-6">
       <label for="inputPhoneNumber">Numéro de téléphone</label>
       <input type="text" required class="form-control" id="inputPhoneNumber" name="inputPhoneNumber" value="{{ infos.phone_number }}">
+      <div class="invalid-feedback" id="feedbackPhoneNumber">
+      </div>
     </div>
   </div>
   <div class="form-row">
@@ -31,6 +39,8 @@
           {% endif %}
         {% endfor %}
       </select>
+      <div class="invalid-feedback" id="feedbackLanguage">
+      </div>
     </div>
   </div>
   <input type="submit" class="btn btn-primary" value="Sauvegarder">

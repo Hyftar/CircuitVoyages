@@ -306,7 +306,7 @@ class Members extends \Core\Controller
         }
 
         if (empty($_POST['inputBirthDate'])) {
-            $errors['dob'][] = 'Veuillez fournir une date de naissance';
+            $errors['inputBirthDate'][] = 'Veuillez fournir une date de naissance';
         }
 
         if (empty($_POST['inputLanguage'])) {
@@ -332,6 +332,12 @@ class Members extends \Core\Controller
         $phone_errors = LoginHelpers::validatePhoneNumber($phone);
         if (!empty($phone_errors)) {
             $errors['phone'] = $phone_errors;
+        }
+
+        if (!empty($errors)) {
+            http_response_code(400); // Bad request (missing parameters)
+            View::renderJSON(['errors' => $errors]);
+            return;
         }
 
         Member::updateMemberInformations(
@@ -488,7 +494,7 @@ class Members extends \Core\Controller
         }
 
         if (Member::exists($_POST['inputEmail'])) {
-            $errors['email'][] = 'Un compte existe deja pour ce email';
+            $errors['email'][] = 'Un compte existe déjà pour ce email';
         }
 
         if (!empty($errors)) {
@@ -515,10 +521,11 @@ class Members extends \Core\Controller
         if (!Member::validatePassword($_POST['inputOldPassword']))
             $errors['oldPassword'][] = 'L\'ancien mot de passe n\'est pas valide.';
 
-        if (!LoginHelpers::validatePassword($_POST['inputNewPassword'])){
-            $errors = array_merge(
-                $errors, LoginHelpers::validatePassword($_POST['inputNewPassword'])
-            );
+        $password_errors =
+            LoginHelpers::validatePassword($_POST['inputNewPassword']);
+
+        if (!empty($password_errors)) {
+            $errors['password'] = $password_errors;
         }
 
         if ($_POST['inputNewPassword'] != $_POST['inputNewPasswordBis'])
@@ -578,12 +585,17 @@ class Members extends \Core\Controller
         // Validate parameters content
 
         // Postal code
-
         list($postal_code, $postal_code_errors) =
             LoginHelpers::validatePostalCode($postal_code);
 
         if (!empty($postal_code_errors)) {
             $errors['inputPostalCode'][] = $postal_code_errors;
+        }
+
+        if (!empty($errors)) {
+            http_response_code(400); // Bad request (missing parameters)
+            View::renderJSON(['errors' => $errors]);
+            return;
         }
 
         Member::updateMemberAddress(

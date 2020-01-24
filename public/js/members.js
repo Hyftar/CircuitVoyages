@@ -32,6 +32,16 @@ function sendCoordinates(){
     contentType: false,
     success: (data) => {
       getCoordinates()
+      showToast('Adresse', null,'L\'adresse a été mise à jour avec succès.')
+    },
+    error: (xhr, status, error) =>{
+      let errors = xhr.responseJSON['errors']
+      setValidity('inputCountry',errors,'inputCountry','feedbackCountry')
+      setValidity('inputCity',errors,'inputCity','feedbackCity')
+      setValidity('inputRegion',errors,'inputRegion','feedbackRegion')
+      setValidity('inputPostalCode',errors,'inputPostalCode','feedbackPostalCode')
+      setValidity('inputAddressLine1',errors,'inputAddressLine1','feedbackAddressLine1')
+      setValidity('inputAddressLine2',errors,'inputAddressLine2','feedbackAddressLine2')
     }
   })
   return false
@@ -60,10 +70,42 @@ function sendInformations(){
     contentType: false,
     success: (data) => {
       getInformations()
+      showToast('Informations', null,'Les informations du compte ont bien été mises à jour.')
+    },
+    error: (xhr, status, error) =>{
+      let errors = xhr.responseJSON['errors']
+      setValidity('inputFirstName',errors,'inputFirstName','feedbackFirstName')
+      setValidity('inputLastName',errors,'inputLastName','feedbackLastName')
+      setValidity('inputBirthDate',errors,'inputBirthDate','feedbackBirthDate')
+      setValidity('inputPhoneNumber',errors,'inputPhoneNumber','feedbackPhoneNumber')
+      setValidity('inputLanguage',errors,'inputLanguage','feedbackLanguage')
+      setValidity('phone',errors,'inputPhoneNumber','feedbackPhoneNumber')
     }
   })
   return false
 }
+
+function setValidity(propertyName, errors, elementId, feedbackId){
+  let element = document.getElementById(elementId)
+  let feedback = document.getElementById(feedbackId)
+  if (errors.hasOwnProperty(propertyName)){
+    let content = errors[propertyName]
+    if (Array.isArray(content)){
+      let newContent = "";
+      content.forEach(element => newContent += element + "\n")
+      feedback.innerText = newContent.substr(0,newContent.length-1)
+    }
+    else {
+      feedback.innerText = content
+    }
+    element.classList.add('is-invalid');
+    element.classList.remove('is-valid');
+  }
+  else {
+    feedback.innerText = ""
+    element.classList.remove('is-invalid');
+    element.classList.add('is-valid');
+  }}
 
 function getSecurity(){
   $.ajax({
@@ -88,8 +130,16 @@ function sendSecurity(){
     contentType: false,
     success: (data) => {
       getSecurity()
-    }
-  })
+      showToast('Sécurité', null,'Le mot de passe à bien été modifié.')
+    },
+    error: (xhr, status, error) =>{
+      let errors = xhr.responseJSON['errors']
+      setValidity('oldPassword',errors,'inputOldPassword','feedbackOldPassword')
+      setValidity('newPassword',errors,'inputNewPassword','feedbackNewPassword')
+      setValidity('password',errors,'inputNewPasswordBis','feedbackNewPasswordBis')}
+  }
+  )
+  return false
 }
 
 function getCommunications(){
@@ -115,6 +165,11 @@ function sendCommunications(){
     contentType: false,
     success: (data) => {
       getCommunications()
+      showToast('Communications', null,'L\'adresse email a bien été modifiée.')
+    },
+    error: (xhr, status, error) =>{
+      let errors = xhr.responseJSON['errors']
+      setValidity('email',errors,'inputEmail','feedbackEmail')
     }
   })
   return false
