@@ -483,19 +483,61 @@ class Admin extends \Core\Controller
 
     /* PAYMENT PLANS */
 
-    public function paymentPlanIndexAction() {
-        $payment_plan = CircuitTrip::getPaymentPlan($_POST['circuit_trip_id']);
+    public function paymentPlansAction(){
+        $payment_plans = CircuitTrip::getPaymentPlansAll($_POST['circuit_trip_id']);
+        $circuit_trip = CircuitTrip::getCircuitTrip($_POST['circuit_trip_id']);
+        $circuit = Circuit::getCircuit($circuit_trip[1]);
+
+        View::renderTemplate('Admin/payment_plans.html.twig',
+            [
+                'payment_plans' => $payment_plans,
+                'circuit_trip' => $circuit_trip,
+                'circuit' => $circuit,
+            ]);
+    }
+
+    public function paymentPlanAjoutAction(){
+        $ajout = CircuitTrip::createPaymentPlan($_POST['circuit_trip_id'], $_POST['name']);
+    }
+
+    public function paymentPlanSuppressionAction(){
+        $payments = CircuitTrip::getPayments($_POST['payment_plan_id']);
+        foreach ($payments as $payment){
+            $delete = CircuitTrip::deletePayment($payment[0]);
+        }
+        CircuitTrip::deletePaymentPlan($_POST['payment_plan_id']);
+
+    }
+
+
+    /* PAYMENTS */
+
+    public function paymentsAction() {
+        $payment_plan = CircuitTrip::getPaymentPlan($_POST['payment_plan_id']);
         $payments = CircuitTrip::getPayments($payment_plan[0]);
         $circuit_trip = CircuitTrip::getCircuitTrip($_POST['circuit_trip_id']);
         $circuit = Circuit::getCircuit($circuit_trip[1]);
 
-        View::renderTemplate('Admin/payment_plan.html.twig',
+        View::renderTemplate('Admin/payments.html.twig',
             [
                 'payment_plan' => $payment_plan,
                 'payments' => $payments,
                 'circuit_trip' => $circuit_trip,
                 'circuit' => $circuit,
             ]);
+    }
+
+    public function paymentAjoutAction(){
+        $date_due = date('Y-m-d', strtotime($_POST['date_due']));
+        $ajout = CircuitTrip::createPayment(
+            $_POST['payment_plan_id'],
+            $_POST['amount_due'],
+            $date_due
+        );
+    }
+
+    public function paymentSuppressionAction(){
+        $delete = CircuitTrip::deletePayment($_POST['payment_id']);
     }
 
     /* DEPRECATED */

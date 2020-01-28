@@ -50,7 +50,12 @@ $router->add('admin/circuit_trip_create', ['controller' => 'Admin', 'action' => 
 $router->add('admin/circuit_trip_update_modal', ['controller' => 'Admin', 'action' => 'getCircuitTripUpdateModal'], 'POST');
 $router->add('admin/circuit_trip', ['controller' => 'Admin', 'action' => 'getCircuitTripUpdate'], 'POST');
 
-$router->add('admin/payment_plan_index', ['controller' => 'Admin', 'action' => 'paymentPlanIndex'], 'POST');
+$router->add('admin/payments', ['controller' => 'Admin', 'action' => 'payments'], "POST");
+$router->add('admin/payment_plans', ['controller' => 'Admin', 'action' => 'paymentPlans'], 'POST');
+$router->add('admin/payment_ajout', ['controller' => 'Admin', 'action' => 'paymentAjout'], 'POST');
+$router->add('admin/payment_plan_ajout', ['controller' => 'Admin', 'action' => 'paymentPlanAjout'], 'POST');
+$router->add('admin/payment_suppression', ['controller' => 'Admin', 'action' => 'paymentSuppression'], 'POST');
+$router->add('admin/payment_plan_suppression', ['controller' => 'Admin', 'action' => 'paymentPlanSuppression'], 'POST');
 
 $router->add('admin/circuit_update', ['controller' => 'Admin', 'action' => 'circuitUpdateIndex'], 'POST');
 $router->add('admin/circuit_update_simple', ['controller' => 'Admin', 'action' => 'circuitsUpdateSimple'], 'POST');

@@ -31,7 +31,7 @@
               {% endif %}
             </li>
             <li>
-              <button type="button" class="btn-primary" onclick="getPaymentPlan({{ circuit_trip.id }})"><i class="fas fa-dollar-sign"></i></button>
+              <button type="button" class="btn-primary" onclick="getPaymentPlans({{ circuit_trip.id }})"><i class="fas fa-dollar-sign"></i></button>
               <button type="button" class="btn-primary" onclick="getCircuitTrip_update({{ circuit.id|e }},{{ circuit_trip.id }})"><i class="fas fa-edit"></i></button>
               <button type="button" class="btn-primary" onclick="supprimerCircuitTrip({{ circuit_trip.id }})"><i class="fas fa-trash"></i></button>
             </li>
