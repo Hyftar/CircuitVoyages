@@ -1,163 +1,79 @@
-{% extends 'base.html.twig' %}
-{% block head %}
-  <link rel="stylesheet" href="/css/circuit.css"/>
-{% endblock %}
-{% block body %}
-  <div class="banner" style="background-image: url(/images/vineyard.jpg)">
+  <div class="home-content__banner circuit-banner">
     <div class="banner__text">
-      Italian circuit
-    </div>
-  </div>
-  <h2 class="content-header">Description</h2>
-  <div class="description-container">
-    <div class="card text-center description-body">
-      <div class="card-body">
-        <h5 class="card-title">Italian circuit</h5>
-        <p class="card-text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-          qui officia deserunt mollit anim id est laborum.
-        </p>
-        <a href="#" class="btn btn-primary">Reserve</a>
-      </div>
-      <div class="card-footer text-muted">
-        Next departure in 2 months
-      </div>
+      {{ circuit.name|e }}
     </div>
   </div>
 
-  <h2 class="content-header">Gallery</h2>
-  <div class="circuit-gallery circuit-gallery--style-1">
-    <img src="/images/rome.jpg" alt="circuit-gallery-image"/>
-    <img src="/images/venice.jpg" alt="circuit-gallery-image"/>
-    <img src="/images/milan.jpg" alt="circuit-gallery-image"/>
-    <img src="/images/naples.jpg" alt="circuit-gallery-image"/>
+  <div class="circuit-info__content">
+    <h2 class="content-header">Description</h2>
+    <div class="description-container">
+      <div class="card text-center description-body">
+        <div class="card-body">
+          <h5 class="card-title">{{ circuit.name|e }}</h5>
+          <p class="card-text">
+            {{ circuit.description|e }}
+          </p>
+          <a href="#" class="btn btn-primary">Réserver</a>
+        </div>
+        <div class="card-footer text-muted">
+          {% if circuit.next_departure is not null %}
+          Prochain départ {{ circuit.next_departure.departure_date|time_diff }}
+          {% else %}
+          Prochain départ en planification!
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <h2 class="content-header">Itinerary</h2>
+    <div class="nodes">
+      {% for step in circuit.steps %}
+      <div class="node">
+        <div class="node__title">
+          {{ step.description|e }}
+        </div>
+        <div class="node__content">
+          {% for activity in step.activities %}
+          <div class="step__activity">
+            <h3>
+              <a href="{{ activity.link|e('html_attr') }}" class="activity__title">
+                {{ activity.name|e }}
+              </a>
+            </h3>
+            <div class="activity__type">
+              {{ activity.type|e }}
+            </div>
+            <div class="activity__description">
+              {{ activity.description|e }}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <h2 class="content-header">Guides</h2>
+    {% for guide in circuit.employees %}
+    <div class="circuit-guides">
+      <div class="circuit-guide">
+        <img class="circuit-guide__image" src="{{ guide.media_path|e('html_attr') }}" alt="guide-{{ loop.index }}"/>
+        <div class="circuit-guide__title">
+          {{ guide.first_name|e }} {{ guide.last_name|e }}
+        </div>
+        <div class="circuit-guide__supporting-text">
+          {{ guide.description|e }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
   </div>
 
-  <h2 class="content-header">Itinerary</h2>
-  <div class="nodes">
-    <div class="node">
-      <div class="node__title">
-        Venise
-      </div>
-      <div class="node__content">
-        <h2>Step 1</h2>
-        <h3>Day 1</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
-        </p>
-        <h3>Day 2</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
-        </p>
-      </div>
-    </div>
-
-    <div class="node">
-      <div class="node__title">
-        Milan
-      </div>
-      <div class="node__content">
-        <h2>Step 2</h2>
-        <h3>Day 3</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
-        </p>
-      </div>
-    </div>
-
-    <div class="node">
-      <div class="node__title">
-        Naples
-      </div>
-      <div class="node__content">
-        <h2>Step 3</h2>
-        <h3>Day 4</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
-        </p>
-        <h3>Day 5</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
-        </p>
-      </div>
-    </div>
-
-    <div class="node">
-      <div class="node__title">
-        Rome
-      </div>
-      <div class="node__content">
-        <h2>Step 4</h2>
-        <h3>Day 6</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
-        </p>
-        <h3>Day 7</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
-        </p>
-      </div>
-    </div>
-  </div>
-  <h2 class="content-header">Guides</h2>
-  <div class="circuit-guides">
-    <div class="circuit-guide">
-      <img class="circuit-guide__image" src="/images/guide.png" alt="guide-1"/>
-      <div class="circuit-guide__title">
-        Mélanie Francœur
-      </div>
-      <div class="circuit-guide__supporting-text">
-        Hi, my name is Mélanie and I am one of the guides of this circuit.
-        I have more than 10 years of experience as a touristic guide and
-        have been traveling for even longer.
-      </div>
-    </div>
-  </div>
-{% endblock %}
+<script>
+setBackground('{{ circuit.media_path|e('js') }}')
+$('.node').on('click', (e) => {
+  if (e.target == e.currentTarget.children[0]) {
+    e.currentTarget.children[1].classList.toggle('node__content--expand')
+  }
+})
+</script>

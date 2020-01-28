@@ -8,7 +8,8 @@
     "require": {
       "ext-pdo": "*",
       "twig/twig": "~2.0",
-      "vlucas/phpdotenv": "4.0"
+      "vlucas/phpdotenv": "4.0",
+        "twig/extensions": "^1.5"
     },
     "autoload": {
         "psr-4": {
