@@ -12,6 +12,7 @@
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
+          <li>Jour</li>
           <li>Nom</li>
           <li>Type</li>
           <li>Début</li>
@@ -19,27 +20,28 @@
           <li>Actions</li>
         </ul>
       </a>
-      {% set day = 1 %}
-      {% set hours = 0 %}
       {% for activity in activities %}
-        {% set hours = hours + activity.duration %}
-        {% if day*24 < hours %}
-          <a class="list-groupitem list-group-item-action">
-            <ul>
-              <li>
-                Jour {{ day }}
-              </li>
-            </ul>
-          </a>
+        {% set day = (activity.time_after_last_step / 60 / 24)|round(0, 'floor') %}
+        {% set start_time_hours = ((activity.time_after_last_step - day * 24 * 60) / 60)|round(0, 'floor') %}
+        {% set start_time_minutes = (activity.time_after_last_step - (day * 24 * 60) - (start_time_hours * 60)) %}
+        {% set end_time = activity.time_after_last_step - day * 24 * 60 + activity.duration %}
+        {% set end_time_hours = (end_time / 60)|round(0, 'floor') %}
+        {% set end_time_minutes = (end_time - end_time_hours * 60) %}
+        {% if start_time_minutes == 0 %}
+          {% set start_time_minutes = "00" %}
+        {% endif %}
+        {% if end_time_minutes == 0 %}
+          {% set end_time_minutes = "00" %}
         {% endif %}
         <a class="list-group-item list-group-item-action active"
            id="list-home-list" data-toggle="list" href="#list-home" role="tab"
            aria-controls="home">
           <ul class="circuit_ul">
+            <li>{{ day + 1 }}</li>
             <li>{{ activity.name }}</li>
             <li>{{ activity.activity_type }}</li>
-            <li>{{ activity.time_after_last_step }}</li>
-            <li>{{ activity.time_after_last_step + activity.duration }}</li>
+            <li>{{ start_time_hours }}h{{ start_time_minutes }}</li>
+            <li>{{ end_time_hours }}h{{ end_time_minutes }}</li>
             <li>
               <button type="button" class="btn-primary"
                       onclick="supprimerActivity({{ activity.id }}, {{ step.id }})">
@@ -68,9 +70,9 @@
 </div>
 
 <div class="choix_circuit">
-  <p style="margin-top: 50px" class="mr-auto">Gestion des hébergements - Étape {{ step.position }}</p>
+  <p style="margin-top: 50px" class="mr-auto">Gestion des choix d'hébergement - Étape {{ step.position }}</p>
   <div style="margin-top: 50px" class="bouton_creer" onClick="getHebergement_add({{ step.id }})">
-    <p >Ajouter un hébergement à l'étape</p>
+    <p >Ajouter un choix d'hébergement à l'étape</p>
     <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
@@ -81,33 +83,50 @@
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
-          <li>Nom</li>
-          <li>Type</li>
-          <li>Rating</li>
+          <li>Jour</li>
+          <li>Hébergements</li>
           <li>Actions</li>
         </ul>
       </a>
-      {% for accommodation in accommodations %}
+      {% set counter = 0 %}
+      {% for period in periods %}
         <a class="list-group-item list-group-item-action active"
            id="list-home-list" data-toggle="list" href="#list-home"
            role="tab" aria-controls="home">
           <ul class="circuit_ul">
-            <li>{{ accommodation.name }}</li>
-            <li>{{ accommodation.accommodation_type }}</li>
-            <li>{{ accommodation.rating }}</li>
+            {% set first_day = (period.time_after_step_start /60 /24)|round(0, 'floor')  + 1%}
+            <li>
+              {{ first_day }}
+              {% if periods[counter+1] %}
+                {% set next_day = (periods[counter+1].time_after_step_start /60 /24)|round(0, 'floor')  + 1 %}
+                {% if next_day > first_day + 1 %}
+                   - {{ next_day - 1 }}
+                {% endif %}
+              {% else %}
+                {% set next_day =  (activities[activities|length - 1].time_after_last_step /60 /24)|round(0, 'floor') + 1 %}
+                {% if next_day > first_day %}
+                  - {{ next_day }}
+                {% endif %}
+              {% endif %}
+            </li>
+              <ul>
+                {% for accommodation in accommodations[counter] %}
+                  <li>{{ accommodation.name }}</li>
+                {% endfor %}
+              </ul>
             <li>
               <button type="button" class="btn-primary"
-                      onclick="supprimerHebergement({{ accommodation.id }}, {{ step.id }})">
+                      onclick="supprimerHebergements({{ period.id }}, {{ step.id }})">
                 <i class="fas fa-trash"></i></button>
             </li>
           </ul>
         </a>
+        {% set counter = counter + 1 %}
       {% else %}
         <a class="list-group-item list-group-item-action active"
            id="list-home-list" data-toggle="list" href="#list-home"
            role="tab" aria-controls="home">
           <ul class="circuit_ul">
-            <li>N/A</li>
             <li>N/A</li>
             <li>N/A</li>
             <li>
@@ -129,7 +148,7 @@
 </button>
 
 
-<!-- Modal -->
+<!-- Modal pour les activités -->
 <div class="modal fade" id="activity_form_add" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
@@ -155,6 +174,12 @@
               {% endfor %}
             </select>
           </div>
+          <div class="input-group">
+            <label class="input-group-text" for="activity_day">
+              Jour
+            </label>
+            <input type="number" name="activity_day" id="activity_day">
+          </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text"
@@ -163,10 +188,8 @@
             <select class="custom-select" id="activity_start">
               <option selected>Choisir ...</option>
               {% for i in 0 .. 96 %}
-                <option>
-                  {{ (i/4)|round(0, 'floor') }}
-                  h{{ (i%4)*15 }}{% if i%4 == 0 %}0
-                  {% endif %}
+                <option value="{{ (i/4)|round(0, 'floor') }}{{ (i%4)*15 }}{% if i%4 == 0 %}0{% endif %}">
+                  {{ (i/4)|round(0, 'floor') }}h{{ (i%4)*15 }}{% if i%4 == 0 %}0{% endif %}
                 </option>
               {% endfor %}
             </select>
@@ -179,10 +202,8 @@
             <select class="custom-select" id="activity_duration">
               <option selected>Choisir ...</option>
               {% for i in 0 .. 96 %}
-                <option>
-                  {{ (i/4)|round(0, 'floor') }}
-                  h{{ (i%4)*15 }}{% if i%4 == 0 %}0
-                  {% endif %}
+                <option value="{{ (i/4)|round(0, 'floor') }}{{ (i%4)*15 }}{% if i%4 == 0 %}0{% endif %}">
+                  {{ (i/4)|round(0, 'floor') }}h{{ (i%4)*15 }}{% if i%4 == 0 %}0{% endif %}
                 </option>
               {% endfor %}
             </select>
@@ -212,7 +233,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalScrollableTitle">Ajouter
-          un
+          un choix
           hébergement</h5>
         <button type="button" class="close" data-dismiss="modal"
                 aria-label="Close">
@@ -221,15 +242,21 @@
       </div>
       <div class="modal-body">
         <form>
+          <label for="acc_filter">Ajoutez des filtres pour spécifier la recherche d'établissements</label><br>
+          <input type="text" id="acc_filter" value="" data-role="tagsinput"/><br>
+
           <div class="form-group">
-            <label for="activity_id">Hébergement(s) : </label>
-            <select class="form-control" id="accommodation_id" name="accommodation_id">
+            <label for="activity_id">Choix d'hébergement(s) : </label>
+            <select class="selectpicker" title="Aucun hébergement" name="accommodation_id"
+                    id="accommodation_id" multiple>
               {% for accommodation in accommodations_all %}
                 <option
                   value="{{ accommodation.id }}">{{ accommodation.name }}</option>
               {% endfor %}
             </select>
           </div>
+          <label for="period_start">Entrez le jour pour lequel ces établissements seront disponibles : </label><br>
+          <input type="number" id="period_start" name="period-start">
         </form>
       </div>
 
@@ -239,7 +266,7 @@
           Fermer
         </button>
         <button type="button" class="btn btn-primary"
-                onclick="addHebergement({{ step.id }})">Ajouter
+                onclick="addHebergements({{ step.id }})">Ajouter
         </button>
       </div>
     </div>

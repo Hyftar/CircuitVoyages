@@ -26,18 +26,17 @@ function sendAccommodation() {
   })
 }
 
-function supprimerHebergement(accommodation_id, period_id){
-  let test = confirm("Êtes-vous certain de retirer cette étape ? Ce changement est définitif.")
+function supprimerHebergements(period_id, step_id){
+  let test = confirm("Êtes-vous certain de vouloir retirer cette période ? Ce changement est définitif.")
   if(test == true){
     $.ajax({
-      url: 'admin_delete_accommodation_step',
+      url: 'admin_delete_period',
       type: 'POST',
       data: {
-        accommodation_id,
         period_id
       },
       success: (data) => {
-        getStepActivities(period_id);
+        getStepActivities(step_id);
       }
     })
   }
@@ -47,20 +46,23 @@ function getHebergement_add(){
   $('#hebergement_form_add').modal('show');
 }
 
-function addHebergement(period_id){
+function addHebergements(step_id){
   let select = document.getElementById('accommodation_id');
-  let accommodation_id = select.options[select.selectedIndex].value;
+  let accommodations = $('#accommodation_id').val();
+
+  let period_start = document.getElementById('period_start').value;
 
   $.ajax({
     url: 'admin_accommodation_step_add',
     type: 'POST',
     data : {
-      accommodation_id,
-      period_id
+      accommodations,
+      period_start,
+      step_id
     },
     success: (data) => {
       $('#hebergement_form_add').modal('hide');
-      getStepActivities(period_id);
+      getStepActivities(step_id);
     }
   })
 }

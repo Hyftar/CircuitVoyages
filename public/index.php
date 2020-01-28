@@ -33,7 +33,7 @@ $router->add('admin', ['controller' => 'Admin', 'action' => 'admin']);
 
 $router->add('admin/accommodation', ['controller' => 'Admin', 'action' => 'accommodationIndex']);
 $router->add('admin/accommodation', ['controller' => 'Admin', 'action' => 'accommodationCreate'], 'POST');
-$router->add('admin_delete_accommodation_step', ['controller' => 'Admin', 'action' => 'deleteAccStep'], 'POST');
+$router->add('admin_delete_period', ['controller' => 'Admin', 'action' => 'deletePeriod'], 'POST');
 $router->add('admin_accommodation_step_add', ['controller' => 'Admin', 'action' => 'addAccStep'], 'POST');
 
 $router->add('admin/activity', ['controller' => 'Admin', 'action' => 'activityIndex']);
@@ -49,6 +49,8 @@ $router->add('admin/circuit_trip_create_modal', ['controller' => 'Admin', 'actio
 $router->add('admin/circuit_trip_create', ['controller' => 'Admin', 'action' => 'getCircuitTripCreate'], 'POST');
 $router->add('admin/circuit_trip_update_modal', ['controller' => 'Admin', 'action' => 'getCircuitTripUpdateModal'], 'POST');
 $router->add('admin/circuit_trip', ['controller' => 'Admin', 'action' => 'getCircuitTripUpdate'], 'POST');
+
+$router->add('admin/payment_plan_index', ['controller' => 'Admin', 'action' => 'paymentPlanIndex'], 'POST');
 
 $router->add('admin/circuit_update', ['controller' => 'Admin', 'action' => 'circuitUpdateIndex'], 'POST');
 $router->add('admin/circuit_update_simple', ['controller' => 'Admin', 'action' => 'circuitsUpdateSimple'], 'POST');

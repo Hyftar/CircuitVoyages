@@ -26,7 +26,7 @@ class CircuitTrip extends Model
             WHERE id = :id;');
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch();
     }
 
     public static function createCircuitTrip($circuit_id,
@@ -98,5 +98,25 @@ class CircuitTrip extends Model
         }
         $db->commit();
         return $row;
+    }
+
+    public static function getPaymentPlan($circuit_trip_id){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT *
+            FROM payments_plans
+            WHERE circuit_trip_id = :circuit_trip_id;');
+        $stmt->bindValue(':circuit_trip_id', $circuit_trip_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function getPayments($payment_plan_id){
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT *
+            FROM payments
+            WHERE payment_plan_id = :payment_plan_id;');
+        $stmt->bindValue(':payment_plan_id', $payment_plan_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }

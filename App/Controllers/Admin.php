@@ -126,13 +126,19 @@ class Admin extends \Core\Controller
     }
 
     public function addAccStepAction(){
-        $period = Circuit::getPeriodsForStep($_POST['period_id']);
-        $ajout = Circuit::createAccommodations_periods($period[0], $_POST['accommodation_id']);
+        $step_id = $_POST['step_id'];
+        $period_start = ((int)$_POST['period_start'] - 1) * 24 * 60;
+        $accommodations = $_POST['accommodations'];
+        $createPeriod = Circuit::createPeriod($step_id, $period_start);
+        foreach ($accommodations as $accommodation) {
+            $createAccPeriod = Circuit::createAccommodations_periods($createPeriod, $accommodation);
+        }
     }
-    public function deleteAccStepAction(){
-        $period = Circuit::getPeriodsForStep($_POST['period_id']);
-        $delete = Circuit::deleteAccommodationPeriods($period[0]
-            , $_POST['accommodation_id']);
+
+    public function deletePeriodAction(){
+        $accommodations = Circuit::getAccommodationsForPeriod($_POST['period_id']);
+        $deleteAccPeriods = Circuit::deleteAccommodationsForPeriod($_POST['period_id']);
+        $delete = Circuit::deletePeriod($_POST['period_id']);
     }
 
     /* ACTIVITIES */
@@ -260,22 +266,35 @@ class Admin extends \Core\Controller
         $activities_all = Circuit::getAllActivities();
         $step = Circuit::getStep($id);
         $circuit = Circuit::getCircuit($step[1]);
-        $period = Circuit::getPeriodsForStep($id);
-        $accommodations = Circuit::getAccommodationsForPeriod($period[0]);
+        $periods = Circuit::getPeriodsForStep($id);
+        $accommodations = [];
+        foreach ($periods as $period){
+            array_push($accommodations, Circuit::getAccommodationsForPeriod($period[0]));
+        }
         $accommodations_all = Accommodation::getAll();
+
         View::renderTemplate('Admin/days_activities.html.twig',
             [
                 'activities' => $activities,
                 'activities_all' => $activities_all,
                 'step' => $step,
                 'circuit' => $circuit,
+                'accommodations_all' => $accommodations_all,
+                'periods' => $periods,
                 'accommodations' => $accommodations,
-                'accommodations_all' => $accommodations_all
             ]);
     }
+
     public function addActivityAction(){
-        $ajout = Circuit::createSteps_activities($_POST['activity_id'], $_POST['step_id'], 0 , 0);
+        $activity_start = (int)substr($_POST['start'], 0, 1) * 60 + (int)substr($_POST['start'], 1);
+        $activity_end = (int)substr($_POST['duration'], 0, 1) * 60 + (int)substr($_POST['duration'], 1);
+        $activity_duration = $activity_end - $activity_start;
+
+        $time_after_last_step = $activity_start + ((int)$_POST['day']-1)*24*60;
+
+        $ajout = Circuit::createSteps_activities($_POST['activity_id'], $_POST['step_id'], $time_after_last_step , $activity_duration);
     }
+
     public function deleteActivityStepAction(){
         $delete = Circuit::deleteActivityStep($_POST['step_id'], $_POST['activity_id']);
     }
@@ -462,6 +481,23 @@ class Admin extends \Core\Controller
         $delete = Circuit::deleteEtape($_POST['id']);
     }
 
+    /* PAYMENT PLANS */
+
+    public function paymentPlanIndexAction() {
+        $payment_plan = CircuitTrip::getPaymentPlan($_POST['circuit_trip_id']);
+        $payments = CircuitTrip::getPayments($payment_plan[0]);
+        $circuit_trip = CircuitTrip::getCircuitTrip($_POST['circuit_trip_id']);
+        $circuit = Circuit::getCircuit($circuit_trip[1]);
+
+        View::renderTemplate('Admin/payment_plan.html.twig',
+            [
+                'payment_plan' => $payment_plan,
+                'payments' => $payments,
+                'circuit_trip' => $circuit_trip,
+                'circuit' => $circuit,
+            ]);
+    }
+
     /* DEPRECATED */
 
     public function circuitsAddStepLinkAction(){
@@ -485,5 +521,7 @@ class Admin extends \Core\Controller
     public function circuitsOrganizeAction(){
         View::renderTemplate('Admin/organisation_circuit.html.twig');
     }
+
+
 
 }

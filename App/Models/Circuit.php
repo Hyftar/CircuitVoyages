@@ -294,7 +294,8 @@ class Circuit extends Model
             *
             FROM steps_activities
             INNER JOIN activities ON steps_activities.activity_id = activities.id
-            WHERE steps_activities.step_id = :step_id;');
+            WHERE steps_activities.step_id = :step_id
+            ORDER BY steps_activities.time_after_last_step;');
         $stmt->bindValue(':step_id', $step_id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -306,7 +307,8 @@ class Circuit extends Model
         $stmt = $db->prepare('SELECT
             *
             FROM periods
-            WHERE periods.step_id =:step_id;');
+            WHERE periods.step_id =:step_id
+            ORDER BY periods.time_after_step_start;');
         $stmt->bindValue(':step_id', $step_id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -972,7 +974,8 @@ class Circuit extends Model
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    public static function deleteActivityStep($step_id, $activity_id){
+    public static function deleteActivityStep($step_id, $activity_id)
+    {
         $db = static::getDB();
         $db->beginTransaction();
         $stmt = $db->prepare('DELETE FROM steps_activities
@@ -1003,17 +1006,19 @@ class Circuit extends Model
             )'
         );
         $stmt->bindValue(':step_id', $step_id, PDO::PARAM_STR);
-        $stmt->bindValue(':time_after_step_start', $time_after_step_start);
+        $stmt->bindValue(':time_after_step_start', $time_after_step_start, PDO::PARAM_INT);
         if (!$stmt->execute()) {
             $db->rollBack();
             return;
         }
+        $id = $db->lastInsertId();
         $db->commit();
+        return $id;
     }
     public static function deletePeriod($id){
         $db = static::getDB();
         $db->beginTransaction();
-        $stmt = $db->prepare('DELETE FROM periods WHERE step_id = :id;');
+        $stmt = $db->prepare('DELETE FROM periods WHERE id = :id;');
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $row = $stmt->execute();
         if (!$row) {
@@ -1046,13 +1051,12 @@ class Circuit extends Model
         }
         $db->commit();
     }
-    public static function deleteAccommodationPeriods($period_id, $accommodation_id){
+    public static function deleteAccommodationsForPeriod($period_id){
         $db = static::getDB();
         $db->beginTransaction();
         $stmt = $db->prepare('DELETE FROM accommodations_periods
-        WHERE period_id = :period_id AND accommodation_id = :accommodation_id;');
+        WHERE period_id = :period_id;');
         $stmt->bindValue(':period_id', $period_id, PDO::PARAM_INT);
-        $stmt->bindValue(':accommodation_id', $accommodation_id, PDO::PARAM_INT);
         $row = $stmt->execute();
         if (!$row) {
             $db->rollBack();
@@ -1072,5 +1076,7 @@ class Circuit extends Model
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+
 
 }

@@ -748,6 +748,24 @@ label[for="rating"] {
   float: right;
 }
 
+/* Choix d'hébergements */
+
+#hebergement_form_add .modal-content {
+  height: 400px;
+}
+
+.bootstrap-tagsinput input {
+  color: black !important;
+}
+
+.bootstrap-tagsinput .tag {
+  margin-right: 2px;
+  color: white;
+  background-color: lightslategray;
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
 /***** CSS Magic to Highlight Stars on Hover *****/
 
 .rating > input:checked ~ label, /* show gold star when clicked */
