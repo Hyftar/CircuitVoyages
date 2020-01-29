@@ -758,3 +758,41 @@ label[for="rating"] {
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+
+/** Toasts **/
+
+#toast-container {
+  position: fixed;
+  min-height: 200px;
+  z-index: 400;
+  bottom: 0;
+  left: 1rem;
+}
+
+.toast {
+  position: absolute;
+}
+
+.toast-header__logo {
+  height: 2rem;
+}
+
+.toast-header__title {
+  min-width: 8rem;
+}
+
+.toast-header__supporting-text {
+  min-width: 4rem;
+}
+
+
+.table-remove-border-top{
+  border-top: none !important;
+}
+
+
+.table-remove-border-bottom{
+  border-bottom: none !important;
+}
+

@@ -5,6 +5,9 @@ function membersOptions() {
     success: (data) => {
       document.getElementsByClassName('home-content')[0].innerHTML = data
       getInformations()
+      document.getElementsByTagName('body')[0].classList.add('body-user_account')
+      let scrollTo = $("#account-header").offset().top
+      $(window).scrollTop(scrollTo)
     }
   })
 }
@@ -252,6 +255,23 @@ function unsuscribe(id){
     contentType: false,
     success: (data) => {
       getCommunications()
+    }
+  })
+  return false
+}
+
+function envoyerEmail(){
+  $.ajax({
+    url: '/admin/sendNewsletterEmail',
+    type: 'POST',
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: (data) => {
+      showToast('Email', null,'Email envoyé.')
+    },
+    error: (xhr, status, error) =>{
+      //alert(xhr.responseText)
     }
   })
   return false

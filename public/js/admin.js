@@ -34,7 +34,18 @@ $(() => {
   $('#link-accommodation').on('click', indexAccomodations)
   $('#link-media').on('click', indexMedia)
   $('#link-activity').on('click', indexActivity)
+  $('#link-newsletters').on('click', indexNewsletters)
 })
+
+function indexNewsletters(){
+  $.ajax({
+    url: '/admin/getNewsletters',
+    type: 'GET',
+    success: (data) => {
+      document.getElementById('contenu').innerHTML = data
+    }
+  })
+}
 
 function indexPromotions() {
   $.ajax({

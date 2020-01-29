@@ -16,7 +16,7 @@
 {% for newsletter in newsletters %}
   {% if newsletter.suscribed is defined and newsletter.suscribed is not null %}
     <form class="form-inline" id="formNewsletter{{ newsletter.id }}" onsubmit="return unsuscribe({{ newsletter.id }})">
-      <p class="form-control mb-2 mr-sm-2">{{ newsletter.name }}</p>
+      <p class="form-control mb-2 mr-sm-2">{{ newsletter.name|e }}</p>
       <button type="submit" class="btn btn-primary mb-2">Se désinscrire</button>
     </form>
   {% else %}

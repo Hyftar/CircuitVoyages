@@ -20,7 +20,7 @@ function modifierPromotion(id) {
     data: {
       id: id
     },
-    dataType: 'html',
+    dataType: 'text',
     success: (data) => {
       document.getElementById("modalCreationPromo").innerHTML = data
       $("#modalModifPromotion").modal()

@@ -300,6 +300,7 @@ class Member extends \Core\Model
             $stmt->bindValue(':id',$_SESSION['member'][0], PDO::PARAM_STR);
             if (!$stmt->execute()) {
                 $db->rollBack();
+                return;
             }
             $db->commit();
             return;

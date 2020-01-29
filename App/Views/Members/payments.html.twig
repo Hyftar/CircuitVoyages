@@ -29,7 +29,7 @@
   {% for payments in payments %}
     <tr>
       <td scope="row">
-        {{ payment.name }}
+        {{ payment.name|e }}
       </td>
       <td scope="row">
         {{ payment.amount_due }}

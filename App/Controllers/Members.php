@@ -417,13 +417,14 @@ class Members extends \Core\Controller
             $trips = Member::getTrips();
         }
 
+        $history = true;
         View::renderTemplate(
             'Members/trips.html.twig',
             [
                 'member' => $member,
                 'rooms' => $rooms,
                 'trips' => $trips,
-                'allHistory' => true
+                'allHistory' => $history
             ]
         );
     }
@@ -434,16 +435,16 @@ class Members extends \Core\Controller
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
             $rooms = SupportChat::getAllRoomsFromMember($member['id']);
-            $trips = Member::getTrips();
+            $trips = Member::getUpcomingTrips();
         }
-
+        $history = false;
         View::renderTemplate(
             'Members/trips.html.twig',
             [
                 'member' => $member,
                 'rooms' => $rooms,
                 'trips' => $trips,
-                'allHistory' => false
+                'allHistory' => $history
             ]
         );
     }

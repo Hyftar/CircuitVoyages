@@ -126,6 +126,17 @@ $router->add('admin/chat/messages/{roomid:/\d+/}/check', ['controller' => 'Suppo
 $router->add('admin/chat/messages/{roomid:/\d+/}/all', ['controller' => 'SupportChatAdmin', 'action' => 'getAllMessages'], 'GET');
 $router->add('admin/chat/rooms', ['controller' => 'SupportChatAdmin', 'action' => 'getAllRooms'], 'GET');
 
+// Newsletters
+$router->add('admin/getNewsletters', ['controller' => 'Newsletters', 'action' => 'getNewsletters'], 'GET');
+$router->add('admin/getMessages', ['controller' => 'Newsletters', 'action' => 'getMessages'], 'POST');
+$router->add('admin/getNewsletterCreator', ['controller' => 'Newsletters', 'action' => 'getNewsletterCreator'], 'GET');
+$router->add('admin/createNewsletter', ['controller' => 'Newsletters', 'action' => 'createNewsletter'], 'POST');
+$router->add('admin/getMessageCreator', ['controller' => 'Newsletters', 'action' => 'getMessageCreator'], 'POST');
+$router->add('admin/deleteNewsletter', ['controller' => 'Newsletters', 'action' => 'deleteNewsletter'], 'POST');
+$router->add('admin/sendMessage', ['controller' => 'Newsletters', 'action' => 'sendMessage'], 'POST');
+$router->add('admin/getNewsletterUpdater', ['controller' => 'Newsletters', 'action' => 'getNewsletterUpdater'], 'POST');
+$router->add('admin/sendUpdate', ['controller' => 'Newsletters', 'action' => 'saveNewsletterUpdate'], 'POST');
+
 
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

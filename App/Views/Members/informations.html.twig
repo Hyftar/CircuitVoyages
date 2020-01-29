@@ -2,13 +2,13 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputFirstName">Prénom</label>
-      <input type="text" required class="form-control" id="inputFirstName" name="inputFirstName" value="{{ infos.first_name }}">
+      <input type="text" required class="form-control" id="inputFirstName" name="inputFirstName" value="{{ infos.first_name|e}}">
       <div class="invalid-feedback" id="feedbackFirstName">
       </div>
     </div>
     <div class="form-group col-md-6">
       <label for="inputLastName">Nom</label>
-      <input type="text" required class="form-control" id="inputLastName" name="inputLastName" value="{{ infos.last_name }}">
+      <input type="text" required class="form-control" id="inputLastName" name="inputLastName" value="{{ infos.last_name|e}}">
       <div class="invalid-feedback" id="feedbackLastName">
       </div>
     </div>
@@ -33,9 +33,9 @@
       <select id="inputLanguage" required name="inputLanguage" class="form-control">
         {% for language in languages %}
           {% if language.id == infos.language_id %}
-            <option value="{{ language.id }}" selected>{{language.name}}</option>
+            <option value="{{ language.id }}" selected>{{language.name|e}}</option>
           {% else %}
-            <option value="{{ language.id }}">{{language.name}}</option>
+            <option value="{{ language.id }}">{{language.name|e}}</option>
           {% endif %}
         {% endfor %}
       </select>

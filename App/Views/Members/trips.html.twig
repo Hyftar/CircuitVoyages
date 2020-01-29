@@ -24,7 +24,7 @@
     {% for trip in trips %}
       <tr>
         <td scope="row">
-          {{ trip.name }}
+          {{ trip.name|e }}
         </td>
         <td scope="row">
           {{ trip.departure_date|date('Y-m-d') }}
