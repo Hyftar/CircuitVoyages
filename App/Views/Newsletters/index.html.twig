@@ -1,0 +1,50 @@
+<div>
+  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="createNewsletter()">Ajouter un bulletin d'informations</button>
+</div>
+<div>
+  <table class="table">
+    <caption>Bulletins d'information</caption>
+    <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Date du message</th>
+      <th scope="col">Sujet du dernier message</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for newsletter in newsletters %}
+      <tr>
+        <td>
+          {{ newsletter.name }}
+        </td>
+        <td>
+          {% if newsletter.newsletter_message_date is not null and newsletter.newsletter_message_date is defined %}
+            {{ newsletter.newsletter_message_date|date('Y-m-d') }}
+          {% else %}
+            Aucun résultat
+          {% endif %}
+        </td>
+        <td>
+          {{ newsletter.subject|e }}
+        </td>
+        <td>
+          <button type="button" class="btn btn-info" onclick="listMessages({{ newsletter.id }})">
+            <i class="fas fa-list"></i>
+          </button>
+          <button type="button" class="btn btn-primary" onclick="createMessage({{ newsletter.id }})">
+            <i class="fas fa-envelope-open"></i>
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="updateNewsletter({{ newsletter.id }})">
+            <i class="fas fa-pen"></i>
+          </button>
+          <button type="button" class="btn btn-danger" onclick="deleteNewsletter({{ newsletter.id }},'{{ newsletter.name|e('js') }}')">
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div id="modalNewsletter"></div>

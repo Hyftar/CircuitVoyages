@@ -1,0 +1,48 @@
+<div>
+  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="createMessage({{ newsletter.id }})">Ajouter un message à ce bulletin</button>
+</div>
+<div>
+  <table class="table">
+    <caption>Bulletins d'information - {{ newsletter.name|e }}</caption>
+    <thead>
+      <tr>
+        <th scope="col" class="table-remove-border-bottom">Sujet</th>
+        <th scope="col" class="table-remove-border-bottom">Date du message</th>
+      </tr>
+      <tr>
+        <th colspan="2" class="table-remove-border-top">
+          Contenu du message.
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for message in messages %}
+      <tr>
+        <td>
+          {{ message.subject|e }}
+        </td>
+        <td>
+          {{ message.newsletter_message_date | date('Y-m-d') }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="table-remove-border-top">
+          {{ message.content|e }}
+        </td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="2">
+          Aucun message pour ce bulletin.
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div id="modalMessage"></div>
+<div>
+  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="indexNewsletters()">Retourner à la liste des bulletins</button>
+</div>
+<div id="modalNewsletter"></div>
+
