@@ -29,7 +29,7 @@
       type: 'DELETE',
       success: () => {
         // TODO: i18n
-        showToast('Déconnecté', '', 'Aurevoir! Vous vous êtes déconnecté avec succès.')
+        showToast('Déconnecté', '', 'Au revoir! Vous vous êtes déconnecté avec succès.')
 
         supportButton.classList.add('hidden')
         accountLink.classList.add('hidden')

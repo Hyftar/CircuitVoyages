@@ -22,6 +22,9 @@ class Admin extends \Core\Controller
         }
     }
 
+
+    /* ACCOMMODATIONS */
+
     public function accommodationIndexAction()
     {
         $types = Accommodation::getAccommodationTypes();
@@ -121,6 +124,24 @@ class Admin extends \Core\Controller
             $link
         );
     }
+
+    public function addAccStepAction(){
+        $step_id = $_POST['step_id'];
+        $period_start = ((int)$_POST['period_start'] - 1) * 24 * 60;
+        $accommodations = $_POST['accommodations'];
+        $createPeriod = Circuit::createPeriod($step_id, $period_start);
+        foreach ($accommodations as $accommodation) {
+            $createAccPeriod = Circuit::createAccommodations_periods($createPeriod, $accommodation);
+        }
+    }
+
+    public function deletePeriodAction(){
+        $accommodations = Circuit::getAccommodationsForPeriod($_POST['period_id']);
+        $deleteAccPeriods = Circuit::deleteAccommodationsForPeriod($_POST['period_id']);
+        $delete = Circuit::deletePeriod($_POST['period_id']);
+    }
+
+    /* ACTIVITIES */
 
     public function activityIndexAction()
     {
@@ -222,46 +243,7 @@ class Admin extends \Core\Controller
         );
     }
 
-    public function circuitsIndexAction()
-    {
-        $circuits = Circuit::getAllCircuit();
-        View::renderTemplate('Admin/gestion_circuits.html.twig',
-            [
-                'circuits' => $circuits
-            ]
-        );
-    }
-
-    public function adminAction() {
-        View::renderTemplate(
-            'admin_base.html.twig',
-            [
-                'employee' => $_SESSION['employee']
-            ]
-        );
-    }
-
-    public function circuitsAddStepLinkAction(){
-        $nbEtapes = $_POST['nbEtapes'];
-        $nbEtapes += 1;
-        View::renderTemplate('Admin/step_link.html.twig',
-            [
-                'nbEtapes' => $nbEtapes
-            ]);
-    }
-
-    public function circuitsAddStepTabAction(){
-        $nbEtapes = $_POST['nbEtapes'];
-        $nbEtapes += 1;
-        View::renderTemplate('Admin/step_tab.html.twig',
-            [
-                'nbEtapes' => $nbEtapes
-            ]);
-    }
-
-    public function circuitsOrganizeAction(){
-        View::renderTemplate('Admin/organisation_circuit.html.twig');
-    }
+    /* ACTIVITIES */
 
     public function circuitsActivityCreateAction() {
         $name = $_POST['name'];
@@ -276,6 +258,68 @@ class Admin extends \Core\Controller
         View::renderJSON([
             'id' => $activity_id
         ]);
+    }
+
+    public function listActivitiesAction() {
+        $id = $_POST['step_id'];
+        $activities = Circuit::getActivitiesForStep($id);
+        $activities_all = Circuit::getAllActivities();
+        $step = Circuit::getStep($id);
+        $circuit = Circuit::getCircuit($step[1]);
+        $periods = Circuit::getPeriodsForStep($id);
+        $accommodations = [];
+        foreach ($periods as $period){
+            array_push($accommodations, Circuit::getAccommodationsForPeriod($period[0]));
+        }
+        $accommodations_all = Accommodation::getAll();
+
+        View::renderTemplate('Admin/days_activities.html.twig',
+            [
+                'activities' => $activities,
+                'activities_all' => $activities_all,
+                'step' => $step,
+                'circuit' => $circuit,
+                'accommodations_all' => $accommodations_all,
+                'periods' => $periods,
+                'accommodations' => $accommodations,
+            ]);
+    }
+
+    public function addActivityAction(){
+        $activity_start = (int)substr($_POST['start'], 0, 1) * 60 + (int)substr($_POST['start'], 1);
+        $activity_end = (int)substr($_POST['duration'], 0, 1) * 60 + (int)substr($_POST['duration'], 1);
+        $activity_duration = $activity_end - $activity_start;
+
+        $time_after_last_step = $activity_start + ((int)$_POST['day']-1)*24*60;
+
+        $ajout = Circuit::createSteps_activities($_POST['activity_id'], $_POST['step_id'], $time_after_last_step , $activity_duration);
+    }
+
+    public function deleteActivityStepAction(){
+        $delete = Circuit::deleteActivityStep($_POST['step_id'], $_POST['activity_id']);
+    }
+
+    /* ADMIN */
+
+    public function adminAction() {
+        View::renderTemplate(
+            'admin_base.html.twig',
+            [
+                'employee' => $_SESSION['employee']
+            ]
+        );
+    }
+
+    /* CIRCUITS */
+
+    public function circuitsIndexAction()
+    {
+        $circuits = Circuit::getAllCircuit();
+        View::renderTemplate('Admin/gestion_circuits.html.twig',
+            [
+                'circuits' => $circuits
+            ]
+        );
     }
 
     // Ajouts de Keven
@@ -392,5 +436,134 @@ class Admin extends \Core\Controller
     public function deleteCircuitTripAction(){
         $delete = CircuitTrip::deleteCircuitTrip($_POST['id']);
     }
+
+    /* ETAPES */
+
+    public function etapesIndexAction()
+    {
+        $circuit_id = $_POST['circuit_id'];
+        $steps = Circuit::getStepsForCircuit($circuit_id);
+        View::renderTemplate('Admin/gestion_etapes.html.twig',
+            [
+                'steps' => $steps,
+                'circuit_id' => $circuit_id
+            ]);
+    }
+    public function etapesCreateIndexAction()
+    {
+        View::renderTemplate('Admin/creation_etape_simple.html.twig',
+            [
+                'circuit_id' => $_POST['circuit_id']
+            ]);
+    }
+
+    public function etapesCreateAction()
+    {
+        $ajout = Circuit::createStep($_POST['circuit_id'], $_POST['descriptionEtape'],
+            $_POST['positionEtape'], 0);
+        $periodCreate = Circuit::createPeriod($ajout, 0);
+    }
+
+    public function etapeUpdateIndexAction()
+    {
+        $step = Circuit::getStep($_POST['id']);
+        View::renderTemplate('Admin/update_etape.html.twig',
+            [
+                'etape' => $step
+            ]);
+    }
+    public function etapeUpdateAction(){
+        $update = Circuit::updateStep($_POST['step_id'], $_POST['descriptionEtape'],
+            $_POST['positionEtape'], 0);
+    }
+    public function etapeDeleteAction(){
+        $periodDelete = Circuit::deletePeriod($_POST['id']);
+        $delete = Circuit::deleteEtape($_POST['id']);
+    }
+
+    /* PAYMENT PLANS */
+
+    public function paymentPlansAction(){
+        $payment_plans = CircuitTrip::getPaymentPlansAll($_POST['circuit_trip_id']);
+        $circuit_trip = CircuitTrip::getCircuitTrip($_POST['circuit_trip_id']);
+        $circuit = Circuit::getCircuit($circuit_trip[1]);
+
+        View::renderTemplate('Admin/payment_plans.html.twig',
+            [
+                'payment_plans' => $payment_plans,
+                'circuit_trip' => $circuit_trip,
+                'circuit' => $circuit,
+            ]);
+    }
+
+    public function paymentPlanAjoutAction(){
+        $ajout = CircuitTrip::createPaymentPlan($_POST['circuit_trip_id'], $_POST['name']);
+    }
+
+    public function paymentPlanSuppressionAction(){
+        $payments = CircuitTrip::getPayments($_POST['payment_plan_id']);
+        foreach ($payments as $payment){
+            $delete = CircuitTrip::deletePayment($payment[0]);
+        }
+        CircuitTrip::deletePaymentPlan($_POST['payment_plan_id']);
+
+    }
+
+
+    /* PAYMENTS */
+
+    public function paymentsAction() {
+        $payment_plan = CircuitTrip::getPaymentPlan($_POST['payment_plan_id']);
+        $payments = CircuitTrip::getPayments($payment_plan[0]);
+        $circuit_trip = CircuitTrip::getCircuitTrip($_POST['circuit_trip_id']);
+        $circuit = Circuit::getCircuit($circuit_trip[1]);
+
+        View::renderTemplate('Admin/payments.html.twig',
+            [
+                'payment_plan' => $payment_plan,
+                'payments' => $payments,
+                'circuit_trip' => $circuit_trip,
+                'circuit' => $circuit,
+            ]);
+    }
+
+    public function paymentAjoutAction(){
+        $date_due = date('Y-m-d', strtotime($_POST['date_due']));
+        $ajout = CircuitTrip::createPayment(
+            $_POST['payment_plan_id'],
+            $_POST['amount_due'],
+            $date_due
+        );
+    }
+
+    public function paymentSuppressionAction(){
+        $delete = CircuitTrip::deletePayment($_POST['payment_id']);
+    }
+
+    /* DEPRECATED */
+
+    public function circuitsAddStepLinkAction(){
+        $nbEtapes = $_POST['nbEtapes'];
+        $nbEtapes += 1;
+        View::renderTemplate('Admin/step_link.html.twig',
+            [
+                'nbEtapes' => $nbEtapes
+            ]);
+    }
+
+    public function circuitsAddStepTabAction(){
+        $nbEtapes = $_POST['nbEtapes'];
+        $nbEtapes += 1;
+        View::renderTemplate('Admin/step_tab.html.twig',
+            [
+                'nbEtapes' => $nbEtapes
+            ]);
+    }
+
+    public function circuitsOrganizeAction(){
+        View::renderTemplate('Admin/organisation_circuit.html.twig');
+    }
+
+
 
 }
