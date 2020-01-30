@@ -228,42 +228,46 @@ class Member extends \Core\Model
         return $stmt->fetch();
     }
 
-    public static function getMemberInformations(){
+    public static function getMemberInformations($id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT * FROM members WHERE id = :id');
-        $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
     }
 
-    public static function getMemberNewsletters(){
+    public static function getMemberNewsletters($id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT newsletters.id, newsletters.name, members_newsletters.id AS suscribed
             FROM newsletters LEFT JOIN members_newsletters ON members_newsletters.newsletter_id = newsletters.id AND members_newsletters.member_id = :id');
-        $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public static function getMemberAddress(){
+    public static function getMemberAddress($id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('SELECT addresses.id, addresses.country, addresses.city,
             addresses.region, addresses.address_line_1, addresses.address_line_2, addresses.postal_code
             FROM addresses INNER JOIN members ON addresses.id = members.address_id WHERE members.id = :id');
-        $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
     }
 
-    public static function updateMemberAddress($country, $city, $region, $address_line_1,
-        $address_line_2, $postal_code){
+    public static function updateMemberAddress($id, $country, $city, $region, $address_line_1,
+                                               $address_line_2, $postal_code)
+    {
         $db = static::getDB();
 
         $stmt = $db->prepare('SELECT * FROM MEMBERS WHERE id = :id AND address_id IS NOT NULL');
-        $stmt->bindValue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
-        if ($stmt->rowCount() == 0){
+        if ($stmt->rowCount() == 0) {
             $db->beginTransaction();
             $stmt = $db->prepare(
                 'INSERT INTO addresses
@@ -297,7 +301,7 @@ class Member extends \Core\Model
                 SET address_id = :rep
                 WHERE id = :id');
             $stmt->bindValue(':rep', $rep, PDO::PARAM_INT);
-            $stmt->bindValue(':id',$_SESSION['member'][0], PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             if (!$stmt->execute()) {
                 $db->rollBack();
                 return;
@@ -323,12 +327,13 @@ class Member extends \Core\Model
         $stmt->bindValue(':address_line_1', $address_line_1, PDO::PARAM_STR);
         $stmt->bindValue(':address_line_2', $address_line_2, PDO::PARAM_STR);
         $stmt->bindValue(':postal_code', $postal_code, PDO::PARAM_STR);
-        $stmt->bindValue(':id',$_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
         $stmt->execute();
     }
 
-    public static function updateMemberPassword($password){
+    public static function updateMemberPassword($password, $id)
+    {
         $db = static::getDB();
 
         $stmt = $db->prepare('UPDATE passwords
@@ -343,13 +348,14 @@ class Member extends \Core\Model
 
         $stmt->bindValue(':password_salt', $salt, PDO::PARAM_STR);
         $stmt->bindValue(':password_hash', $hash, PDO::PARAM_STR);
-        $stmt->bindValue(':id',$_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_STR);
 
         $stmt->execute();
     }
 
     public static function updateMemberInformations($language_id, $first_name,
-        $last_name, $phone_number, $date_of_birth){
+                                                    $last_name, $phone_number, $date_of_birth, $id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('UPDATE members SET
             language_id = :language_id,
@@ -358,55 +364,59 @@ class Member extends \Core\Model
             phone_number = :phone_number,
             date_of_birth = :date_of_birth
             WHERE members.id = :id');
-        $stmt->bindValue(':language_id', $language_id,PDO::PARAM_INT);
-        $stmt->bindValue(':first_name', $first_name,PDO::PARAM_STR);
+        $stmt->bindValue(':language_id', $language_id, PDO::PARAM_INT);
+        $stmt->bindValue(':first_name', $first_name, PDO::PARAM_STR);
         $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
-        $stmt->bindValue(':phone_number', $phone_number,PDO::PARAM_STR);
-        $stmt->bindValue(':date_of_birth', $date_of_birth,PDO::PARAM_STR);
-        $stmt->bindValue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindValue(':phone_number', $phone_number, PDO::PARAM_STR);
+        $stmt->bindValue(':date_of_birth', $date_of_birth, PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }
 
-    public static function updateMemberEmail($email){
+    public static function updateMemberEmail($email, $id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare('UPDATE members SET email = :email
             WHERE id = :id');
         $stmt->bindvalue(':email', $email, PDO::PARAM_STR);
-        $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }
 
-    public static function addMemberNewsletter($newsletter_id){
+    public static function addMemberNewsletter($newsletter_id, $id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare(
             'SELECT * FROM members_newsletters WHERE member_id = :id AND newsletter_id = :newsletter_id'
         );
         $stmt->bindvalue(':newsletter_id', $newsletter_id, PDO::PARAM_INT);
-        $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        if ($stmt->rowCount() == 0){
+        if ($stmt->rowCount() == 0) {
             $stmt = $db->prepare(
                 'INSERT INTO members_newsletters (newsletter_id, member_id)
              VALUES (:newsletter_id, :id)'
             );
             $stmt->bindvalue(':newsletter_id', $newsletter_id, PDO::PARAM_INT);
-            $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+            $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_INT);
             $stmt->execute();
         }
     }
 
-    public static function deleteMemberNewsletter($newsletter_id){
+    public static function deleteMemberFromNewsletter($newsletter_id, $id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare(
             'DELETE FROM members_newsletters WHERE
             newsletter_id = :newsletter_id AND member_id = :id'
         );
         $stmt->bindvalue(':newsletter_id', $newsletter_id, PDO::PARAM_INT);
-        $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }
 
-    public static function getUpcomingTrips(){
+    public static function getUpcomingTrips($id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare(
             'SELECT trips.id,
@@ -418,12 +428,13 @@ class Member extends \Core\Model
             INNER JOIN circuits ON circuits.id = circuits_trips.circuit_id
             WHERE trips.member_id = :id AND trips.return_date >= NOW() - INTERVAL 1 DAY ORDER BY trips.departure_date'
         );
-        $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public static function getTrips(){
+    public static function getTrips($id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare(
             'SELECT trips.id,
@@ -435,12 +446,13 @@ class Member extends \Core\Model
             INNER JOIN circuits ON circuits.id = circuits_trips.circuit_id
             WHERE trips.member_id = :id ORDER BY trips.departure_date'
         );
-        $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public static function getPayments(){
+    public static function getPayments($id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare(
             'SELECT trips_payments.id,
@@ -457,12 +469,13 @@ class Member extends \Core\Model
                 LEFT JOIN transactions ON trips_payments.transaction_id = transactions.id
                 WHERE trips.member_id = :id ORDER BY trips_payments.date_due DESC'
         );
-        $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public static function getPaymentsUpcoming(){
+    public static function getPaymentsUpcoming($id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare(
             'SELECT trips_payments.id,
@@ -481,12 +494,13 @@ class Member extends \Core\Model
                 AND trips_payments.date_due >= NOW() - INTERVAL 30 DAY
                 ORDER BY trips_payments.date_due ASC'
         );
-        $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public static function getLanguages(){
+    public static function getLanguages()
+    {
         $db = static::getDB();
         $stmt = $db->prepare(
             'SELECT *
@@ -496,7 +510,8 @@ class Member extends \Core\Model
         return $stmt->fetchAll();
     }
 
-    public static function validatePassword($password){
+    public static function comparePassword($password, $id)
+    {
         $db = static::getDB();
         $stmt = $db->prepare(
             'SELECT
@@ -509,7 +524,7 @@ class Member extends \Core\Model
              LIMIT 1'
         );
 
-        $stmt->bindvalue(':id', $_SESSION['member'][0], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $id, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch();
 
@@ -521,5 +536,6 @@ class Member extends \Core\Model
 
         $hash = LoginHelpers::encryptPassword($password, $password_salt);
 
-        return $hash === $password_hash;}
+        return $hash === $password_hash;
+    }
 }

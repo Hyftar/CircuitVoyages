@@ -8,10 +8,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 
-class SendEmails
+class EmailHelpers
 {
 
-    public static function sendEmailMethod($recepientEmail, $recepientName, $subject, $content)
+    public static function sendEmail($recepientEmail, $recepientName, $subject, $content)
     {
         $errors = [];
         $mail = new PHPMailer();
@@ -40,7 +40,7 @@ class SendEmails
         }
     }
 
-    public static function sendEmailBBCMethod($recepientsEmailList, $subject, $content)
+    public static function sendEmailBBC($recepientsEmailList, $subject, $content)
     {
         $errors = [];
         $mail = new PHPMailer();

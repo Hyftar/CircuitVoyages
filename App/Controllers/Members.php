@@ -254,7 +254,6 @@ class Members extends \Core\Controller
 
     public function showAction(){
         $member = null;
-        $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
         }
@@ -263,17 +262,15 @@ class Members extends \Core\Controller
             'Members/account.html.twig',
             [
                 'member' => $member,
-                'rooms' => $rooms
             ]
         );
     }
 
     public function showInformationsAction(){
         $member = null;
-        $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $infos = Member::getMemberInformations();
+            $infos = Member::getMemberInformations($member[0]);
             $languages = Member::getLanguages();
         }
 
@@ -342,16 +339,16 @@ class Members extends \Core\Controller
             $first_name,
             $last_name,
             $phone,
-            $dob
+            $dob,
+            $_SESSION['member'][0]
         );
     }
 
     public function showCoordinatesAction(){
         $member = null;
-        $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $coordinates = Member::getMemberAddress();
+            $coordinates = Member::getMemberAddress($member[0]);
         }
 
         View::renderTemplate(
@@ -365,10 +362,9 @@ class Members extends \Core\Controller
 
     public function showSecurityAction(){
         $member = null;
-        $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $informations = Member::getMemberInformations();
+            $informations = Member::getMemberInformations($member[0]);
         }
 
         View::renderTemplate(
@@ -382,11 +378,10 @@ class Members extends \Core\Controller
 
     public function showCommunicationsAction(){
         $member = null;
-        $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $newsletters = Member::getMemberNewsletters();
-            $infos = Member::getMemberInformations();
+            $newsletters = Member::getMemberNewsletters($member[0]);
+            $infos = Member::getMemberInformations($member[0]);
         }
 
         View::renderTemplate(
@@ -401,10 +396,9 @@ class Members extends \Core\Controller
 
     public function showTripsAction(){
         $member = null;
-        $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $trips = Member::getTrips();
+            $trips = Member::getTrips($_SESSION['member'][0]);
         }
 
         $history = true;
@@ -420,10 +414,9 @@ class Members extends \Core\Controller
 
     public function showTripsUpcomingAction(){
         $member = null;
-        $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $trips = Member::getUpcomingTrips();
+            $trips = Member::getUpcomingTrips($_SESSION['member'][0]);
         }
         $history = false;
         View::renderTemplate(
@@ -437,10 +430,9 @@ class Members extends \Core\Controller
     }
     public function showPaymentsAction(){
         $member = null;
-        $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $payments = Member::getPayments();
+            $payments = Member::getPayments($_SESSION['member'][0]);
         }
 
         View::renderTemplate(
@@ -455,10 +447,9 @@ class Members extends \Core\Controller
 
     public function showPaymentsUpcomingAction(){
         $member = null;
-        $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $payments = Member::getPaymentsUpcoming();
+            $payments = Member::getPaymentsUpcoming($_SESSION['member'][0]);
         }
 
         View::renderTemplate(
@@ -474,7 +465,7 @@ class Members extends \Core\Controller
         $errors = [];
 
         if (!LoginHelpers::isValidEmail($_POST['inputEmail'])) {
-            $errors['email'][] = ['Format du email invalide'];
+            $errors['email'][] = 'Format du email invalide';
         }
 
         if (Member::exists($_POST['inputEmail'])) {
@@ -487,22 +478,22 @@ class Members extends \Core\Controller
             return;
         }
 
-        Member::updateMemberEmail($_POST['inputEmail']);
+        Member::updateMemberEmail($_POST['inputEmail'], $_SESSION['member'][0]);
 
     }
 
     public function suscribeAction(){
-        Member::addMemberNewsletter($_POST['id']);
+        Member::addMemberNewsletter($_POST['id'], $_SESSION['member'][0]);
     }
 
     public function unsuscribeAction(){
-        Member::deleteMemberNewsletter($_POST['id']);
+        Member::deleteMemberFromNewsletter($_POST['id'], $_SESSION['member'][0]);
     }
 
     public function sendSecurityAction(){
         $errors = [];
 
-        if (!Member::validatePassword($_POST['inputOldPassword']))
+        if (!Member::comparePassword($_POST['inputOldPassword'], $_SESSION['member'][0]))
             $errors['oldPassword'][] = 'L\'ancien mot de passe n\'est pas valide.';
 
         $password_errors =
@@ -521,7 +512,7 @@ class Members extends \Core\Controller
             return;
         }
 
-        Member::updateMemberPassword($_POST['inputNewPassword']);
+        Member::updateMemberPassword($_POST['inputNewPassword'], $_SESSION['member'][0]);
     }
 
     public function sendCoordinatesAction(){
@@ -583,6 +574,7 @@ class Members extends \Core\Controller
         }
 
         Member::updateMemberAddress(
+            $_SESSION['member'][0],
             $country,
             $city,
             $region,

@@ -12,7 +12,7 @@ use App\Models\Circuit;
 use App\Models\CircuitTrip;
 use App\Models\Media;
 use \Core\View;
-use App\Helpers\SendEmails;
+use App\Helpers\EmailHelpers;
 
 class Newsletters extends \Core\Controller
 {
@@ -93,7 +93,7 @@ class Newsletters extends \Core\Controller
         foreach($members as $member){
             $bcc[] = $member['email'];
         }
-        SendEmails::sendEmailBBCMethod($bcc,$_POST['inputSubject'],$_POST['inputContent']);
+        EmailHelpers::sendEmailBBCMethod($bcc,$_POST['inputSubject'],$_POST['inputContent']);
     }
 }
 
