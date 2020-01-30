@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 use App\Models\Newsletter;
 use Core\Model;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 use App\Helpers\ApplicationHelpers;
 use App\Models\Accommodation;
@@ -14,6 +12,7 @@ use App\Models\Circuit;
 use App\Models\CircuitTrip;
 use App\Models\Media;
 use \Core\View;
+use App\Helpers\SendEmails;
 
 class Newsletters extends \Core\Controller
 {
@@ -24,34 +23,6 @@ class Newsletters extends \Core\Controller
             http_response_code(401);
             header('Location: /admin/login');
             return false;
-        }
-    }
-
-    public function sendEmailMethod($recepientEmail, $recepientName, $subject, $content){
-        $errors = [];
-        $mail = new PHPMailer();
-        $mail->IsSMTP();
-        $mail->Mailer = "smtp";
-        $mail->SMTPDebug  = 1;
-        $mail->SMTPAuth   = TRUE;
-        $mail->SMTPSecure = "tls";
-        $mail->Port       = 587;
-        $mail->Host       = "smtp.gmail.com";
-        $mail->Username   = "lelabernoiscircuits@gmail.com";
-        $mail->Password   = "MBGLAProductions";
-
-        $mail->IsHTML(true);
-        $mail->AddAddress($recepientEmail, $recepientName);
-        $mail->SetFrom("lelabernoiscircuits@gmail.com", "Le Labernois");
-        $mail->Subject = $subject;
-        $content = $content;
-
-        $mail->MsgHTML($content);
-        if(!$mail->Send()) {
-            $errors['email'][] = 'Email non envoyé';
-            http_response_code(400); // Bad request (missing parameters)
-            View::renderJSON(['errors' => $errors]);
-            return;
         }
     }
 
@@ -118,9 +89,11 @@ class Newsletters extends \Core\Controller
     public function sendMessage(){
         Newsletter::sendNewsletterMessage($_POST['inputSubject'],$_POST['inputContent'],$_POST['newsletterId']);
         $members = Newsletter::getNewsletterMembers($_POST['newsletterId']);
+        $bcc = array();
         foreach($members as $member){
-            $this->sendEmailMethod($member['email'],$member['first_name']." ".$member['last_name'],$_POST['inputSubject'],$_POST['inputContent']);
+            $bcc[] = $member['email'];
         }
+        SendEmails::sendEmailBBCMethod($bcc,$_POST['inputSubject'],$_POST['inputContent']);
     }
 }
 

@@ -190,7 +190,7 @@ class Members extends \Core\Controller
         // Email
 
         if (!LoginHelpers::isValidEmail($_POST['email'])) {
-            $errors['email'][] = ['Format du email invalide'];
+            $errors['email'][] = 'Format du email invalide';
         }
 
         if (Member::exists($email)) {
@@ -257,7 +257,6 @@ class Members extends \Core\Controller
         $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $rooms = SupportChat::getAllRoomsFromMember($member['id']);
         }
 
         View::renderTemplate(
@@ -274,7 +273,6 @@ class Members extends \Core\Controller
         $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $rooms = SupportChat::getAllRoomsFromMember($member['id']);
             $infos = Member::getMemberInformations();
             $languages = Member::getLanguages();
         }
@@ -283,7 +281,6 @@ class Members extends \Core\Controller
             'Members/informations.html.twig',
             [
                 'member' => $member,
-                'rooms' => $rooms,
                 'infos' => $infos,
                 'languages' => $languages
             ]
@@ -354,7 +351,6 @@ class Members extends \Core\Controller
         $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $rooms = SupportChat::getAllRoomsFromMember($member['id']);
             $coordinates = Member::getMemberAddress();
         }
 
@@ -362,7 +358,6 @@ class Members extends \Core\Controller
             'Members/coordinates.html.twig',
             [
                 'member' => $member,
-                'rooms' => $rooms,
                 'address' => $coordinates
             ]
         );
@@ -373,7 +368,6 @@ class Members extends \Core\Controller
         $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $rooms = SupportChat::getAllRoomsFromMember($member['id']);
             $informations = Member::getMemberInformations();
         }
 
@@ -381,7 +375,6 @@ class Members extends \Core\Controller
             'Members/security.html.twig',
             [
                 'member' => $member,
-                'rooms' => $rooms,
                 'informations' => $informations,
             ]
         );
@@ -392,7 +385,6 @@ class Members extends \Core\Controller
         $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $rooms = SupportChat::getAllRoomsFromMember($member['id']);
             $newsletters = Member::getMemberNewsletters();
             $infos = Member::getMemberInformations();
         }
@@ -401,7 +393,6 @@ class Members extends \Core\Controller
             'Members/communications.html.twig',
             [
                 'member' => $member,
-                'rooms' => $rooms,
                 'newsletters' => $newsletters,
                 'informations' => $infos
             ]
@@ -413,7 +404,6 @@ class Members extends \Core\Controller
         $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $rooms = SupportChat::getAllRoomsFromMember($member['id']);
             $trips = Member::getTrips();
         }
 
@@ -422,7 +412,6 @@ class Members extends \Core\Controller
             'Members/trips.html.twig',
             [
                 'member' => $member,
-                'rooms' => $rooms,
                 'trips' => $trips,
                 'allHistory' => $history
             ]
@@ -434,7 +423,6 @@ class Members extends \Core\Controller
         $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $rooms = SupportChat::getAllRoomsFromMember($member['id']);
             $trips = Member::getUpcomingTrips();
         }
         $history = false;
@@ -442,7 +430,6 @@ class Members extends \Core\Controller
             'Members/trips.html.twig',
             [
                 'member' => $member,
-                'rooms' => $rooms,
                 'trips' => $trips,
                 'allHistory' => $history
             ]
@@ -453,7 +440,6 @@ class Members extends \Core\Controller
         $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $rooms = SupportChat::getAllRoomsFromMember($member['id']);
             $payments = Member::getPayments();
         }
 
@@ -461,7 +447,6 @@ class Members extends \Core\Controller
             'Members/payments.html.twig',
             [
                 'member' => $member,
-                'rooms' => $rooms,
                 'payments' => $payments,
                 'allHistory' => true
             ]
@@ -473,7 +458,6 @@ class Members extends \Core\Controller
         $rooms = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $rooms = SupportChat::getAllRoomsFromMember($member['id']);
             $payments = Member::getPaymentsUpcoming();
         }
 
@@ -481,7 +465,6 @@ class Members extends \Core\Controller
             'Members/payments.html.twig',
             [
                 'member' => $member,
-                'rooms' => $rooms,
                 'payments' => $payments,
                 'allHistory' => false
             ]

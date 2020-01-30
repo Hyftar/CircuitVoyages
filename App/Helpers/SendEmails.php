@@ -1,0 +1,73 @@
+<?php
+
+
+namespace App\Helpers;
+
+use App\Config;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
+class SendEmails
+{
+
+    public static function sendEmailMethod($recepientEmail, $recepientName, $subject, $content)
+    {
+        $errors = [];
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->Mailer = "smtp";
+        $mail->SMTPDebug = 1;
+        $mail->SMTPAuth = TRUE;
+        $mail->SMTPSecure = "tls";
+        $mail->Port = 587;
+        $mail->Host = "smtp.gmail.com";
+        $mail->Username = "lelabernoiscircuits@gmail.com";
+        $mail->Password = "MBGLAProductions";
+
+        $mail->IsHTML(true);
+        $mail->AddAddress($recepientEmail, $recepientName);
+        $mail->SetFrom("lelabernoiscircuits@gmail.com", "Le Labernois");
+        $mail->Subject = $subject;
+        $content = $content;
+
+        $mail->MsgHTML($content);
+        if (!$mail->Send()) {
+            $errors['email'][] = 'Email non envoyé';
+            http_response_code(400); // Bad request (missing parameters)
+            View::renderJSON(['errors' => $errors]);
+            return;
+        }
+    }
+
+    public static function sendEmailBBCMethod($recepientsEmailList, $subject, $content)
+    {
+        $errors = [];
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->Mailer = "smtp";
+        $mail->SMTPDebug = 1;
+        $mail->SMTPAuth = TRUE;
+        $mail->SMTPSecure = "tls";
+        $mail->Port = 587;
+        $mail->Host = "smtp.gmail.com";
+        $mail->Username = "lelabernoiscircuits@gmail.com";
+        $mail->Password = "MBGLAProductions";
+
+        $mail->IsHTML(true);
+        foreach($recepientsEmailList as $email){
+            $mail->AddBCC($email);
+        }
+        $mail->SetFrom("lelabernoiscircuits@gmail.com", "Le Labernois");
+        $mail->Subject = $subject;
+        $content = $content;
+
+        $mail->MsgHTML($content);
+        if (!$mail->Send()) {
+            $errors['email'][] = 'Email non envoyé';
+            http_response_code(400); // Bad request (missing parameters)
+            View::renderJSON(['errors' => $errors]);
+            return;
+        }
+    }
+}
