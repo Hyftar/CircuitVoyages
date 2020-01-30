@@ -1,0 +1,47 @@
+<form id="formCoordinates" class="mt-2 mb-1" onsubmit="return sendCoordinates();">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCountry">Pays</label>
+      <input type="text" required class="form-control" id="inputCountry" name="inputCountry" value="{{ address.country|e('html_attr')}}">
+      <div class="invalid-feedback" id="feedbackCountry">
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputCity">Ville</label>
+      <input type="text" required class="form-control" id="inputCity" name="inputCity" value="{{ address.city|e('html_attr')}}">
+      <div class="invalid-feedback" id="feedbackCity">
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputRegion">Region</label>
+      <input type="text" required class="form-control" id="inputRegion" name="inputRegion" value="{{ address.region|e('html_attr')}}">
+      <div class="invalid-feedback" id="feedbackRegion">
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPostalCode">Code Postal</label>
+      <input type="text" class="form-control" id="inputPostalCode" name="inputPostalCode" value="{{ address.postal_code|e('html_attr')}}">
+      <div class="invalid-feedback" id="feedbackPostalCode">
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputAddressLine1">Addresse</label>
+      <input type="text" required class="form-control" id="inputAddressLine1" name="inputAddressLine1" value="{{ address.address_line_1|e('html_attr')}}">
+      <div class="invalid-feedback" id="feedbackAddressLine1">
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <input type="text" class="form-control" id="inputAddressLine2" name="inputAddressLine2" value="{{ address.address_line_2|e('html_attr')}}">
+      <div class="invalid-feedback" id="feedbackAddressLine2">
+      </div>
+    </div>
+  </div>
+  <input type="submit" class="btn btn-primary" value="Sauvegarder">
+  <input type="button" class="btn btn-primary" onclick="getCoordinates()" value="Annuler">
+</form>

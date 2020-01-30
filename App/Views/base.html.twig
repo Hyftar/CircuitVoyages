@@ -60,7 +60,7 @@
         <a href="#circuits" class="nav-link">Circuits</a>
         <a href="#" class="nav-link">Promotions</a>
         <a id="nav-login-link" href="#" class="nav-link {{ member is not null ? 'hidden' : '' }} ">Connexion</a>
-        <a id="nav-account-link" href="#" class="nav-link {{ member is null ? 'hidden' : '' }}">Mon compte</a>
+        <a id="nav-account-link" href="#" onclick="membersOptions()" class="nav-link {{ member is null ? 'hidden' : '' }}">Mon compte</a>
         <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">Déconnexion</a>
       </nav>
     </header>
@@ -110,4 +110,5 @@
       fjs.parentNode.insertBefore(js, fjs)
     }(document, 'script', 'facebook-jssdk'))
   </script>
+  <script src="/js/members.js"></script>
 </html>
