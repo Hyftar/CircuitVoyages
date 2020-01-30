@@ -93,7 +93,7 @@ class Newsletters extends \Core\Controller
         foreach($members as $member){
             $bcc[] = $member['email'];
         }
-        EmailHelpers::sendEmailBBCMethod($bcc,$_POST['inputSubject'],$_POST['inputContent']);
+        EmailHelpers::sendEmailBBC($bcc,$_POST['inputSubject'],$_POST['inputContent']);
     }
 }
 
