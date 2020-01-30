@@ -25,3 +25,44 @@ function sendAccommodation() {
     }
   })
 }
+
+function supprimerHebergements(period_id, step_id){
+  let test = confirm("Êtes-vous certain de vouloir retirer cette période ? Ce changement est définitif.")
+  if(test == true){
+    $.ajax({
+      url: 'admin_delete_period',
+      type: 'POST',
+      data: {
+        period_id
+      },
+      success: (data) => {
+        getStepActivities(step_id);
+      }
+    })
+  }
+}
+
+function getHebergement_add(){
+  $('#hebergement_form_add').modal('show');
+}
+
+function addHebergements(step_id){
+  let select = document.getElementById('accommodation_id');
+  let accommodations = $('#accommodation_id').val();
+
+  let period_start = document.getElementById('period_start').value;
+
+  $.ajax({
+    url: 'admin_accommodation_step_add',
+    type: 'POST',
+    data : {
+      accommodations,
+      period_start,
+      step_id
+    },
+    success: (data) => {
+      $('#hebergement_form_add').modal('hide');
+      getStepActivities(step_id);
+    }
+  })
+}

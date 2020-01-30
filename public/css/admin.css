@@ -219,7 +219,7 @@ a.navbar-brand {
 }
 
 .circuit_ul li:nth-of-type(3) {
-    width: 100px;
+    width: 200px;
 }
 
 .circuit_ul li:nth-of-type(4) {
@@ -746,6 +746,24 @@ label[for="rating"] {
 .rating > label {
   color: #ddd;
   float: right;
+}
+
+/* Choix d'hébergements */
+
+#hebergement_form_add .modal-content {
+  height: 400px;
+}
+
+.bootstrap-tagsinput input {
+  color: black !important;
+}
+
+.bootstrap-tagsinput .tag {
+  margin-right: 2px;
+  color: white;
+  background-color: lightslategray;
+  border-radius: 4px;
+  padding: 1px 5px;
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/

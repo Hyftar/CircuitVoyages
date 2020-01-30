@@ -1,6 +1,13 @@
 USE labernoisdb;
 START TRANSACTION;
 
+/* Languages needed for circuits and employees */
+
+INSERT INTO languages(name)
+VALUES ('FRENCH'), ('ENGLISH'), ('SPANISH');
+
+SELECT @idL1 := id FROM languages WHERE name = 'FRENCH';
+
 /* for Members */
 
 INSERT INTO addresses(`country`,
@@ -16,10 +23,6 @@ VALUES (
 
 SELECT @idAd1 := id FROM addresses WHERE address_line_1 = '9235 Avenue Papineau';
 
-INSERT INTO languages(name)
-VALUES ('FRENCH'), ('ENGLISH'), ('SPANISH');
-
-SELECT @idL1 := id FROM languages WHERE name = 'FRENCH';
 
 INSERT INTO passwords(password_salt, password_hash) /* Password Didier1! */
 VALUES ('a6248e718af667b63dc6c623e5b7dd04f62136ba445835f8168bc60e0f20607c', '4ef2bd4439611de653e7a4a710c21974d42631c30bceac53332da40485253754');
@@ -186,12 +189,7 @@ SELECT @idM1 := id FROM media WHERE description = 'Couché de soleil à Hawaii';
 SELECT @idM2 := id FROM media WHERE description = 'Paysage d\'Italie';
 
 
-/* Languages needed for circuits */
 
-INSERT INTO languages(name)
-VALUES ('FRENCH'), ('ENGLISH'), ('SPANISH');
-
-SELECT @idL1 := id FROM languages WHERE name = 'FRENCH';
 
 
 /* Categories needed for circuits */
