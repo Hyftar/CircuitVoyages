@@ -104,6 +104,8 @@ $router->add('/admin/promotions/updatePromo', ['controller' => 'Promotions', 'ac
 
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 
+$router->add('circuit/{id:/\d+/}', ['controller' => 'Circuits', 'action' => 'show']);
+
 $router->add('register', ['controller' => 'Members', 'action' => 'create'], 'POST');
 $router->add('login', ['controller' => 'Members', 'action' => 'login'], 'POST');
 $router->add('login', ['controller' => 'Members', 'action' => 'logout'], 'DELETE');

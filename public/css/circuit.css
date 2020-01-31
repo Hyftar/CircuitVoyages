@@ -2,21 +2,20 @@
   --trail-color: #D67114;
 }
 
-body {
-  background-image: none;
-  background-size: initial;
-  background-repeat: initial;
-  background-position: initial;
-  background-attachment: initial;
-  display: block;
-}
-
-main > * {
+.circuit-info__content {
   background-color: var(--foam);
+  min-height: 67%;
 }
 
-main {
-  display: block
+.circuit-banner {
+  height: 35rem;
+}
+
+.content-header {
+  font-family: 'Permanent Marker', cursive;
+  text-align: center;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .description-container {
@@ -55,6 +54,10 @@ main {
   height: 100%;
 }
 
+.node__title {
+  cursor: pointer;
+}
+
 .node__content {
   max-height: 0;
   overflow: hidden;
@@ -70,7 +73,6 @@ main {
 .node {
   user-select: none;
   margin-left: 5rem;
-  cursor: pointer;
 }
 
 .node::before {
@@ -90,18 +92,16 @@ main {
   display: grid;
   justify-items: center;
   align-items: center;
+  padding-bottom: 3rem;
 }
 
 .circuit-guide__image {
-  width: 400px;
-  height: 450px;
+  width: 200px;
+  height: 225px;
   border-radius: 12em;
   background-color: var(--sand);
+  padding: 0.5rem;
   box-shadow: 2px 2px 2px grey;
-}
-
-.circuit-guide__title {
-
 }
 
 .circuit-guide__supporting-text {
@@ -109,25 +109,4 @@ main {
   box-shadow: 2px 2px 1px grey;
   padding: 1rem;
   border-radius: 0.5em;
-}
-
-/* Circuit gallery styles */
-
-.circuit-gallery.circuit-gallery--style-1 {
-  background-color: var(--foam);
-  padding-right: 5vw;
-  padding-left: 5vw;
-  display: grid;
-  overflow-x: scroll;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  justify-items: center;
-  align-items: center;
-  column-gap: 1.5em;
-  row-gap: 1.5em;
-}
-
-.circuit-gallery > img {
-  width: 600px;
-  height: 400px;
 }

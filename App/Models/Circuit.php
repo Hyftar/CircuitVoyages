@@ -8,6 +8,100 @@ use PDO;
 
 class Circuit extends Model
 {
+    public static function getInfo($circuit_id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'SELECT
+                 c.name AS `name`,
+                 c.description,
+                 c.is_public,
+                 m.path AS `media_path`,
+                 l.name AS `language`
+             FROM circuits AS c
+             LEFT JOIN media AS m ON c.media_id = m.id
+             LEFT JOIN languages AS l ON c.language_id = l.id
+             WHERE c.id = :circuit_id
+            '
+        );
+
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $circuit = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $stmt = $db->prepare(
+            'SELECT
+                 s.id,
+                 s.description,
+                 s.position,
+                 s.time_after_last_step
+             FROM steps AS s
+             WHERE s.circuit_id = :circuit_id
+             ORDER BY s.position ASC'
+        );
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $steps = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        for ($i = 0; $i < count($steps); $i++) {
+            $step = $steps[$i];
+            $stmt = $db->prepare(
+                'SELECT
+                     a.activity_type AS `type`,
+                     a.link AS `link`,
+                     a.description AS `description`,
+                     a.name AS `name`
+                 FROM steps_activities AS sa
+                 LEFT JOIN activities AS a ON a.id = sa.activity_id
+                 WHERE sa.step_id = :step_id
+            ');
+
+            $stmt->bindValue(':step_id', $step['id']);
+            $stmt->execute();
+            $activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (!$activities)
+                continue;
+
+            $steps[$i]['activities'] = $activities;
+        }
+
+        $stmt = $db->prepare(
+            'SELECT DISTINCT
+                 e.first_name,
+                 e.last_name,
+                 cte.description,
+                 m.path AS `media_path`
+             FROM circuits AS c
+             JOIN circuits_trips AS ct ON ct.circuit_id = c.id
+             JOIN circuits_trips_employees AS cte ON cte.circuit_trip_id = ct.id
+             JOIN employees AS e ON cte.employee_id = e.id
+             JOIN media AS m ON e.media_id = m.id
+             WHERE c.id = :circuit_id
+            '
+        );
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt = $db->prepare(
+            'SELECT *
+             FROM circuits_trips
+             WHERE circuit_id = :circuit_id
+             ORDER BY departure_date ASC
+             LIMIT 1
+            '
+        );
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $next_departure = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $circuit['next_departure'] = $next_departure ? $next_departure : null;
+        $circuit['steps'] = $steps;
+        $circuit['employees'] = $employees ? $employees : null;
+
+        return $circuit;
+    }
+
     public static function getCircuitInfo()
     {
         $db = static::getDB();
