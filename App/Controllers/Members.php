@@ -2,29 +2,24 @@
 
 namespace App\Controllers;
 
-use \Core\View;
-use \App\Helpers\LoginHelpers;
 use \App\Helpers\ApplicationHelpers;
+use \App\Helpers\LoginHelpers;
 use \App\Models\Member;
-<<<<<<< Updated upstream
-use \App\Models\SupportChat;
-=======
-use Symfony\Contracts\Translation\TranslatorInterface;
->>>>>>> Stashed changes
+use \Core\View;
 
 class Members extends \Core\Controller
 {
-    public function googleLoginAction(TranslatorInterface $translator)
+    public function googleLoginAction()
     {
         if (empty($_POST['name'])) {
             // TODO: use i18n string instead
-            $errors[] = $translator->trans('Veuillez fournir un nom');
+            $errors[] = $translator->trans('Members.Google.Name');
         }
         if (empty($_POST['id'])) {
-            $errors[] = $translator->trans('Veuillez fournir un id');
+            $errors[] = $translator->trans('Members.Google.Id');
         }
         if (empty($_POST['email'])) {
-            $errors[] = $translator->trans('Veuillez fournir un email');
+            $errors[] = $translator->trans('Members.Google.Email');
         }
         if (!empty($errors)) {
             http_response_code(401);
@@ -43,15 +38,15 @@ class Members extends \Core\Controller
         $_SESSION['member'] = $member;
     }
 
-    public function facebookLoginAction(TranslatorInterface $translator)
+    public function facebookLoginAction()
     {
         if (empty($_POST['name'])) {
             // TODO: use i18n string instead
-            $errors[] = $translator->trans('Veuillez fournir un nom');
+            $errors[] = $translator->trans('Members.Facebook.Name');
         }
 
         if (empty($_POST['id'])) {
-            $errors[] = $translator->trans('Veuillez fournir un id');
+            $errors[] = $translator->trans('Members.Facebook.Id');
         }
 
         if (!empty($errors)) {
@@ -73,17 +68,17 @@ class Members extends \Core\Controller
         $_SESSION['member'] = $member;
     }
 
-    public function loginAction(TranslatorInterface $translator)
+    public function loginAction()
     {
         $errors = [];
         if (!array_key_exists('email', $_POST) ||
             !LoginHelpers::isValidEmail($_POST['email'])) {
             // TODO: use i18n string instead
-            $errors[] = $translator->trans('Format du email invalide');
+            $errors[] = $translator->trans('Helpers.Email.Invalid');
         }
 
         if (!array_key_exists('password', $_POST)) {
-            $errors[] = $translator->trans('Veuillez fournir un mot de passe');
+            $errors[] = $translator->trans('Members.Password');
         } else {
             $errors = array_merge(
                 $errors,
@@ -103,7 +98,7 @@ class Members extends \Core\Controller
         if (!Member::exists($_POST['email']) ||
             !Member::isCorrectPassword($_POST['email'], $_POST['password'])) {
             // TODO: use i18n string instead
-            $errors[] = $translator->trans('Email ou mot de passe invalide');
+            $errors[] = $translator->trans('Members.Invalid');
             http_response_code(401);
             View::renderTemplate(
                 'Members/login_errors.html.twig',
@@ -120,46 +115,47 @@ class Members extends \Core\Controller
         session_destroy();
     }
 
-    public function createAction(TranslatorInterface $translator)
+    public function createAction()
     {
+
         $errors = [];
 
         // Check if all the required parameters are set
 
         if (empty($_POST['first_name'])) {
-            $errors['first_name'][] = $translator->trans('Veuillez fournir un prénom');
+            $errors['first_name'][] = $translator->trans('Membres.Create.Please.Add.First');
         }
 
         if (empty($_POST['last_name'])) {
-            $errors['last_name'][] = $translator->trans('Veuillez fournir un nom');
+            $errors['last_name'][] = $translator->trans('Membres.Create.Please.Add.Name');
         }
 
         if (empty($_POST['email'])) {
-          $errors['email'][] = $translator->trans('Veuillez fournir un email');
+            $errors['email'][] = $translator->trans('Membres.Create.Please.Add.Email');
         }
 
         if (empty($_POST['address_line_1'])) {
-            $errors['address_line_1'][] = $translator->trans('Veuillez fournir une adresse');
+            $errors['address_line_1'][] = $translator->trans('Membres.Create.Please.Add.Address');
         }
 
         if (empty($_POST['region'])) {
-            $errors['region'][] = $translator->trans('Veuillez fournir une province');
+            $errors['region'][] = $translator->trans('Membres.Create.Please.Add.Province');
         }
 
         if (empty($_POST['phone'])) {
-            $errors['phone'][] = $translator->trans('Veuillez fournir un numéro de téléphone');
+            $errors['phone'][] = $translator->trans('Membres.Create.Please.Add.Phone');
         }
 
         if (empty($_POST['country'])) {
-            $errors['country'][] = $translator->trans('Veuillez fournir un pays');
+            $errors['country'][] = $translator->trans('Membres.Create.Please.Add.Country');
         }
 
         if (empty($_POST['dob'])) {
-            $errors['date_of_birth'][] = $translator->trans('Veuillez fournir une date de naissance');
+            $errors['date_of_birth'][] = $translator->trans('Membres.Create.Please.Add.Birth');
         }
 
         if (empty($_POST['city'])) {
-            $errors['city'][] = $translator->trans('Veuillez fournir une ville dans votre adresse');
+            $errors['city'][] = $translator->trans('Membres.Create.Please.Add.City');
         }
 
         if (!empty($errors)) {
@@ -194,21 +190,17 @@ class Members extends \Core\Controller
         // Email
 
         if (!LoginHelpers::isValidEmail($_POST['email'])) {
-<<<<<<< Updated upstream
-            $errors['email'][] = 'Format du email invalide';
-=======
-            $errors['email'][] = [$translator->trans('Format du email invalide')];
->>>>>>> Stashed changes
+            $errors['email'][] = $translator->trans('Helpers.Email.Invalid');
         }
 
         if (Member::exists($email)) {
-            $errors['email'][] = $translator->trans('Un compte existe deja pour ce email');
+            $errors['email'][] = $translator->trans('Members.Exist');
         }
 
         // Password
 
         $password_errors =
-            LoginHelpers::validatePassword($password);
+        LoginHelpers::validatePassword($password);
 
         if (!empty($password_errors)) {
             $errors['password'] = $password_errors;
@@ -217,7 +209,7 @@ class Members extends \Core\Controller
         // Postal code
 
         list($postal_code, $postal_code_errors) =
-            LoginHelpers::validatePostalCode($postal_code);
+        LoginHelpers::validatePostalCode($postal_code);
 
         if (!empty($postal_code_errors)) {
             $errors['postal_code'][] = $postal_code_errors;
@@ -260,7 +252,8 @@ class Members extends \Core\Controller
         );
     }
 
-    public function showAction(){
+    public function showAction()
+    {
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
@@ -274,7 +267,8 @@ class Members extends \Core\Controller
         );
     }
 
-    public function showInformationsAction(){
+    public function showInformationsAction()
+    {
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
@@ -287,32 +281,33 @@ class Members extends \Core\Controller
             [
                 'member' => $member,
                 'infos' => $infos,
-                'languages' => $languages
+                'languages' => $languages,
             ]
         );
     }
 
-    public function sendInformationsAction(){
+    public function sendInformationsAction()
+    {
         $errors = [];
         // Check if all the required parameters are set
         if (empty($_POST['inputFirstName'])) {
-            $errors['inputFirstName'][] = 'Veuillez fournir un prénom';
+            $errors['inputFirstName'][] = $translator->trans('Membres.Create.Please.Add.First');
         }
 
         if (empty($_POST['inputLastName'])) {
-            $errors['inputLastName'][] = 'Veuillez fournir un nom';
+            $errors['inputLastName'][] = $translator->trans('Membres.Create.Please.Add.Name');
         }
 
         if (empty($_POST['inputPhoneNumber'])) {
-            $errors['inputPhoneNumber'][] = 'Veuillez fournir un numéro de téléphone';
+            $errors['inputPhoneNumber'][] = $translator->trans('Membres.Create.Please.Add.Phone');
         }
 
         if (empty($_POST['inputBirthDate'])) {
-            $errors['inputBirthDate'][] = 'Veuillez fournir une date de naissance';
+            $errors['inputBirthDate'][] = $translator->trans('Membres.Create.Please.Add.Birth');
         }
 
         if (empty($_POST['inputLanguage'])) {
-            $errors['inputLanguage'][] = 'Veuillez fournir une langue de préférence';
+            $errors['inputLanguage'][] = $translator->trans('Members.Create.Please.Add.Language');
         }
 
         if (!empty($errors)) {
@@ -325,7 +320,7 @@ class Members extends \Core\Controller
         $last_name = $_POST['inputLastName'];
         $dob = $_POST['inputBirthDate']; // Date of birth
         $phone = $_POST['inputPhoneNumber'];
-        $language =$_POST['inputLanguage'];
+        $language = $_POST['inputLanguage'];
 
         // Validate parameters content
 
@@ -352,7 +347,8 @@ class Members extends \Core\Controller
         );
     }
 
-    public function showCoordinatesAction(){
+    public function showCoordinatesAction()
+    {
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
@@ -363,12 +359,13 @@ class Members extends \Core\Controller
             'Members/coordinates.html.twig',
             [
                 'member' => $member,
-                'address' => $coordinates
+                'address' => $coordinates,
             ]
         );
     }
 
-    public function showSecurityAction(){
+    public function showSecurityAction()
+    {
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
@@ -384,7 +381,8 @@ class Members extends \Core\Controller
         );
     }
 
-    public function showCommunicationsAction(){
+    public function showCommunicationsAction()
+    {
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
@@ -397,12 +395,13 @@ class Members extends \Core\Controller
             [
                 'member' => $member,
                 'newsletters' => $newsletters,
-                'informations' => $infos
+                'informations' => $infos,
             ]
         );
     }
 
-    public function showTripsAction(){
+    public function showTripsAction()
+    {
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
@@ -415,12 +414,13 @@ class Members extends \Core\Controller
             [
                 'member' => $member,
                 'trips' => $trips,
-                'allHistory' => $history
+                'allHistory' => $history,
             ]
         );
     }
 
-    public function showTripsUpcomingAction(){
+    public function showTripsUpcomingAction()
+    {
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
@@ -432,11 +432,12 @@ class Members extends \Core\Controller
             [
                 'member' => $member,
                 'trips' => $trips,
-                'allHistory' => $history
+                'allHistory' => $history,
             ]
         );
     }
-    public function showPaymentsAction(){
+    public function showPaymentsAction()
+    {
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
@@ -448,12 +449,13 @@ class Members extends \Core\Controller
             [
                 'member' => $member,
                 'payments' => $payments,
-                'allHistory' => true
+                'allHistory' => true,
             ]
         );
     }
 
-    public function showPaymentsUpcomingAction(){
+    public function showPaymentsUpcomingAction()
+    {
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
@@ -465,19 +467,20 @@ class Members extends \Core\Controller
             [
                 'member' => $member,
                 'payments' => $payments,
-                'allHistory' => false
+                'allHistory' => false,
             ]
         );
     }
-    public function sendCommunicationsAction(){
+    public function sendCommunicationsAction()
+    {
         $errors = [];
 
         if (!LoginHelpers::isValidEmail($_POST['inputEmail'])) {
-            $errors['email'][] = 'Format du email invalide';
+            $errors['email'][] = $translator->trans('Members.Format.Email');
         }
 
         if (Member::exists($_POST['inputEmail'])) {
-            $errors['email'][] = 'Un compte existe déjà pour ce email';
+            $errors['email'][] = $translator->trans('Members.Exist');
         }
 
         if (!empty($errors)) {
@@ -490,29 +493,34 @@ class Members extends \Core\Controller
 
     }
 
-    public function suscribeAction(){
+    public function suscribeAction()
+    {
         Member::addMemberNewsletter($_POST['id'], $_SESSION['member'][0]);
     }
 
-    public function unsuscribeAction(){
+    public function unsuscribeAction()
+    {
         Member::deleteMemberFromNewsletter($_POST['id'], $_SESSION['member'][0]);
     }
 
-    public function sendSecurityAction(){
+    public function sendSecurityAction()
+    {
         $errors = [];
 
-        if (!Member::comparePassword($_POST['inputOldPassword'], $_SESSION['member'][0]))
-            $errors['oldPassword'][] = 'L\'ancien mot de passe n\'est pas valide.';
+        if (!Member::comparePassword($_POST['inputOldPassword'], $_SESSION['member'][0])) {
+            $errors['oldPassword'][] = $translator->trans('Members.Password.OldI');
+        }
 
         $password_errors =
-            LoginHelpers::validatePassword($_POST['inputNewPassword']);
+        LoginHelpers::validatePassword($_POST['inputNewPassword']);
 
         if (!empty($password_errors)) {
             $errors['password'] = $password_errors;
         }
 
-        if ($_POST['inputNewPassword'] != $_POST['inputNewPasswordBis'])
-            $errors['newPassword'][] = 'Les nouveaux mots de passe ne sont pas identiques.';
+        if ($_POST['inputNewPassword'] != $_POST['inputNewPasswordBis']) {
+            $errors['newPassword'][] = $translator->trans('Members.Password.Unique');
+        }
 
         if (!empty($errors)) {
             http_response_code(400); // Bad request (missing parameters)
@@ -523,25 +531,26 @@ class Members extends \Core\Controller
         Member::updateMemberPassword($_POST['inputNewPassword'], $_SESSION['member'][0]);
     }
 
-    public function sendCoordinatesAction(){
+    public function sendCoordinatesAction()
+    {
         $errors = [];
 
         // Check if all the required parameters are set
 
         if (empty($_POST['inputAddressLine1'])) {
-            $errors['inputAddressLine1'][] = 'Veuillez fournir une adresse';
+            $errors['inputAddressLine1'][] = $translator->trans('Members.Please.Add.Adress');
         }
 
         if (empty($_POST['inputRegion'])) {
-            $errors['inputRegion'][] = 'Veuillez fournir une province';
+            $errors['inputRegion'][] = $translator->trans('Members.Please.Add.Province');
         }
 
         if (empty($_POST['inputCountry'])) {
-            $errors['inputCountry'][] = 'Veuillez fournir un pays';
+            $errors['inputCountry'][] = $translator->trans('Members.Please.Add.Country');
         }
 
         if (empty($_POST['inputCity'])) {
-            $errors['inputCity'][] = 'Veuillez fournir une ville dans votre adresse';
+            $errors['inputCity'][] = $translator->trans('Members.Please.Add.City');
         }
 
         if (!empty($errors)) {
@@ -569,7 +578,7 @@ class Members extends \Core\Controller
 
         // Postal code
         list($postal_code, $postal_code_errors) =
-            LoginHelpers::validatePostalCode($postal_code);
+        LoginHelpers::validatePostalCode($postal_code);
 
         if (!empty($postal_code_errors)) {
             $errors['inputPostalCode'][] = $postal_code_errors;
@@ -592,5 +601,4 @@ class Members extends \Core\Controller
         );
 
     }
-
 }

@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content pt-3">
       <div class="modal-header">
-        <h5 class="modal-title">{% trans %}Création d'un circuit{% endtrans %}</h5>
+        <h5 class="modal-title">{% trans %}Circuit.Creation{% endtrans %}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,18 +10,18 @@
       <form id="formCreateCircuit" onsubmit="return creerCircuit()" enctype="multipart/form-data">
       <div class="modal-body">
           <div class="form-group">
-            <label for="nomCircuit">{% trans %}Nom du circuit{% endtrans %}</label>
+            <label for="nomCircuit">{% trans %}Circuit.Name{% endtrans %}</label>
             <input type="text" class="form-control" id="nomCircuit" name="nomCircuit" required>
           </div>
           <div class="form-group">
-            <label for="descriptionCircuit">{% trans %}Description du circuit{% endtrans %}</label>
+            <label for="descriptionCircuit">{% trans %}Circuit.Description{% endtrans %}</label>
             <textarea id="descriptionCircuit" class="form-control" name="descriptionCircuit" rows="5"></textarea>
           </div>
 
             {# // multiple selectpicker for circuit categories #}
 
           <div class="form-group">
-            <label for="category">{% trans %}Catégorie(s){% endtrans %} : </label>
+            <label for="category">{% trans %}Circuit.Category{% endtrans %} : </label>
             <select class="selectpicker" title="Aucune catégorie" name="category">
               {% for category in categories %}
                 <option value="{{ category.id }}">{{ category.name }}</option>
@@ -32,7 +32,7 @@
           {# // multiple selectpicker for circuit languages #}
 
           <div class="form-group">
-            <label for="language">{% trans %}Langue(s) disponible(s) pour le circuit{% endtrans %} : </label>
+            <label for="language">{% trans %}Circuit.Language{% endtrans %} : </label>
             <select class="selectpicker" title="Aucune langue" name="language" required>
               {% for language in languages %}
                 <option value="{{ language.id }}">{{ language.name }}</option>
@@ -43,7 +43,7 @@
           {# // File input for circuit image #}
 
           <div class="custom-file form-group">
-            <label for="image">{% trans %}Image utilisée sur le header{% endtrans %} : </label>
+            <label for="image">{% trans %}Circuit.Image.Headers{% endtrans %} : </label>
             <select class="image-picker show-labels show-html" title="Choisir une image" name="image" required>
               {% for image in images %}
                 <option class="image" data-img-label="{{image.name|e}}" value="{{ image.id|e }}" data-img-src='{{image.path|e}}'></option>
@@ -52,8 +52,8 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">{% trans %}Créer le circuit{% endtrans %}</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}Fermer{% endtrans %}</button>
+        <button type="submit" class="btn btn-primary">{% trans %}Circuit.Create.Label{% endtrans %}</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
       </div>
       </form>
     </div>

@@ -5,17 +5,17 @@
         <div class="panel-body">
           <div class="text-center">
             <i class="fa fa-lock fa-4x"></i>
-            <h2 class="text-center">{% trans %}Mot de passe oublié?{% endtrans %}</h2>
-            <p>{% trans %}Réinitialiser votre mot de passe ici.{% endtrans %}</p>
-            <form class="form-signin" class="form-signin" method="post" action="send_email">
+            <h2 class="text-center">{% trans %}Account.Password.Lost{% endtrans %}</h2>
+            <p>{% trans %}Account.Password.Reset.Here{% endtrans %}</p>
+            <form class="form-signin" method="post" action="send_email">
               <div class="form-label-group">
-                <input name="email" type="email" id="email-reset-form" class="form-control" placeholder="{{"Adresse courriel"|trans }}">
-                <label for="email-reset-form">{% trans %}Adresse courriel{% endtrans %}</label>
+                <input id="email-reset-form" name="email" type="email" class="form-control" placeholder="{{"Email"|trans }}">
+                <label for="email-reset-form">{% trans %}Email{% endtrans %}</label>
               </div>
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{% trans %}Réinitialiser votre mot de passe{% endtrans %}</button>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{% trans %}Account.Password.Reset.Label{% endtrans %}</button>
             </form>
             <p id="reset-login-link" class="text-center">
-              <a href="#">{% trans %}Retour{% endtrans %}</a>
+              <a href="#">{% trans %}Return{% endtrans %}</a>
             </p>
           </div>
         </div>

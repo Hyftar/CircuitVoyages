@@ -9,7 +9,9 @@ use App\Models\Circuit;
 use App\Models\CircuitTrip;
 use App\Models\Media;
 use \Core\View;
-use Symfony\Contracts\Translation\TranslatorInterface;
+
+
+
 
 class Admin extends \Core\Controller
 {
@@ -22,7 +24,6 @@ class Admin extends \Core\Controller
             return false;
         }
     }
-
 
     /* ACCOMMODATIONS */
 
@@ -39,34 +40,39 @@ class Admin extends \Core\Controller
         );
     }
 
-    public function accommodationCreateAction(TranslatorInterface $translator)
+    public function accommodationCreateAction()
     {
+
+
+
+
+
         if (empty($_POST['name'])) {
-          $errors['name'][] = $translator->trans('Veuillez fournir un nom pour l\'hébergement');
+          $errors['name'][] = $translator->trans('Accommodation.Please.Add.Name');
         }
 
         if (empty($_POST['type'])) {
-            $errors['type'][] = $translator->trans('Veuillez fournir un type d\'hébergement');
+            $errors['type'][] = $translator->trans('Accommodation.Please.Add.Type');
         }
 
         if (empty($_POST['address_line_1'])) {
-            $errors['address_line_1'][] = $translator->trans('Veuillez fournir une adresse');
+            $errors['address_line_1'][] = $translator->trans('Accommodation.Please.Add.Address');
         }
 
         if (empty($_POST['region'])) {
-            $errors['region'][] = $translator->trans('Veuillez fournir une province');
+            $errors['region'][] = $translator->trans('Accommodation.Please.Add.Province');
         }
 
         if (empty($_POST['phone'])) {
-            $errors['phone'][] = $translator->trans('Veuillez fournir un numéro de téléphone');
+            $errors['phone'][] = $translator->trans('Accommodation.Please.Add.Phone');
         }
 
         if (empty($_POST['country'])) {
-            $errors['country'][] = $translator->trans('Veuillez fournir un pays');
+            $errors['country'][] = $translator->trans('Accommodation.Please.Add.Country');
         }
 
         if (empty($_POST['city'])) {
-            $errors['city'][] = $translator->trans('Veuillez fournir une ville dans votre adresse');
+            $errors['city'][] = $translator->trans('Accommodation.Please.Add.City');
         }
 
         if (!empty($errors)) {
@@ -126,6 +132,9 @@ class Admin extends \Core\Controller
         );
     }
 
+
+	/* ACTIVITIES */
+
     public function addAccStepAction(){
         $step_id = $_POST['step_id'];
         $period_start = ((int)$_POST['period_start'] - 1) * 24 * 60;
@@ -157,34 +166,39 @@ class Admin extends \Core\Controller
         );
     }
 
-    public function activityCreateAction(TranslatorInterface $translator)
+    public function activityCreateAction()
     {
+
+
+
+
+
         if (empty($_POST['name'])) {
-            $errors['name'][] = $translator->trans('Veuillez fournir un nom pour l\'activité');
+            $errors['name'][] = $translator->trans('Activity.Please.Add.Name');
         }
 
         if (empty($_POST['type'])) {
-            $errors['type'][] = $translator->trans('Veuillez fournir un type d\'activité');
+            $errors['type'][] = $translator->trans('Activity.Please.Add.Type');
         }
 
         if (empty($_POST['address_line_1'])) {
-            $errors['address_line_1'][] = $translator->trans('Veuillez fournir une adresse');
+            $errors['address_line_1'][] = $translator->trans('Activity.Please.Add.Address');
         }
 
         if (empty($_POST['region'])) {
-            $errors['region'][] = $translator->trans('Veuillez fournir une province');
+            $errors['region'][] = $translator->trans('Activity.Please.Add.Province');
         }
 
         if (empty($_POST['phone'])) {
-            $errors['phone'][] = $translator->trans('Veuillez fournir un numéro de téléphone');
+            $errors['phone'][] = $translator->trans('Activity.Please.Add.Phone');
         }
 
         if (empty($_POST['country'])) {
-            $errors['country'][] = $translator->trans('Veuillez fournir un pays');
+            $errors['country'][] = $translator->trans('Activity.Please.Add.Country');
         }
 
         if (empty($_POST['city'])) {
-            $errors['city'][] = $translator->trans('Veuillez fournir une ville dans votre adresse');
+            $errors['city'][] = $translator->trans('Activity.Please.Add.City');
         }
 
         if (!empty($errors)) {
@@ -570,7 +584,4 @@ class Admin extends \Core\Controller
     public function circuitsOrganizeAction(){
         View::renderTemplate('Admin/organisation_circuit.html.twig');
     }
-
-
-
 }

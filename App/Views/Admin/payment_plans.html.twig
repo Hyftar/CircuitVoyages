@@ -1,8 +1,8 @@
-<h1 class="pretty_title">Gestion des plans de paiement</h1>
+<h1 class="pretty_title">{% trans %}Payment.Management{% endtrans %}</h1>
 <div class="choix_circuit">
-  <p class="mr-auto">Ajoutez ou enlevez des plans de paiement pour le départ - {{ circuit.name }}</p>
+  <p class="mr-auto">{% trans %}Payment.Plan.Departure{% endtrans %} - {{ circuit.name }}</p>
   <div class="bouton_creer" onClick="getPaymentPlansAdd()">
-    <p>Ajouter un plan de paiement</p>
+    <p>{% trans %}Payment.Plan.Add{% endtrans %}</p>
     <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
@@ -11,8 +11,8 @@
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
-          <li>Nom du plan de paiement</li>
-          <li>Actions</li>
+          <li>{% trans %}Payment.Plan.Name{% endtrans %}</li>
+          <li>{% trans %}Actions{% endtrans %}</li>
         </ul>
       </a>
       {% for payment_plan in payment_plans %}
@@ -41,7 +41,7 @@
   </div>
 </div>
 <div id="modalContenuCircuit"></div>
-<button type="button" class="btn btn-dark" onclick="getCircuitTrips({{ circuit.id }})">Retour à la gestion des départs</button>
+<button type="button" class="btn btn-dark" onclick="getCircuitTrips({{ circuit.id }})">{% trans %}Payment.Return{% endtrans %}</button>
 
 <!-- Modal Payment -->
 <div class="modal fade" id="payment_plan_form_add" tabindex="-1" role="dialog"
@@ -51,7 +51,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalPayment_plan">
-          Ajouter un plan de paiement
+          {% trans %}Payment.Plan.Add{% endtrans %}
         </h5>
         <button type="button" class="close" data-dismiss="modal"
                 aria-label="Close">
@@ -61,7 +61,7 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="payment_plan_name">Nom du plan : </label>
+            <label for="payment_plan_name">{% trans %}Payment.Plan.Name{% endtrans %} : </label>
             <input type="text" name="payment_plan_name" id="payment_plan_name">
           </div>
         </form>
@@ -70,10 +70,10 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
                 data-dismiss="modal">
-          Fermer
+          {% trans %}Close{% endtrans %}
         </button>
         <button type="button" class="btn btn-primary"
-                onclick="ajouterPlan({{ circuit_trip.id }})">Ajouter
+                onclick="ajouterPlan({{ circuit_trip.id }})">{% trans %}Add{% endtrans %}
         </button>
       </div>
     </div>

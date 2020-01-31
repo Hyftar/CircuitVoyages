@@ -1,15 +1,15 @@
 <div>
-  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="createNewsletter()">Ajouter un bulletin d'informations</button>
+  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="createNewsletter()">{% trans %}Newsletter.Add.Label{% endtrans %}</button>
 </div>
 <div>
   <table class="table">
-    <caption>Bulletins d'information</caption>
+    <caption>{% trans %}Newsletter.Label{% endtrans %}</caption>
     <thead>
     <tr>
       <th scope="col"></th>
-      <th scope="col">Date du message</th>
-      <th scope="col">Sujet du dernier message</th>
-      <th scope="col">Actions</th>
+      <th scope="col">{% trans %}Newsletter.Date{% endtrans %}</th>
+      <th scope="col">{% trans %}Newsletter.Subject{% endtrans %}</th>
+      <th scope="col">{% trans %}Newsletter.Actions{% endtrans %}</th>
     </tr>
     </thead>
     <tbody>

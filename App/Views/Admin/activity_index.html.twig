@@ -1,21 +1,21 @@
-<h2>Gestion des activités</h2>
+<h2>{% trans %}Activity.Management{% endtrans %}</h2>
 
 {% include 'Admin/activity_add.html.twig' %}
 
 <div class="activity-grid__controls">
   <a id="activity-new-btn" href="#" data-toggle="modal" data-target="#activity-add-modal">
-    <span>{% trans %}Ajouter une activité{% endtrans %}</span>
+    <span>{% trans %}Activity.Add{% endtrans %}</span>
     <i class="fas fa-plus-circle icone_ajout" aria-hidden="true"></i>
   </a>
 </div>
 
 <div class="activity-grid">
   <div class="activity-grid__header">
-    <div class="activity-grid__header__elem">{% trans %}Nom{% endtrans %}</div>
+    <div class="activity-grid__header__elem">{% trans %}Name{% endtrans %}</div>
     <div class="activity-grid__header__elem">{% trans %}Type{% endtrans %}</div>
-    <div class="activity-grid__header__elem">{% trans %}Lien{% endtrans %}</div>
-    <div class="activity-grid__header__elem">{% trans %}Pays{% endtrans %}</div>
-    <div class="activity-grid__header__elem">{% trans %}Ville{% endtrans %}</div>
+    <div class="activity-grid__header__elem">{% trans %}Link{% endtrans %}</div>
+    <div class="activity-grid__header__elem">{% trans %}Country{% endtrans %}</div>
+    <div class="activity-grid__header__elem">{% trans %}City{% endtrans %}</div>
   </div>
     <div class="activity-grid__body">
       {% for activity in activities %}

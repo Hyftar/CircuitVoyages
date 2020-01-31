@@ -1,8 +1,8 @@
-<h1 class="pretty_title">{% trans %}Gestion des circuits{% endtrans %}</h1>
+<h1 class="pretty_title">{% trans %}Circuit.Management{% endtrans %}</h1>
 <div class="choix_circuit">
-<p class="mr-auto">{% trans %}Veuillez choisir un circuit à modifier{% endtrans %}</p>
+<p class="mr-auto">{% trans %}Circuit.Modify.New{% endtrans %}</p>
 <div class="bouton_creer" onClick="getCircuits_create()">
-  <p>{% trans %}Créer un nouveau circuit{% endtrans %}</p>
+  <p>{% trans %}Circuit.Create.New{% endtrans %}</p>
   <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
@@ -12,9 +12,9 @@
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
-        <li>{% trans %}Nom du circuit{% endtrans %}</li>
+        <li>{% trans %}Circuit.Name{% endtrans %}</li>
         <li>{% trans %}Description{% endtrans %}</li>
-        <li>{% trans %}Est public{% endtrans %}</li>
+        <li>{% trans %}Circuit.Is.Public{% endtrans %}</li>
         <li>{% trans %}Actions{% endtrans %}</li>
         </ul>
         </a>
@@ -25,9 +25,9 @@
           <li>{{ circuit.description }}</li>
           <li>
             {% if circuit.is_public == 1 %}
-              {% trans %}Vrai{% endtrans %}
+              {% trans %}True{% endtrans %}
             {% else %}
-              {% trans %}Faux{% endtrans %}
+              {% trans %}False{% endtrans %}
             {% endif %}
           </li>
           <li>

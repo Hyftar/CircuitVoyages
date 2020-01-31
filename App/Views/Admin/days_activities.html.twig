@@ -1,8 +1,8 @@
-<h1 class="pretty_title">Gestion des activités et hébergements</h1>
+<h1 class="pretty_title">{% trans %}Step.Management{% endtrans %}</h1>
 <div class="choix_circuit">
-  <p class="mr-auto">Gestion des activités - Étape {{ step.position }}</p>
+  <p class="mr-auto">{% trans %}Activity.Management{% endtrans %} - {% trans %}Step.Label{% endtrans %} {{ step.position }}</p>
   <div class="bouton_creer" onClick="getActivity_add({{ step.id }})">
-    <p>Ajouter une activité à l'étape</p>
+    <p>{% trans %}Step.Activity.Add{% endtrans %}</p>
     <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
@@ -12,12 +12,12 @@
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
-          <li>Jour</li>
-          <li>Nom</li>
-          <li>Type</li>
-          <li>Début</li>
-          <li>Fin</li>
-          <li>Actions</li>
+          <li>{% trans %}Step.Day{% endtrans %}</li>
+          <li>{% trans %}Step.Name{% endtrans %}</li>
+          <li>{% trans %}Step.Type{% endtrans %}</li>
+          <li>{% trans %}Step.Start.Label{% endtrans %}</li>
+          <li>{% trans %}Step.End{% endtrans %}</li>
+          <li>{% trans %}Step.Actions{% endtrans %}</li>
         </ul>
       </a>
       {% for activity in activities %}
@@ -70,9 +70,9 @@
 </div>
 
 <div class="choix_circuit">
-  <p style="margin-top: 50px" class="mr-auto">Gestion des choix d'hébergement - Étape {{ step.position }}</p>
+  <p style="margin-top: 50px" class="mr-auto">{% trans %}Step.Accomodation.Management{% endtrans %} - {% trans %}Step.Label{% endtrans %} {{ step.position }}</p>
   <div style="margin-top: 50px" class="bouton_creer" onClick="getHebergement_add({{ step.id }})">
-    <p >Ajouter un choix d'hébergement à l'étape</p>
+    <p >{% trans %}Step.Accomodation.Add{% endtrans %}</p>
     <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
@@ -83,9 +83,9 @@
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
-          <li>Jour</li>
-          <li>Hébergements</li>
-          <li>Actions</li>
+          <li>{% trans %}Step.Day{% endtrans %}</li>
+          <li>{% trans %}Step.Accomodation.Label{% endtrans %}</li>
+          <li>{% trans %}Step.Actions{% endtrans %}</li>
         </ul>
       </a>
       {% set counter = 0 %}
@@ -143,7 +143,7 @@
 </div>
 
 <button type="button" class="btn btn-dark"
-        onclick="getCircuitEtapes({{ circuit.id }})">Retour à l'étape
+        onclick="getCircuitEtapes({{ circuit.id }})">{% trans %}Step.Return{% endtrans %}
 </button>
 
 
@@ -154,9 +154,7 @@
        role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Ajouter
-          une
-          activité</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">{% trans %}Step.Activity.Add{% endtrans %}</h5>
         <button type="button" class="close" data-dismiss="modal"
                 aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -165,7 +163,7 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="activity_id">Activité(s) : </label>
+            <label for="activity_id">{% trans %}Step.Activity.Label{% endtrans %} : </label>
             <select class="form-control" id="activity_id">
               {% for activity in activities_all %}
                 <option
@@ -175,17 +173,17 @@
           </div>
           <div class="input-group">
             <label class="input-group-text" for="activity_day">
-              Jour
+              {% trans %}Step.Day{% endtrans %}
             </label>
             <input type="number" name="activity_day" id="activity_day">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text"
-                     for="activity_start">Début</label>
+                     for="activity_start">{% trans %}Start{% endtrans %}</label>
             </div>
             <select class="custom-select" id="activity_start">
-              <option selected>Choisir ...</option>
+              <option selected>{% trans %}Choose{% endtrans %} ...</option>
               {% for i in 0 .. 96 %}
                 <option value="{{ (i/4)|round(0, 'floor') }}{{ (i%4)*15 }}{% if i%4 == 0 %}0{% endif %}">
                   {{ (i/4)|round(0, 'floor') }}h{{ (i%4)*15 }}{% if i%4 == 0 %}0{% endif %}
@@ -199,7 +197,7 @@
                      for="activity_duration">Fin</label>
             </div>
             <select class="custom-select" id="activity_duration">
-              <option selected>Choisir ...</option>
+              <option selected>{% trans %}Choose{% endtrans %} ...</option>
               {% for i in 0 .. 96 %}
                 <option value="{{ (i/4)|round(0, 'floor') }}{{ (i%4)*15 }}{% if i%4 == 0 %}0{% endif %}">
                   {{ (i/4)|round(0, 'floor') }}h{{ (i%4)*15 }}{% if i%4 == 0 %}0{% endif %}
@@ -212,10 +210,10 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
                 data-dismiss="modal">
-          Fermer
+          {% trans %}Close{% endtrans %}
         </button>
         <button type="button" class="btn btn-primary"
-                onclick="addActivity({{ step.id }})">Ajouter
+                onclick="addActivity({{ step.id }})">{% trans %}Add{% endtrans %}
         </button>
       </div>
     </div>
@@ -230,9 +228,7 @@
        role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Ajouter
-          un choix
-          hébergement</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">{% trans %}Step.Accomodation.Add{% endtrans %}</h5>
         <button type="button" class="close" data-dismiss="modal"
                 aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -240,11 +236,11 @@
       </div>
       <div class="modal-body">
         <form>
-          <label for="acc_filter">Ajoutez des filtres pour spécifier la recherche d'établissements</label><br>
+          <label for="acc_filter">{% trans %}Step.Filters{% endtrans %}</label><br>
           <input type="text" id="acc_filter" value="" data-role="tagsinput"/><br>
 
           <div class="form-group">
-            <label for="activity_id">Choix d'hébergement(s) : </label>
+            <label for="activity_id">{% trans %}Step.Accomodation.Choice{% endtrans %} : </label>
             <select class="selectpicker" title="Aucun hébergement" name="accommodation_id"
                     id="accommodation_id" multiple>
               {% for accommodation in accommodations_all %}
@@ -253,7 +249,7 @@
               {% endfor %}
             </select>
           </div>
-          <label for="period_start">Entrez le jour pour lequel ces établissements seront disponibles : </label><br>
+          <label for="period_start">{% trans %}Step.Disponibility{% endtrans %} : </label><br>
           <input type="number" id="period_start" name="period-start">
         </form>
       </div>
@@ -261,10 +257,10 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
                 data-dismiss="modal">
-          Fermer
+          {% trans %}Close{% endtrans %}
         </button>
         <button type="button" class="btn btn-primary"
-                onclick="addHebergements({{ step.id }})">Ajouter
+                onclick="addHebergements({{ step.id }})">{% trans %}Add{% endtrans %}
         </button>
       </div>
     </div>

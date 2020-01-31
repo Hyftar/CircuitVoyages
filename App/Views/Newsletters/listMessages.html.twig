@@ -1,17 +1,17 @@
 <div>
-  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="createMessage({{ newsletter.id }})">Ajouter un message à ce bulletin</button>
+  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="createMessage({{ newsletter.id }})">{% trans %}Newsletter.Add.Message{% endtrans %}</button>
 </div>
 <div>
   <table class="table">
-    <caption>Bulletins d'information - {{ newsletter.name|e }}</caption>
+    <caption>{% trans %}Newsletter.Label{% endtrans %} - {{ newsletter.name|e }}</caption>
     <thead>
       <tr>
-        <th scope="col" class="table-remove-border-bottom">Sujet</th>
-        <th scope="col" class="table-remove-border-bottom">Date du message</th>
+        <th scope="col" class="table-remove-border-bottom">{% trans %}Newsletter.Subject{% endtrans %}</th>
+        <th scope="col" class="table-remove-border-bottom">{% trans %}Newsletter.Date{% endtrans %}</th>
       </tr>
       <tr>
         <th colspan="2" class="table-remove-border-top">
-          Contenu du message.
+          {% trans %}Newsletter.Message.Content{% endtrans %}
         </th>
       </tr>
     </thead>
@@ -33,7 +33,7 @@
     {% else %}
       <tr>
         <td colspan="2">
-          Aucun message pour ce bulletin.
+          {% trans %}Newsletter.Message.None{% endtrans %}
         </td>
       </tr>
     {% endfor %}
@@ -42,7 +42,6 @@
 </div>
 <div id="modalMessage"></div>
 <div>
-  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="indexNewsletters()">Retourner à la liste des bulletins</button>
+  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="indexNewsletters()">{% trans %}Newsletter.Return{% endtrans %}</button>
 </div>
 <div id="modalNewsletter"></div>
-

@@ -6,10 +6,10 @@
   <div class="home-content">
     <div class="home-content__banner">
       <div class="banner__text">
-        {% trans %}Voyager n'aura jamais été{% endtrans %} <span style="font-style: italic;">{% trans %}aussi{% endtrans %}</span> {% trans %} facile{% endtrans %}.
+        {% trans %}Slogan1{% endtrans %}.
       </div>
     </div>
-    <h2 class="home-content__header">{% trans %}Tous nos circuits{% endtrans %}</h2>
+    <h2 class="home-content__header">{% trans %}Circuit.All{% endtrans %}</h2>
     <div class="home-content__circuits">
       {% for circuit in circuits %}
       {% if idP != circuit.id %}
@@ -19,17 +19,16 @@
             <div class="ribbon ribbon--green">
               <div class="ribbon__bottom"></div>
               <div class="ribbon__center">
-                <div>{% trans %}En promotion!{% endtrans %}</div>
+                <div>{% trans %}Promotion{% endtrans %}</div>
               </div>
-            {% endif %}
-            <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
-            <div class="card-body">
-              <h5 class="card-title">{{circuit.name }}</h5>
-              <p class="card-text">
-                {{ circuit.description }}
-              </p>
-              <button class="btn btn-primary" data-id="{{ circuit.id }}">Explorer</button>
-            </div>
+          {% endif %}
+          <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
+          <div class="card-body">
+            <h5 class="card-title">{{circuit.name }}</h5>
+            <p class="card-text">
+              {{ circuit.description }}
+            </p>
+            <button class="btn btn-primary" data-id="{{ circuit.id }}">{% trans %}Explore{% endtrans %}</button>
           </div>
         {% endif %}
       {% endfor %}

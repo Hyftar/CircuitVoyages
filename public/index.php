@@ -3,6 +3,7 @@
  * Composer
  */
 require dirname(__DIR__) . '/vendor/autoload.php';
+use App\Helpers\TranslationHelpers;
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
@@ -20,6 +21,8 @@ set_exception_handler('Core\Error::exceptionHandler');
  * Starts user sessions
  */
 session_start();
+
+$_SESSION['locale'] = TranslationHelpers::getCurrentLocale();
 
 /**
  * Routing
@@ -173,6 +176,9 @@ $router->add('api/getCircuits', ['controller' => 'API', 'action' => 'getCircuits
 $router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'showResetPage', 'allowed_variables' => ['token']]);
 $router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'confirmReset'], 'POST');
 $router->add('send_email', ['controller' => 'ForgotPassword', 'action' => 'sendEmail'], 'POST');
+
+/* Translator */
+$router->add('changelocale', ['controller' => 'Translation', 'action' => 'setLocale'], 'POST');
 
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

@@ -1,22 +1,22 @@
 {% if allHistory == false %}
-  <h3 class="mt-2 mb-1">Voyages à venir</h3>
+  <h3 class="mt-2 mb-1">{% trans %}Trips.Incoming{% endtrans %}</h3>
 {% else %}
-  <h3 class="mt-2 mb-1">Historique des voyages</h3>
+  <h3 class="mt-2 mb-1">{% trans %}Trips.History{% endtrans %}</h3>
 {% endif %}
 <table class="table">
   <thead>
     <tr>
       <th scope="col">
-        Nom
+        {% trans %}Trips.Name{% endtrans %}
       </th>
       <th scope="col">
-        Date de départ
+        {% trans %}Trips.Date.Departure{% endtrans %}
       </th>
       <th scope="col">
-        Date de retour
+        {% trans %}Trips.Date.Return{% endtrans %}
       </th>
       <th scope="col">
-        Obtenir des détails
+        {% trans %}Trips.Details{% endtrans %}
       </th>
     </tr>
   </thead>
@@ -41,11 +41,9 @@
     {% else %}
       <tr>
         <td colspan="2">
-          Aucun voyage trouvé.
+          {% trans %}Trips.None{% endtrans %}
         </td>
       </tr>
     {% endfor %}
   </tbody>
 </table>
-
-
