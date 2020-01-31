@@ -1,20 +1,20 @@
-<h2>Gestion des hébergements</h2>
+<h2>{% trans %}Gestion des hébergements{% endtrans %}</h2>
 
 {% include 'Accommodations/accommodation_add.html.twig' %}
 
 <div class="accommodation-grid__controls">
   <a id="accommodation-new-btn" href="#" data-toggle="modal" data-target="#accommodation-add-modal">
-    <span>Ajouter un hébergement</span>
+    <span>{% trans %}Ajouter un hébergement{% endtrans %}</span>
     <i class="fas fa-plus-circle icone_ajout" aria-hidden="true"></i>
   </a>
 </div>
 
 <div class="accommodation-grid">
   <div class="accommodation-grid__header">
-    <div class="accommodation-grid__header__elem">Nom</div>
-    <div class="accommodation-grid__header__elem">Type</div>
-    <div class="accommodation-grid__header__elem">Lien</div>
-    <div class="accommodation-grid__header__elem">Cote</div>
+    <div class="accommodation-grid__header__elem">{% trans %}Nom{% endtrans %}</div>
+    <div class="accommodation-grid__header__elem">{% trans %}Type{% endtrans %}</div>
+    <div class="accommodation-grid__header__elem">{% trans %}Lien{% endtrans %}</div>
+    <div class="accommodation-grid__header__elem">{% trans %}Cote{% endtrans %}</div>
   </div>
   <div class="accommodation-grid__body">
     {% for accommodation in accommodations %}
@@ -22,7 +22,7 @@
       <div class="accommodation-grid__body__row__elem">{{ accommodation.name }}</div>
       <div class="accommodation-grid__body__row__elem">{{ accommodation.accommodation_type }}</div>
       <div class="accommodation-grid__body__row__elem">
-        <a href="{{ accommodation.link }}">lien</a>
+        <a href="{{ accommodation.link }}">{% trans %}lien{% endtrans %}</a>
       </div>
       <div class="accommodation-grid__body__row__elem">{{ accommodation.rating }}/5</div>
     </div>

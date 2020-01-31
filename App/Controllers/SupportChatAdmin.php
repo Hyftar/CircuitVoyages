@@ -6,6 +6,7 @@ use \Core\View;
 use \Core\Controller;
 use \App\Models\Circuit;
 use \App\Models\SupportChat;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SupportChatAdmin extends Controller
 {
@@ -18,16 +19,16 @@ class SupportChatAdmin extends Controller
         }
     }
 
-    public function sendMessage()
+    public function sendMessage(TranslatorInterface $translator)
     {
         $errors = [];
         // TODO: i18n
         if (empty($_POST['content'])) {
-            $errors[] = 'Votre message ne peu être vide';
+            $errors[] = $translator->trans('Votre message ne peut être vide');
         }
 
         if (empty($_POST['room_id'])) {
-            $errors[] = 'Vous devez fournir une pièce';
+            $errors[] = $translator->trans('Vous devez fournir une pièce');
         }
 
         if (!SupportChat::employeeCanSendIn($_SESSION['employee']['id'], $_POST['room_id'])) {
@@ -55,7 +56,7 @@ class SupportChatAdmin extends Controller
             return;
         }
 
-        SupportChat::serverSendMessage($_POST['room_id'], "$employee_name s'est connecté, faites-lui part de votre problème.");
+        SupportChat::serverSendMessage($_POST['room_id'], "$employee_name s'est connecté, faites-lui part de votre problème."); // Needs to be translated still
     }
 
     public function leave()
@@ -67,7 +68,7 @@ class SupportChatAdmin extends Controller
             return;
         }
 
-        SupportChat::serverSendMessage($room_id, "$employee_name s'est déconnecté.");
+        SupportChat::serverSendMessage($room_id, "$employee_name s'est déconnecté."); // Need to be translated still
     }
 
     public function getMessageAt()

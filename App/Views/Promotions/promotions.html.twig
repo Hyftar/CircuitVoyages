@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Création de la promotion</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{% trans %}Création de la promotion{% endtrans %}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,31 +10,31 @@
       <div class="modal-body">
         <form method="post" id="formCreate" onsubmit="return ajouterPromotionEnreg()">
           <div class="form-group">
-            <label for="promo-date-start" class="col-form-label">Début de la promotion</label>
+            <label for="promo-date-start" class="col-form-label">{% trans %}Début de la promotion{% endtrans %}</label>
             <input type="date" class="form-control" id="promo-date-start" name="promo-date-start" value="{{ 'now'|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
-            <label for="promo-end-date" class="col-form-label">Fin de la promotion</label>
+            <label for="promo-end-date" class="col-form-label">{% trans %}Fin de la promotion{% endtrans %}</label>
             <input type="date" class="form-control" id="promo-end-date" name="promo-end-date" value="{{ 'now'|date_modify("+7 day")|date("Y-m-d") }}" required>
           </div>
           <div class="form-group">
-            <label for="promo-value" class="col-form-label">Valeur en argent</label>
+            <label for="promo-value" class="col-form-label">{% trans %}Valeur en argent{% endtrans %}</label>
             <input type="number" class="form-control" id="promo-value" name="promo-value" value="0" required>
           </div>
           <div class="form-group">
-            <label for="promo-availability" class="col-form-label">Nombre de places restantes</label>
+            <label for="promo-availability" class="col-form-label">{% trans %}Nombre de places restantes{% endtrans %}</label>
             <input type="number" class="form-control" disabled id="promo-availability" min="0" name="promo-availability">
           </div>
           <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="promo-unlimited" name="promo-unlimited" checked onclick="availabilityChange()">
-            <label for="promo-unlimited" class="form-check-label">Est illimité</label>
+            <label for="promo-unlimited" class="form-check-label">{% trans %}Est illimité{% endtrans %}</label>
           </div>
           <div class="form-group">
-            <label for="promo-description" class="col-form-label">Description</label>
+            <label for="promo-description" class="col-form-label">{% trans %}Description{% endtrans %}</label>
             <textarea rows="6" cols="30" class="form-control" id="promo-description" name="promo-description"></textarea>
           </div>
           <div class="form-group">
-            <label for="promo-type-id" class="col-form-label">Type de promotion</label>
+            <label for="promo-type-id" class="col-form-label">{% trans %}Type de promotion{% endtrans %}</label>
             <select name="promo-type-id" id="promo-type-id" required>
               {% for type in types %}
                 <option value="{{ type.id }}">{{ type.name }}</option>
@@ -42,8 +42,8 @@
             </select>
           </div>
           <div class="form-group">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-            <input type="submit" class="btn btn-primary" value="Ajouter la nouvelle promotion">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}Annuler{% endtrans %}</button>
+            <input type="submit" class="btn btn-primary" value="{{"Ajouter la nouvelle promotion"|trans }}">
           </div>
         </form>
       </div>

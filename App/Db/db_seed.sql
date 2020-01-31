@@ -220,7 +220,7 @@ VALUES (
  1
  ),
 (
- @idM1,
+ @idM2,
  @idL1,
  @idC1,
  'Vivez le style de vie Italien',

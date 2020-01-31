@@ -5,10 +5,10 @@
     <table class="table" id="activitiesCircuit-{{ activity.id }}">
       <thead>
         <tr>
-          <th scope="col">Nom</th>
-          <th scope="col">Temps depuis le début de l'étape</th>
-          <th scope="col">Durée</th>
-          <th scope="col">Type</th>
+          <th scope="col">{% trans %}Nom{% endtrans %}</th>
+          <th scope="col">{% trans %}Temps depuis le début de l'étape{% endtrans %}</th>
+          <th scope="col">{% trans %}Durée{% endtrans %}</th>
+          <th scope="col">{% trans %}Type{% endtrans %}</th>
         </tr>
       </thead>
     {% for activity in steps_activities %}
@@ -28,7 +28,7 @@
       </tr>
     {% endfor %}
     </table>
-    <button type="button" class="btn btn-primary" id="ajouterActivite{{ step.id }}" onclick="ajouterActivite({{ step.id }})">Ajouter uune activité</button>
+    <button type="button" class="btn btn-primary" id="ajouterActivite{{ step.id }}" onclick="ajouterActivite({{ step.id }})">{% trans %}Ajouter une activité{% endtrans %}</button>
   {% endfor %}
-  <button type="button" class="btn btn-primary" id="ajouterEtape" onclick="ajouterEtape({{ circuit.id }})">Ajouter une étape</button>
+  <button type="button" class="btn btn-primary" id="ajouterEtape" onclick="ajouterEtape({{ circuit.id }})">{% trans %}Ajouter une étape{% endtrans %}</button>
 </div>

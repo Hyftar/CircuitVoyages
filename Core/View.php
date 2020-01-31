@@ -2,6 +2,13 @@
 
 namespace Core;
 
+//require_once __DIR__ . '/vendor/autoload.php';
+use Symfony\Component\Translation\Translator;
+use Symfony\Bridge\Twig\Extension\TranslationExtension;
+use Symfony\Component\Translation\Loader\YamlFileLoader;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
 class View
 {
 

@@ -9,6 +9,7 @@ use App\Models\Circuit;
 use App\Models\CircuitTrip;
 use App\Models\Media;
 use \Core\View;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class Admin extends \Core\Controller
 {
@@ -38,34 +39,34 @@ class Admin extends \Core\Controller
         );
     }
 
-    public function accommodationCreateAction()
+    public function accommodationCreateAction(TranslatorInterface $translator)
     {
         if (empty($_POST['name'])) {
-          $errors['name'][] = 'Veuillez fournir un nom pour l\'hébergement';
+          $errors['name'][] = $translator->trans('Veuillez fournir un nom pour l\'hébergement');
         }
 
         if (empty($_POST['type'])) {
-            $errors['type'][] = 'Veuillez fournir un type d\'hébergement';
+            $errors['type'][] = $translator->trans('Veuillez fournir un type d\'hébergement');
         }
 
         if (empty($_POST['address_line_1'])) {
-            $errors['address_line_1'][] = 'Veuillez fournir une adresse';
+            $errors['address_line_1'][] = $translator->trans('Veuillez fournir une adresse');
         }
 
         if (empty($_POST['region'])) {
-            $errors['region'][] = 'Veuillez fournir une province';
+            $errors['region'][] = $translator->trans('Veuillez fournir une province');
         }
 
         if (empty($_POST['phone'])) {
-            $errors['phone'][] = 'Veuillez fournir un numéro de téléphone';
+            $errors['phone'][] = $translator->trans('Veuillez fournir un numéro de téléphone');
         }
 
         if (empty($_POST['country'])) {
-            $errors['country'][] = 'Veuillez fournir un pays';
+            $errors['country'][] = $translator->trans('Veuillez fournir un pays');
         }
 
         if (empty($_POST['city'])) {
-            $errors['city'][] = 'Veuillez fournir une ville dans votre adresse';
+            $errors['city'][] = $translator->trans('Veuillez fournir une ville dans votre adresse');
         }
 
         if (!empty($errors)) {
@@ -156,34 +157,34 @@ class Admin extends \Core\Controller
         );
     }
 
-    public function activityCreateAction()
+    public function activityCreateAction(TranslatorInterface $translator)
     {
         if (empty($_POST['name'])) {
-            $errors['name'][] = 'Veuillez fournir un nom pour l\'activité';
+            $errors['name'][] = $translator->trans('Veuillez fournir un nom pour l\'activité');
         }
 
         if (empty($_POST['type'])) {
-            $errors['type'][] = 'Veuillez fournir un type d\'activité';
+            $errors['type'][] = $translator->trans('Veuillez fournir un type d\'activité');
         }
 
         if (empty($_POST['address_line_1'])) {
-            $errors['address_line_1'][] = 'Veuillez fournir une adresse';
+            $errors['address_line_1'][] = $translator->trans('Veuillez fournir une adresse');
         }
 
         if (empty($_POST['region'])) {
-            $errors['region'][] = 'Veuillez fournir une province';
+            $errors['region'][] = $translator->trans('Veuillez fournir une province');
         }
 
         if (empty($_POST['phone'])) {
-            $errors['phone'][] = 'Veuillez fournir un numéro de téléphone';
+            $errors['phone'][] = $translator->trans('Veuillez fournir un numéro de téléphone');
         }
 
         if (empty($_POST['country'])) {
-            $errors['country'][] = 'Veuillez fournir un pays';
+            $errors['country'][] = $translator->trans('Veuillez fournir un pays');
         }
 
         if (empty($_POST['city'])) {
-            $errors['city'][] = 'Veuillez fournir une ville dans votre adresse';
+            $errors['city'][] = $translator->trans('Veuillez fournir une ville dans votre adresse');
         }
 
         if (!empty($errors)) {

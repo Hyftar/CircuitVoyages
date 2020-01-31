@@ -3,16 +3,17 @@
 
 namespace App\Helpers;
 
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ApplicationHelpers
 {
     private static $date_pattern = '/^(?<year>\d{4})[- \/]?(?<month>[0-1]?\d)[- \/]?(?<day>[0-3]?\d)$/';
 
-    public static function validateDate($date, $older_than = 0)
+    public static function validateDate($date, $older_than = 0, TranslatorInterface $translator)
     {
         $errors = [];
         if (!preg_match(static::$date_pattern, $date)) {
-            $errors[] = 'Format de date invalide';
+            $errors[] = $translator->trans('Format de date invalide');
             return $errors;
         }
 

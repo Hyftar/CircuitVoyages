@@ -4,17 +4,17 @@
 <div class="login-container">
   <div id="login-form" class="login-form">
     <div class="login-form__header">
-      <h1>Connexion administrative</h1>
+      <h1>{% trans %}Connexion administrative{% endtrans %}</h1>
     </div>
     <div id="admin-login-errors" class="hidden"></div>
     <div class="login-form__content">
-      <label for="admin-login-email">Adresse email:</label>
+      <label for="admin-login-email">{% trans %}Adresse email{% endtrans %}:</label>
       <input id="admin-login-email" type="email" name="email" class="form-control">
 
-      <label for="admin-login-password">Mot de passe:</label>
+      <label for="admin-login-password">{% trans %}Mot de passe{% endtrans %}:</label>
       <input id="admin-login-password" type="password" name="password" class="form-control">
 
-      <button id="admin-login-submit" class="btn btn-primary">Connexion</button>
+      <button id="admin-login-submit" class="btn btn-primary">{% trans %}Connexion{% endtrans %}</button>
     </div>
   </div>
 </div>

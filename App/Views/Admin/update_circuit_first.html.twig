@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content pt-3">
       <div class="modal-header ">
-        <h5 class="modal-title">Modification du circuit - {{ circuit.id |e }}</h5>
+        <h5 class="modal-title">{% trans %}Modification du circuit{% endtrans %} - {{ circuit.id |e }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,11 +10,11 @@
       <form id="formUpdateCircuit" onsubmit="return modifierCircuit({{ circuit.id|e }})">
         <div class="modal-body">
           <div class="form-group">
-            <label for="nomCircuit">Nom du circuit</label>
+            <label for="nomCircuit">{% trans %}Nom du circuit{% endtrans %}</label>
             <input type="text" class="form-control" id="nomCircuit" name="nomCircuit" required value="{{ circuit.name|e }}">
           </div>
           <div class="form-group">
-            <label for="descriptionCircuit">Description du circuit</label>
+            <label for="descriptionCircuit">{% trans %}Description du circuit{% endtrans %}</label>
             <textarea id="descriptionCircuit" class="form-control" name="descriptionCircuit" rows="5">{{ circuit.description }}</textarea>
           </div>
 
@@ -24,13 +24,13 @@
             {% else %}
               <input type="checkbox" class="custom-control-input" id="public" name="public">
             {% endif %}
-            <label class="custom-control-label" for="public">Ce circuit est public et affiché aux clients</label>
+            <label class="custom-control-label" for="public">{% trans %}Ce circuit est public et affiché aux clients{% endtrans %}</label>
           </div>
 
           {# // multiple selectpicker for circuit categories #}
 
           <div class="form-group">
-            <label for="category">Catégorie(s) : </label>
+            <label for="category">{% trans %}Catégorie(s){% endtrans %} : </label>
             <select class="selectpicker" title="Aucune catégorie" name="category">
               {% for category in categories %}
                 {% if category.id == circuit.category_id %}
@@ -45,7 +45,7 @@
           {# // multiple selectpicker for circuit languages #}
 
           <div class="form-group">
-            <label for="language">Langue(s) disponible(s) pour le circuit : </label>
+            <label for="language">{% trans %}Langue(s) disponible(s) pour le circuit{% endtrans %} : </label>
             <select class="selectpicker" title="Aucune langue" name="language" required>
               {% for language in languages %}
                 {% if language.id == circuit.language_id %}
@@ -60,7 +60,7 @@
           {# // File input for circuit image #}
 
           <div class="custom-file form-group">
-            <label for="image">Image utilisée sur le header : </label>
+            <label for="image">{% trans %}Image utilisée sur le header{% endtrans %} : </label>
             <select class="image-picker show-labels show-html" title="Choisir une image" name="image" required>
               {% for image in images %}
                 {% if image.id == circuit.media_id %}
@@ -73,8 +73,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Enregistrer les changements</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary">{% trans %}Enregistrer les changements{% endtrans %}</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}Fermer{% endtrans %}</button>
         </div>
       </form>
     </div>

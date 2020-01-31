@@ -6,10 +6,10 @@
   <div class="home-content">
     <div class="home-content__banner">
       <div class="banner__text">
-        Voyager n'aura jamais été <span style="font-style: italic;">aussi</span> facile.
+        {% trans %}Voyager n'aura jamais été{% endtrans %} <span style="font-style: italic;">{% trans %}aussi{% endtrans %}</span> {% trans %} facile{% endtrans %}.
       </div>
     </div>
-    <h2 class="home-content__header">Tous nos circuits</h2>
+    <h2 class="home-content__header">{% trans %}Tous nos circuits{% endtrans %}</h2>
     <div class="home-content__circuits">
       {% for circuit in circuits %}
         <div class="card">
@@ -17,7 +17,7 @@
             <div class="ribbon ribbon--green">
               <div class="ribbon__bottom"></div>
               <div class="ribbon__center">
-                <div>En promotion!</div>
+                <div>{% trans %}En promotion!{% endtrans %}</div>
               </div>
             </div>
           {% endif %}

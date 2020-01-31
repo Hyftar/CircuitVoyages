@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter un hébergement</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">{% trans %}Ajouter un hébergement{% endtrans %}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,11 +10,11 @@
       <div class="modal-body">
         <form id="accommodation-add-form" onsubmit="return false">
           <div class="form-group">
-            <label for="name">Nom de l'hébergement</label>
+            <label for="name">{% trans %}Nom de l'hébergement{% endtrans %}</label>
             <input id="name" name="name" type="text" class="form-control" placeholder="The Ritz-Carlton" required="required">
           </div>
           <div class="form-group">
-            <label for="accommodation-type">Type d'hébergement</label>
+            <label for="accommodation-type">{% trans %}Type d'hébergement{% endtrans %}</label>
             <select id="accommodation-type" name="type" class="form-control">
               {% for type in types %}
                 <option value="{{loop.index}}">{{type|capitalize}}</option>
@@ -22,7 +22,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="rating">Cote de l'hébergement</label>
+            <label for="rating">{% trans %}Cote de l'hébergement{% endtrans %}</label>
             <fieldset class="rating">
               <input type="radio" id="star5" name="rating" value="5"/>
               <label class="full" for="star5" title="Exceptionnel - 5 étoiles"></label>
@@ -129,7 +129,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}Fermer{% endtrans %}</button>
             <input id="accommodation-add-form__submit" type="submit" class="btn btn-primary" value="Enregistrer"></input>
           </div>
         </form>

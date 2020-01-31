@@ -1,21 +1,21 @@
-<h2>Gestion des fichiers</h2>
+<h2>{% trans %}Gestion des fichiers{% endtrans %}</h2>
 
 {% include 'Admin/media_add.html.twig' %}
 
 <div class="accommodation-grid__controls">
   <a id="media-new-btn" href="#" data-toggle="modal" data-target="#media-add-modal">
-    <span>Ajouter un fichier</span>
+    <span>{% trans %}Ajouter un fichier{% endtrans %}</span>
     <i class="fas fa-plus-circle icone_ajout" aria-hidden="true"></i>
   </a>
 </div>
 
 <div class="accommodation-grid">
   <div class="accommodation-grid__header">
-    <div class="accommodation-grid__header__elem">Nom</div>
+    <div class="accommodation-grid__header__elem">{% trans %}Nom{% endtrans %}</div>
     <div class="accommodation-grid__header__elem">ID</div>
-    <div class="accommodation-grid__header__elem">Description</div>
-    <div class="accommodation-grid__header__elem">Type</div>
-    <div class="accommodation-grid__header__elem">Chemin</div>
+    <div class="accommodation-grid__header__elem">{% trans %}Description{% endtrans %}</div>
+    <div class="accommodation-grid__header__elem">{% trans %}Type{% endtrans %}</div>
+    <div class="accommodation-grid__header__elem">{% trans %}Chemin{% endtrans %}</div>
   </div>
   {% for media in medias %}
   <div class="accommodation-grid__body">
