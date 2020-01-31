@@ -15,6 +15,4 @@ class Translation extends \Core\Controller
 
         $_SESSION['locale'] = $_POST['selectedValue'];
     }
-
-
 }

@@ -5,9 +5,9 @@
     <table class="table" id="activitiesCircuit-{{ activity.id }}">
       <thead>
         <tr>
-          <th scope="col">{% trans %}Nom{% endtrans %}</th>
-          <th scope="col">{% trans %}Temps depuis le début de l'étape{% endtrans %}</th>
-          <th scope="col">{% trans %}Durée{% endtrans %}</th>
+          <th scope="col">{% trans %}Name{% endtrans %}</th>
+          <th scope="col">{% trans %}Step.Start.Time{% endtrans %}</th>
+          <th scope="col">{% trans %}Duration{% endtrans %}</th>
           <th scope="col">{% trans %}Type{% endtrans %}</th>
         </tr>
       </thead>
@@ -19,16 +19,16 @@
         <td>{{ activity.activity_type }}</td>
       </tr>
     {% endfor %}
-    {% for accommodation in accomodations %}
+    {% for accommodation in Accommodations %}
       <tr class="accommodation-row" id="accommodation-{{ accommodation.id }}">
-        <td scope="row">{{ accomodation.name }}</td>
+        <td scope="row">{{ Accommodation.name }}</td>
         <td>N/A</td>
         <td>N/A</td>
         <td>{{ accommodation.accommodation_type }}</td>
       </tr>
     {% endfor %}
     </table>
-    <button type="button" class="btn btn-primary" id="ajouterActivite{{ step.id }}" onclick="ajouterActivite({{ step.id }})">{% trans %}Ajouter une activité{% endtrans %}</button>
+    <button type="button" class="btn btn-primary" id="ajouterActivite{{ step.id }}" onclick="ajouterActivite({{ step.id }})">{% trans %}Activity.Add{% endtrans %}</button>
   {% endfor %}
-  <button type="button" class="btn btn-primary" id="ajouterEtape" onclick="ajouterEtape({{ circuit.id }})">{% trans %}Ajouter une étape{% endtrans %}</button>
+  <button type="button" class="btn btn-primary" id="ajouterEtape" onclick="ajouterEtape({{ circuit.id }})">{% trans %}Step.Add{% endtrans %}</button>
 </div>

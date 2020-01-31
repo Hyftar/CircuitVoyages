@@ -3,11 +3,12 @@
 namespace Core;
 
 //require_once __DIR__ . '/vendor/autoload.php';
-use Symfony\Component\Translation\Translator;
-use Symfony\Bridge\Twig\Extension\TranslationExtension;
-use Symfony\Component\Translation\Loader\YamlFileLoader;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+//use Symfony\Component\Translation\Translator;
+//use Symfony\Bridge\Twig\Extension\TranslationExtension;
+//use Symfony\Component\Translation\Loader\YamlFileLoader;
+//use Twig\Environment;
+//use Twig\Loader\FilesystemLoader;
+use App\Helpers\TranslationHelpers;
 
 class View
 {
@@ -47,6 +48,8 @@ class View
             $twig = new \Twig_Environment($loader);
             $twig->addExtension(new \Twig_Extensions_Extension_Date());
         }
+
+		$twig->addExtension(TranslationHelpers::getInstance($_SESSION['locale']));
 
         $output = $twig->render($template, $args);
 

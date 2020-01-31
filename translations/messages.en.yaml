@@ -1,0 +1,480 @@
+# Needs to be alphabetized
+
+Slogan1: Voyager n'aura jamais été aussi facile
+
+Circuit:
+  Label: Circuits
+  All: Tous nos circuits
+  Price: Prix du circuit
+  Creation: Création d'un circuit
+  Name: Nom du circuit
+  Description: Description du circuit
+  Category: Catégorie(s)
+  Language: Langue(s) disponible(s) pour le circuit
+  Save: Enregistrer le circuit
+  Organise: Organiser le circuit
+  Start: Démarrer le circuit
+  Modification: Modification du circuit
+  Organisation:
+    Label: Organisation d'un circuit
+    Min:
+      Places: Nombre de places minimal pour l'organisation du circuit
+  Management: Gestion des circuits
+  Date:
+    Official:
+      Departure: Date de départ officielle du circuit
+      End: Date de fin officielle du circuit
+  Modify:
+    New: Veuillez choisir un circuit à modifier
+  Image:
+    Header: Image pour le header
+    Choose: Choisir une image
+  Create:
+    Label: Créer le circuit
+    New: Créer un nouveau circuit
+  Departure:
+    Date: Date du départ
+    Creation: Création d'un départ du circuit
+    Create: Créer le départ
+    Management: Gestion des départs
+    Modification: Modification d'un départ du circuit
+    Modify:
+      Label: Modifier le départ 
+      New: Veuillez choisir un départ à modifier pour le circuit
+  Cancel:
+    Date: Date d'annulation
+    Price: Prix de l'annulation
+  Places:
+    Label: Nombre de places
+    Left: Nombre de places restantes
+  Min:
+    Places: Nombre de places minimal pour offrir le départ
+  Disponibility:
+    Places: Nombre de places disponibles pour le circuit
+  Public:
+    Posted: Ce départ est public et affiché aux clients
+  Actions: Actions
+  Is:
+    Public: Est public?
+  Return:
+    Gestion: Retour à la gestion des circuits
+    List: Retour à la liste des circuits
+    Creation: Retour à la création du circuit
+
+
+Promotion:
+  Label: En promotion !
+  Label2: Promotions
+  Add:
+    Label: Ajouter une promotion
+    New: Ajouter la nouvelle promotion
+  Creation: Création de la promotion
+  Modification: Modification de la promotion
+  Trips:
+    Concerned: Voyages concernés par la promotion
+  Description: Description
+  Type: Type de promotion
+  Applies:
+    All: S'applique à tous les voyages
+    Some: Promotion applicable aux voyages suivants
+  Details: Détails de la promotion
+  Start: Début de la promotion
+  End: Début de la promotion
+  Code: Code promo
+  Valeur:
+    Percent: Valeur en pourcentage
+    Monetary: Valeur en argent
+  Unlimited: Est illimité
+  Number: Nombre de promotions
+  Date:
+    Start: Date de début
+    Fin: Date de fin
+
+
+Explore: Explorer
+
+Accommodation:
+  Label: Hébergements
+  Add: Ajouter un hébergement
+  Name: Nom de l'hébergement
+  Type: Type d'hébergement
+  Rating: Cote de l'hébergement
+  Management: Gestion des hébergements
+  Please:
+    Add:
+      Name: Veuillez fournir un nom pour l\'hébergement
+      Type: Veuillez fournir un type pour l\'hébergement
+      Address: Veuillez fournir une adresse
+      Province: Veuillez fournir une province
+      Phone: Veuillez fournir un numéro de téléphone
+      Country: Veuillez fournir un pays
+      City: Veuillez fournir une ville dans votre adresse
+  
+Placeholder:
+  Email: Adresse courriel
+  Link: Lien
+  Phone: Téléphone
+  Country: Pays
+  Province: Province
+  City: Ville
+  Postal: Code postal
+  Birth: Date de naissance
+  Name:
+    Label: Nom
+    First: Prénom
+  Address:
+    Line1: Ligne d'adresse 1
+    Line2: Ligne d'adresse 2
+  User: Utilisateur
+  Password:
+    Label: Mot de passe
+    Create: Créez un mot de passe
+    Confirm: Confirmation du mot de passe
+
+Save: Enregistrer
+SaveC: Enregistrer les changements
+Close: Fermer
+
+Name: Nom
+Type: Type
+Link: Lien
+link: lien
+Rating: Cote
+Country: Pays
+City: Ville
+Places: Places
+'True': Vrai
+'False': Faux
+Duration: Durée
+Cancel: Annuler
+
+File:
+  Label: Fichier
+  Management: Gestion des fichiers
+
+Acitivty:
+  Add: Ajouter une activité
+  Name: Nom de l'activité
+  Type: Type d'activité
+  Management: Gestion des activités
+  Create: Créer une activité
+  Link: Lien vers l'activité
+  Description: Description de l'activité
+  Image:
+    Choose: Choisir une image
+  Please:
+    Add:
+      Name: Veuillez fournir un nom pour l\'activité
+      Type: Veuillez fournir un type d\'activité
+      Address: Veuillez fournir une adresse
+      Province: Veuillez fournir une province
+      Phone: Veuillez fournir un numéro de téléphone
+      Country: Veuillez fournir un pays
+      City: Veuillez fournir une ville dans votre adresse
+
+Transport: Transport
+Action: Action
+Actions: Actions
+Relaxation: Relaxation
+Discovery: Découverte
+Arts: Arts
+Restaurants: Restaurants
+Others: Autres
+Start: Début
+Choose: Choisir
+Description: Description
+End: Fin
+Add: Ajouter
+Email: Adresse courriel
+Password: Mot de passe
+Path: Chemin
+Erreur: Error
+Login: S'enregistrer
+Retour: Return
+Send: Envoyer
+Position : Position
+
+Connection:
+  Label: Connexion
+  Admin: Connexion administrative
+  Google: Connexion via Google
+  Facebook: Connexion via Facebook
+  Disconnect: Déconnexion
+
+Refund:
+  Fees: Frais d'annulation
+  Date:
+    Max: Date maximale de remboursement
+    Limit:
+      Cancel: Date limite pour l'annulation avec remboursement
+      Fees: Date limite pour l'annulation avec frais d'annulation 
+
+Step:
+  Add: Ajouter une étape
+  Label: Étape
+  Start:
+    Label: Début
+    Time: Temps depuis le début de l'étape
+  Creation: Création d'une étape
+  Create: Créer l'étape
+  Position: Position de l'étape
+  Description: Description de l'étape
+  Management: Gestion des étapes
+  Modify:
+    Label: Modifier l'étape
+    Choice: Veuillez choisir une étape à modifier
+  Activity:
+    Label: Activité(s)
+    Add: Ajouter une activité à l'étape
+  Day: Jour
+  Name: Nom
+  Type: Type
+  End: Fin
+  Actions: Actions
+  Accommodation:
+    Label: Hébergements
+    Management: Gestion des choix d'hébergement
+    Add: Ajouter un choix d'hébergement à l'étape
+    Choice: Choix d'hébergement(s)
+  Return: Retour à l'étape
+  ReturnC: Retour aux circuits
+  Filters: Ajoutez des filtres pour spécifier la recherche d'établissements
+  Disponibility: Entrez le jour pour lequel ces établissements seront disponibles
+  New:
+    Create: Créer une nouvelle étape
+  Modification: Modification de l'étape
+
+Media:
+  File:
+    Name: Nom du fichier
+    Add: Ajouter un fichier
+    Forbidden: Type de fichier interdit
+  Please:
+    Add:
+      File: Veuillez fournir un fichier
+      Name: Veuillez fournir un nom de fichier
+
+Payment:
+  Plan:
+    Label: Plan de paiement
+    Name: Nom du plan de paiement
+    Add: Ajouter un plan de paiement
+    Departure: Ajoutez ou enlevez des plans de paiement pour le départ
+    Management: Gestion du plan de paiement
+  Date:
+    Label: Date
+    Limit: Date limite du paiement
+    Due: Date dûe
+  Add: Ajouter un paiement
+  Amount: Montant dû
+  Todo: Paiements à faire
+  History: Historique de paiements
+  Trip:
+    Name: Nom du voyage
+  Ammount: Montant du paiement
+  Transaction: Transaction
+  Options: Options
+  None: Aucun paiement trouvé.
+  Management: Gestion des plans de paiement
+  Return: Retour à la gestion des départs
+  ReturnP: Retour à la gestion des plans de paiement
+  Departure:
+    Action: Ajoutez ou enlever des paiements pour le départ
+
+Account:
+  Create:
+    Label: Créer un compte
+    Admin: Créez un compte administrateur
+  Exist: Vous avez déjà un compte? Connectez-vous!
+  Password:
+    Lost: Mot de passe oublié?
+    Reset:
+      Here: Réinitialiser votre mot de passe ici.
+      Label: Réinitialiser votre mot de passe
+  Connect: Connectez-vous
+  Member:
+    New: Nouveau membre? Enregistrez-vous!
+  Email:
+    Invalid: Format du email invalide
+  Please:
+    Add:
+      Password: Veuillez fournir un mot de passe
+
+Chat:
+  Message:
+    Empty: Votre message ne peut être vide
+  Support:
+    Messaging: Messagerie de support technique
+  Resolved: Marquer comme résolu
+  Join: Joindre
+  Quit: Quitter
+  Room:
+    Provide: Vous devez fournir une pièce
+    Message: Le membre ne peut envoyer de messages dans la pièce spécifiée
+  Contact:
+    Employee: Nous vous mettons en contact avec un employé sous peu.
+  user_name: user_name a marqué son problème comme étant résolu
+  employee_name:
+    Connected: employee_name s'est connecté, faites-lui part de votre problème.
+    Disconnected: employee_name s'est déconnecté.
+
+Sidebar:
+  Waiting: En attente
+  Finished: Terminée avant connexion
+  New:
+    Session: Nouvelle session
+
+Page:
+  Error:
+    Message404: Désolé, cette page n'existe pas.
+    Message500: Désolé, une erreur interne est survenue.
+
+Base:
+  Admin:
+    Header: Administration
+  Account:
+    Label: Mon compte
+    Employee: Comptes employés
+    Client: Comptes clients
+  Disconnect: Se Déconnecter
+  Support: Support Technique
+  Circuit:
+    Management: Gestion des circuits
+  Promotions: Promotions
+  Payments: Paiements
+  Landing: Affichage accueil
+  Accommodations: Hébergements
+  Activities: Activités
+  Files: Fichiers
+
+Footer:
+  Contact: Nous contacter
+  Newsletter: Infolettre
+  Admin: Administration
+
+Newsletter:
+  Label: Bulletins d'information
+  Create: Créer un bulletin d'informations
+  Name: Nom du bulletin
+  Add:
+    Label: Ajouter un bulletin d'informations
+    Message: Ajouter un message à ce bulletin
+  Date: Date du message
+  Subject:
+    Label: Sujet
+    Last: Sujet du dernier message
+  Content: Contenu
+  Actions: Actions
+  Message:
+    None: Aucun message pour ce bulletin.
+    Content: Contenu du message.
+  Return: Retourner à la liste des bulletins
+  New: Nouveau message
+  Modify: Modifier le bulletin d'informations
+
+Employee:
+  Please:
+    Add:
+      Name: Veuillez fournir un nom
+      First: Veuillez fournir un prénom
+      Email: Veuillez fournir un adresse courriel
+      Phone: Veuillez fournir un numéro de téléphone
+      Birth: Veuillez fournir une date de naissance
+      Language: Veuillez fournir les langues parlées par l\'employé
+  Invalid: Email ou mot de passe invalide
+
+Helpers:
+  Email:
+    Invalid: Format du email invalide
+    Sent: Email non envoyé
+  Account:
+    Exist: Un compte existe deja pour ce email
+  Phone: Numéro de téléphone invalide
+  Postal: Code postal invalide
+  Date: Format de date invalide
+  Password:
+    Contains:
+      Caps: Le mot de passe doit contenir au moins 1 caractère alphanumérique majuscule
+      NoCaps: Le mot de passe doit contenir au moins 1 caractère alphanumérique minuscule
+      Num: Le mot de passe doit contenir au moins 1 caractère numérique
+      Chars: 'Le mot de passe doit contenir au moins 1 caractère parmis !, @, #, $, %, ^ et &'
+      8Chars: Le mot de passe doit contenir au moins 8 caractères
+  older_than: Vous devez avoir au moins older_than ans pour vous enregistrer
+
+
+Members:
+  Google:
+    Name: Veuillez fournir un nom
+    Id: Veuillez fournir un id
+    Email: Veuillez fournir un email
+  Facebook:
+    Name: Veuillez fournir un nom
+    Id: Veuillez fournir un id
+  Password:
+    Provide: Veuillez fournir un mot de passe
+    Old: Ancien mot de passe
+    OldI: L\'ancien mot de passe n\'est pas valide.
+    New: Nouveau mot de passe
+    New2: Entrez à nouveau le nouveau mot de passe
+    Unique: Les nouveaux mots de passe ne sont pas identiques.
+    Change: Changer le mot de passe
+  Invalid: Email ou mot de passe invalide
+  Create:
+    Please:
+      Add:
+        First: Veuillez fournir un prénom
+        Name: Veuillez fournir un nom
+        Email: Veuillez fournir un adresse courriel
+        Address: Veuillez fournir un adresse
+        Province: Veuillez fournir une province
+        Phone: Veuillez fournir un numéro de téléphone
+        Country: Veuillez fournir un pays
+        Birth: Veuillez fournir une date de naissance
+        City: Veuillez fournir une ville dans votre adresse
+        Language: Veuillez fournir une langue de préférence
+  Exist: Un compte existe deja pour ce email
+  Account:
+    Label: Mon compte
+    Modify: Modifier mon compte
+  Informations: Informations
+  Coords: Coordonnées
+  Communications: Communications
+  Trips:
+    Label: Voyages
+    Incoming: Voyages à venir
+    History: Historique des voyages
+  Payments:
+    Todo: Paiements à faire
+    History: Historique de paiements
+  Modify:
+    Email: Modifier l'addresse de messsagerie électronique
+    Security: Modifier les paramètres de sécurité
+  Newsletter:
+    List: Liste des bulletins d'information
+  Unsubscribe: Se désinscrire
+  Subscribe: S'inscrire
+  Country: Pays
+  City: Ville
+  Region: Region
+  Postal: Code Postal
+  Address: Adresse
+  First: Prénom
+  Name: Nom
+  Birth: Date de naissance
+  Phone: Numéro de téléphone
+  Language: Langue
+  Already:
+    Facebook: Le compte a été créé à l'aide d'un compte Facebook. Veuillez utiliser les options de sécurité de
+    Google: Le compte a été créé à l'aide d'un compte Google. Veuillez utiliser les options de sécurité de
+  Format:
+    Email: Format du email invalide
+
+Trips:
+  Incoming: Voyages à venir
+  History: Historique des voyages
+  Name: Nom
+  Date:
+    Departure: Date de départ
+    Return: Date de retour
+  Details: Obtenir des détails
+  None: Aucun voyage trouvé.

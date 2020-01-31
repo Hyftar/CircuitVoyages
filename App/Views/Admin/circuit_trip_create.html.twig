@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content pt-3">
       <div class="modal-header">
-        <h5 class="modal-title">{% trans %}Création d'un départ du circuit{% endtrans %} {{ circuit.name }}</h5>
+        <h5 class="modal-title">{% trans %}Circuit.Departure.Creation{% endtrans %} {{ circuit.name }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -11,41 +11,41 @@
         <input type="hidden" name="circuit_id" value="{{ circuit.id|e }}">
         <div class="modal-body">
           <div class="form-group">
-            <label for="departure_date" class="col-form-label">{% trans %}Date du départ{% endtrans %}</label>
+            <label for="departure_date" class="col-form-label">{% trans %Circuit.Departure.Date{% endtrans %}</label>
             <input type="date" class="form-control" id="departure_date" name="departure_date" value="{{ 'now'|date_modify("+90 day")|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
-            <label for="price">{% trans %}Prix du circuit{% endtrans %}</label>
+            <label for="price">{% trans %}Circuit.Price{% endtrans %}</label>
             <input type="number" min="0" step="any" class="form-control" id="price" name="price" value="0" required>
           </div>
           <div class="form-group">
-            <label for="refund_date" class="col-form-label">{% trans %}Date maximale de remboursement{% endtrans %}</label>
+            <label for="refund_date" class="col-form-label">{% trans %}Refund.Date.Max{% endtrans %}</label>
             <input type="date" class="form-control" id="refund_date" name="refund_date" value="{{ 'now'|date_modify("+10 day")|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
-            <label for="cancellation_date" class="col-form-label">{% trans %}Date d'annulation{% endtrans %}</label>
+            <label for="cancellation_date" class="col-form-label">{% trans %}Circuit.Cancel.Date{% endtrans %}</label>
             <input type="date" class="form-control" id="cancellation_date" name="cancellation_date" value="{{ 'now'|date_modify("+70 day")|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
-            <label for="cancellation_fee">{% trans %}Prix de l'annulation{% endtrans %}</label>
+            <label for="cancellation_fee">{% trans %}Circuit.Cancel.Price{% endtrans %}</label>
             <input type="number" min="0" step="any" class="form-control" id="cancellation_fee" name="cancellation_fee" value="0" required>
           </div>
           <div class="form-group">
-            <label for="places">{% trans %}Nombre de places{% endtrans %}</label>
+            <label for="places">{% trans %}Circuit.Places.Label{% endtrans %}</label>
             <input type="number" min="1" step="1" class="form-control" id="places" name="places" value="1" required>
           </div>
           <div class="form-group">
-            <label for="quorum">{% trans %}Nombre de places minimal pour offrir le départ{% endtrans %}</label>
+            <label for="quorum">{% trans %}Circuit.Min.Places{% endtrans %}</label>
             <input type="number" min="1" step="1" class="form-control" id="quorum" name="quorum" value="1" required>
           </div>
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="public" name="public">
-            <label class="custom-control-label" for="public">{% trans %}Ce départ est public et affiché aux clients{% endtrans %}</label>
+            <label class="custom-control-label" for="public">{% trans %}Circuit.Public.Posted{% endtrans %}</label>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">{% trans %}Créer le départ{% endtrans %}</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}Fermer{% endtrans %}</button>
+          <button type="submit" class="btn btn-primary">{% trans %}Circuit.Departure.Create{% endtrans %}</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
         </div>
       </form>
     </div>
