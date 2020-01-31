@@ -1,12 +1,12 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Erreur{% endblock %}
+{% block title %}{% trans %}Error{% endtrans %}{% endblock %}
 {% block body_class %}error_page{% endblock %}
 {% block main %}
   <div class="home-content">
     <div class="home-content__banner">
       <div class="banner__text">
-        {% trans %}Désolé, une erreur interne est survenue.{% endtrans %}
+        {% trans %}Page.Error.Message500{% endtrans %}
       </div>
     </div>
   </div>

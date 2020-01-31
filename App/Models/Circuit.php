@@ -414,7 +414,7 @@ class Circuit extends Model
         $stmt = $db->prepare('SELECT
             *
             FROM accommodations
-            WHERE accomodations.location_id =:location_id;');
+            WHERE Accommodations.location_id =:location_id;');
         $stmt->bindValue(':location_id', $location_id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();

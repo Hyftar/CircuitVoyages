@@ -1,6 +1,6 @@
 <form class="form_create_circuit">
   <div class="form-group">
-    <label for="nom_circuit"><h5>{% trans %}Nom du circuit{% endtrans %} :</h5></label>
+    <label for="nom_circuit"><h5>{% trans %}Circuit.Name{% endtrans %} :</h5></label>
     <input type="email" class="form-control" id="nom_circuit" name="nom_circuit"
            placeholder="Ex. : Circuit Méditerrannéen">
   </div>
@@ -8,7 +8,7 @@
   <div class="select_container">
     {# // multiple selectpicker for circuit categories #}
     <div>
-      <label for="category">{% trans %}Catégorie(s){% endtrans %} : </label>
+      <label for="category">{% trans %}Circuit.Category{% endtrans %} : </label>
       <select class="selectpicker" title="Aucune catégorie" name="category"
               multiple>
         {% for category in categories %}
@@ -20,7 +20,7 @@
 
     {# // multiple selectpicker for circuit languages #}
     <div>
-      <label for="language">{% trans %}Langue(s) disponible(s) pour le circuit{% endtrans %} : </label>
+      <label for="language">{% trans %}Circuit.Language{% endtrans %} : </label>
       <select class="selectpicker" title="Aucune langue" name="language"
               multiple>
         {% for language in languages %}
@@ -37,14 +37,14 @@
   <div class="custom-file">
     <input type="file" class="custom-file-input" id="customFile"
            name="customFile" lang="fr">
-    <label class="custom-file-label" for="customFile">{% trans %}Choisir une image{% endtrans %}</label>
+    <label class="custom-file-label" for="customFile">{% trans %}Circuit.Image.Choose{% endtrans %}</label>
   </div>
 
 
   {# text area for small back-end circuit desc #}
 
   <div class="form-group">
-    <label for="desc">{% trans %}Description du circuit{% endtrans %} : </label>
+    <label for="desc">{% trans %}Circuit.Description{% endtrans %} : </label>
     <textarea class="form-control" name="desc"
               rows="3" style="resize: none"></textarea>
   </div>
@@ -59,7 +59,7 @@
       <li class="nav-item">
         <a class="nav-link active" id="pills-step-1-tab" data-toggle="pill"
            href="#pills-step-1" role="tab" aria-controls="pills-step-1"
-           aria-selected="true">{% trans %}Étape{% endtrans %} 1</a>
+           aria-selected="true">{% trans %}Step.Label{% endtrans %} 1</a>
       </li>
 
       <li id="addstep_button" class="nav-item">
@@ -99,13 +99,13 @@
             </div>
           </div>
           <div class="hebergement_container">
-            <h6 class="hebergement_titre">{% trans %}Ajouter une activité{% endtrans %}</h6>
+            <h6 class="hebergement_titre">{% trans %}Activity.Add{% endtrans %}</h6>
             <div class="grille_hebergement step-duration-0" id="grille_ajout1">
 
             </div>
           </div>
           <div class="hebergement_container">
-            <h6 class="hebergement_titre">{% trans %}Hébergements{% endtrans %} :</h6>
+            <h6 class="hebergement_titre">{% trans %}Accommodation.Label{% endtrans %} :</h6>
             <div class="grille_hebergement step-duration-0" id="grille_hebergement1">
 
             </div>
@@ -120,13 +120,13 @@
   <div class="button_panel">
     <button type="button" class="btn btn-dark mr-auto"
             onClick="getCircuits()">
-      {% trans %}Retour à la liste des circuits{% endtrans %}
+      {% trans %}Circuit.Return.List{% endtrans %}
     </button>
     <button type="button" id="circuit-add-form_submit" type="submit"
-            class="btn btn-secondary">{% trans %}Enregistrer le circuit{% endtrans %}
+            class="btn btn-secondary">{% trans %}Circuit.Save{% endtrans %}
     </button>
     <button type="button" class="btn btn-success"
-            onclick="getCircuits_organize()">{% trans %}Organiser le circuit{% endtrans %}
+            onclick="getCircuits_organize()">{% trans %}Circuit.Organise{% endtrans %}
     </button>
   </div>
 
@@ -139,8 +139,7 @@
        role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">{% trans %}Créer une
-          activité{% endtrans %}</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">{% trans %}Activity.Create{% endtrans %}</h5>
         <button type="button" class="close" data-dismiss="modal"
                 aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -149,41 +148,39 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="activity_name">{% trans %}Nom de l'activité{% endtrans %}</label>
+            <label for="activity_name">{% trans %}Activity.Name{% endtrans %}</label>
             <input type="email" class="form-control"
                    id="activity_name" placeholder="">
           </div>
           <div class="form-group">
-            <label for="activity_type">{% trans %}Type d'activité{% endtrans %}</label>
+            <label for="activity_type">{% trans %}Activity.Type{% endtrans %}</label>
             <select class="form-control" id="activity_type">
               <option value="TRANSPORT">{% trans %}Transport{% endtrans %}</option>
               <option value="ACTION">{% trans %}Action{% endtrans %}</option>
               <option value="RELAXING">{% trans %}Relaxation{% endtrans %}</option>
-              <option value="DISCOVERY">{% trans %}Découverte{% endtrans %}</option>
+              <option value="DISCOVERY">{% trans %}Discovery{% endtrans %}</option>
               <option value="ARTS">{% trans %}Arts{% endtrans %}</option>
               <option value="RESTAURANTS">{% trans %}Restaurants{% endtrans %}</option>
-              <option value="OTHER">{% trans %}Autres{% endtrans %}</option>
+              <option value="OTHER">{% trans %}Others{% endtrans %}</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="activity_link">{% trans %}Lien vers la page de
-              l'activité{% endtrans %}</label>
+            <label for="activity_link">{% trans %}Activity.Link{% endtrans %}</label>
             <input type="text" class="form-control"
                    id="activity_link" placeholder="">
           </div>
           <div class="form-group">
-            <label for="activity_desc">{% trans %}Description de
-              l'activité{% endtrans %}</label>
+            <label for="activity_desc">{% trans %}Activity.Description{% endtrans %}</label>
             <textarea class="form-control" id="activity_desc"
                       rows="3"></textarea>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text"
-                     for="activity_start">{% trans %}Début{% endtrans %}</label>
+                     for="activity_start">{% trans %}Start{% endtrans %}</label>
             </div>
             <select class="custom-select" id="activity_start">
-              <option selected>{% trans %}Choisir{% endtrans %} ...</option>
+              <option selected>{% trans %}Choose{% endtrans %} ...</option>
               {% for i in 0 .. 96 %}
                 <option>
                   {{ (i/4)|round(0, 'floor') }}h{{ (i%4)*15 }}{% if i%4 == 0 %}0
@@ -195,10 +192,10 @@
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text"
-                     for="activity_duration">{% trans %}Fin{% endtrans %}</label>
+                     for="activity_duration">{% trans %}End{% endtrans %}</label>
             </div>
             <select class="custom-select" id="activity_duration">
-              <option selected>{% trans %}Choisir{% endtrans %} ...</option>
+              <option selected>{% trans %}Choose{% endtrans %} ...</option>
               {% for i in 0 .. 96 %}
                 <option>
                   {{ (i/4)|round(0, 'floor') }}h{{ (i%4)*15 }}{% if i%4 == 0 %}0
@@ -210,8 +207,7 @@
           <div class="custom-file">
             <input type="file" class="custom-file-input" id="customFile2"
                    lang="fr">
-            <label class="custom-file-label" for="customFile2">{% trans %}Choisir une
-              image{% endtrans %}</label>
+            <label class="custom-file-label" for="customFile2">{% trans %}Activity.Image.Choose{% endtrans %}</label>
           </div>
           <input style="display: none" id="day_nb" type="text" value="1">
           <input style="display: none" id="step_nb" type="text" value="1">
@@ -219,9 +215,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          {% trans %}Fermer{% endtrans %}
+          {% trans %}Close{% endtrans %}
         </button>
-        <button type="button" class="btn btn-primary" onclick="createActivity()">{% trans %}Ajouter{% endtrans %}</button>
+        <button type="button" class="btn btn-primary" onclick="createActivity()">{% trans %}Add{% endtrans %}</button>
       </div>
     </div>
   </div>

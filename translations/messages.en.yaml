@@ -1,0 +1,496 @@
+# Needs to be alphabetized
+
+Slogan1: Traveling has never been easier.
+
+Circuit:
+  Label: Circuits
+  All: All our circuits
+  Price: Circuit price
+  Creation: Circuit creation
+  Name: Circuit name
+  Description: Circuit description
+  Category: Categorie(s)
+  Language: Language(s) available for the tour
+  Save: Save the circuit
+  Organise: Organise the circuit
+  Start: Start the circuit
+  Modification: Modify the circuit
+  Organisation:
+    Label: Organization of a circuit
+    Min:
+      Places: Minimum number of places for the organization of the circuit
+  Management: Circuit management
+  Date:
+    Official:
+      Departure: Official departure date of the circuit
+      End: Official end date of the circuit
+  Modify:
+    New: Please choose a circuit to modify
+  Image:
+    Header: Image for the header
+    Choose: Choose an image
+  Create:
+    Label: Create circuit
+    New: Create a new circuit
+  Departure:
+    Date: Departure date
+    Next:
+      Label: Next departure
+      Plan: Next departure in planning!
+    Creation: Creation of a circuit departure
+    Create: Create the départ
+    Management: Departure management
+    Modification: Modification of a circuit departure
+    Modify:
+      Label: Modify the departure 
+      New: Please choose a departure to modify for the circuit
+  Cancel:
+    Date: Cancelation date
+    Price: Cancelation price
+  Places:
+    Label: Number of places
+    Left: Number of places left
+  Min:
+    Places: Minimum number of places to offer departure
+  Disponibility:
+    Places: Number of places available for the circuit
+  Public:
+    Posted: This departure is public and displayed to customers
+  Actions: Actions
+  Is:
+    Public: Is public?
+  Return:
+    Gestion: Back to circuit management
+    List: Back to the list of circuits
+    Creation: Back to circuit creation
+
+
+Promotion:
+  Label: Discount !
+  Label2: Discounts
+  Add:
+    Label: Add a discount
+    New: Add a new discount
+  Creation: Discount creation
+  Modification: Discount modification
+  Trips:
+    Concerned: Travel affected by the discount
+  Description: Description
+  Type: Discount type
+  Applies:
+    All: Applies to all trips
+    Some: Discount applicable to the following trips
+  Details: Discount details
+  Start: Discount beginning
+  End: Discount ending
+  Code: Promo code
+  Valeur:
+    Percent: Percentage value
+    Monetary: Monetary value
+  Unlimited: Is unlimited
+  Number: Discount number
+  Date:
+    Start: Start date
+    Fin: End date
+
+
+Explore: Explore
+
+Accommodation:
+  Label: Accommodations
+  Add: Add an Accommodation
+  Name: Accommodation name
+  Type: Accommodation type
+  Rating: Accommodation rating
+  Management: Accommodation management
+  Please:
+    Add:
+      Name: Please provide a name for the accommodation
+      Type: Please provide a type for accommodation
+      Address: Please provide an address
+      Province: Please provide a province
+      Phone: Please provide a phone number
+      Country: Please provide a country
+      City: Please provide a city in your address
+  
+Placeholder:
+  Email: Email
+  Link: Lien
+  Phone: Phone
+  Country: Country
+  Province: Province
+  City: City
+  Postal: Postal code
+  Birth: Date of birth
+  Name:
+    Label: Last name
+    First: First name
+  Address:
+    Line1: Address Line 1
+    Line2: Address Line 2
+  User: User
+  Password:
+    Label: Password
+    Create: Create a password
+    Confirm: Password confirmation
+  Mountain: Mountain hiking
+
+Save: Save
+SaveC: Save changes
+Close: Close
+
+Name: Name
+Type: Type
+Link: Link
+link: link
+Rating: Rating
+Country: Country
+City: City
+Places: Places
+'True': 'True'
+'False': 'False'
+Duration: Duration
+Cancel: Cancel
+
+File:
+  Label: File
+  Management: File management
+
+Acitivty:
+  Add: Add an activity
+  Name: Activity name
+  Type: Activity type
+  Management: Activity management
+  Create: Create an activity
+  Link: Link to activity
+  Description: Activity description
+  Image:
+    Choose: Choose an image
+  Please:
+    Add:
+      Name: Please provide a name for the activity
+      Type: Please provide a type for the activity
+      Address: Please provide an address
+      Province: Please provide a province
+      Phone: Please provide a phone number
+      Country: Please provide a country
+      City: Please provide a city in your address
+
+Transport: Transport
+Action: Action
+Actions: Actions
+Relaxation: Relaxation
+Discovery: Discovery
+Arts: Arts
+Restaurants: Restaurants
+Others: Others
+Start: Start
+Choose: Choose
+Description: Description
+End: End
+Add: Add
+Email: Email
+Password: Password
+Path: Path
+Error: Erreur
+Login: Login
+Return: Return
+Send: Send
+Position: Position
+Reserve: Reserve
+Itinerary: Itinerary
+Guides: Guides
+
+Connection:
+  Label: Connection
+  Admin: Administrative connection
+  Google: Connection via Google
+  Facebook: Connection via Facebook
+  Disconnect: Disconnect
+
+Refund:
+  Fees: Refund fees
+  Date:
+    Max: Maximum refund date
+    Limit:
+      Cancel: Deadline for cancellation with refund
+      Fees: Deadline for cancellation with cancellation fees 
+
+Step:
+  Add: Add a step
+  Label: Step
+  Start:
+    Label: Start
+    Time: Time since start of step
+  Creation: Creation of a step
+  Create: Create a step
+  Position: Step position
+  Description: Step description
+  Management: Step management
+  Modify:
+    Label: Modify step
+    Choice: Please choose a step to modify
+  Activity:
+    Label: Activite(s)
+    Add: Add an activity to the step
+  Day: Day
+  Name: Name
+  Type: Type
+  End: End
+  Actions: Actions
+  Accommodation:
+    Label: Accommodations
+    Management: Accommodation choice management
+    Add: Add a choice of accommodation to the step
+    Choice: Choice of accommodation(s)
+  Return: Return to step
+  ReturnC: Return to circuits
+  Filters: Add filters to specify the establishment search
+  Disponibility: Enter the day for which these establishments will be available
+  New:
+    Create: Create a new step
+  Modification: Step modification
+
+Media:
+  File:
+    Name: File name
+    Add: Add a file
+    Forbidden: File type forbidden
+  Please:
+    Add:
+      File: Please provide a file
+      Name: Please provide a name for the file
+
+Payment:
+  Plan:
+    Label: Payment plan
+    Name: Payment plan name
+    Add: Add a payment plan
+    Departure: Add or remove payment plans for departure
+    Management: Payment plan management
+  Date:
+    Label: Date
+    Limit: Payment deadline
+    Due: Due date
+  Add: Add a payment
+  Amount: Due amount
+  Todo: Payments to be made
+  History: Payment history
+  Trip:
+    Name: Trip name
+  Ammount: Payment amount
+  Transaction: Transaction
+  Options: Options
+  None: No payment found.
+  Management: Payment plan management
+  Return: Back to departure management
+  ReturnP: Back to payment plan management
+  Departure:
+    Action: Add or remove payments for departure
+
+Account:
+  Create:
+    Label: Create an account
+    Admin: Create an administrator account
+  Exist: Already have an account? Login!
+  Password:
+    Lost: Forgot your password?
+    Reset:
+      Here: Reset your password here.
+      Label: Reset your password
+  Connect: Login
+  Member:
+    New: New member? Register now!
+  Email:
+    Invalid: Invalid email format
+  Please:
+    Add:
+      Password: Please provide a password
+
+Chat:
+  Message:
+    Empty: Your message cannot be empty
+    Cannot: You cannot send a message in this session
+  Support:
+    Messaging: Technical support messaging
+  Resolved: Mark as resolved
+  Join: Join
+  Quit: Quit
+  Room:
+    Provide: You must provide a room
+    Message: The member cannot send messages in the specified room
+  Contact:
+    Employee: We will put you in touch with an employee shortly.
+  user_name: user_name marked their problem as resolved
+  employee_name:
+    Connected: employee_name has logged in, let them know about your problem.
+    Disconnected: employee_name has disconnected.
+
+Sidebar:
+  Waiting: Waiting
+  Finished: Completed before connection
+  New:
+    Session: New session
+
+Page:
+  Error:
+    Message404: Sorry, this page does not exist.
+    Message500: Sorry, an internal error has occurred.
+
+Base:
+  Admin:
+    Header: Administration
+  Account:
+    Label: My account
+    Employee: Employee accounts
+    Client: Client accounts
+  Disconnect: Disconnect
+  Support: Technical support
+  Circuit:
+    Management: Circuit management
+  Promotions: Discounts
+  Payments: Payments
+  Landing: Home display
+  Accommodations: Accommodations
+  Activities: Activities
+  Files: Files
+
+Footer:
+  Contact: Contact us
+  Newsletter: Newsletter
+  Admin: Administration
+
+Newsletter:
+  Label: Newsletters
+  Create: Create a newsletter
+  Name: Name of newsletter
+  Add:
+    Label: Add a newsletter
+    Message: Add a message to this newsletter
+  Date: Date of message
+  Subject:
+    Label: Subject
+    Last: Subject of the last message
+  Content: Content
+  Actions: Actions
+  Message:
+    None: No message for this newsletter.
+    Content: Content of the message.
+  Return: Return to the list of newsletters
+  New: New message
+  Modify: Edit newsletter
+
+Employee:
+  Please:
+    Add:
+      Name: Please provide a last name
+      First: Please provide a first name
+      Email: Please provide an email address
+      Phone: Please provide a phone number
+      Birth: Please provide a date of birth
+      Language: Please provide the languages spoken by the employee
+  Invalid: Invalid email or password
+
+Helpers:
+  Email:
+    Invalid: Invalid email format
+    Sent: Email not sent
+  Account:
+    Exist: An account already exists for this email
+  Phone: Invalid phone number
+  Postal: Invalid postal code
+  Date: Invalid date format
+  Password:
+    Contains:
+      Caps: Password must contain at least 1 uppercase alphanumeric character
+      NoCaps: Password must contain at least 1 lowercase alphanumeric character
+      Num: Password must contain at least 1 numeric character
+      Chars: 'The password must contain at least 1 character among !, @, #, $, %, ^ et &'
+      8Chars: Password must contain at least 8 characters
+  older_than: You must be at least older_than years old to register
+
+
+Members:
+  Google:
+    Name: Please provide a name
+    Id: Please provide an id
+    Email: Please provide an email
+  Facebook:
+    Name: Please provide a name
+    Id: Please provide an id
+  Password:
+    Provide: Please provide a password
+    Old: Old password
+    OldI: The old password is not valid.
+    New: New Password
+    New2: Re-enter new password
+    Unique: The new passwords are not the same.
+    Change: Change password
+  Invalid: Invalid email or password
+  Create:
+    Please:
+      Add:
+        First: Please provide a first name
+        Name: Please provide a last name
+        Email: Please provide an email address
+        Address: Please provide an address
+        Province: Please provide a province
+        Phone: Please provide a phone number
+        Country: Please provide a country
+        Birth: Please provide a date of birth
+        City: Please provide a city in your address
+        Language: Please provide a preferred language
+  Exist: An account already exists for this email
+  Account:
+    Label: My account
+    Modify: Modify my account
+  Informations: Informations
+  Coords: Contact information
+  Communications: Communications
+  Trips:
+    Label: Trips
+    Incoming: Upcoming trips
+    History: Travel history
+  Payments:
+    Todo: Payments to be made
+    History: Payment history
+  Modify:
+    Email: Change email address
+    Security: Change security settings
+  Newsletter:
+    List: List of newsletters
+  Unsubscribe: Unsubscribe
+  Subscribe: Subscribe
+  Country: Country
+  City: City
+  Region: Region
+  Postal: Postal Code
+  Address: Address
+  First: First name
+  Name: Last name
+  Birth: Date of birth
+  Phone: Phone number
+  Language: Language
+  Already:
+    Facebook: The account was created using a Facebook account. Please use the security options of
+    Google: The account was created using a Google account. Please use the security options of
+  Format:
+    Email: Invalid email format
+
+Trips:
+  Incoming: Upcoming trips
+  History: Travel history
+  Name: Name
+  Date:
+    Departure: Date of departure
+    Return: Return date
+  Details: Get details
+  None: No trips found.
+
+Core:
+  Not:
+    Routes: No route matched.
+    core_method: core_method not found in controller
+    core_file: core_file not found
+    core_controller: Controller class core_controller not found
+  core_action: Method core_action in controller core_controller cannot be called directly - remove the Action suffix to call this method

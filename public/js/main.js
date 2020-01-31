@@ -41,3 +41,17 @@ function showToast(title, supportingText, body) {
 function setBackground(url) {
   $('body').css('background-image', `url(${url})`)
 }
+
+function changeLang() {
+  const languages = document.getElementById("languages");
+  const selectedValue = languages.options[languages.selectedIndex].value;
+
+  $.ajax({
+    url: 'changelocale',
+    type: 'POST',
+	data: { selectedValue },
+    success: () => {
+      window.location.reload();
+    }
+  })
+}
