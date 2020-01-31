@@ -1,14 +1,14 @@
-<h3>Organisation d'un circuit</h3>
+<h3>{% trans %}Organisation d'un circuit{% endtrans %}</h3>
 
 <form>
   <div class="form-group">
-    <label for="date_depart">Date de départ officielle du circuit :</label>
+    <label for="date_depart">{% trans %}Date de départ officielle du circuit{% endtrans %} :</label>
     <input class="datepicker" id="date_depart" width="256px"/>
-    <label for="date_fin">Date de fin officielle du circuit :</label>
+    <label for="date_fin">{% trans %}Date de fin officielle du circuit{% endtrans %} :</label>
     <input class="datepicker" id="date_fin" width="256px"/>
   </div>
   <div class="form-group">
-    <label for="prix_circuit">Prix du circuit :</label>
+    <label for="prix_circuit">{% trans %}Prix du circuit{% endtrans %} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -19,13 +19,13 @@
         <span class="input-group-text">.00</span>
       </div>
     </div>
-    <label for="date_remboursement">Date limite pour l'annulation avec
-      remboursement : </label>
+    <label for="date_remboursement">{% trans %}Date limite pour l'annulation avec
+      remboursement{% endtrans %} : </label>
     <input class="datepicker" id="date_remboursement" width="256px"/>
-    <label for="date_cancellation">Date limite pour l'annulation avec frais
-      d'annulation :</label>
+    <label for="date_cancellation">{% trans %}Date limite pour l'annulation avec frais
+      d'annulation{% endtrans %} :</label>
     <input class="datepicker" id="date_cancellation" width="256px"/>
-    <label for="prix_annulation">Frais d'annulation :</label>
+    <label for="prix_annulation">{% trans %}Frais d'annulation{% endtrans %} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -38,10 +38,10 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="nb_places">Nombre de places disponibles pour le circuit
+    <label for="nb_places">{% trans %}Nombre de places disponibles pour le circuit{% endtrans %}
       :</label>
     <input type="number" id="nb_places" width="256px"/>
-    <label for="quorum">Nombre de places minimal pour l'organisation du circuit
+    <label for="quorum">{% trans %}Nombre de places minimal pour l'organisation du circuit{% endtrans %}
       :</label>
     <input type="number" id="quorum" width="256px"/>
     {# // multiple selectpicker for circuit guides #}
@@ -57,11 +57,11 @@
 
   </div>
   <div class="form-group">
-    <h4>Plan de paiement</h4>
-    <label for="paiement_plan">Nom du plan de paiement :</label>
+    <h4>{% trans %}Plan de paiement{% endtrans %}</h4>
+    <label for="paiement_plan">{% trans %}Nom du plan de paiement{% endtrans %} :</label>
     <input type="text" class="form-control" id="paiement_plan"
            placeholder="Ex.: Plan Mensuel 1">
-    <label for="prix_plan">Montant dû :</label>
+    <label for="prix_plan">{% trans %}Montant dû{% endtrans %} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -72,17 +72,17 @@
         <span class="input-group-text">.00</span>
       </div>
     </div>
-    <label for="date_paiement">Date de paiement limite :</label>
+    <label for="date_paiement">{% trans %}Date de paiement limite{% endtrans %} :</label>
     <input class="datepicker" id="date_paiement" width="256px"/>
   </div>
   <div class="button_panel">
     <button type="button" class="btn btn-dark mr-auto" onClick="getCircuits()">
-      Retour à la liste des circuits
+      {% trans %}Retour à la liste des circuits{% endtrans %}
     </button>
-    <button type="button" class="btn btn-secondary">Retour à la création du
-      circuit
+    <button type="button" class="btn btn-secondary">{% trans %}Retour à la création du
+      circuit{% endtrans %}
     </button>
-    <button type="button" class="btn btn-success">Démarrer le circuit !
+    <button type="button" class="btn btn-success">{% trans %}Démarrer le circuit{% endtrans %} !
     </button>
   </div>
 </form>

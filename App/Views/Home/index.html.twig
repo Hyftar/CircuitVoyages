@@ -6,22 +6,20 @@
   <div class="home-content">
     <div class="home-content__banner">
       <div class="banner__text">
-        Voyager n'aura jamais été <span style="font-style: italic;">aussi</span> facile.
+        {% trans %}Voyager n'aura jamais été{% endtrans %} <span style="font-style: italic;">{% trans %}aussi{% endtrans %}</span> {% trans %} facile{% endtrans %}.
       </div>
     </div>
-    <h2 class="home-content__header">Tous nos circuits</h2>
-    {% set idP = -1 %}
+    <h2 class="home-content__header">{% trans %}Tous nos circuits{% endtrans %}</h2>
     <div class="home-content__circuits">
       {% for circuit in circuits %}
-        {% if idP != circuit.id %}
-          {% set idP = circuit.id %}
-          <div class="card">
-            {% if circuit.promotion_id is not null %}
-              <div class="ribbon ribbon--green">
-                <div class="ribbon__bottom"></div>
-                <div class="ribbon__center">
-                  <div>En promotion!</div>
-                </div>
+      {% if idP != circuit.id %}
+        {% set idP = circuit.id %}
+        <div class="card">
+          {% if circuit.promotion_id is not null %}
+            <div class="ribbon ribbon--green">
+              <div class="ribbon__bottom"></div>
+              <div class="ribbon__center">
+                <div>{% trans %}En promotion!{% endtrans %}</div>
               </div>
             {% endif %}
             <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">

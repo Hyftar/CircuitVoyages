@@ -4,18 +4,18 @@
 
 <div class="activity-grid__controls">
   <a id="activity-new-btn" href="#" data-toggle="modal" data-target="#activity-add-modal">
-    <span>Ajouter une activité</span>
+    <span>{% trans %}Ajouter une activité{% endtrans %}</span>
     <i class="fas fa-plus-circle icone_ajout" aria-hidden="true"></i>
   </a>
 </div>
 
 <div class="activity-grid">
   <div class="activity-grid__header">
-    <div class="activity-grid__header__elem">Nom</div>
-    <div class="activity-grid__header__elem">Type</div>
-    <div class="activity-grid__header__elem">Lien</div>
-    <div class="activity-grid__header__elem">Pays</div>
-    <div class="activity-grid__header__elem">Ville</div>
+    <div class="activity-grid__header__elem">{% trans %}Nom{% endtrans %}</div>
+    <div class="activity-grid__header__elem">{% trans %}Type{% endtrans %}</div>
+    <div class="activity-grid__header__elem">{% trans %}Lien{% endtrans %}</div>
+    <div class="activity-grid__header__elem">{% trans %}Pays{% endtrans %}</div>
+    <div class="activity-grid__header__elem">{% trans %}Ville{% endtrans %}</div>
   </div>
     <div class="activity-grid__body">
       {% for activity in activities %}

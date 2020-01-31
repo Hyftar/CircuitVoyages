@@ -3,15 +3,16 @@
 namespace App\Helpers;
 
 use App\Config;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class LoginHelpers
 {
     private static $password_patterns = [
-        ['pattern' => '/(?=.*[a-z])/', 'message' => 'Le mot de passe doit contenir au moins 1 caractère alphanumérique minuscule'],
-        ['pattern' => '/(?=.*[A-Z])/', 'message' => 'Le mot de passe doit contenir au moins 1 caractère alphanumérique majuscule'],
-        ['pattern' => '/(?=.*\d)/', 'message' => 'Le mot de passe doit contenir au moins 1 caractère numérique'],
-        ['pattern' => '/(?=.*[!@#\$%\^&])/', 'message' => 'Le mot de passe doit contenir au moins 1 caractère parmis !, @, #, $, %, ^ et &'],
-        ['pattern' => '/(?=.{8,})/', 'message' => 'Le mot de passe doit contenir au moins 8 caractères']
+        ['pattern' => '/(?=.*[a-z])/', 'message' => $translator->trans('Le mot de passe doit contenir au moins 1 caractère alphanumérique minuscule')],
+        ['pattern' => '/(?=.*[A-Z])/', 'message' => $translator->trans('Le mot de passe doit contenir au moins 1 caractère alphanumérique majuscule')],
+        ['pattern' => '/(?=.*\d)/', 'message' => $translator->trans('Le mot de passe doit contenir au moins 1 caractère numérique')],
+        ['pattern' => '/(?=.*[!@#\$%\^&])/', 'message' => $translator->trans('Le mot de passe doit contenir au moins 1 caractère parmis !, @, #, $, %, ^ et &')],
+        ['pattern' => '/(?=.{8,})/', 'message' => $translator->trans('Le mot de passe doit contenir au moins 8 caractères')]
     ];
 
     private static $postal_code_pattern = '/^([ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z])[ -]?(\d[ABCEGHJ-NPRSTV-Z]\d)$/i';
@@ -33,7 +34,7 @@ class LoginHelpers
         return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
-    public static function validatePassword($password)
+    public static function validatePassword($password, TranslatorInterface $translator)
     {
         $errors = [];
         foreach (static::$password_patterns as $pair) {
@@ -45,20 +46,20 @@ class LoginHelpers
         return $errors;
     }
 
-    public static function validatePhoneNumber($phone_number)
+    public static function validatePhoneNumber($phone_number, TranslatorInterface $translator)
     {
         $errors = [];
         if (!preg_match(static::$phone_number_pattern, $phone_number, $matches)) {
-            $errors[] = 'Numéro de téléphone invalide';
+            $errors[] = $translator->trans('Numéro de téléphone invalide');
         }
 
         return $errors;
     }
 
-    public static function validatePostalCode($postal_code)
+    public static function validatePostalCode($postal_code, TranslatorInterface $translator)
     {
         if (!preg_match(static::$postal_code_pattern, $postal_code, $matches, PREG_UNMATCHED_AS_NULL)) {
-            return [null, 'Code postal invalide'];
+            return [null, $translator->trans('Code postal invalide')];
         }
 
         return [$matches[1] . $matches[2], ''];

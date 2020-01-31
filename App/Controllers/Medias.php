@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Models\Media;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class Medias extends \Core\Controller
 {
@@ -25,7 +26,7 @@ class Medias extends \Core\Controller
         );
     }
 
-    public function uploadAction()
+    public function uploadAction(TranslatorInterface $translator)
     {
         $description = null;
 
@@ -36,11 +37,11 @@ class Medias extends \Core\Controller
         }
 
         if (empty($_FILES['media'])) {
-            $errors[] = 'Veuillez fournir un fichier';
+            $errors[] = $translator->trans('Veuillez fournir un fichier');
         }
 
         if (empty($_POST['name'])) {
-            $errors[] = 'Veuillez fournir un nom de fichier';
+            $errors[] = $translator->trans('Veuillez fournir un nom de fichier');
         }
 
         $file_name = $_FILES['media']['name'];
@@ -52,7 +53,7 @@ class Medias extends \Core\Controller
         $path = '/uploaded_files/' . $file_name;
 
         if (!in_array($file_type, $file_types)) {
-            $errors = "Type de fichier interdit";
+            $errors = $translator->trans("Type de fichier interdit");
         }
 
         if (!empty($errors)) {

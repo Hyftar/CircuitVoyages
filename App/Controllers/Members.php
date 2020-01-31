@@ -6,21 +6,25 @@ use \Core\View;
 use \App\Helpers\LoginHelpers;
 use \App\Helpers\ApplicationHelpers;
 use \App\Models\Member;
+<<<<<<< Updated upstream
 use \App\Models\SupportChat;
+=======
+use Symfony\Contracts\Translation\TranslatorInterface;
+>>>>>>> Stashed changes
 
 class Members extends \Core\Controller
 {
-    public function googleLoginAction()
+    public function googleLoginAction(TranslatorInterface $translator)
     {
         if (empty($_POST['name'])) {
             // TODO: use i18n string instead
-            $errors[] = 'Veuillez fournir un nom';
+            $errors[] = $translator->trans('Veuillez fournir un nom');
         }
         if (empty($_POST['id'])) {
-            $errors[] = 'Veuillez fournir un id';
+            $errors[] = $translator->trans('Veuillez fournir un id');
         }
         if (empty($_POST['email'])) {
-            $errors[] = 'Veuillez fournir un email';
+            $errors[] = $translator->trans('Veuillez fournir un email');
         }
         if (!empty($errors)) {
             http_response_code(401);
@@ -39,15 +43,15 @@ class Members extends \Core\Controller
         $_SESSION['member'] = $member;
     }
 
-    public function facebookLoginAction()
+    public function facebookLoginAction(TranslatorInterface $translator)
     {
         if (empty($_POST['name'])) {
             // TODO: use i18n string instead
-            $errors[] = 'Veuillez fournir un nom';
+            $errors[] = $translator->trans('Veuillez fournir un nom');
         }
 
         if (empty($_POST['id'])) {
-            $errors[] = 'Veuillez fournir un id';
+            $errors[] = $translator->trans('Veuillez fournir un id');
         }
 
         if (!empty($errors)) {
@@ -69,17 +73,17 @@ class Members extends \Core\Controller
         $_SESSION['member'] = $member;
     }
 
-    public function loginAction()
+    public function loginAction(TranslatorInterface $translator)
     {
         $errors = [];
         if (!array_key_exists('email', $_POST) ||
             !LoginHelpers::isValidEmail($_POST['email'])) {
             // TODO: use i18n string instead
-            $errors[] = 'Format du email invalide';
+            $errors[] = $translator->trans('Format du email invalide');
         }
 
         if (!array_key_exists('password', $_POST)) {
-            $errors[] = 'Veuillez fournir un mot de passe';
+            $errors[] = $translator->trans('Veuillez fournir un mot de passe');
         } else {
             $errors = array_merge(
                 $errors,
@@ -99,7 +103,7 @@ class Members extends \Core\Controller
         if (!Member::exists($_POST['email']) ||
             !Member::isCorrectPassword($_POST['email'], $_POST['password'])) {
             // TODO: use i18n string instead
-            $errors[] = 'Email ou mot de passe invalide';
+            $errors[] = $translator->trans('Email ou mot de passe invalide');
             http_response_code(401);
             View::renderTemplate(
                 'Members/login_errors.html.twig',
@@ -116,46 +120,46 @@ class Members extends \Core\Controller
         session_destroy();
     }
 
-    public function createAction()
+    public function createAction(TranslatorInterface $translator)
     {
         $errors = [];
 
         // Check if all the required parameters are set
 
         if (empty($_POST['first_name'])) {
-            $errors['first_name'][] = 'Veuillez fournir un prénom';
+            $errors['first_name'][] = $translator->trans('Veuillez fournir un prénom');
         }
 
         if (empty($_POST['last_name'])) {
-            $errors['last_name'][] = 'Veuillez fournir un nom';
+            $errors['last_name'][] = $translator->trans('Veuillez fournir un nom');
         }
 
         if (empty($_POST['email'])) {
-          $errors['email'][] = 'Veuillez fournir un email';
+          $errors['email'][] = $translator->trans('Veuillez fournir un email');
         }
 
         if (empty($_POST['address_line_1'])) {
-            $errors['address_line_1'][] = 'Veuillez fournir une adresse';
+            $errors['address_line_1'][] = $translator->trans('Veuillez fournir une adresse');
         }
 
         if (empty($_POST['region'])) {
-            $errors['region'][] = 'Veuillez fournir une province';
+            $errors['region'][] = $translator->trans('Veuillez fournir une province');
         }
 
         if (empty($_POST['phone'])) {
-            $errors['phone'][] = 'Veuillez fournir un numéro de téléphone';
+            $errors['phone'][] = $translator->trans('Veuillez fournir un numéro de téléphone');
         }
 
         if (empty($_POST['country'])) {
-            $errors['country'][] = 'Veuillez fournir un pays';
+            $errors['country'][] = $translator->trans('Veuillez fournir un pays');
         }
 
         if (empty($_POST['dob'])) {
-            $errors['date_of_birth'][] = 'Veuillez fournir une date de naissance';
+            $errors['date_of_birth'][] = $translator->trans('Veuillez fournir une date de naissance');
         }
 
         if (empty($_POST['city'])) {
-            $errors['city'][] = 'Veuillez fournir une ville dans votre adresse';
+            $errors['city'][] = $translator->trans('Veuillez fournir une ville dans votre adresse');
         }
 
         if (!empty($errors)) {
@@ -190,11 +194,15 @@ class Members extends \Core\Controller
         // Email
 
         if (!LoginHelpers::isValidEmail($_POST['email'])) {
+<<<<<<< Updated upstream
             $errors['email'][] = 'Format du email invalide';
+=======
+            $errors['email'][] = [$translator->trans('Format du email invalide')];
+>>>>>>> Stashed changes
         }
 
         if (Member::exists($email)) {
-            $errors['email'][] = 'Un compte existe deja pour ce email';
+            $errors['email'][] = $translator->trans('Un compte existe deja pour ce email');
         }
 
         // Password

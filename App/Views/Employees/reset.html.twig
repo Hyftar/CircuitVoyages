@@ -8,14 +8,14 @@
             <h3>
               <i class="fa fa-lock fa-4x"></i>
             </h3>
-            <h2 class="text-center">Mot de passe oublié?</h2>
-            <p>Réinitialiser votre mot de passe ici.</p>
+            <h2 class="text-center">{% trans %}Mot de passe oublié?{% endtrans %}</h2>
+            <p>{% trans %}Réinitialiser votre mot de passe ici.{% endtrans %}</p>
             <form class="form-signin">
               <div class="form-label-group">
-                <input type="email" id="email-reset-form" class="form-control" placeholder="Email address">
-                <label for="email-reset-form">Adresse courriel</label>
+                <input type="email" id="email-reset-form" class="form-control" placeholder="{{"Adresse courriel"|trans }}">
+                <label for="email-reset-form">{% trans %}Adresse courriel{% endtrans %}</label>
               </div>
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Réinitialiser votre mot de passe</button>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{% trans %}Réinitialiser votre mot de passe{% endtrans %}</button>
             </form>
           </div>
         </div>
