@@ -33,9 +33,14 @@ $router->add('admin', ['controller' => 'Admin', 'action' => 'admin']);
 
 $router->add('admin/accommodation', ['controller' => 'Admin', 'action' => 'accommodationIndex']);
 $router->add('admin/accommodation', ['controller' => 'Admin', 'action' => 'accommodationCreate'], 'POST');
+$router->add('admin_delete_period', ['controller' => 'Admin', 'action' => 'deletePeriod'], 'POST');
+$router->add('admin_accommodation_step_add', ['controller' => 'Admin', 'action' => 'addAccStep'], 'POST');
 
 $router->add('admin/activity', ['controller' => 'Admin', 'action' => 'activityIndex']);
 $router->add('admin/activity', ['controller' => 'Admin', 'action' => 'activityCreate'], 'POST');
+$router->add('admin_activity_list', ['controller' => 'Admin', 'action' => 'listActivities'], 'POST');
+$router->add('admin_activity_add', ['controller' => 'Admin', 'action' => 'addActivity'], 'POST');
+$router->add('admin_delete_activity_step', ['controller' => 'Admin', 'action' => 'deleteActivityStep'], 'POST');
 
 $router->add('admin/circuit_create_simple', ['controller' => 'Admin', 'action' => 'circuitsCreateSimple'], 'POST');
 
@@ -43,21 +48,38 @@ $router->add('admin/circuit_trips', ['controller' => 'Admin', 'action' => 'getCi
 $router->add('admin/circuit_trip_create_modal', ['controller' => 'Admin', 'action' => 'getCircuitTripCreateModal'], 'POST');
 $router->add('admin/circuit_trip_create', ['controller' => 'Admin', 'action' => 'getCircuitTripCreate'], 'POST');
 $router->add('admin/circuit_trip_update_modal', ['controller' => 'Admin', 'action' => 'getCircuitTripUpdateModal'], 'POST');
-$router->add('admin/circuit_trip', ['controller' => 'Admin', 'action' => 'getCircuitTripUpdate'], 'PATCH');
+$router->add('admin/circuit_trip', ['controller' => 'Admin', 'action' => 'getCircuitTripUpdate'], 'POST');
+
+$router->add('admin/payments', ['controller' => 'Admin', 'action' => 'payments'], "POST");
+$router->add('admin/payment_plans', ['controller' => 'Admin', 'action' => 'paymentPlans'], 'POST');
+$router->add('admin/payment_ajout', ['controller' => 'Admin', 'action' => 'paymentAjout'], 'POST');
+$router->add('admin/payment_plan_ajout', ['controller' => 'Admin', 'action' => 'paymentPlanAjout'], 'POST');
+$router->add('admin/payment_suppression', ['controller' => 'Admin', 'action' => 'paymentSuppression'], 'POST');
+$router->add('admin/payment_plan_suppression', ['controller' => 'Admin', 'action' => 'paymentPlanSuppression'], 'POST');
 
 $router->add('admin/circuit_update', ['controller' => 'Admin', 'action' => 'circuitUpdateIndex'], 'POST');
 $router->add('admin/circuit_update_simple', ['controller' => 'Admin', 'action' => 'circuitsUpdateSimple'], 'POST');
 
 $router->add('admin/circuits', ['controller' => 'Admin', 'action' => 'circuitsIndex']);
-$router->add('admin/circuits/activity_create', ['controller' => 'Admin', 'action' => 'circuitsActivityCreate'], 'POST');
-$router->add('admin/circuits/addstep_link', ['controller' => 'Admin', 'action' => 'circuitsAddStepLink'], 'POST');
-$router->add('admin/circuits/addstep_tab', ['controller' => 'Admin', 'action' => 'circuitsAddStepTab']);
-$router->add('admin/circuits/create_save', ['controller' => 'Admin', 'action' => 'circuitsCreate']);
 $router->add('admin/circuits/create', ['controller' => 'Admin', 'action' => 'circuitsCreateIndex']);
-$router->add('admin/circuits/organize', ['controller' => 'Admin', 'action' => 'circuitsOrganize']);
 
 $router->add('admin/delete_circuit', ['controller' => 'Admin', 'action' => 'deleteCircuit'], 'POST');
 $router->add('admin/delete_circuit_trip', ['controller' => 'Admin', 'action' => 'deleteCircuitTrip'], 'POST');
+
+$router->add('admin_circuits_etapes', ['controller' => 'Admin', 'action' => 'etapesIndex'], 'POST');
+$router->add('admin_creation_etape_simple', ['controller' => 'Admin', 'action' => 'etapesCreateIndex'], 'POST');
+$router->add('admin_etape_simple_create', ['controller' => 'Admin', 'action' => 'etapesCreate'], 'POST');
+$router->add('admin_etape_getupdate', ['controller' => 'Admin', 'action' => 'etapeUpdateIndex'], 'POST');
+$router->add('admin_etape_update', ['controller' => 'Admin', 'action' => 'etapeUpdate'], 'POST');
+$router->add('admin_delete_etape', ['controller' => 'Admin', 'action' => 'etapeDelete'], 'POST');
+
+/* -- ADMIN DEPRECATED -- */
+$router->add('admin/circuits/addstep_link', ['controller' => 'Admin', 'action' => 'circuitsAddStepLink'], 'POST');
+$router->add('admin/circuits/addstep_tab', ['controller' => 'Admin', 'action' => 'circuitsAddStepTab']);
+$router->add('admin/circuits/activity_create', ['controller' => 'Admin', 'action' => 'circuitsActivityCreate'], 'POST');
+$router->add('admin/circuits/organize', ['controller' => 'Admin', 'action' => 'circuitsOrganize']);
+$router->add('admin/circuits/create_save', ['controller' => 'Admin', 'action' => 'circuitsCreate']);
+/* -- END DEPRECATED -- */
 
 $router->add('admin/media', ['controller' => 'Medias', 'action' => 'index']);
 $router->add('admin/media', ['controller' => 'Medias', 'action' => 'upload'], 'POST');
@@ -90,6 +112,24 @@ $router->add('login', ['controller' => 'Members', 'action' => 'logout'], 'DELETE
 $router->add('login/facebook', ['controller' => 'Members', 'action' => 'facebookLogin'], 'POST');
 $router->add('login/google', ['controller' => 'Members', 'action' => 'googleLogin'], 'POST');
 
+/* MEMBER ACCOUNT */
+$router->add('member',['controller' => 'Members', 'action' => 'show'], 'GET');
+$router->add('member/informations',['controller' => 'Members', 'action' => 'showInformations'], 'GET');
+$router->add('member/sendInformations',['controller' => 'Members', 'action' => 'sendInformations'], 'POST');
+$router->add('member/coordinates',['controller' => 'Members', 'action' => 'showCoordinates'], 'GET');
+$router->add('member/sendCoordinates',['controller' => 'Members', 'action' => 'sendCoordinates'], 'POST');
+$router->add('member/security',['controller' => 'Members', 'action' => 'showSecurity'], 'GET');
+$router->add('member/sendSecurity',['controller' => 'Members', 'action' => 'sendSecurity'], 'POST');
+$router->add('member/communications',['controller' => 'Members', 'action' => 'showCommunications'], 'GET');
+$router->add('member/sendCommunications',['controller' => 'Members', 'action' => 'sendCommunications'], 'POST');
+$router->add('member/trips',['controller' => 'Members', 'action' => 'showTrips'], 'GET');
+$router->add('member/tripsUpcoming',['controller' => 'Members', 'action' => 'showTripsUpcoming'], 'GET');
+$router->add('member/payments',['controller' => 'Members', 'action' => 'showPayments'], 'GET');
+$router->add('member/paymentsUpcoming',['controller' => 'Members', 'action' => 'showPaymentsUpcoming'], 'GET');
+$router->add('member/suscribe',['controller' => 'Members', 'action' => 'suscribe'], 'POST');
+$router->add('member/unsuscribe',['controller' => 'Members', 'action' => 'unsuscribe'], 'POST');
+
+
 
 /* SUPPORT CHAT */
 // Customer side
@@ -109,6 +149,17 @@ $router->add('admin/chat/messages/{roomid:/\d+/}/{index:/\d+/}', ['controller' =
 $router->add('admin/chat/messages/{roomid:/\d+/}/check', ['controller' => 'SupportChatAdmin', 'action' => 'checkMessages'], 'GET');
 $router->add('admin/chat/messages/{roomid:/\d+/}/all', ['controller' => 'SupportChatAdmin', 'action' => 'getAllMessages'], 'GET');
 $router->add('admin/chat/rooms', ['controller' => 'SupportChatAdmin', 'action' => 'getAllRooms'], 'GET');
+
+// Newsletters
+$router->add('admin/getNewsletters', ['controller' => 'Newsletters', 'action' => 'getNewsletters'], 'GET');
+$router->add('admin/getMessages', ['controller' => 'Newsletters', 'action' => 'getMessages'], 'POST');
+$router->add('admin/getNewsletterCreator', ['controller' => 'Newsletters', 'action' => 'getNewsletterCreator'], 'GET');
+$router->add('admin/createNewsletter', ['controller' => 'Newsletters', 'action' => 'createNewsletter'], 'POST');
+$router->add('admin/getMessageCreator', ['controller' => 'Newsletters', 'action' => 'getMessageCreator'], 'POST');
+$router->add('admin/deleteNewsletter', ['controller' => 'Newsletters', 'action' => 'deleteNewsletter'], 'POST');
+$router->add('admin/sendMessage', ['controller' => 'Newsletters', 'action' => 'sendMessage'], 'POST');
+$router->add('admin/getNewsletterUpdater', ['controller' => 'Newsletters', 'action' => 'getNewsletterUpdater'], 'POST');
+$router->add('admin/sendUpdate', ['controller' => 'Newsletters', 'action' => 'saveNewsletterUpdate'], 'POST');
 
 
 // Send the URI and Method to the dispatcher

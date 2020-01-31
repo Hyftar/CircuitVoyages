@@ -219,7 +219,7 @@ a.navbar-brand {
 }
 
 .circuit_ul li:nth-of-type(3) {
-    width: 100px;
+    width: 200px;
 }
 
 .circuit_ul li:nth-of-type(4) {
@@ -748,6 +748,24 @@ label[for="rating"] {
   float: right;
 }
 
+/* Choix d'hébergements */
+
+#hebergement_form_add .modal-content {
+  height: 400px;
+}
+
+.bootstrap-tagsinput input {
+  color: black !important;
+}
+
+.bootstrap-tagsinput .tag {
+  margin-right: 2px;
+  color: white;
+  background-color: lightslategray;
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
 /***** CSS Magic to Highlight Stars on Hover *****/
 
 .rating > input:checked ~ label, /* show gold star when clicked */
@@ -758,3 +776,41 @@ label[for="rating"] {
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+
+/** Toasts **/
+
+#toast-container {
+  position: fixed;
+  min-height: 200px;
+  z-index: 400;
+  bottom: 0;
+  left: 1rem;
+}
+
+.toast {
+  position: absolute;
+}
+
+.toast-header__logo {
+  height: 2rem;
+}
+
+.toast-header__title {
+  min-width: 8rem;
+}
+
+.toast-header__supporting-text {
+  min-width: 4rem;
+}
+
+
+.table-remove-border-top{
+  border-top: none !important;
+}
+
+
+.table-remove-border-bottom{
+  border-bottom: none !important;
+}
+
