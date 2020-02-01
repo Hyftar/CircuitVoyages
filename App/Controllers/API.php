@@ -9,7 +9,7 @@ class API extends \Core\Controller
 {
     public function getCircuitsAction(){
         $circuits = Circuit::getAllInfo();
-        echo json_encode($circuits, JSON_UNESCAPED_UNICODE);
+        View::renderJSON($circuits);
     }
 }
 
