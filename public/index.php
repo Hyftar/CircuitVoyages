@@ -161,6 +161,8 @@ $router->add('admin/sendMessage', ['controller' => 'Newsletters', 'action' => 's
 $router->add('admin/getNewsletterUpdater', ['controller' => 'Newsletters', 'action' => 'getNewsletterUpdater'], 'POST');
 $router->add('admin/sendUpdate', ['controller' => 'Newsletters', 'action' => 'saveNewsletterUpdate'], 'POST');
 
+// API routes
+$router->add('api/getCircuits', ['controller' => 'API', 'action' => 'getCircuits'], 'GET');
 
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

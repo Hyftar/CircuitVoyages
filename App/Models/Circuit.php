@@ -105,7 +105,15 @@ class Circuit extends Model
 
     public static function getAllInfo()
     {
-
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT id FROM circuits');
+        $stmt->execute();
+        $ids = $stmt->fetchAll();
+        $trips = array();
+        foreach ($ids as $id){
+            $trips[] = self::getInfo($id['id']);
+        }
+        return $trips;
     }
 
     public static function getCircuitInfo()
