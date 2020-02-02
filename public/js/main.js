@@ -12,7 +12,6 @@
       success: (data) => {
         $('main').html($.parseHTML(data).find((e) => e.nodeName == 'MAIN').children)
         addBtnEvents()
-        setBackground('images/beach.jpg')
       }
     })
   })
