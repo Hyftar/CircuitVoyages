@@ -30,9 +30,15 @@
 
     Dans le cmd, dans le dossier du projet,
 
-    `php -S localhost:3030 -f public/`
+    `php -S localhost:3030 -t public/`
 
     Par la suite, vous pourrez accéder au site en visitant localhost:3030
+
+    Pour héberger le serveur de façon à y accéder de l'application mobile, utilisez plutôt l'adresse IP de votre ordinateur.
+
+    `php -S 192.168.x.x:3030 -t public/`
+
+    [Solution sur stack overflow](https://stackoverflow.com/questions/42323120/why-my-stringrequest-is-going-always-at-onerrorresponse-method)
 
 6. Executer les tests
 
