@@ -310,6 +310,12 @@ class Admin extends \Core\Controller
         );
     }
 
+    public function indexAction() {
+        View::renderTemplate(
+            'Admin/admin_index.html.twig'
+        );
+    }
+
     /* CIRCUITS */
 
     public function circuitsIndexAction()

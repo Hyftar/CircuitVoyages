@@ -1,4 +1,4 @@
-<h1>Gestion du plan de paiement - {{ payment_plan.name }} </h1>
+<h1 class="pretty_title">Gestion du plan de paiement - {{ payment_plan.name }} </h1>
 <div class="choix_circuit">
   <p class="mr-auto">Ajoutez ou enlever des paiements pour le départ - {{ circuit.name }}</p>
   <div class="bouton_creer" onClick="getPaymentAdd()">
@@ -6,7 +6,7 @@
     <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
-<div class="column my-2">
+<div class="column my-2 gestion_liste">
   <div class="col-10">
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
@@ -19,10 +19,10 @@
       {% for payment in payments %}
         <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
           <ul class="circuit_ul">
-            <li>{{ payment.amount_due }}</li>
-            <li>{{ payment.date_due }}</li>
+            <li>$ {{ payment.amount_due|number_format(2) }}</li>
+            <li>{{ payment.date_due|date("d/m/Y") }}</li>
             <li>
-              <button type="button" class="btn-primary" onclick="supprimerPayment({{ payment.id }}, {{ payment_plan.id }}, {{ circuit_trip.id }})"><i class="fas fa-trash"></i></button>
+              <button type="button" class="btn-primary supprimer" onclick="supprimerPayment({{ payment.id }}, {{ payment_plan.id }}, {{ circuit_trip.id }})" data-container="body" data-toggle="popover" data-placement="top" data-content="Supprimer" data-trigger="hover"><i class="fas fa-trash"></i></button>
             </li>
           </ul>
         </a>

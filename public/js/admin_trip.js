@@ -16,6 +16,7 @@ function supprimerCircuitTrip(id) {
 }
 
 function getCircuitTrips(id) {
+  disablePops()
   $.ajax({
     url: 'admin/circuit_trips',
     type: 'POST',
@@ -25,6 +26,7 @@ function getCircuitTrips(id) {
     success: (data) => {
       let container = document.getElementById('contenu')
       container.innerHTML = data
+      enablePops();
     }
   })
 }

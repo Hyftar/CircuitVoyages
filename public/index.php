@@ -30,6 +30,7 @@ $router = new Core\Router();
 /* ADMIN PAGES */
 
 $router->add('admin', ['controller' => 'Admin', 'action' => 'admin']);
+$router->add('admin/index', ['controller' => 'Admin', 'action' => 'index']);
 
 $router->add('admin/accommodation', ['controller' => 'Admin', 'action' => 'accommodationIndex']);
 $router->add('admin/accommodation', ['controller' => 'Admin', 'action' => 'accommodationCreate'], 'POST');

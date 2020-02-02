@@ -1,4 +1,4 @@
-<h1>Gestion des départs</h1>
+<h1 class="pretty_title">Gestion des départs</h1>
 <div class="choix_circuit">
   <p class="mr-auto">Veuillez choisir un départ à modifier pour le circuit - {{ circuit.name }}</p>
   <div class="bouton_creer" onClick="getCircuitsTrip_create({{ circuit.id }})">
@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="column my-2">
+<div class="column my-2 gestion_liste">
   <div class="col-10">
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
@@ -31,9 +31,9 @@
               {% endif %}
             </li>
             <li>
-              <button type="button" class="btn-primary" onclick="getPaymentPlans({{ circuit_trip.id }})"><i class="fas fa-dollar-sign"></i></button>
-              <button type="button" class="btn-primary" onclick="getCircuitTrip_update({{ circuit.id|e }},{{ circuit_trip.id }})"><i class="fas fa-edit"></i></button>
-              <button type="button" class="btn-primary" onclick="supprimerCircuitTrip({{ circuit_trip.id }})"><i class="fas fa-trash"></i></button>
+              <button type="button" class="btn-primary" onclick="getPaymentPlans({{ circuit_trip.id }})" data-container="body" data-toggle="popover" data-placement="top" data-content="Voir les paiements" data-trigger="hover"><i class="fas fa-dollar-sign"></i></button>
+              <button type="button" class="btn-primary" onclick="getCircuitTrip_update({{ circuit.id|e }},{{ circuit_trip.id }})" data-container="body" data-toggle="popover" data-placement="top" data-content="Modifier" data-trigger="hover"><i class="fas fa-edit"></i></button>
+              <button type="button" class="btn-primary supprimer" onclick="supprimerCircuitTrip({{ circuit_trip.id }})"><i class="fas fa-trash" data-container="body" data-toggle="popover" data-placement="top" data-content="Supprimer" data-trigger="hover"></i></button>
             </li>
           </ul>
         </a>

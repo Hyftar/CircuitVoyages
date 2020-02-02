@@ -21,11 +21,24 @@ $(() => {
   })
 });
 
-/* TEMPORARY REDIRECT MAIN ADMIN PAGE TO CIRCUIT MANAGEMENT */
+/* MAIN ADMIN PAGE */
+
+function getIndexAdmin() {
+  disablePops()
+  $.ajax({
+    url: 'admin/index',
+    type: 'GET',
+    success: (data) => {
+      let container = document.getElementById('contenu')
+      container.innerHTML = data
+    }
+  })
+}
+
 /* ASSIGNS SIDEBAR LINKS */
 
 $(() => {
-  getCircuits();
+  getIndexAdmin();
   $('#admin-logout-link').on('click', () => {
     $.ajax({
       url: '/admin/login',
@@ -46,6 +59,7 @@ $(() => {
 /* SIDEBAR ROUTES */
 
 function indexPromotions() {
+  disablePops()
   $.ajax({
     url: '/admin/promotions',
     type: 'GET',
@@ -56,6 +70,7 @@ function indexPromotions() {
 }
 
 function indexMedia() {
+  disablePops()
   $.ajax({
     url: '/admin/media',
     type: 'GET',
@@ -72,6 +87,7 @@ function indexMedia() {
 }
 
 function indexActivity() {
+  disablePops()
   $.ajax({
     url: '/admin/activity',
     type: 'GET',
@@ -85,5 +101,17 @@ function indexActivity() {
 /* BACK BUTTON */
 
 function retourAccueil() {
+  disablePops()
   getCircuits();
+}
+
+/* ENABLE POPOVERS */
+function enablePops()  {
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
+}
+
+function disablePops(){
+  $('[data-toggle="popover"]').popover('hide')
 }

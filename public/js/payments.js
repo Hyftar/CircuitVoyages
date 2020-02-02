@@ -1,4 +1,5 @@
 function getPayments(payment_plan_id, circuit_trip_id){
+  disablePops()
   $.ajax({
     url:'admin/payments',
     type:'POST',
@@ -7,11 +8,13 @@ function getPayments(payment_plan_id, circuit_trip_id){
       let container = document.getElementById('contenu');
       container.innerHTML = data;
       $('#payment_form_add').modal('hide');
+      enablePops()
     }
   })
 }
 
 function getPaymentPlans(circuit_trip_id){
+  disablePops()
   $.ajax({
     url:'admin/payment_plans',
     type:'POST',
@@ -20,6 +23,7 @@ function getPaymentPlans(circuit_trip_id){
       let container = document.getElementById('contenu');
       container.innerHTML = data;
       $('#payment_plan_form_add').modal('hide');
+      enablePops()
 
     }
   })
