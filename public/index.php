@@ -105,11 +105,31 @@ $router->add('/admin/promotions/updatePromo', ['controller' => 'Promotions', 'ac
 
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 
+$router->add('circuit/{id:/\d+/}', ['controller' => 'Circuits', 'action' => 'show']);
+
 $router->add('register', ['controller' => 'Members', 'action' => 'create'], 'POST');
 $router->add('login', ['controller' => 'Members', 'action' => 'login'], 'POST');
 $router->add('login', ['controller' => 'Members', 'action' => 'logout'], 'DELETE');
 $router->add('login/facebook', ['controller' => 'Members', 'action' => 'facebookLogin'], 'POST');
 $router->add('login/google', ['controller' => 'Members', 'action' => 'googleLogin'], 'POST');
+
+/* MEMBER ACCOUNT */
+$router->add('member',['controller' => 'Members', 'action' => 'show'], 'GET');
+$router->add('member/informations',['controller' => 'Members', 'action' => 'showInformations'], 'GET');
+$router->add('member/sendInformations',['controller' => 'Members', 'action' => 'sendInformations'], 'POST');
+$router->add('member/coordinates',['controller' => 'Members', 'action' => 'showCoordinates'], 'GET');
+$router->add('member/sendCoordinates',['controller' => 'Members', 'action' => 'sendCoordinates'], 'POST');
+$router->add('member/security',['controller' => 'Members', 'action' => 'showSecurity'], 'GET');
+$router->add('member/sendSecurity',['controller' => 'Members', 'action' => 'sendSecurity'], 'POST');
+$router->add('member/communications',['controller' => 'Members', 'action' => 'showCommunications'], 'GET');
+$router->add('member/sendCommunications',['controller' => 'Members', 'action' => 'sendCommunications'], 'POST');
+$router->add('member/trips',['controller' => 'Members', 'action' => 'showTrips'], 'GET');
+$router->add('member/tripsUpcoming',['controller' => 'Members', 'action' => 'showTripsUpcoming'], 'GET');
+$router->add('member/payments',['controller' => 'Members', 'action' => 'showPayments'], 'GET');
+$router->add('member/paymentsUpcoming',['controller' => 'Members', 'action' => 'showPaymentsUpcoming'], 'GET');
+$router->add('member/suscribe',['controller' => 'Members', 'action' => 'suscribe'], 'POST');
+$router->add('member/unsuscribe',['controller' => 'Members', 'action' => 'unsuscribe'], 'POST');
+
 
 
 /* SUPPORT CHAT */
@@ -131,6 +151,19 @@ $router->add('admin/chat/messages/{roomid:/\d+/}/check', ['controller' => 'Suppo
 $router->add('admin/chat/messages/{roomid:/\d+/}/all', ['controller' => 'SupportChatAdmin', 'action' => 'getAllMessages'], 'GET');
 $router->add('admin/chat/rooms', ['controller' => 'SupportChatAdmin', 'action' => 'getAllRooms'], 'GET');
 
+// Newsletters
+$router->add('admin/getNewsletters', ['controller' => 'Newsletters', 'action' => 'getNewsletters'], 'GET');
+$router->add('admin/getMessages', ['controller' => 'Newsletters', 'action' => 'getMessages'], 'POST');
+$router->add('admin/getNewsletterCreator', ['controller' => 'Newsletters', 'action' => 'getNewsletterCreator'], 'GET');
+$router->add('admin/createNewsletter', ['controller' => 'Newsletters', 'action' => 'createNewsletter'], 'POST');
+$router->add('admin/getMessageCreator', ['controller' => 'Newsletters', 'action' => 'getMessageCreator'], 'POST');
+$router->add('admin/deleteNewsletter', ['controller' => 'Newsletters', 'action' => 'deleteNewsletter'], 'POST');
+$router->add('admin/sendMessage', ['controller' => 'Newsletters', 'action' => 'sendMessage'], 'POST');
+$router->add('admin/getNewsletterUpdater', ['controller' => 'Newsletters', 'action' => 'getNewsletterUpdater'], 'POST');
+$router->add('admin/sendUpdate', ['controller' => 'Newsletters', 'action' => 'saveNewsletterUpdate'], 'POST');
+
+// API routes
+$router->add('api/getCircuits', ['controller' => 'API', 'action' => 'getCircuits'], 'GET');
 
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

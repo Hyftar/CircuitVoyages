@@ -1,0 +1,24 @@
+<div class="modal fade" id="modalCreateNewsletter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Créer un bulletin d'informations</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="formNewsletterAdd" onsubmit="return saveNewsletter()">
+          <div class="form-group">
+            <label for="promo-type-name" class="col-form-label">Nom du bulletin</label>
+            <input type="text" class="form-control" id="newsletter_name" required name="newsletter_name">
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <input type="submit" class="btn btn-primary" value="Enregistrer le bulletin">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

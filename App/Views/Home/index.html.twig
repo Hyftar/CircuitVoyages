@@ -10,26 +10,30 @@
       </div>
     </div>
     <h2 class="home-content__header">Tous nos circuits</h2>
+    {% set idP = -1 %}
     <div class="home-content__circuits">
       {% for circuit in circuits %}
-        <div class="card">
-          {% if circuit.promotion_id is not null %}
-            <div class="ribbon ribbon--green">
-              <div class="ribbon__bottom"></div>
-              <div class="ribbon__center">
-                <div>En promotion!</div>
+        {% if idP != circuit.id %}
+          {% set idP = circuit.id %}
+          <div class="card">
+            {% if circuit.promotion_id is not null %}
+              <div class="ribbon ribbon--green">
+                <div class="ribbon__bottom"></div>
+                <div class="ribbon__center">
+                  <div>En promotion!</div>
+                </div>
               </div>
+            {% endif %}
+            <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
+            <div class="card-body">
+              <h5 class="card-title">{{circuit.name }}</h5>
+              <p class="card-text">
+                {{ circuit.description }}
+              </p>
+              <button class="btn btn-primary" data-id="{{ circuit.id }}">Explorer</button>
             </div>
-          {% endif %}
-          <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
-          <div class="card-body">
-            <h5 class="card-title">{{circuit.name }}</h5>
-            <p class="card-text">
-              {{ circuit.description }}
-            </p>
-            <a href="#" class="btn btn-primary">Explorer</a>
           </div>
-        </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>

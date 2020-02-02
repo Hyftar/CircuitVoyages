@@ -1,0 +1,35 @@
+<div class="home-content__banner">
+  <div class="banner__text">
+    Mon compte
+  </div>
+</div>
+<h2 class="home-content__header" id="account-header">Modifier mon compte</h2>
+<div class="home-content__circuits">
+  <div>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <div class="nav-link active" onclick="getInformations()" id="linkInformations">Informations</div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-link" id="linkCoordinates" onclick="getCoordinates()">Coordonnées</div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-link" id="linkSecurity" onclick="getSecurity()">Sécurité</div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-link" id="linkCommunications" onclick="getCommunications()">Communications</div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="linkTrips" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Voyages</a>
+        <div class="dropdown-menu">
+          <div class="dropdown-item" onclick="return getTripsUpcoming()">Voyages à venir</div>
+          <div class="dropdown-item" onclick="return getTrips()">Historique des voyages</div>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-item" onclick="return getPaymentsUpcoming()">Paiements à faire</div>
+          <div class="dropdown-item" onclick="return getPayments()">Historique des paiements</div>
+        </div>
+      </li>
+    </ul>
+    <div id="contentForm"></div>
+  </div>
+</div>

@@ -8,6 +8,114 @@ use PDO;
 
 class Circuit extends Model
 {
+    public static function getInfo($circuit_id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'SELECT
+                 c.name AS `name`,
+                 c.description,
+                 c.is_public,
+                 m.path AS `media_path`,
+                 l.name AS `language`
+             FROM circuits AS c
+             LEFT JOIN media AS m ON c.media_id = m.id
+             LEFT JOIN languages AS l ON c.language_id = l.id
+             WHERE c.id = :circuit_id
+            '
+        );
+
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $circuit = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $stmt = $db->prepare(
+            'SELECT
+                 s.id,
+                 s.description,
+                 s.position,
+                 s.time_after_last_step
+             FROM steps AS s
+             WHERE s.circuit_id = :circuit_id
+             ORDER BY s.position ASC'
+        );
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $steps = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        for ($i = 0; $i < count($steps); $i++) {
+            $step = $steps[$i];
+            $stmt = $db->prepare(
+                'SELECT
+                     a.activity_type AS `type`,
+                     a.link AS `link`,
+                     a.description AS `description`,
+                     a.name AS `name`
+                 FROM steps_activities AS sa
+                 LEFT JOIN activities AS a ON a.id = sa.activity_id
+                 WHERE sa.step_id = :step_id
+            ');
+
+            $stmt->bindValue(':step_id', $step['id']);
+            $stmt->execute();
+            $activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (!$activities)
+                continue;
+
+            $steps[$i]['activities'] = $activities;
+        }
+
+        $stmt = $db->prepare(
+            'SELECT DISTINCT
+                 e.first_name,
+                 e.last_name,
+                 cte.description,
+                 m.path AS `media_path`
+             FROM circuits AS c
+             JOIN circuits_trips AS ct ON ct.circuit_id = c.id
+             JOIN circuits_trips_employees AS cte ON cte.circuit_trip_id = ct.id
+             JOIN employees AS e ON cte.employee_id = e.id
+             JOIN media AS m ON e.media_id = m.id
+             WHERE c.id = :circuit_id
+            '
+        );
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt = $db->prepare(
+            'SELECT *
+             FROM circuits_trips
+             WHERE circuit_id = :circuit_id
+             AND departure_date > CURDATE()
+             ORDER BY departure_date ASC
+             LIMIT 1
+            '
+        );
+        $stmt->bindValue(':circuit_id', $circuit_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $next_departure = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $circuit['next_departure'] = $next_departure ? $next_departure : null;
+        $circuit['steps'] = $steps;
+        $circuit['employees'] = $employees ? $employees : null;
+
+        return $circuit;
+    }
+
+    public static function getAllInfo()
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT id FROM circuits');
+        $stmt->execute();
+        $ids = $stmt->fetchAll();
+        $trips = array();
+        foreach ($ids as $id){
+            $trips[] = self::getInfo($id['id']);
+        }
+        return $trips;
+    }
+
     public static function getCircuitInfo()
     {
         $db = static::getDB();
@@ -37,6 +145,7 @@ class Circuit extends Model
             'SELECT
                  c.id AS id,
                  c.name AS name,
+                 c.is_public AS is_public,
                  c.description AS description,
                  promotions.id AS promotion_id,
                  m.path AS media_path,
@@ -46,7 +155,8 @@ class Circuit extends Model
              LEFT OUTER JOIN circuits_trips ct ON ct.circuit_id = c.id
              LEFT OUTER JOIN promotions_circuits_trips ON ct.id = promotions_circuits_trips.circuit_trip_id
              LEFT OUTER JOIN promotions ON promotions_circuits_trips.promotion_id = promotions.id
-             LEFT OUTER JOIN media m on c.media_id = m.id'
+             LEFT OUTER JOIN media m on c.media_id = m.id
+             WHERE c.is_public = 1'
         );
         $stmt ->execute();
         return $stmt->fetchAll();
@@ -1065,6 +1175,7 @@ class Circuit extends Model
         $db->commit();
         return $row;
     }
+
     public static function getAccommodationsForPeriod($period_id){
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
@@ -1077,6 +1188,8 @@ class Circuit extends Model
         return $stmt->fetchAll();
     }
 
+    public static function getAllCircuitsApiInformations(){
 
+    }
 
 }

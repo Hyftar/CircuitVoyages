@@ -63,4 +63,33 @@ class LoginHelpers
 
         return [$matches[1] . $matches[2], ''];
     }
+
+    public static function comparePassword($password, $id)
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'SELECT
+                passwords.id,
+                passwords.password_hash,
+                passwords.password_salt
+             FROM members
+             INNER JOIN passwords ON passwords.id = members.password_id
+             WHERE members.id = :id
+             LIMIT 1'
+        );
+
+        $stmt->bindvalue(':id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetch();
+
+        if ($result === false) {
+            return false;
+        }
+
+        list($id, $password_hash, $password_salt) = $result;
+
+        $hash = encryptPassword($password, $password_salt);
+
+        return $hash === $password_hash;
+    }
 }
