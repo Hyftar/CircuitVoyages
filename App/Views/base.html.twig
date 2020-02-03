@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/css/login/login.css"/>
     <link rel="stylesheet" href="/css/support_chat.css"/>
     <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async="async" defer="defer"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=Ae7eU0AOSeYMzkILi5bK-xxjYCqwyX0LJfGlfUu8UbDoa0cxl2MrudZRQ9pDRAro5BtjHkljjNjwUf2X"> </script>
 
     <title>{% block title %}{% endblock %} | Le Labernois</title>
   </head>
@@ -40,6 +41,7 @@
 
     {% include '/Support_Chat/button.html.twig' %}
     {% include '/Support_Chat/chat_box.html.twig' %}
+    {% include '/cart/cart.html.twig' %}
 
     <div id="login-modal" class="hidden">
       {% include '/Members/login.html.twig' %}
@@ -62,6 +64,9 @@
         <a id="nav-login-link" href="#" class="nav-link {{ member is not null ? 'hidden' : '' }} ">Connexion</a>
         <a id="nav-account-link" href="#" class="nav-link {{ member is null ? 'hidden' : '' }}">Mon compte</a>
         <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">Déconnexion</a>
+        <a class="nav-link" id="cartLink" data-toggle="modal" data-target="#cart">
+          <i class="fas fa-shopping-cart">(<span class="total-count"></span>)</i>
+        </a>
       </nav>
     </header>
     <main>
@@ -97,6 +102,8 @@
   <script src="/js/support_chat.js"></script>
   <script src="/js/google_login.js"></script>
   <script src="/js/facebook_login.js"></script>
+  <script src="/js/cart-script.js"></script>
+  <script src="/js/paypal.js"></script>
   <script>
     (function(d, s, id) {
       let js, fjs = d.getElementsByTagName(s)[0]

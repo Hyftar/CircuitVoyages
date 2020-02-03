@@ -1,36 +1,49 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home
+{% endblock %}
 
 {% block main %}
-  <div class="home-content">
-    <div class="home-content__banner">
-      <div class="banner__text">
-        Voyager n'aura jamais été <span style="font-style: italic;">aussi</span> facile.
-      </div>
+	<div class="home-content">
+		<div class="home-content__banner">
+			<div class="banner__text">
+				Voyager n'aura jamais été
+				<span style="font-style: italic;">aussi</span>
+				facile.
+			</div>
+		</div>
+		<h2 class="home-content__header">Tous nos circuits</h2>
+
+
+		<div class="col-6">
+      <a href="#" data-date="2019-03-22" data-name="voyage en Grece" data-price="12000" class="add-to-cart btn btn-success">Commandez1</a>
+      <a href="#" data-date="2019-03-22" data-name="voyage au Japon" data-price="2000" class="add-to-cart btn btn-success">Commandez2</a>
+      <a href="#" data-date="2019-03-22" data-name="voyage en France" data-price="12452" class="add-to-cart btn btn-success">Commandez3</a>
     </div>
-    <h2 class="home-content__header">Tous nos circuits</h2>
-    <div class="home-content__circuits">
-      {% for circuit in circuits %}
-        <div class="card">
-          {% if circuit.promotion_id is not null %}
-            <div class="ribbon ribbon--green">
-              <div class="ribbon__bottom"></div>
-              <div class="ribbon__center">
-                <div>En promotion!</div>
-              </div>
-            </div>
-          {% endif %}
-          <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
-          <div class="card-body">
-            <h5 class="card-title">{{circuit.name }}</h5>
-            <p class="card-text">
-              {{ circuit.description }}
-            </p>
-            <a href="#" class="btn btn-primary">Explorer</a>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
+
+
+
+		<div class="home-content__circuits">
+			{% for circuit in circuits %}
+				<div class="card">
+					{% if circuit.promotion_id is not null %}
+						<div class="ribbon ribbon--green">
+							<div class="ribbon__bottom"></div>
+							<div class="ribbon__center">
+								<div>En promotion!</div>
+							</div>
+						</div>
+					{% endif %}
+					<img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
+					<div class="card-body">
+						<h5 class="card-title">{{circuit.name }}</h5>
+						<p class="card-text">
+							{{ circuit.description }}
+						</p>
+						<a href="#" class="btn btn-primary">Explorer</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}
