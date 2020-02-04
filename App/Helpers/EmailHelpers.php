@@ -32,12 +32,7 @@ class EmailHelpers
         $content = $content;
 
         $mail->MsgHTML($content);
-        if (!$mail->Send()) {
-            $errors['email'][] = 'Email non envoyé';
-            http_response_code(400); // Bad request (missing parameters)
-            View::renderJSON(['errors' => $errors]);
-            return;
-        }
+        $mail->Send();
     }
 
     public static function sendEmailBBC($recepientsEmailList, $subject, $content)
@@ -63,11 +58,6 @@ class EmailHelpers
         $content = $content;
 
         $mail->MsgHTML($content);
-        if (!$mail->Send()) {
-            $errors['email'][] = 'Email non envoyé';
-            http_response_code(400); // Bad request (missing parameters)
-            View::renderJSON(['errors' => $errors]);
-            return;
-        }
+        $mail->Send();
     }
 }
