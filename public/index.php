@@ -162,5 +162,11 @@ $router->add('admin/getNewsletterUpdater', ['controller' => 'Newsletters', 'acti
 $router->add('admin/sendUpdate', ['controller' => 'Newsletters', 'action' => 'saveNewsletterUpdate'], 'POST');
 
 
+// Password reset
+
+$router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'showResetPage', 'allowed_variables' => ['token']]);
+$router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'confirmReset'], 'POST');
+$router->add('send_email', ['controller' => 'ForgotPassword', 'action' => 'sendEmail'], 'POST');
+
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

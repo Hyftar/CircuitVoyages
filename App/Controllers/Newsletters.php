@@ -96,6 +96,3 @@ class Newsletters extends \Core\Controller
         EmailHelpers::sendEmailBBC($bcc,$_POST['inputSubject'],$_POST['inputContent']);
     }
 }
-
-
-

@@ -20,7 +20,7 @@ class Newsletter extends \Core\Model
                   ORDER BY id DESC
             ) r
             ON t.id = r.newsletter_id
-            GROUP by t.id
+            GROUP by t.id, t.name, r.newsletter_message_date, r.subject
             ');
         $stmt->execute();
         return $stmt->fetchAll();

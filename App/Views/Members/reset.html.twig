@@ -7,9 +7,9 @@
             <i class="fa fa-lock fa-4x"></i>
             <h2 class="text-center">Mot de passe oublié?</h2>
             <p>Réinitialiser votre mot de passe ici.</p>
-            <form class="form-signin">
+            <form id="password-reset-form" class="form-signin" method="post" action="send_email">
               <div class="form-label-group">
-                <input type="email" id="email-reset-form" class="form-control" placeholder="Email address">
+                <input name="email" type="email" id="email-reset-form" class="form-control" placeholder="Email address" required>
                 <label for="email-reset-form">Adresse courriel</label>
               </div>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Réinitialiser votre mot de passe</button>
