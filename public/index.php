@@ -168,5 +168,11 @@ $router->add('/order/index', ['controller' => 'Orders', 'action' => 'index'], 'P
 // API routes
 $router->add('api/getCircuits', ['controller' => 'API', 'action' => 'getCircuits'], 'GET');
 
+// Password reset
+
+$router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'showResetPage', 'allowed_variables' => ['token']]);
+$router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'confirmReset'], 'POST');
+$router->add('send_email', ['controller' => 'ForgotPassword', 'action' => 'sendEmail'], 'POST');
+
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

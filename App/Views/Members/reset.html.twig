@@ -7,9 +7,9 @@
             <i class="fa fa-lock fa-4x"></i>
             <h2 class="text-center">{% trans %}Mot de passe oublié?{% endtrans %}</h2>
             <p>{% trans %}Réinitialiser votre mot de passe ici.{% endtrans %}</p>
-            <form class="form-signin">
+            <form class="form-signin" class="form-signin" method="post" action="send_email">
               <div class="form-label-group">
-                <input type="email" id="email-reset-form" class="form-control" placeholder="{{"Adresse courriel"|trans }}">
+                <input name="email" type="email" id="email-reset-form" class="form-control" placeholder="{{"Adresse courriel"|trans }}">
                 <label for="email-reset-form">{% trans %}Adresse courriel{% endtrans %}</label>
               </div>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{% trans %}Réinitialiser votre mot de passe{% endtrans %}</button>

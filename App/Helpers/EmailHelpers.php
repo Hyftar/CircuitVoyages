@@ -16,6 +16,7 @@ class EmailHelpers
         $errors = [];
         $mail = new PHPMailer();
         $mail->IsSMTP();
+        $mail->CharSet = 'UTF-8';
         $mail->Mailer = "smtp";
         $mail->SMTPDebug = 1;
         $mail->SMTPAuth = TRUE;

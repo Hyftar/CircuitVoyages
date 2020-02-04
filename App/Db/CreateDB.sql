@@ -854,6 +854,13 @@ CREATE TABLE `waiting_lists` (
                                  `member_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
+CREATE TABLE `password_reset` (
+  `id` int(11) NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8 NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 --
 -- Index pour les tables déchargées
 --
@@ -1314,6 +1321,9 @@ ALTER TABLE `members_chat_lines`
   ADD KEY `member_id` (`member_id`),
   ADD KEY `chat_line_id` (`chat_line_id`);
 
+ALTER TABLE `password_reset`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `member_id` (`member_id`);
 
 --
 -- AUTO_INCREMENT pour la table `accommodations`
@@ -1622,6 +1632,9 @@ ALTER TABLE `employees_chat_lines`
 
 ALTER TABLE `members_chat_lines`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `password_reset`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT;
 
 
 --
@@ -1954,6 +1967,9 @@ ALTER TABLE `employees_chat_lines`
 ALTER TABLE `members_chat_lines`
 ADD CONSTRAINT `members_chat_lines_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`),
 ADD CONSTRAINT `members_chat_lines_ibfk_2` FOREIGN KEY (`chat_line_id`) REFERENCES `chat_lines` (`id`);
+
+ALTER TABLE `password_reset`
+ADD CONSTRAINT `password_reset_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`);
 
 COMMIT;
 
