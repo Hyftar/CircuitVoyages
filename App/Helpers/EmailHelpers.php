@@ -33,7 +33,7 @@ class EmailHelpers
 
         $mail->MsgHTML($content);
         if (!$mail->Send()) {
-            $errors['email'][] = 'Email non envoyé';
+            $errors['email'][] = $translator->trans('Helpers.Sent');
             http_response_code(400); // Bad request (missing parameters)
             View::renderJSON(['errors' => $errors]);
             return;
@@ -64,7 +64,7 @@ class EmailHelpers
 
         $mail->MsgHTML($content);
         if (!$mail->Send()) {
-            $errors['email'][] = 'Email non envoyé';
+            $errors['email'][] = $translator->trans('Helpers.Sent');
             http_response_code(400); // Bad request (missing parameters)
             View::renderJSON(['errors' => $errors]);
             return;

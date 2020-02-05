@@ -1,480 +1,496 @@
 # Needs to be alphabetized
 
-Slogan1: Voyager n'aura jamais été aussi facile
+Slogan1: Traveling has never been easier.
 
 Circuit:
   Label: Circuits
-  All: Tous nos circuits
-  Price: Prix du circuit
-  Creation: Création d'un circuit
-  Name: Nom du circuit
-  Description: Description du circuit
-  Category: Catégorie(s)
-  Language: Langue(s) disponible(s) pour le circuit
-  Save: Enregistrer le circuit
-  Organise: Organiser le circuit
-  Start: Démarrer le circuit
-  Modification: Modification du circuit
+  All: All our circuits
+  Price: Circuit price
+  Creation: Circuit creation
+  Name: Circuit name
+  Description: Circuit description
+  Category: Categorie(s)
+  Language: Language(s) available for the tour
+  Save: Save the circuit
+  Organise: Organise the circuit
+  Start: Start the circuit
+  Modification: Modify the circuit
   Organisation:
-    Label: Organisation d'un circuit
+    Label: Organization of a circuit
     Min:
-      Places: Nombre de places minimal pour l'organisation du circuit
-  Management: Gestion des circuits
+      Places: Minimum number of places for the organization of the circuit
+  Management: Circuit management
   Date:
     Official:
-      Departure: Date de départ officielle du circuit
-      End: Date de fin officielle du circuit
+      Departure: Official departure date of the circuit
+      End: Official end date of the circuit
   Modify:
-    New: Veuillez choisir un circuit à modifier
+    New: Please choose a circuit to modify
   Image:
-    Header: Image pour le header
-    Choose: Choisir une image
+    Header: Image for the header
+    Choose: Choose an image
   Create:
-    Label: Créer le circuit
-    New: Créer un nouveau circuit
+    Label: Create circuit
+    New: Create a new circuit
   Departure:
-    Date: Date du départ
-    Creation: Création d'un départ du circuit
-    Create: Créer le départ
-    Management: Gestion des départs
-    Modification: Modification d'un départ du circuit
+    Date: Departure date
+    Next:
+      Label: Next departure
+      Plan: Next departure in planning!
+    Creation: Creation of a circuit departure
+    Create: Create the départ
+    Management: Departure management
+    Modification: Modification of a circuit departure
     Modify:
-      Label: Modifier le départ 
-      New: Veuillez choisir un départ à modifier pour le circuit
+      Label: Modify the departure 
+      New: Please choose a departure to modify for the circuit
   Cancel:
-    Date: Date d'annulation
-    Price: Prix de l'annulation
+    Date: Cancelation date
+    Price: Cancelation price
   Places:
-    Label: Nombre de places
-    Left: Nombre de places restantes
+    Label: Number of places
+    Left: Number of places left
   Min:
-    Places: Nombre de places minimal pour offrir le départ
+    Places: Minimum number of places to offer departure
   Disponibility:
-    Places: Nombre de places disponibles pour le circuit
+    Places: Number of places available for the circuit
   Public:
-    Posted: Ce départ est public et affiché aux clients
+    Posted: This departure is public and displayed to customers
   Actions: Actions
   Is:
-    Public: Est public?
+    Public: Is public?
   Return:
-    Gestion: Retour à la gestion des circuits
-    List: Retour à la liste des circuits
-    Creation: Retour à la création du circuit
+    Gestion: Back to circuit management
+    List: Back to the list of circuits
+    Creation: Back to circuit creation
 
 
 Promotion:
-  Label: En promotion !
-  Label2: Promotions
+  Label: Discount !
+  Label2: Discounts
   Add:
-    Label: Ajouter une promotion
-    New: Ajouter la nouvelle promotion
-  Creation: Création de la promotion
-  Modification: Modification de la promotion
+    Label: Add a discount
+    New: Add a new discount
+  Creation: Discount creation
+  Modification: Discount modification
   Trips:
-    Concerned: Voyages concernés par la promotion
+    Concerned: Travel affected by the discount
   Description: Description
-  Type: Type de promotion
+  Type: Discount type
   Applies:
-    All: S'applique à tous les voyages
-    Some: Promotion applicable aux voyages suivants
-  Details: Détails de la promotion
-  Start: Début de la promotion
-  End: Début de la promotion
-  Code: Code promo
+    All: Applies to all trips
+    Some: Discount applicable to the following trips
+  Details: Discount details
+  Start: Discount beginning
+  End: Discount ending
+  Code: Promo code
   Valeur:
-    Percent: Valeur en pourcentage
-    Monetary: Valeur en argent
-  Unlimited: Est illimité
-  Number: Nombre de promotions
+    Percent: Percentage value
+    Monetary: Monetary value
+  Unlimited: Is unlimited
+  Number: Discount number
   Date:
-    Start: Date de début
-    Fin: Date de fin
+    Start: Start date
+    Fin: End date
 
 
-Explore: Explorer
+Explore: Explore
 
 Accommodation:
-  Label: Hébergements
-  Add: Ajouter un hébergement
-  Name: Nom de l'hébergement
-  Type: Type d'hébergement
-  Rating: Cote de l'hébergement
-  Management: Gestion des hébergements
+  Label: Accommodations
+  Add: Add an Accommodation
+  Name: Accommodation name
+  Type: Accommodation type
+  Rating: Accommodation rating
+  Management: Accommodation management
   Please:
     Add:
-      Name: Veuillez fournir un nom pour l\'hébergement
-      Type: Veuillez fournir un type pour l\'hébergement
-      Address: Veuillez fournir une adresse
-      Province: Veuillez fournir une province
-      Phone: Veuillez fournir un numéro de téléphone
-      Country: Veuillez fournir un pays
-      City: Veuillez fournir une ville dans votre adresse
+      Name: Please provide a name for the accommodation
+      Type: Please provide a type for accommodation
+      Address: Please provide an address
+      Province: Please provide a province
+      Phone: Please provide a phone number
+      Country: Please provide a country
+      City: Please provide a city in your address
   
 Placeholder:
-  Email: Adresse courriel
+  Email: Email
   Link: Lien
-  Phone: Téléphone
-  Country: Pays
+  Phone: Phone
+  Country: Country
   Province: Province
-  City: Ville
-  Postal: Code postal
-  Birth: Date de naissance
+  City: City
+  Postal: Postal code
+  Birth: Date of birth
   Name:
-    Label: Nom
-    First: Prénom
+    Label: Last name
+    First: First name
   Address:
-    Line1: Ligne d'adresse 1
-    Line2: Ligne d'adresse 2
-  User: Utilisateur
+    Line1: Address Line 1
+    Line2: Address Line 2
+  User: User
   Password:
-    Label: Mot de passe
-    Create: Créez un mot de passe
-    Confirm: Confirmation du mot de passe
+    Label: Password
+    Create: Create a password
+    Confirm: Password confirmation
+  Mountain: Mountain hiking
 
-Save: Enregistrer
-SaveC: Enregistrer les changements
-Close: Fermer
+Save: Save
+SaveC: Save changes
+Close: Close
 
-Name: Nom
+Name: Name
 Type: Type
-Link: Lien
-link: lien
-Rating: Cote
-Country: Pays
-City: Ville
+Link: Link
+link: link
+Rating: Rating
+Country: Country
+City: City
 Places: Places
-'True': Vrai
-'False': Faux
-Duration: Durée
-Cancel: Annuler
+'True': 'True'
+'False': 'False'
+Duration: Duration
+Cancel: Cancel
 
 File:
-  Label: Fichier
-  Management: Gestion des fichiers
+  Label: File
+  Management: File management
 
 Acitivty:
-  Add: Ajouter une activité
-  Name: Nom de l'activité
-  Type: Type d'activité
-  Management: Gestion des activités
-  Create: Créer une activité
-  Link: Lien vers l'activité
-  Description: Description de l'activité
+  Add: Add an activity
+  Name: Activity name
+  Type: Activity type
+  Management: Activity management
+  Create: Create an activity
+  Link: Link to activity
+  Description: Activity description
   Image:
-    Choose: Choisir une image
+    Choose: Choose an image
   Please:
     Add:
-      Name: Veuillez fournir un nom pour l\'activité
-      Type: Veuillez fournir un type d\'activité
-      Address: Veuillez fournir une adresse
-      Province: Veuillez fournir une province
-      Phone: Veuillez fournir un numéro de téléphone
-      Country: Veuillez fournir un pays
-      City: Veuillez fournir une ville dans votre adresse
+      Name: Please provide a name for the activity
+      Type: Please provide a type for the activity
+      Address: Please provide an address
+      Province: Please provide a province
+      Phone: Please provide a phone number
+      Country: Please provide a country
+      City: Please provide a city in your address
 
 Transport: Transport
 Action: Action
 Actions: Actions
 Relaxation: Relaxation
-Discovery: Découverte
+Discovery: Discovery
 Arts: Arts
 Restaurants: Restaurants
-Others: Autres
-Start: Début
-Choose: Choisir
+Others: Others
+Start: Start
+Choose: Choose
 Description: Description
-End: Fin
-Add: Ajouter
-Email: Adresse courriel
-Password: Mot de passe
-Path: Chemin
-Erreur: Error
-Login: S'enregistrer
-Retour: Return
-Send: Envoyer
-Position : Position
+End: End
+Add: Add
+Email: Email
+Password: Password
+Path: Path
+Error: Erreur
+Login: Login
+Return: Return
+Send: Send
+Position: Position
+Reserve: Reserve
+Itinerary: Itinerary
+Guides: Guides
 
 Connection:
-  Label: Connexion
-  Admin: Connexion administrative
-  Google: Connexion via Google
-  Facebook: Connexion via Facebook
-  Disconnect: Déconnexion
+  Label: Connection
+  Admin: Administrative connection
+  Google: Connection via Google
+  Facebook: Connection via Facebook
+  Disconnect: Disconnect
 
 Refund:
-  Fees: Frais d'annulation
+  Fees: Refund fees
   Date:
-    Max: Date maximale de remboursement
+    Max: Maximum refund date
     Limit:
-      Cancel: Date limite pour l'annulation avec remboursement
-      Fees: Date limite pour l'annulation avec frais d'annulation 
+      Cancel: Deadline for cancellation with refund
+      Fees: Deadline for cancellation with cancellation fees 
 
 Step:
-  Add: Ajouter une étape
-  Label: Étape
+  Add: Add a step
+  Label: Step
   Start:
-    Label: Début
-    Time: Temps depuis le début de l'étape
-  Creation: Création d'une étape
-  Create: Créer l'étape
-  Position: Position de l'étape
-  Description: Description de l'étape
-  Management: Gestion des étapes
+    Label: Start
+    Time: Time since start of step
+  Creation: Creation of a step
+  Create: Create a step
+  Position: Step position
+  Description: Step description
+  Management: Step management
   Modify:
-    Label: Modifier l'étape
-    Choice: Veuillez choisir une étape à modifier
+    Label: Modify step
+    Choice: Please choose a step to modify
   Activity:
-    Label: Activité(s)
-    Add: Ajouter une activité à l'étape
-  Day: Jour
-  Name: Nom
+    Label: Activite(s)
+    Add: Add an activity to the step
+  Day: Day
+  Name: Name
   Type: Type
-  End: Fin
+  End: End
   Actions: Actions
   Accommodation:
-    Label: Hébergements
-    Management: Gestion des choix d'hébergement
-    Add: Ajouter un choix d'hébergement à l'étape
-    Choice: Choix d'hébergement(s)
-  Return: Retour à l'étape
-  ReturnC: Retour aux circuits
-  Filters: Ajoutez des filtres pour spécifier la recherche d'établissements
-  Disponibility: Entrez le jour pour lequel ces établissements seront disponibles
+    Label: Accommodations
+    Management: Accommodation choice management
+    Add: Add a choice of accommodation to the step
+    Choice: Choice of accommodation(s)
+  Return: Return to step
+  ReturnC: Return to circuits
+  Filters: Add filters to specify the establishment search
+  Disponibility: Enter the day for which these establishments will be available
   New:
-    Create: Créer une nouvelle étape
-  Modification: Modification de l'étape
+    Create: Create a new step
+  Modification: Step modification
 
 Media:
   File:
-    Name: Nom du fichier
-    Add: Ajouter un fichier
-    Forbidden: Type de fichier interdit
+    Name: File name
+    Add: Add a file
+    Forbidden: File type forbidden
   Please:
     Add:
-      File: Veuillez fournir un fichier
-      Name: Veuillez fournir un nom de fichier
+      File: Please provide a file
+      Name: Please provide a name for the file
 
 Payment:
   Plan:
-    Label: Plan de paiement
-    Name: Nom du plan de paiement
-    Add: Ajouter un plan de paiement
-    Departure: Ajoutez ou enlevez des plans de paiement pour le départ
-    Management: Gestion du plan de paiement
+    Label: Payment plan
+    Name: Payment plan name
+    Add: Add a payment plan
+    Departure: Add or remove payment plans for departure
+    Management: Payment plan management
   Date:
     Label: Date
-    Limit: Date limite du paiement
-    Due: Date dûe
-  Add: Ajouter un paiement
-  Amount: Montant dû
-  Todo: Paiements à faire
-  History: Historique de paiements
+    Limit: Payment deadline
+    Due: Due date
+  Add: Add a payment
+  Amount: Due amount
+  Todo: Payments to be made
+  History: Payment history
   Trip:
-    Name: Nom du voyage
-  Ammount: Montant du paiement
+    Name: Trip name
+  Ammount: Payment amount
   Transaction: Transaction
   Options: Options
-  None: Aucun paiement trouvé.
-  Management: Gestion des plans de paiement
-  Return: Retour à la gestion des départs
-  ReturnP: Retour à la gestion des plans de paiement
+  None: No payment found.
+  Management: Payment plan management
+  Return: Back to departure management
+  ReturnP: Back to payment plan management
   Departure:
-    Action: Ajoutez ou enlever des paiements pour le départ
+    Action: Add or remove payments for departure
 
 Account:
   Create:
-    Label: Créer un compte
-    Admin: Créez un compte administrateur
-  Exist: Vous avez déjà un compte? Connectez-vous!
+    Label: Create an account
+    Admin: Create an administrator account
+  Exist: Already have an account? Login!
   Password:
-    Lost: Mot de passe oublié?
+    Lost: Forgot your password?
     Reset:
-      Here: Réinitialiser votre mot de passe ici.
-      Label: Réinitialiser votre mot de passe
-  Connect: Connectez-vous
+      Here: Reset your password here.
+      Label: Reset your password
+  Connect: Login
   Member:
-    New: Nouveau membre? Enregistrez-vous!
+    New: New member? Register now!
   Email:
-    Invalid: Format du email invalide
+    Invalid: Invalid email format
   Please:
     Add:
-      Password: Veuillez fournir un mot de passe
+      Password: Please provide a password
 
 Chat:
   Message:
-    Empty: Votre message ne peut être vide
+    Empty: Your message cannot be empty
+    Cannot: You cannot send a message in this session
   Support:
-    Messaging: Messagerie de support technique
-  Resolved: Marquer comme résolu
-  Join: Joindre
-  Quit: Quitter
+    Messaging: Technical support messaging
+  Resolved: Mark as resolved
+  Join: Join
+  Quit: Quit
   Room:
-    Provide: Vous devez fournir une pièce
-    Message: Le membre ne peut envoyer de messages dans la pièce spécifiée
+    Provide: You must provide a room
+    Message: The member cannot send messages in the specified room
   Contact:
-    Employee: Nous vous mettons en contact avec un employé sous peu.
-  user_name: user_name a marqué son problème comme étant résolu
+    Employee: We will put you in touch with an employee shortly.
+  user_name: user_name marked their problem as resolved
   employee_name:
-    Connected: employee_name s'est connecté, faites-lui part de votre problème.
-    Disconnected: employee_name s'est déconnecté.
+    Connected: employee_name has logged in, let them know about your problem.
+    Disconnected: employee_name has disconnected.
 
 Sidebar:
-  Waiting: En attente
-  Finished: Terminée avant connexion
+  Waiting: Waiting
+  Finished: Completed before connection
   New:
-    Session: Nouvelle session
+    Session: New session
 
 Page:
   Error:
-    Message404: Désolé, cette page n'existe pas.
-    Message500: Désolé, une erreur interne est survenue.
+    Message404: Sorry, this page does not exist.
+    Message500: Sorry, an internal error has occurred.
 
 Base:
   Admin:
     Header: Administration
   Account:
-    Label: Mon compte
-    Employee: Comptes employés
-    Client: Comptes clients
-  Disconnect: Se Déconnecter
-  Support: Support Technique
+    Label: My account
+    Employee: Employee accounts
+    Client: Client accounts
+  Disconnect: Disconnect
+  Support: Technical support
   Circuit:
-    Management: Gestion des circuits
-  Promotions: Promotions
-  Payments: Paiements
-  Landing: Affichage accueil
-  Accommodations: Hébergements
-  Activities: Activités
-  Files: Fichiers
+    Management: Circuit management
+  Promotions: Discounts
+  Payments: Payments
+  Landing: Home display
+  Accommodations: Accommodations
+  Activities: Activities
+  Files: Files
 
 Footer:
-  Contact: Nous contacter
-  Newsletter: Infolettre
+  Contact: Contact us
+  Newsletter: Newsletter
   Admin: Administration
 
 Newsletter:
-  Label: Bulletins d'information
-  Create: Créer un bulletin d'informations
-  Name: Nom du bulletin
+  Label: Newsletters
+  Create: Create a newsletter
+  Name: Name of newsletter
   Add:
-    Label: Ajouter un bulletin d'informations
-    Message: Ajouter un message à ce bulletin
-  Date: Date du message
+    Label: Add a newsletter
+    Message: Add a message to this newsletter
+  Date: Date of message
   Subject:
-    Label: Sujet
-    Last: Sujet du dernier message
-  Content: Contenu
+    Label: Subject
+    Last: Subject of the last message
+  Content: Content
   Actions: Actions
   Message:
-    None: Aucun message pour ce bulletin.
-    Content: Contenu du message.
-  Return: Retourner à la liste des bulletins
-  New: Nouveau message
-  Modify: Modifier le bulletin d'informations
+    None: No message for this newsletter.
+    Content: Content of the message.
+  Return: Return to the list of newsletters
+  New: New message
+  Modify: Edit newsletter
 
 Employee:
   Please:
     Add:
-      Name: Veuillez fournir un nom
-      First: Veuillez fournir un prénom
-      Email: Veuillez fournir un adresse courriel
-      Phone: Veuillez fournir un numéro de téléphone
-      Birth: Veuillez fournir une date de naissance
-      Language: Veuillez fournir les langues parlées par l\'employé
-  Invalid: Email ou mot de passe invalide
+      Name: Please provide a last name
+      First: Please provide a first name
+      Email: Please provide an email address
+      Phone: Please provide a phone number
+      Birth: Please provide a date of birth
+      Language: Please provide the languages spoken by the employee
+  Invalid: Invalid email or password
 
 Helpers:
   Email:
-    Invalid: Format du email invalide
-    Sent: Email non envoyé
+    Invalid: Invalid email format
+    Sent: Email not sent
   Account:
-    Exist: Un compte existe deja pour ce email
-  Phone: Numéro de téléphone invalide
-  Postal: Code postal invalide
-  Date: Format de date invalide
+    Exist: An account already exists for this email
+  Phone: Invalid phone number
+  Postal: Invalid postal code
+  Date: Invalid date format
   Password:
     Contains:
-      Caps: Le mot de passe doit contenir au moins 1 caractère alphanumérique majuscule
-      NoCaps: Le mot de passe doit contenir au moins 1 caractère alphanumérique minuscule
-      Num: Le mot de passe doit contenir au moins 1 caractère numérique
-      Chars: 'Le mot de passe doit contenir au moins 1 caractère parmis !, @, #, $, %, ^ et &'
-      8Chars: Le mot de passe doit contenir au moins 8 caractères
-  older_than: Vous devez avoir au moins older_than ans pour vous enregistrer
+      Caps: Password must contain at least 1 uppercase alphanumeric character
+      NoCaps: Password must contain at least 1 lowercase alphanumeric character
+      Num: Password must contain at least 1 numeric character
+      Chars: 'The password must contain at least 1 character among !, @, #, $, %, ^ et &'
+      8Chars: Password must contain at least 8 characters
+  older_than: You must be at least older_than years old to register
 
 
 Members:
   Google:
-    Name: Veuillez fournir un nom
-    Id: Veuillez fournir un id
-    Email: Veuillez fournir un email
+    Name: Please provide a name
+    Id: Please provide an id
+    Email: Please provide an email
   Facebook:
-    Name: Veuillez fournir un nom
-    Id: Veuillez fournir un id
+    Name: Please provide a name
+    Id: Please provide an id
   Password:
-    Provide: Veuillez fournir un mot de passe
-    Old: Ancien mot de passe
-    OldI: L\'ancien mot de passe n\'est pas valide.
-    New: Nouveau mot de passe
-    New2: Entrez à nouveau le nouveau mot de passe
-    Unique: Les nouveaux mots de passe ne sont pas identiques.
-    Change: Changer le mot de passe
-  Invalid: Email ou mot de passe invalide
+    Provide: Please provide a password
+    Old: Old password
+    OldI: The old password is not valid.
+    New: New Password
+    New2: Re-enter new password
+    Unique: The new passwords are not the same.
+    Change: Change password
+  Invalid: Invalid email or password
   Create:
     Please:
       Add:
-        First: Veuillez fournir un prénom
-        Name: Veuillez fournir un nom
-        Email: Veuillez fournir un adresse courriel
-        Address: Veuillez fournir un adresse
-        Province: Veuillez fournir une province
-        Phone: Veuillez fournir un numéro de téléphone
-        Country: Veuillez fournir un pays
-        Birth: Veuillez fournir une date de naissance
-        City: Veuillez fournir une ville dans votre adresse
-        Language: Veuillez fournir une langue de préférence
-  Exist: Un compte existe deja pour ce email
+        First: Please provide a first name
+        Name: Please provide a last name
+        Email: Please provide an email address
+        Address: Please provide an address
+        Province: Please provide a province
+        Phone: Please provide a phone number
+        Country: Please provide a country
+        Birth: Please provide a date of birth
+        City: Please provide a city in your address
+        Language: Please provide a preferred language
+  Exist: An account already exists for this email
   Account:
-    Label: Mon compte
-    Modify: Modifier mon compte
+    Label: My account
+    Modify: Modify my account
   Informations: Informations
-  Coords: Coordonnées
+  Coords: Contact information
   Communications: Communications
   Trips:
-    Label: Voyages
-    Incoming: Voyages à venir
-    History: Historique des voyages
+    Label: Trips
+    Incoming: Upcoming trips
+    History: Travel history
   Payments:
-    Todo: Paiements à faire
-    History: Historique de paiements
+    Todo: Payments to be made
+    History: Payment history
   Modify:
-    Email: Modifier l'addresse de messsagerie électronique
-    Security: Modifier les paramètres de sécurité
+    Email: Change email address
+    Security: Change security settings
   Newsletter:
-    List: Liste des bulletins d'information
-  Unsubscribe: Se désinscrire
-  Subscribe: S'inscrire
-  Country: Pays
-  City: Ville
+    List: List of newsletters
+  Unsubscribe: Unsubscribe
+  Subscribe: Subscribe
+  Country: Country
+  City: City
   Region: Region
-  Postal: Code Postal
-  Address: Adresse
-  First: Prénom
-  Name: Nom
-  Birth: Date de naissance
-  Phone: Numéro de téléphone
-  Language: Langue
+  Postal: Postal Code
+  Address: Address
+  First: First name
+  Name: Last name
+  Birth: Date of birth
+  Phone: Phone number
+  Language: Language
   Already:
-    Facebook: Le compte a été créé à l'aide d'un compte Facebook. Veuillez utiliser les options de sécurité de
-    Google: Le compte a été créé à l'aide d'un compte Google. Veuillez utiliser les options de sécurité de
+    Facebook: The account was created using a Facebook account. Please use the security options of
+    Google: The account was created using a Google account. Please use the security options of
   Format:
-    Email: Format du email invalide
+    Email: Invalid email format
 
 Trips:
-  Incoming: Voyages à venir
-  History: Historique des voyages
-  Name: Nom
+  Incoming: Upcoming trips
+  History: Travel history
+  Name: Name
   Date:
-    Departure: Date de départ
-    Return: Date de retour
-  Details: Obtenir des détails
-  None: Aucun voyage trouvé.
+    Departure: Date of departure
+    Return: Return date
+  Details: Get details
+  None: No trips found.
+
+Core:
+  Not:
+    Routes: No route matched.
+    core_method: core_method not found in controller
+    core_file: core_file not found
+    core_controller: Controller class core_controller not found
+  core_action: Method core_action in controller core_controller cannot be called directly - remove the Action suffix to call this method

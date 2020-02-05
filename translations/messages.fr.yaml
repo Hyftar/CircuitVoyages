@@ -1,4 +1,4 @@
-# TODO ctrl c ctrl v on old translation file
+# Needs to be alphabetized
 
 Slogan1: Voyager n'aura jamais été aussi facile
 
@@ -34,6 +34,9 @@ Circuit:
     New: Créer un nouveau circuit
   Departure:
     Date: Date du départ
+    Next:
+      Label: Prochain départ
+      Plan: Prochain départ en planification!
     Creation: Création d'un départ du circuit
     Create: Créer le départ
     Management: Gestion des départs
@@ -60,6 +63,7 @@ Circuit:
     Gestion: Retour à la gestion des circuits
     List: Retour à la liste des circuits
     Creation: Retour à la création du circuit
+
 
 Promotion:
   Label: En promotion !
@@ -92,7 +96,7 @@ Promotion:
 
 Explore: Explorer
 
-Accomodation:
+Accommodation:
   Label: Hébergements
   Add: Ajouter un hébergement
   Name: Nom de l'hébergement
@@ -101,8 +105,8 @@ Accomodation:
   Management: Gestion des hébergements
   Please:
     Add:
-      Name: Veuillez fournir un nom pour l'hébergement
-      Type: Veuillez fournir un type pour l'hébergement
+      Name: Veuillez fournir un nom pour l\'hébergement
+      Type: Veuillez fournir un type pour l\'hébergement
       Address: Veuillez fournir une adresse
       Province: Veuillez fournir une province
       Phone: Veuillez fournir un numéro de téléphone
@@ -129,6 +133,7 @@ Placeholder:
     Label: Mot de passe
     Create: Créez un mot de passe
     Confirm: Confirmation du mot de passe
+  Mountain: Promenade en montagne
 
 Save: Enregistrer
 SaveC: Enregistrer les changements
@@ -145,14 +150,11 @@ Places: Places
 'True': Vrai
 'False': Faux
 Duration: Durée
-Description: Description
 Cancel: Annuler
-
 
 File:
   Label: Fichier
   Management: Gestion des fichiers
-
 
 Acitivty:
   Add: Ajouter une activité
@@ -166,8 +168,8 @@ Acitivty:
     Choose: Choisir une image
   Please:
     Add:
-      Name: Veuillez fournir un nom pour l'activité
-      Type: Veuillez fournir un type d'activité
+      Name: Veuillez fournir un nom pour l\'activité
+      Type: Veuillez fournir un type d\'activité
       Address: Veuillez fournir une adresse
       Province: Veuillez fournir une province
       Phone: Veuillez fournir un numéro de téléphone
@@ -184,15 +186,20 @@ Restaurants: Restaurants
 Others: Autres
 Start: Début
 Choose: Choisir
+Description: Description
 End: Fin
 Add: Ajouter
 Email: Adresse courriel
 Password: Mot de passe
 Path: Chemin
-Erreur: Error
+Error: Erreur
 Login: S'enregistrer
-Retour: Return
+Return: Retour
 Send: Envoyer
+Position: Position
+Reserve: Réserver
+Itinerary: Itinéraire
+Guides: Guides
 
 Connection:
   Label: Connexion
@@ -204,17 +211,45 @@ Connection:
 Refund:
   Fees: Frais d'annulation
   Date:
+    Max: Date maximale de remboursement
     Limit:
       Cancel: Date limite pour l'annulation avec remboursement
-      Fees: Date limite pour l'annulation avec frais d'annulation
-  Max:
-    Date: Date maximale de remboursement
+      Fees: Date limite pour l'annulation avec frais d'annulation 
 
 Step:
   Add: Ajouter une étape
   Label: Étape
   Start:
+    Label: Début
     Time: Temps depuis le début de l'étape
+  Creation: Création d'une étape
+  Create: Créer l'étape
+  Position: Position de l'étape
+  Description: Description de l'étape
+  Management: Gestion des étapes
+  Modify:
+    Label: Modifier l'étape
+    Choice: Veuillez choisir une étape à modifier
+  Activity:
+    Label: Activité(s)
+    Add: Ajouter une activité à l'étape
+  Day: Jour
+  Name: Nom
+  Type: Type
+  End: Fin
+  Actions: Actions
+  Accommodation:
+    Label: Hébergements
+    Management: Gestion des choix d'hébergement
+    Add: Ajouter un choix d'hébergement à l'étape
+    Choice: Choix d'hébergement(s)
+  Return: Retour à l'étape
+  ReturnC: Retour aux circuits
+  Filters: Ajoutez des filtres pour spécifier la recherche d'établissements
+  Disponibility: Entrez le jour pour lequel ces établissements seront disponibles
+  New:
+    Create: Créer une nouvelle étape
+  Modification: Modification de l'étape
 
 Media:
   File:
@@ -230,8 +265,28 @@ Payment:
   Plan:
     Label: Plan de paiement
     Name: Nom du plan de paiement
+    Add: Ajouter un plan de paiement
+    Departure: Ajoutez ou enlevez des plans de paiement pour le départ
+    Management: Gestion du plan de paiement
   Date:
-    Limit: Date de paiement limite
+    Label: Date
+    Limit: Date limite du paiement
+    Due: Date dûe
+  Add: Ajouter un paiement
+  Amount: Montant dû
+  Todo: Paiements à faire
+  History: Historique de paiements
+  Trip:
+    Name: Nom du voyage
+  Ammount: Montant du paiement
+  Transaction: Transaction
+  Options: Options
+  None: Aucun paiement trouvé.
+  Management: Gestion des plans de paiement
+  Return: Retour à la gestion des départs
+  ReturnP: Retour à la gestion des plans de paiement
+  Departure:
+    Action: Ajoutez ou enlever des paiements pour le départ
 
 Account:
   Create:
@@ -255,6 +310,7 @@ Account:
 Chat:
   Message:
     Empty: Votre message ne peut être vide
+    Cannot: Vous ne pouvez envoyer de message dans cette session
   Support:
     Messaging: Messagerie de support technique
   Resolved: Marquer comme résolu
@@ -269,7 +325,7 @@ Chat:
   employee_name:
     Connected: employee_name s'est connecté, faites-lui part de votre problème.
     Disconnected: employee_name s'est déconnecté.
-  
+
 Sidebar:
   Waiting: En attente
   Finished: Terminée avant connexion
@@ -295,7 +351,7 @@ Base:
   Promotions: Promotions
   Payments: Paiements
   Landing: Affichage accueil
-  Accomodations: Hébergements
+  Accommodations: Hébergements
   Activities: Activités
   Files: Fichiers
 
@@ -303,6 +359,26 @@ Footer:
   Contact: Nous contacter
   Newsletter: Infolettre
   Admin: Administration
+
+Newsletter:
+  Label: Bulletins d'information
+  Create: Créer un bulletin d'informations
+  Name: Nom du bulletin
+  Add:
+    Label: Ajouter un bulletin d'informations
+    Message: Ajouter un message à ce bulletin
+  Date: Date du message
+  Subject:
+    Label: Sujet
+    Last: Sujet du dernier message
+  Content: Contenu
+  Actions: Actions
+  Message:
+    None: Aucun message pour ce bulletin.
+    Content: Contenu du message.
+  Return: Retourner à la liste des bulletins
+  New: Nouveau message
+  Modify: Modifier le bulletin d'informations
 
 Employee:
   Please:
@@ -312,12 +388,13 @@ Employee:
       Email: Veuillez fournir un adresse courriel
       Phone: Veuillez fournir un numéro de téléphone
       Birth: Veuillez fournir une date de naissance
-      Language: Veuillez fournir les langues parlées par l'employé
+      Language: Veuillez fournir les langues parlées par l\'employé
   Invalid: Email ou mot de passe invalide
 
 Helpers:
   Email:
     Invalid: Format du email invalide
+    Sent: Email non envoyé
   Account:
     Exist: Un compte existe deja pour ce email
   Phone: Numéro de téléphone invalide
@@ -332,6 +409,7 @@ Helpers:
       8Chars: Le mot de passe doit contenir au moins 8 caractères
   older_than: Vous devez avoir au moins older_than ans pour vous enregistrer
 
+
 Members:
   Google:
     Name: Veuillez fournir un nom
@@ -340,7 +418,14 @@ Members:
   Facebook:
     Name: Veuillez fournir un nom
     Id: Veuillez fournir un id
-  Password: Veuillez fournir un mot de passe
+  Password:
+    Provide: Veuillez fournir un mot de passe
+    Old: Ancien mot de passe
+    OldI: L\'ancien mot de passe n\'est pas valide.
+    New: Nouveau mot de passe
+    New2: Entrez à nouveau le nouveau mot de passe
+    Unique: Les nouveaux mots de passe ne sont pas identiques.
+    Change: Changer le mot de passe
   Invalid: Email ou mot de passe invalide
   Create:
     Please:
@@ -354,4 +439,58 @@ Members:
         Country: Veuillez fournir un pays
         Birth: Veuillez fournir une date de naissance
         City: Veuillez fournir une ville dans votre adresse
+        Language: Veuillez fournir une langue de préférence
   Exist: Un compte existe deja pour ce email
+  Account:
+    Label: Mon compte
+    Modify: Modifier mon compte
+  Informations: Informations
+  Coords: Coordonnées
+  Communications: Communications
+  Trips:
+    Label: Voyages
+    Incoming: Voyages à venir
+    History: Historique des voyages
+  Payments:
+    Todo: Paiements à faire
+    History: Historique de paiements
+  Modify:
+    Email: Modifier l'addresse de messsagerie électronique
+    Security: Modifier les paramètres de sécurité
+  Newsletter:
+    List: Liste des bulletins d'information
+  Unsubscribe: Se désinscrire
+  Subscribe: S'inscrire
+  Country: Pays
+  City: Ville
+  Region: Region
+  Postal: Code Postal
+  Address: Adresse
+  First: Prénom
+  Name: Nom
+  Birth: Date de naissance
+  Phone: Numéro de téléphone
+  Language: Langue
+  Already:
+    Facebook: Le compte a été créé à l'aide d'un compte Facebook. Veuillez utiliser les options de sécurité de
+    Google: Le compte a été créé à l'aide d'un compte Google. Veuillez utiliser les options de sécurité de
+  Format:
+    Email: Format du email invalide
+
+Trips:
+  Incoming: Voyages à venir
+  History: Historique des voyages
+  Name: Nom
+  Date:
+    Departure: Date de départ
+    Return: Date de retour
+  Details: Obtenir des détails
+  None: Aucun voyage trouvé.
+
+Core:
+  Not:
+    Routes: Aucun route ne correspond.
+    core_method: core_method introuvable dans le contrôleur
+    core_file: core_file introuvable
+    core_controller: Classe de contrôleur core_controller introuvable
+  core_action: La méthode core_action dans le controlleur core_controller ne peut pas être appelé directement - supprimez le suffixe Action pour appeler cette méthode

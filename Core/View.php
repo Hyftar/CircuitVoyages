@@ -30,7 +30,7 @@ class View
         }
 
         if (!is_readable($file)) {
-            throw new \Exception("$file not found");
+            throw new \Exception($translator->trans("Core.Not.core_file",['core_file' => $file]));
         }
 
         require $file;

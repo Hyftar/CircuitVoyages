@@ -3,7 +3,7 @@
     <div class="modal-content">
       <br>
       <div class="modal-header ">
-        <h5 class="modal-title">Modification de l'étape - {{ etape.id }}</h5>
+        <h5 class="modal-title">{% trans %}Step.Modification{% endtrans %} - {{ etape.id }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -13,19 +13,19 @@
           <div class="form-group">
             <input value="{{ etape.id }}" name="step_id" id="step_id" style="display: none">
             <input type="hidden" name="circuit_id" value="{{ etape.circuit_id }}">;
-            <label for="positionEtape">Position de l'étape : </label>
+            <label for="positionEtape">{% trans %}Step.Position{% endtrans %} : </label>
             <input type="number" class="form-control" id="positionEtape"
                    name="positionEtape" value="{{ etape.position }}" required>
           </div>
           <div class="form-group">
-            <label for="descriptionEtape">Description de l'étape</label>
+            <label for="descriptionEtape">{% trans %}Step.Description{% endtrans %}</label>
             <textarea id="descriptionEtape" name="descriptionEtape"
                       rows="5">{{ etape.description|e }}</textarea>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Modifier l'étape</button>
+            <button type="submit" class="btn btn-primary">{% trans %}Step.Modify.Label{% endtrans %}</button>
             <button type="button" class="btn btn-secondary"
-                    data-dismiss="modal">Fermer
+                    data-dismiss="modal">{% trans %}Close{% endtrans %}
             </button>
           </div>
         </div>

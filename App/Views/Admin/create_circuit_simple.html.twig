@@ -1,7 +1,7 @@
 <h1>{{ circuit.name }}</h1>
 <div id="gestionEtapes">
   {% for step in steps %}
-    <h2>Étape {{ step.position }}</h2>
+    <h2>{% trans %}Step.Label{% endtrans %} {{ step.position }}</h2>
     <table class="table" id="activitiesCircuit-{{ activity.id }}">
       <thead>
         <tr>
@@ -19,9 +19,9 @@
         <td>{{ activity.activity_type }}</td>
       </tr>
     {% endfor %}
-    {% for accommodation in Accommodations %}
+    {% for accommodation in accommodations %}
       <tr class="accommodation-row" id="accommodation-{{ accommodation.id }}">
-        <td scope="row">{{ Accommodation.name }}</td>
+        <td scope="row">{{ accommodation.name }}</td>
         <td>N/A</td>
         <td>N/A</td>
         <td>{{ accommodation.accommodation_type }}</td>

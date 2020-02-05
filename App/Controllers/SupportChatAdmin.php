@@ -35,7 +35,7 @@ class SupportChatAdmin extends Controller
         }
 
         if (!SupportChat::employeeCanSendIn($_SESSION['employee']['id'], $_POST['room_id'])) {
-            $errors[] = 'Vous ne pouvez envoyer de message dans cette session';
+            $errors[] = $translator->trans('Chat.Message.Cannot');
         }
 
         if (!empty($errors)) {
@@ -59,7 +59,7 @@ class SupportChatAdmin extends Controller
             return;
         }
 
-        SupportChat::serverSendMessage($_POST['room_id'], "Chat.employee_name.Connected",['employee_name' => $employee_name]);
+        SupportChat::serverSendMessage($_POST['room_id'], $translator->trans("Chat.employee_name.Connected",['employee_name' => $employee_name]);
     }
 
     public function leave()
@@ -71,7 +71,7 @@ class SupportChatAdmin extends Controller
             return;
         }
 
-        SupportChat::serverSendMessage($room_id, "Chat.employee_name.Disconnected",['employee_name' => $employee_name]);
+        SupportChat::serverSendMessage($room_id, $translator->trans("Chat.employee_name.Disconnected",['employee_name' => $employee_name]));
     }
 
     public function getMessageAt()

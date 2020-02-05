@@ -11,7 +11,7 @@
         <input type="hidden" name="circuit_id" value="{{ circuit.id|e }}">
         <div class="modal-body">
           <div class="form-group">
-            <label for="departure_date" class="col-form-label">{% trans %Circuit.Departure.Date{% endtrans %}</label>
+            <label for="departure_date" class="col-form-label">{% trans %}Circuit.Departure.Date{% endtrans %}</label>
             <input type="date" class="form-control" id="departure_date" name="departure_date" value="{{ 'now'|date_modify("+90 day")|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">

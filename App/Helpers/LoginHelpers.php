@@ -10,11 +10,11 @@ use App\Config;
 class LoginHelpers
 {
     private static $password_patterns = [
-        ['pattern' => '/(?=.*[a-z])/', 'message' => 'Le mot de passe doit contenir au moins 1 caractère alphanumérique minuscule'],
-        ['pattern' => '/(?=.*[A-Z])/', 'message' => 'Le mot de passe doit contenir au moins 1 caractère alphanumérique majuscule'],
-        ['pattern' => '/(?=.*\d)/', 'message' => 'Le mot de passe doit contenir au moins 1 caractère numérique'],
-        ['pattern' => '/(?=.*[!@#\$%\^&])/', 'message' => 'Le mot de passe doit contenir au moins 1 caractère parmis !, @, #, $, %, ^ et &'],
-        ['pattern' => '/(?=.{8,})/', 'message' => 'Le mot de passe doit contenir au moins 8 caractères']
+        ['pattern' => '/(?=.*[a-z])/', 'message' => 'Helpers.Password.Contains.Caps'],
+        ['pattern' => '/(?=.*[A-Z])/', 'message' => 'Helpers.Password.Contains.NoCaps'],
+        ['pattern' => '/(?=.*\d)/', 'message' => 'Helpers.Password.Contains.Num'],
+        ['pattern' => '/(?=.*[!@#\$%\^&])/', 'message' => 'Helpers.Password.Contains.Chars'],
+        ['pattern' => '/(?=.{8,})/', 'message' => 'Helpers.Password.Contains.8Chars']
     ];
 
     private static $postal_code_pattern = '/^([ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z])[ -]?(\d[ABCEGHJ-NPRSTV-Z]\d)$/i';

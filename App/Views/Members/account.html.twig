@@ -1,32 +1,32 @@
 <div class="home-content__banner">
   <div class="banner__text">
-    Mon compte
+    {% trans %}Members.Account.Label{% endtrans %}
   </div>
 </div>
-<h2 class="home-content__header" id="account-header">Modifier mon compte</h2>
+<h2 class="home-content__header" id="account-header">{% trans %}Members.Account.Modify{% endtrans %}</h2>
 <div class="home-content__circuits">
   <div>
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <div class="nav-link active" onclick="getInformations()" id="linkInformations">Informations</div>
+        <div class="nav-link active" onclick="getInformations()" id="linkInformations">{% trans %}Members.Informations{% endtrans %}</div>
       </li>
       <li class="nav-item">
-        <div class="nav-link" id="linkCoordinates" onclick="getCoordinates()">Coordonnées</div>
+        <div class="nav-link" id="linkCoordinates" onclick="getCoordinates()">{% trans %}Membres.Coords{% endtrans %}</div>
       </li>
       <li class="nav-item">
-        <div class="nav-link" id="linkSecurity" onclick="getSecurity()">Sécurité</div>
+        <div class="nav-link" id="linkSecurity" onclick="getSecurity()">{% trans %}Membres.Security{% endtrans %}</div>
       </li>
       <li class="nav-item">
-        <div class="nav-link" id="linkCommunications" onclick="getCommunications()">Communications</div>
+        <div class="nav-link" id="linkCommunications" onclick="getCommunications()">{% trans %}Membres.Communications{% endtrans %}</div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="linkTrips" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Voyages</a>
+        <a class="nav-link dropdown-toggle" id="linkTrips" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{% trans %}Membres.Trips.Label{% endtrans %}</a>
         <div class="dropdown-menu">
-          <div class="dropdown-item" onclick="return getTripsUpcoming()">Voyages à venir</div>
-          <div class="dropdown-item" onclick="return getTrips()">Historique des voyages</div>
+          <div class="dropdown-item" onclick="return getTripsUpcoming()">{% trans %}Members.Trips.Incoming{% endtrans %}</div>
+          <div class="dropdown-item" onclick="return getTrips()">{% trans %}Members.Trips.History{% endtrans %}</div>
           <div class="dropdown-divider"></div>
-          <div class="dropdown-item" onclick="return getPaymentsUpcoming()">Paiements à faire</div>
-          <div class="dropdown-item" onclick="return getPayments()">Historique des paiements</div>
+          <div class="dropdown-item" onclick="return getPaymentsUpcoming()">{% trans %}Members.Payments.Todo{% endtrans %}</div>
+          <div class="dropdown-item" onclick="return getPayments()">{% trans %}Members.Payments.History{% endtrans %}</div>
         </div>
       </li>
     </ul>

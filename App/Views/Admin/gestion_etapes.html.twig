@@ -1,8 +1,8 @@
-<h1>Gestion des étapes</h1>
+<h1>{% trans %}Step.Management{% endtrans %}</h1>
 <div class="choix_circuit">
-  <p class="mr-auto">Veuillez choisir une étape à modifier</p>
+  <p class="mr-auto">{% trans %}Step.Modify.Choice{% endtrans %}</p>
   <div class="bouton_creer" onClick="getSteps_create({{ circuit_id }})">
-    <p>Créer une nouvelle étape</p>
+    <p>{% trans %}Step.New.Create{% endtrans %}</p>
     <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
@@ -12,9 +12,9 @@
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
-          <li>Position</li>
-          <li>Description</li>
-          <li>Actions</li>
+          <li>{% trans %}Position{% endtrans %}</li>
+          <li>{% trans %}Description{% endtrans %}</li>
+          <li>{% trans %}Actions{% endtrans %}</li>
         </ul>
       </a>
       {% for etape in steps %}
@@ -46,4 +46,4 @@
   </div>
 </div>
 <div id="modalContenuEtape"></div>
-<button type="button" class="btn btn-dark" onclick="getCircuits()">Retour aux circuits</button>
+<button type="button" class="btn btn-dark" onclick="getCircuits()">{% trans %}Step.ReturnC{% endtrans %}</button>
