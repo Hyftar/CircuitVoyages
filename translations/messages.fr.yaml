@@ -1,6 +1,4 @@
-# Needs to be alphabetized
-
-Slogan1: Voyager n'aura jamais été aussi facile
+Slogan: Voyager n'aura jamais été aussi facile
 
 Circuit:
   Label: Circuits
@@ -42,7 +40,7 @@ Circuit:
     Management: Gestion des départs
     Modification: Modification d'un départ du circuit
     Modify:
-      Label: Modifier le départ 
+      Label: Modifier le départ
       New: Veuillez choisir un départ à modifier pour le circuit
   Cancel:
     Date: Date d'annulation
@@ -112,7 +110,7 @@ Accommodation:
       Phone: Veuillez fournir un numéro de téléphone
       Country: Veuillez fournir un pays
       City: Veuillez fournir une ville dans votre adresse
-  
+
 Placeholder:
   Email: Adresse courriel
   Link: Lien
@@ -214,7 +212,7 @@ Refund:
     Max: Date maximale de remboursement
     Limit:
       Cancel: Date limite pour l'annulation avec remboursement
-      Fees: Date limite pour l'annulation avec frais d'annulation 
+      Fees: Date limite pour l'annulation avec frais d'annulation
 
 Step:
   Add: Ajouter une étape

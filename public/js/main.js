@@ -49,7 +49,7 @@ function changeLang() {
   $.ajax({
     url: 'changelocale',
     type: 'POST',
-	data: { selectedValue },
+    data: { selectedValue },
     success: () => {
       window.location.reload();
     }

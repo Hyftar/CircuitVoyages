@@ -60,9 +60,9 @@
       <nav>
         <a href="#circuits" class="nav-link">{% trans %}Circuit.Label{% endtrans %}</a>
         <a href="#" class="nav-link">{% trans %}Promotion.Label2{% endtrans %}</a>
-        <a id="nav-login-link" href="#" class="nav-link {{ member is not null ? 'hidden' : '' }} ">{% trans %}Connection.Label{% endtrans %}</a>
-        <a id="nav-account-link" href="#" class="nav-link {{ member is null ? 'hidden' : '' }}">{% trans %}Account.Label{% endtrans %}</a>
-        <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">{% trans %}Account.Disconnect{% endtrans %}</a>
+        <a id="nav-login-link" href="#" class="nav-link {{ member is not null ? 'hidden' : '' }}">{% trans %}Connection.Label{% endtrans %}</a>
+        <a id="nav-account-link" href="#" class="nav-link {{ member is null ? 'hidden' : '' }}">{% trans %}Base.Account.Label{% endtrans %}</a>
+        <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">{% trans %}Connection.Disconnect{% endtrans %}</a>
       </nav>
     </header>
     <main>
@@ -81,13 +81,19 @@
         <p class="footer-copyright">
           Copyright © 2019 MBGLA LABERNOIS, Inc. All rights reserved.</p>
       </div>
-	  <div class="footer__right">
-	    <select id="languages" class="language" onchange="changeLang();">
-  		  <option value="fr">FR</option>
-  		  <option value="en">EN</option>
-  		  <option value="es">SP</option>
-		</select>
-	  </div>
+      <div class="footer__right">
+        <select id="languages" class="language" onchange="changeLang();">
+          <option value="fr" {% if locale == 'fr' %} selected="selected"{% endif %}>
+              Français
+          </option>
+          <option value="en" {% if locale == 'en' %} selected="selected" {% endif %}>
+              English
+          </option>
+          <option value="es" {% if locale == 'es' %} selected="selected" {% endif %}>
+              Español
+          </option>
+        </select>
+      </div>
       <div class="footer__right"></div>
     </footer>
   </body>

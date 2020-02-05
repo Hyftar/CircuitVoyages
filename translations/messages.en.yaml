@@ -1,6 +1,4 @@
-# Needs to be alphabetized
-
-Slogan1: Traveling has never been easier.
+Slogan: Traveling has never been easier
 
 Circuit:
   Label: Circuits
@@ -42,7 +40,7 @@ Circuit:
     Management: Departure management
     Modification: Modification of a circuit departure
     Modify:
-      Label: Modify the departure 
+      Label: Modify the departure
       New: Please choose a departure to modify for the circuit
   Cancel:
     Date: Cancelation date
@@ -112,7 +110,7 @@ Accommodation:
       Phone: Please provide a phone number
       Country: Please provide a country
       City: Please provide a city in your address
-  
+
 Placeholder:
   Email: Email
   Link: Lien
@@ -214,7 +212,7 @@ Refund:
     Max: Maximum refund date
     Limit:
       Cancel: Deadline for cancellation with refund
-      Fees: Deadline for cancellation with cancellation fees 
+      Fees: Deadline for cancellation with cancellation fees
 
 Step:
   Add: Add a step

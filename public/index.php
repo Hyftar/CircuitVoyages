@@ -22,13 +22,14 @@ set_exception_handler('Core\Error::exceptionHandler');
  */
 session_start();
 
-$_SESSION['locale'] = TranslationHelpers::getCurrentLocale();
+if (empty($_SESSION['locale'])) {
+    $_SESSION['locale'] = 'fr';
+}
 
 /**
  * Routing
  */
 $router = new Core\Router();
-
 
 /* ADMIN PAGES */
 

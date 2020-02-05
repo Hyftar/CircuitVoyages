@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use \App\Models\SupportChat;
+use \App\Helpers\TranslationHelpers;
 use \Core\Controller;
 use \Core\View;
 
@@ -18,6 +19,7 @@ class SupportChats extends Controller
 
     public function sendMessageAction()
     {
+        $translator = TranslationHelpers::getInstance();
         $errors = [];
         if (empty($_POST['content'])) {
             $errors[] = $translator->trans('Chat.Message.Empty');
@@ -48,6 +50,7 @@ class SupportChats extends Controller
 
     public function joinAction()
     {
+        $translator = TranslationHelpers::getInstance();
 
         list($errors, $id) = SupportChat::create($_SESSION['member']['id']);
         if (!empty($errors)) {
@@ -66,6 +69,8 @@ class SupportChats extends Controller
 
     public function leaveAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $room_id = $this->route_params['roomid'];
         $user_name = $_SESSION['member']['first_name'] . ' ' . $_SESSION['member']['last_name'];
         if (!SupportChat::memberCanSendIn($_SESSION['member']['id'], $room_id)) {
@@ -73,7 +78,10 @@ class SupportChats extends Controller
             return;
         }
 
-        SupportChat::serverSendMessage($room_id, "Chat.user_name", ['user_name' => $user_name]);
+        SupportChat::serverSendMessage(
+            $room_id,
+            $translater->trans("Chat.user_name", ['user_name' => $user_name])
+        );
         SupportChat::setInactive($room_id);
     }
 

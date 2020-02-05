@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Models\Media;
+use \App\Helpers\TranslationHelpers;
 
 class Medias extends \Core\Controller
 {
@@ -27,6 +28,8 @@ class Medias extends \Core\Controller
 
     public function uploadAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $description = null;
 
         $errors = [];

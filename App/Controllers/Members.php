@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use \App\Helpers\TranslationHelpers;
 use \App\Helpers\ApplicationHelpers;
 use \App\Helpers\LoginHelpers;
 use \App\Models\Member;
@@ -11,6 +12,8 @@ class Members extends \Core\Controller
 {
     public function googleLoginAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         if (empty($_POST['name'])) {
             // TODO: use i18n string instead
             $errors[] = $translator->trans('Members.Google.Name');
@@ -40,6 +43,8 @@ class Members extends \Core\Controller
 
     public function facebookLoginAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         if (empty($_POST['name'])) {
             // TODO: use i18n string instead
             $errors[] = $translator->trans('Members.Facebook.Name');
@@ -70,6 +75,7 @@ class Members extends \Core\Controller
 
     public function loginAction()
     {
+        $translator = TranslationHelpers::getInstance();
         $errors = [];
         if (!array_key_exists('email', $_POST) ||
             !LoginHelpers::isValidEmail($_POST['email'])) {
@@ -117,6 +123,7 @@ class Members extends \Core\Controller
 
     public function createAction()
     {
+        $translator = TranslationHelpers::getInstance();
 
         $errors = [];
 
@@ -254,6 +261,7 @@ class Members extends \Core\Controller
 
     public function showAction()
     {
+        $translator = TranslationHelpers::getInstance();
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
@@ -288,6 +296,8 @@ class Members extends \Core\Controller
 
     public function sendInformationsAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $errors = [];
         // Check if all the required parameters are set
         if (empty($_POST['inputFirstName'])) {
@@ -473,6 +483,8 @@ class Members extends \Core\Controller
     }
     public function sendCommunicationsAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $errors = [];
 
         if (!LoginHelpers::isValidEmail($_POST['inputEmail'])) {
@@ -505,6 +517,8 @@ class Members extends \Core\Controller
 
     public function sendSecurityAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $errors = [];
 
         if (!Member::comparePassword($_POST['inputOldPassword'], $_SESSION['member'][0])) {
@@ -533,6 +547,8 @@ class Members extends \Core\Controller
 
     public function sendCoordinatesAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $errors = [];
 
         // Check if all the required parameters are set

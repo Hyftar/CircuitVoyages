@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Newsletter;
 use Core\Model;
 
+use App\Helpers\TranslationHelpers;
 use App\Helpers\ApplicationHelpers;
 use App\Models\Accommodation;
 use App\Models\Activity;
@@ -96,6 +97,3 @@ class Newsletters extends \Core\Controller
         EmailHelpers::sendEmailBBC($bcc,$_POST['inputSubject'],$_POST['inputContent']);
     }
 }
-
-
-
