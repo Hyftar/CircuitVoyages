@@ -25,7 +25,8 @@ function addBtnEvents() {
     $.ajax({
       url: `circuit/${e.currentTarget.attributes['data-id'].value}`,
       success: (data) => {
-        $('main').html(data)
+        $('main').html(data);
+        setOnclick();
       }
     })
   })

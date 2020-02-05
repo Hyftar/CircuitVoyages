@@ -5,7 +5,7 @@
   </div>
 
   <div class="circuit-info__content">
-    <h2 class="content-header">Description</h2>
+    <h2 class="content-header">Description{{ circuit.id }}</h2>
     <div class="description-container">
       <div class="card text-center description-body">
         <div class="card-body">
@@ -13,7 +13,12 @@
           <p class="card-text">
             {{ circuit.description|e }}
           </p>
-          <a href="#" class="btn btn-primary">Réserver</a>
+
+          <a href="#" data-id="{{ circuit_trips.0.id }}"
+             data-date="{{ "now"|date("d/m/Y") }}"
+             data-name="{{ circuit.name|e }}"
+             data-price="{{ circuit_trips.0.price }}"
+             class="add-to-cart btn btn-success">Réserver</a>
         </div>
         <div class="card-footer text-muted">
           {% if circuit.next_departure is not null %}

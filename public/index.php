@@ -162,6 +162,9 @@ $router->add('admin/sendMessage', ['controller' => 'Newsletters', 'action' => 's
 $router->add('admin/getNewsletterUpdater', ['controller' => 'Newsletters', 'action' => 'getNewsletterUpdater'], 'POST');
 $router->add('admin/sendUpdate', ['controller' => 'Newsletters', 'action' => 'saveNewsletterUpdate'], 'POST');
 
+// Orders
+$router->add('/order/index', ['controller' => 'Orders', 'action' => 'index'], 'POST');
+
 // API routes
 $router->add('api/getCircuits', ['controller' => 'API', 'action' => 'getCircuits'], 'GET');
 

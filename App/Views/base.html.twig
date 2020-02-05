@@ -51,6 +51,7 @@
     </div>
     {% include '/Cart/cart.html.twig' %}
 
+
     <header>
       <a href="#" class="logo">
         <img alt="logo_with_text" src="/images/labernois_logo_text.png"/>
@@ -89,6 +90,14 @@
       </div>
       <div class="footer__right"></div>
     </footer>
+    <div class="modal" id="order_modal" tabindex="-1" role="dialog" aria-labelledby="order_modal"
+         aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div id="order-content" class="modal-content">
+
+        </div>
+      </div>
+    </div>
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -106,6 +115,7 @@
   <script src="/js/facebook_login.js"></script>
   <script src="/js/cart-script.js"></script>
   <script src="/js/paypal.js"></script>
+  <script src="/js/order.js"></script>
 
   <script>
     (function(d, s, id) {
