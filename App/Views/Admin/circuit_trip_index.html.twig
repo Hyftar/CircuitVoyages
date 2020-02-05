@@ -1,8 +1,8 @@
-<h1>Gestion des départs</h1>
+<h1>{% trans %}Circuit.Departure.Management{% endtrans %}</h1>
 <div class="choix_circuit">
-  <p class="mr-auto">Veuillez choisir un départ à modifier pour le circuit - {{ circuit.name }}</p>
+  <p class="mr-auto">{% trans %}Circuit.Departure.Modification{% endtrans %} - {{ circuit.name }}</p>
   <div class="bouton_creer" onClick="getCircuitsTrip_create({{ circuit.id }})">
-    <p>Créer un nouveau départ</p>
+    <p>{% trans %}Circuit.Departure.Modify.New{% endtrans %}</p>
     <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
@@ -12,10 +12,10 @@
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
-          <li>Date de départ</li>
-          <li>Places</li>
-          <li>Est public ?</li>
-          <li>Actions</li>
+          <li>{% trans %}Circuit.Departure.Date{% endtrans %}</li>
+          <li>{% trans %}Places{% endtrans %}</li>
+          <li>{% trans %}Circuit.Is.Public{% endtrans %}</li>
+          <li>{% trans %}Circuit.Actions{% endtrans %}</li>
         </ul>
       </a>
       {% for circuit_trip in circuits_trips %}
@@ -25,9 +25,9 @@
             <li>{{ circuit_trip.places }}</li>
             <li>
               {% if circuit_trip.is_public == 1 %}
-                Vrai
+                {% trans %}True{% endtrans %}
               {% else %}
-                Faux
+                {% trans %}False{% endtrans %}
               {% endif %}
             </li>
             <li>
@@ -55,4 +55,4 @@
   </div>
 </div>
 <div id="modalContenuCircuit"></div>
-<button type="button" class="btn btn-dark" onclick="retourAccueil()">Retour à la gestion des circuits</button>
+<button type="button" class="btn btn-dark" onclick="retourAccueil()">{% trans %}Circuit.Return{% endtrans %}</button>

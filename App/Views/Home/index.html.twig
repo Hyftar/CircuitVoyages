@@ -6,10 +6,10 @@
   <div class="home-content">
     <div class="home-content__banner">
       <div class="banner__text">
-        Voyager n'aura jamais été <span style="font-style: italic;">aussi</span> facile.
+        {% trans %}Slogan{% endtrans %}.
       </div>
     </div>
-    <h2 class="home-content__header">Tous nos circuits</h2>
+    <h2 class="home-content__header">{% trans %}Circuit.All{% endtrans %}</h2>
     {% set idP = -1 %}
     <div class="home-content__circuits">
       {% for circuit in circuits %}
@@ -20,21 +20,20 @@
               <div class="ribbon ribbon--green">
                 <div class="ribbon__bottom"></div>
                 <div class="ribbon__center">
-                  <div>En promotion!</div>
+                  <div>{% trans %}Promotion{% endtrans %}</div>
                 </div>
               </div>
             {% endif %}
             <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
             <div class="card-body">
-              <h5 class="card-title">{{circuit.name }}</h5>
+              <h5 class="card-title">{{ circuit.name }}</h5>
               <p class="card-text">
                 {{ circuit.description }}
               </p>
-              <button class="btn btn-primary" data-id="{{ circuit.id }}">Explorer</button>
+              <button class="btn btn-primary" data-id="{{ circuit.id }}">{% trans %}Explore{% endtrans %}</button>
             </div>
           </div>
         {% endif %}
       {% endfor %}
-    </div>
   </div>
 {% endblock %}

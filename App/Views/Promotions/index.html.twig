@@ -1,16 +1,16 @@
 <div>
-  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="ajouterPromotion()">Ajouter une promotion</button>
+  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="ajouterPromotion()">{% trans %}Promotion.Add.Label{% endtrans %}</button>
 </div>
 <div>
   <table class="table">
-    <caption>Promotions</caption>
+    <caption>{% trans %}Promotion.Label2{% endtrans %}</caption>
     <thead>
       <tr>
-        <th scope="col">Type</th>
-        <th scope="col">Description</th>
-        <th scope="col">Date de début</th>
-        <th scope="col">Date de fin</th>
-        <th scope="col">Actions</th>
+        <th scope="col">{% trans %}Promotion.Type{% endtrans %}</th>
+        <th scope="col">{% trans %}Promotion.Description{% endtrans %}</th>
+        <th scope="col">{% trans %}Promotion.Date.Start{% endtrans %}</th>
+        <th scope="col">{% trans %}Promotion.Date.End{% endtrans %}</th>
+        <th scope="col">{% trans %}Actions{% endtrans %}</th>
       </tr>
     </thead>
     <tbody>

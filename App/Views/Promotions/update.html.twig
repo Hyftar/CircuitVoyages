@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modification de la promotion</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{% trans %}Promotion.Modification{% endtrans %}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -11,49 +11,49 @@
         <form method="post" id="formUpdate" onsubmit="return modifierPromotionEnreg()">
           <input type="hidden" name="promo-id" value="{{ promotions.id }}">
           <div class="form-group">
-            <label for="promo-date-start" class="col-form-label">Début de la promotion</label>
+            <label for="promo-date-start" class="col-form-label">{% trans %}Promotion.Start{% endtrans %}</label>
             <input type="date" class="form-control" id="promo-date-start" name="promo-date-start" value="{{ promotions.start_date|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
-            <label for="promo-end-date" class="col-form-label">Fin de la promotion</label>
+            <label for="promo-end-date" class="col-form-label">{% trans %}Promotion.End{% endtrans %}</label>
             <input type="date" class="form-control" id="promo-end-date" name="promo-end-date" value="{{ promotions.end_date|date("Y-m-d") }}" required>
           </div>
           {% if promotions.is_percentage_based %}
             <div class="form-group">
-              <label for="promo-value" class="col-form-label">Valeur en pourcentage</label>
+              <label for="promo-value" class="col-form-label">{% trans %}Promotion.Value.Percent{% endtrans %}</label>
               <input type="number" class="form-control" id="promo-value" name="promo-value"  min="0" max ="100" value="{{ promotions.value }}" required>
             </div>
           {% else %}
             <div class="form-group">
-              <label for="promo-value" class="col-form-label">Valeur en argent</label>
+              <label for="promo-value" class="col-form-label">{% trans %}Promotion.Value.Monetary{% endtrans %}</label>
               <input type="number" class="form-control" id="promo-value" name="promo-value" value="{{ promotions.value }}" required>
             </div>
           {% endif %}
           {% if promotions.availability_number == -1 %}
             <div class="form-group">
-              <label for="promo-availability" class="col-form-label">Nombre de promotions</label>
+              <label for="promo-availability" class="col-form-label">{% trans %}Promotion.Number{% endtrans %}</label>
               <input type="number" class="form-control" disabled id="promo-availability" min="0" name="promo-availability">
             </div>
             <div class="form-group form-check">
               <input type="checkbox" class="form-check-input" id="promo-unlimited" name="promo-unlimited" checked onclick="availabilityChange()">
-              <label for="promo-unlimited" class="form-check-label">Est illimité</label>
+              <label for="promo-unlimited" class="form-check-label">{% trans %}Promotion.Unlimited{% endtrans %}</label>
             </div>
           {% else %}
             <div class="form-group">
-              <label for="promo-availability" class="col-form-label">Nombre de promotions</label>
+              <label for="promo-availability" class="col-form-label">{% trans %}Promotion.Number{% endtrans %}</label>
               <input type="number" class="form-control " id="promo-availability" min="0" name="promo-availability" value="{{ promotions.availability_number }}">
             </div>
             <div class="form-group form-check">
               <input type="checkbox" class="form-check-input" id="promo-unlimited" onclick="availabilityChange()" name="promo-unlimited">
-              <label for="promo-unlimited" class="form-check-label">Est illimité</label>
+              <label for="promo-unlimited" class="form-check-label">{% trans %}Promotion.Unlimited{% endtrans %}</label>
             </div>
           {% endif %}
           <div class="form-group">
-            <label for="promo-description" class="col-form-label">Description</label>
+            <label for="promo-description" class="col-form-label">{% trans %}Promotion.Description{% endtrans %}</label>
             <textarea rows="6" cols="30" class="form-control" id="promo-description" name="promo-description">{{ promotions.description }}</textarea>
           </div>
           <div class="form-group">
-            <label for="promo-type-id" class="col-form-label">Type de promotion</label>
+            <label for="promo-type-id" class="col-form-label">{% trans %}Promotion.Type{% endtrans %}</label>
             <select name="promo-type-id" id="promo-type-id">
               {% for type in types %}
                 {% if promotions.promotion_type_id == type.id %}
@@ -65,8 +65,8 @@
             </select>
           </div>
           <div class="form-group">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-            <input type="submit" class="btn btn-primary" value="Enregistrer les changements">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}Cancel{% endtrans %}</button>
+            <input type="submit" class="btn btn-primary" value="{{"SaveC"|trans }}">
           </div>
         </form>
       </div>

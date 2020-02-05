@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
+use \App\Models\SupportChat;
+use \App\Helpers\TranslationHelpers;
 use \Core\Controller;
 use \Core\View;
-use \App\Models\Circuit;
-use \App\Models\SupportChat;
 
 class SupportChats extends Controller
 {
@@ -19,54 +19,58 @@ class SupportChats extends Controller
 
     public function sendMessageAction()
     {
+        $translator = TranslationHelpers::getInstance();
         $errors = [];
         if (empty($_POST['content'])) {
-            $errors[] = 'Votre message ne peu être vide';
+            $errors[] = $translator->trans('Chat.Message.Empty');
         }
 
         if (empty($_POST['room_id'])) {
-            $errors[] = 'Vous devez fournir une pièce';
+            $errors[] = $translator->trans('Chat.Room.Provide');
         }
 
         if (!empty($errors)) {
             http_response_code(400);
             View::renderJSON(
                 [
-                    'errors' => $errors
+                    'errors' => $errors,
                 ]
             );
             return;
         }
 
         if (!SupportChat::memberCanSendIn($_SESSION['member']['id'], $_POST['room_id'])) {
-            $errors[] = 'Le membre ne peut envoyer de messages dans la pièce spécifiée';
+            $errors[] = $translator->trans('Chat.Room.Message');
             http_response_code(403);
             return;
         }
-
 
         SupportChat::memberSendMessage($_SESSION['member']['id'], $_POST['room_id'], $_POST['content']);
     }
 
     public function joinAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         list($errors, $id) = SupportChat::create($_SESSION['member']['id']);
         if (!empty($errors)) {
             http_response_code(400);
             return;
         }
 
-        SupportChat::serverSendMessage($id, 'Nous vous mettons en contact avec un employé sous peu.');
+        SupportChat::serverSendMessage($id, $translator->trans('Chat.Contact.Employee'));
 
         View::renderJSON(
             [
-                'id' => $id
+                'id' => $id,
             ]
         );
     }
 
     public function leaveAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $room_id = $this->route_params['roomid'];
         $user_name = $_SESSION['member']['first_name'] . ' ' . $_SESSION['member']['last_name'];
         if (!SupportChat::memberCanSendIn($_SESSION['member']['id'], $room_id)) {
@@ -74,7 +78,10 @@ class SupportChats extends Controller
             return;
         }
 
-        SupportChat::serverSendMessage($room_id, "$user_name a marqué son problème comme étant résolu");
+        SupportChat::serverSendMessage(
+            $room_id,
+            $translater->trans("Chat.user_name", ['user_name' => $user_name])
+        );
         SupportChat::setInactive($room_id);
     }
 
@@ -84,7 +91,7 @@ class SupportChats extends Controller
         $message_count = SupportChat::getMessageCount($room_id)['count'];
         View::renderJSON(
             [
-                'messages_count' => $message_count
+                'messages_count' => $message_count,
             ]
         );
     }
@@ -103,7 +110,7 @@ class SupportChats extends Controller
         View::renderTemplate(
             'Support_Chat/message.html.twig',
             [
-                'messages' => [$message]
+                'messages' => [$message],
             ]
         );
     }
@@ -117,7 +124,7 @@ class SupportChats extends Controller
         View::renderTemplate(
             'Support_Chat/message.html.twig',
             [
-                'messages' => $messages
+                'messages' => $messages,
             ]
         );
     }
@@ -129,7 +136,7 @@ class SupportChats extends Controller
             'Support_Chat/sidebar.html.twig',
             [
                 'member' => $_SESSION['member'],
-                'rooms' => $rooms
+                'rooms' => $rooms,
             ]
         );
     }

@@ -1,14 +1,14 @@
-<h3>Organisation d'un circuit</h3>
+<h3>{% trans %}Circuit.Organisation.Label{% endtrans %}</h3>
 
 <form>
   <div class="form-group">
-    <label for="date_depart">Date de départ officielle du circuit :</label>
+    <label for="date_depart">{% trans %}Circuit.Date.Official.Departure{% endtrans %} :</label>
     <input class="datepicker" id="date_depart" width="256px"/>
-    <label for="date_fin">Date de fin officielle du circuit :</label>
+    <label for="date_fin">{% trans %}Circuit.Date.Official.End{% endtrans %} :</label>
     <input class="datepicker" id="date_fin" width="256px"/>
   </div>
   <div class="form-group">
-    <label for="prix_circuit">Prix du circuit :</label>
+    <label for="prix_circuit">{% trans %}Circuit.Price{% endtrans %} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -19,13 +19,11 @@
         <span class="input-group-text">.00</span>
       </div>
     </div>
-    <label for="date_remboursement">Date limite pour l'annulation avec
-      remboursement : </label>
+    <label for="date_remboursement">{% trans %}Refund.Date.Limit.Cancel{% endtrans %} : </label>
     <input class="datepicker" id="date_remboursement" width="256px"/>
-    <label for="date_cancellation">Date limite pour l'annulation avec frais
-      d'annulation :</label>
+    <label for="date_cancellation">{% trans %}Refund.Date.Limit.Fees{% endtrans %} :</label>
     <input class="datepicker" id="date_cancellation" width="256px"/>
-    <label for="prix_annulation">Frais d'annulation :</label>
+    <label for="prix_annulation">{% trans %}Refund.Fees{% endtrans %} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -38,10 +36,10 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="nb_places">Nombre de places disponibles pour le circuit
+    <label for="nb_places">{% trans %}Circuit.Disponibility.Places{% endtrans %}
       :</label>
     <input type="number" id="nb_places" width="256px"/>
-    <label for="quorum">Nombre de places minimal pour l'organisation du circuit
+    <label for="quorum">{% trans %}Circuit.Organisation.Min.Places{% endtrans %}
       :</label>
     <input type="number" id="quorum" width="256px"/>
     {# // multiple selectpicker for circuit guides #}
@@ -57,11 +55,11 @@
 
   </div>
   <div class="form-group">
-    <h4>Plan de paiement</h4>
-    <label for="paiement_plan">Nom du plan de paiement :</label>
+    <h4>{% trans %}Payment.Plan.Label{% endtrans %}</h4>
+    <label for="paiement_plan">{% trans %}Payment.Plan.Name{% endtrans %} :</label>
     <input type="text" class="form-control" id="paiement_plan"
            placeholder="Ex.: Plan Mensuel 1">
-    <label for="prix_plan">Montant dû :</label>
+    <label for="prix_plan">{% trans %}Payment.Amount{% endtrans %} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -72,17 +70,16 @@
         <span class="input-group-text">.00</span>
       </div>
     </div>
-    <label for="date_paiement">Date de paiement limite :</label>
+    <label for="date_paiement">{% trans %}Payment.Limit.Date{% endtrans %} :</label>
     <input class="datepicker" id="date_paiement" width="256px"/>
   </div>
   <div class="button_panel">
     <button type="button" class="btn btn-dark mr-auto" onClick="getCircuits()">
-      Retour à la liste des circuits
+      {% trans %}Circuit.Return.List{% endtrans %}
     </button>
-    <button type="button" class="btn btn-secondary">Retour à la création du
-      circuit
+    <button type="button" class="btn btn-secondary">{% trans %}Circuit.Return.Creation{% endtrans %}
     </button>
-    <button type="button" class="btn btn-success">Démarrer le circuit !
+    <button type="button" class="btn btn-success">{% trans %}Circuit.Start{% endtrans %} !
     </button>
   </div>
 </form>

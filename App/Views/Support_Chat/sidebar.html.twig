@@ -14,9 +14,9 @@
   <div class="chat-session__name">
     {% if room.employee_id is null %}
       {% if room.is_active == 1 %}
-      En attente...
+      {% trans %}Sidebar.Waiting{% endtrans %}...
       {% else %}
-      Terminée avant connexion
+      {% trans %}Sidebar.Finished{% endtrans %}
       {% endif %}
     {% else %}
     {{ room.employee_first_name }} {{ room.employee_last_name}}
@@ -25,6 +25,6 @@
 </div>
 {% endfor %}
 <div id="support-chat__new-session" class="sidebar__new-session">
-  Nouvelle session
+  {% trans %}Sidebar.New.Session{% endtrans %}
   <i class="fas fa-plus"></i>
 </div>
