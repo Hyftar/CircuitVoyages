@@ -6,7 +6,7 @@
   <div class="home-content">
     <div class="home-content__banner">
       <div class="banner__text">
-        {% trans %}Slogan1{% endtrans %}.
+        {% trans %}Slogan{% endtrans %}.
       </div>
     </div>
     <h2 class="home-content__header">{% trans %}Circuit.All{% endtrans %}</h2>
@@ -24,7 +24,7 @@
           {% endif %}
           <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
           <div class="card-body">
-            <h5 class="card-title">{{circuit.name }}</h5>
+            <h5 class="card-title">{{ circuit.name }}</h5>
             <p class="card-text">
               {{ circuit.description }}
             </p>

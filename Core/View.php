@@ -2,22 +2,17 @@
 
 namespace Core;
 
-//require_once __DIR__ . '/vendor/autoload.php';
-//use Symfony\Component\Translation\Translator;
-//use Symfony\Bridge\Twig\Extension\TranslationExtension;
-//use Symfony\Component\Translation\Loader\YamlFileLoader;
-//use Twig\Environment;
-//use Twig\Loader\FilesystemLoader;
 use App\Helpers\TranslationHelpers;
+use Symfony\Bridge\Twig\Extension\TranslationExtension;
 
 class View
 {
-
     /**
      * Render a view file (.php or .html)
      */
     public static function render($view, $args = [], $contentType = 'text/html')
     {
+        $translator = TranslationHelpers::getInstance();
         extract($args, EXTR_SKIP);
 
         $file = dirname(__DIR__) . "/App/Views/$view";  // relative to Core directory
@@ -30,7 +25,7 @@ class View
         }
 
         if (!is_readable($file)) {
-            throw new \Exception($translator->trans("Core.Not.core_file",['core_file' => $file]));
+            throw new \Exception($translator->trans("Core.Not.core_file", ['core_file' => $file]));
         }
 
         require $file;
@@ -42,6 +37,7 @@ class View
     public static function renderTemplate($template, $args = [], $contentType = 'text/html')
     {
         static $twig = null;
+        static $loaded_translators = [];
 
         if ($twig === null) {
             $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/App/Views');
@@ -49,7 +45,11 @@ class View
             $twig->addExtension(new \Twig_Extensions_Extension_Date());
         }
 
-		$twig->addExtension(TranslationHelpers::getInstance($_SESSION['locale']));
+        if (!in_array($_SESSION['locale'], $loaded_translators)) {
+            $interface = new TranslationExtension(TranslationHelpers::getInstance());
+            $twig->addExtension($interface);
+            $loaded_translators[] = $_SESSION['locale'];
+        }
 
         $output = $twig->render($template, $args);
 

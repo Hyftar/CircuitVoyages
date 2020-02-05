@@ -1,6 +1,4 @@
-# Needs to be alphabetized
-
-Slogan1: Viajar nunca ha sido tan fácil
+Slogan: Viajar nunca ha sido tan fácil
 
 Circuit:
   Label: Circuitos
@@ -42,7 +40,7 @@ Circuit:
     Management: Gestión de salidas
     Modification: Modificación de un circuito de salida
     Modify:
-      Label: Cambiar partida 
+      Label: Cambiar partida
       New: Por favor, elija una salida para modificar para el recorrido
   Cancel:
     Date: Fecha de cancelación
@@ -112,7 +110,7 @@ Accommodation:
       Phone: Por favor proporcione un número de teléfono
       Country: Por favor proporcione un país
       City: Proporcione una ciudad en su dirección
-  
+
 Placeholder:
   Email: Dirección de correo electronico
   Link: Enlace
@@ -192,7 +190,7 @@ Add: Añadir
 Email: Dirección de correo electronico
 Password: Contraseña
 Path: Camino
-Erreur: Error
+Error: Error
 Login: Registro
 Return: Regreso
 Send: Enviar
@@ -214,7 +212,7 @@ Refund:
     Max: Fecha máxima de reembolso
     Limit:
       Cancel: Fecha límite de cancelación con reembolso
-      Fees: Fecha límite de cancelación con gastos de cancelación 
+      Fees: Fecha límite de cancelación con gastos de cancelación
 
 Step:
   Add: Agregar un escenario
@@ -409,6 +407,7 @@ Helpers:
       8Chars: La contraseña debe contener al menos 8 caracteres
   older_than: Debe tener al menos más de 2 años para registrarse
 
+
 Members:
   Google:
     Name: Por favor proporcione un nombre
@@ -492,4 +491,4 @@ Core:
     core_method: core_method no encontrado en el controlador
     core_file: core_file no encontrado
     core_controller: Clase de controlador core_controlle no encontrado
-  core_action: Método core_action en controlador core_controller no se puede llamar directamente: elimine el sufijo Action para llamar a este método
+  core_action: 'Método core_action en controlador core_controller no se puede llamar directamente: elimine el sufijo Action para llamar a este método'

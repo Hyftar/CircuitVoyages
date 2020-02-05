@@ -3,15 +3,13 @@
 namespace App\Controllers;
 
 use App\Helpers\ApplicationHelpers;
+use App\Helpers\TranslationHelpers;
 use App\Models\Accommodation;
 use App\Models\Activity;
 use App\Models\Circuit;
 use App\Models\CircuitTrip;
 use App\Models\Media;
 use \Core\View;
-
-
-
 
 class Admin extends \Core\Controller
 {
@@ -42,11 +40,7 @@ class Admin extends \Core\Controller
 
     public function accommodationCreateAction()
     {
-
-
-
-
-
+        $translator = TranslationHelpers::getInstance();
         if (empty($_POST['name'])) {
           $errors['name'][] = $translator->trans('Accommodation.Please.Add.Name');
         }
@@ -168,10 +162,7 @@ class Admin extends \Core\Controller
 
     public function activityCreateAction()
     {
-
-
-
-
+        $translator = TranslationHelpers::getInstance();
 
         if (empty($_POST['name'])) {
             $errors['name'][] = $translator->trans('Activity.Please.Add.Name');

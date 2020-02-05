@@ -1,33 +1,28 @@
 <?php
 
+
 namespace App\Helpers;
 
-use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\Loader;
 
 class TranslationHelpers
 {
-    private static $instances = [];
-
-    private static function createInstance($locale)
+    public static function getInstance()
     {
-        $translator = new Translator($locale);
-        $translator->addLoader('yaml', new YamlFileLoader());
-        $translator->addResource('yaml', 'translations\\messages.' . $locale . '.yaml', $locale);
-        return $translator;
-    }
+        static $instances = [];
+        if (empty($instances[$_SESSION['locale']])) {
+            $translator = new Translator($_SESSION['locale']);
+            $translator->addLoader('yaml', new Loader\YamlFileLoader());
+            $translator->addResource(
+                'yaml',
+                __DIR__ . '/../../translations/messages.' . $_SESSION['locale'] . '.yaml',
+                $_SESSION['locale']
+            );
 
-    public static function getCurrentLocale()
-    {
-        return empty($_SESSION['locale']) ? 'fr' : $_SESSION['locale'];
-    }
-
-    public static function getInstance($locale)
-    {
-        if (empty($instances[$locale])) {
-            $instances[$locale] = static::createInstance($locale);
+            $instances[$_SESSION['locale']] = $translator;
         }
 
-        return $instances[$locale];
+        return $instances[$_SESSION['locale']];
     }
 }

@@ -6,9 +6,7 @@ use \Core\View;
 use \Core\Controller;
 use \App\Models\Circuit;
 use \App\Models\SupportChat;
-
-
-
+use App\Helpers\TranslationHelpers;
 
 
 class SupportChatAdmin extends Controller
@@ -24,6 +22,8 @@ class SupportChatAdmin extends Controller
 
     public function sendMessage()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $errors = [];
         // TODO: i18n
         if (empty($_POST['content'])) {
@@ -53,17 +53,27 @@ class SupportChatAdmin extends Controller
 
     public function join()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $employee_name = $_SESSION['employee']['first_name'] . ' ' . $_SESSION['employee']['last_name'];
         if (!SupportChat::employeeJoin($_SESSION['employee']['id'], $_POST['room_id'])) {
             http_response_code(400);
             return;
         }
 
-        SupportChat::serverSendMessage($_POST['room_id'], $translator->trans("Chat.employee_name.Connected",['employee_name' => $employee_name]);
+        SupportChat::serverSendMessage(
+            $_POST['room_id'],
+            $translator->trans(
+                "Chat.employee_name.Connected",
+                ['employee_name' => $employee_name]
+            )
+        );
     }
 
     public function leave()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $room_id = $this->route_params['roomid'];
         $employee_name = $_SESSION['employee']['first_name'] . ' ' . $_SESSION['employee']['last_name'];
         if (!SupportChat::employeeLeave($_SESSION['employee']['id'], $room_id)) {
@@ -71,7 +81,13 @@ class SupportChatAdmin extends Controller
             return;
         }
 
-        SupportChat::serverSendMessage($room_id, $translator->trans("Chat.employee_name.Disconnected",['employee_name' => $employee_name]));
+        SupportChat::serverSendMessage(
+            $room_id,
+            $translator->trans(
+                "Chat.employee_name.Disconnected",
+                ['employee_name' => $employee_name]
+            )
+        );
     }
 
     public function getMessageAt()

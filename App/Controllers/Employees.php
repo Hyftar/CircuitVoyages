@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Helpers\ApplicationHelpers;
+use App\Helpers\TranslationHelpers;
 use App\Helpers\LoginHelpers;
 use App\Models\Employee;
 use Core\Controller;
@@ -16,6 +17,8 @@ class Employees extends Controller
 
     public function createAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
         $email = $_POST['email'];
@@ -137,6 +140,8 @@ class Employees extends Controller
 
     public function loginAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $errors = [];
         if (!array_key_exists('email', $_POST) ||
             !LoginHelpers::isValidEmail($_POST['email'])) {
