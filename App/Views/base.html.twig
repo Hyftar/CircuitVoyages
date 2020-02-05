@@ -61,7 +61,7 @@
         <a href="#circuits" class="nav-link">{% trans %}Circuit.Label{% endtrans %}</a>
         <a href="#" class="nav-link">{% trans %}Promotion.Label2{% endtrans %}</a>
         <a id="nav-login-link" href="#" class="nav-link {{ member is not null ? 'hidden' : '' }}">{% trans %}Connection.Label{% endtrans %}</a>
-        <a id="nav-account-link" href="#" class="nav-link {{ member is null ? 'hidden' : '' }}">{% trans %}Base.Account.Label{% endtrans %}</a>
+        <a id="nav-account-link" onclick="membersOptions()" href="#" class="nav-link {{ member is null ? 'hidden' : '' }}">{% trans %}Base.Account.Label{% endtrans %}</a>
         <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">{% trans %}Connection.Disconnect{% endtrans %}</a>
       </nav>
     </header>

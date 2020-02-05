@@ -445,6 +445,7 @@ Members:
   Informations: Informations
   Coords: Contact information
   Communications: Communications
+  Security: Security
   Trips:
     Label: Trips
     Incoming: Upcoming trips

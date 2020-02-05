@@ -5,7 +5,7 @@
     delay: 3000
   })
 
-  $('.logo, .nav-link').on('click', () => {
+  $('.logo').on('click', () => {
     $.ajax({
       url: '/',
       dataType: 'html',
