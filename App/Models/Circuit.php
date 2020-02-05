@@ -87,6 +87,7 @@ class Circuit extends Model
             'SELECT *
              FROM circuits_trips
              WHERE circuit_id = :circuit_id
+             AND departure_date > CURDATE()
              ORDER BY departure_date ASC
              LIMIT 1
             '
@@ -100,6 +101,19 @@ class Circuit extends Model
         $circuit['employees'] = $employees ? $employees : null;
 
         return $circuit;
+    }
+
+    public static function getAllInfo()
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare('SELECT id FROM circuits');
+        $stmt->execute();
+        $ids = $stmt->fetchAll();
+        $trips = array();
+        foreach ($ids as $id){
+            $trips[] = self::getInfo($id['id']);
+        }
+        return $trips;
     }
 
     public static function getCircuitInfo()
@@ -131,6 +145,7 @@ class Circuit extends Model
             'SELECT
                  c.id AS id,
                  c.name AS name,
+                 c.is_public AS is_public,
                  c.description AS description,
                  promotions.id AS promotion_id,
                  m.path AS media_path,
@@ -140,7 +155,8 @@ class Circuit extends Model
              LEFT OUTER JOIN circuits_trips ct ON ct.circuit_id = c.id
              LEFT OUTER JOIN promotions_circuits_trips ON ct.id = promotions_circuits_trips.circuit_trip_id
              LEFT OUTER JOIN promotions ON promotions_circuits_trips.promotion_id = promotions.id
-             LEFT OUTER JOIN media m on c.media_id = m.id'
+             LEFT OUTER JOIN media m on c.media_id = m.id
+             WHERE c.is_public = 1'
         );
         $stmt ->execute();
         return $stmt->fetchAll();
@@ -1159,6 +1175,7 @@ class Circuit extends Model
         $db->commit();
         return $row;
     }
+
     public static function getAccommodationsForPeriod($period_id){
         $db = static::getDB();
         $stmt = $db->prepare('SELECT
@@ -1171,6 +1188,8 @@ class Circuit extends Model
         return $stmt->fetchAll();
     }
 
+    public static function getAllCircuitsApiInformations(){
 
+    }
 
 }

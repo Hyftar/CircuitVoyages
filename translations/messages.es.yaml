@@ -33,7 +33,7 @@ Circuit:
   Departure:
     Date: Fecha de salida
     Next:
-      Label: Proxima salida
+      Label: Próxima salida el
       Plan: Siguiente comienzo en la planificación!
     Creation: Creación de un circuito de salida
     Create: Crea el comienzo

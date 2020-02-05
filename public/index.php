@@ -165,6 +165,14 @@ $router->add('admin/sendMessage', ['controller' => 'Newsletters', 'action' => 's
 $router->add('admin/getNewsletterUpdater', ['controller' => 'Newsletters', 'action' => 'getNewsletterUpdater'], 'POST');
 $router->add('admin/sendUpdate', ['controller' => 'Newsletters', 'action' => 'saveNewsletterUpdate'], 'POST');
 
+// API routes
+$router->add('api/getCircuits', ['controller' => 'API', 'action' => 'getCircuits'], 'GET');
+
+// Password reset
+
+$router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'showResetPage', 'allowed_variables' => ['token']]);
+$router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'confirmReset'], 'POST');
+$router->add('send_email', ['controller' => 'ForgotPassword', 'action' => 'sendEmail'], 'POST');
 
 /* Translator */
 $router->add('changelocale', ['controller' => 'Translation', 'action' => 'setLocale'], 'POST');

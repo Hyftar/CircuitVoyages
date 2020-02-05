@@ -63,9 +63,22 @@ class View
         echo $output;
     }
 
+    public static function outputTemplate($template, $args = [])
+    {
+        static $twig = null;
+
+        if ($twig === null) {
+            $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/App/Views');
+            $twig = new \Twig_Environment($loader);
+            $twig->addExtension(new \Twig_Extensions_Extension_Date());
+        }
+
+        return $twig->render($template, $args);
+    }
+
     public static function renderJSON($json)
     {
-        $output = json_encode($json);
+        $output = json_encode($json, JSON_UNESCAPED_UNICODE);
         header("Content-Type: application/json");
         header("Content-Length: " . strlen($output));
 

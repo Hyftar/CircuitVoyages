@@ -17,9 +17,13 @@
         </div>
         <div class="card-footer text-muted">
           {% if circuit.next_departure is not null %}
-          {% trans %}Circuit.Departure.Next.Label{% endtrans %} {{ circuit.next_departure.departure_date|time_diff }}
+          <p>
+            {% trans %}Circuit.Departure.Next.Label{% endtrans %} {{ circuit.next_departure.departure_date|date('Y-m-d') }}
+          </p>
           {% else %}
-          {% trans %}Circuit.Departure.Next.Plan{% endtrans %}
+          <p>
+            {% trans %}Circuit.Departure.Next.Plan{% endtrans %}
+          </p>
           {% endif %}
         </div>
       </div>

@@ -16,6 +16,7 @@ class EmailHelpers
         $errors = [];
         $mail = new PHPMailer();
         $mail->IsSMTP();
+        $mail->CharSet = 'UTF-8';
         $mail->Mailer = "smtp";
         $mail->SMTPDebug = 1;
         $mail->SMTPAuth = TRUE;
@@ -32,12 +33,7 @@ class EmailHelpers
         $content = $content;
 
         $mail->MsgHTML($content);
-        if (!$mail->Send()) {
-            $errors['email'][] = $translator->trans('Helpers.Sent');
-            http_response_code(400); // Bad request (missing parameters)
-            View::renderJSON(['errors' => $errors]);
-            return;
-        }
+        $mail->Send();
     }
 
     public static function sendEmailBBC($recepientsEmailList, $subject, $content)
@@ -63,11 +59,6 @@ class EmailHelpers
         $content = $content;
 
         $mail->MsgHTML($content);
-        if (!$mail->Send()) {
-            $errors['email'][] = $translator->trans('Helpers.Sent');
-            http_response_code(400); // Bad request (missing parameters)
-            View::renderJSON(['errors' => $errors]);
-            return;
-        }
+        $mail->Send();
     }
 }

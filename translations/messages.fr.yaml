@@ -33,7 +33,7 @@ Circuit:
   Departure:
     Date: Date du départ
     Next:
-      Label: Prochain départ
+      Label: Prochain départ le
       Plan: Prochain départ en planification!
     Creation: Création d'un départ du circuit
     Create: Créer le départ
