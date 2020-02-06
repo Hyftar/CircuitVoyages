@@ -44,6 +44,7 @@
         container.classList.add('hidden')
         registerForm.classList.add('hidden')
         loginModalContainer.classList.remove('hidden')
+        showToast('Succès', 'Compte créé', 'Vous pouvez maintenant vous connecter.')
       },
       error: (data) => {
         const response_data = JSON.parse(data.responseText).errors

@@ -33,7 +33,7 @@ Circuit:
   Departure:
     Date: Departure date
     Next:
-      Label: Next departure
+      Label: Next departure on
       Plan: Next departure in planning!
     Creation: Creation of a circuit departure
     Create: Create the départ
