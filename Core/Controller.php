@@ -24,7 +24,7 @@ abstract class Controller
 
         if (!method_exists($this, $method)) {
             throw new \Exception(
-                $translator->trans("Core.Not.core_method",['core_method' => $method]) . get_class($this)
+                "Method $method not found in controller " . get_class($this)
             );
         }
 

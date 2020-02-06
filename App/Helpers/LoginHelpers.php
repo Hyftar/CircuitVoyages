@@ -38,6 +38,7 @@ class LoginHelpers
 
     public static function validatePassword($password)
     {
+        $translator = TranslationHelpers::getInstance();
         $errors = [];
         foreach (static::$password_patterns as $pair) {
             if (!preg_match($pair['pattern'], $password)) {
@@ -50,6 +51,7 @@ class LoginHelpers
 
     public static function validatePhoneNumber($phone_number)
     {
+        $translator = TranslationHelpers::getInstance();
         $errors = [];
         if (!preg_match(static::$phone_number_pattern, $phone_number, $matches)) {
             $errors[] = $translator->trans('Helpers.Phone');
@@ -60,6 +62,7 @@ class LoginHelpers
 
     public static function validatePostalCode($postal_code)
     {
+        $translator = TranslationHelpers::getInstance();
         if (!preg_match(static::$postal_code_pattern, $postal_code, $matches, PREG_UNMATCHED_AS_NULL)) {
             return [null, $translator->trans('Helpers.Postal')];
         }

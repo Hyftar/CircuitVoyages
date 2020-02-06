@@ -207,7 +207,7 @@ class Members extends \Core\Controller
         // Password
 
         $password_errors =
-        LoginHelpers::validatePassword($password);
+            LoginHelpers::validatePassword($password);
 
         if (!empty($password_errors)) {
             $errors['password'] = $password_errors;
@@ -502,7 +502,6 @@ class Members extends \Core\Controller
         }
 
         Member::updateMemberEmail($_POST['inputEmail'], $_SESSION['member'][0]);
-
     }
 
     public function suscribeAction()
@@ -615,6 +614,5 @@ class Members extends \Core\Controller
             $address_line_2,
             $postal_code
         );
-
     }
 }
