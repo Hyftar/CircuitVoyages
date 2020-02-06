@@ -426,7 +426,8 @@ class Member extends \Core\Model
             FROM trips
             INNER JOIN circuits_trips ON circuits_trips.id = trips.circuit_trip_id
             INNER JOIN circuits ON circuits.id = circuits_trips.circuit_id
-            WHERE trips.member_id = :id AND trips.return_date >= NOW() - INTERVAL 1 DAY ORDER BY trips.departure_date'
+            WHERE trips.member_id = :id AND trips.return_date >= NOW() - INTERVAL 1 DAY ORDER BY trips.departure_date
+            AND EXISTS(SELECT 1 FROM trips_payments WHERE trips_payments.trip_id = trips.id)'
         );
         $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -444,7 +445,8 @@ class Member extends \Core\Model
             FROM trips
             INNER JOIN circuits_trips ON circuits_trips.id = trips.circuit_trip_id
             INNER JOIN circuits ON circuits.id = circuits_trips.circuit_id
-            WHERE trips.member_id = :id ORDER BY trips.departure_date'
+            WHERE trips.member_id = :id ORDER BY trips.departure_date
+            AND EXISTS(SELECT 1 FROM trips_payments WHERE trips_payments.trip_id = trips.id)'
         );
         $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
