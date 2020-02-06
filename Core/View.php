@@ -12,7 +12,6 @@ class View
      */
     public static function render($view, $args = [], $contentType = 'text/html')
     {
-        $translator = TranslationHelpers::getInstance();
         extract($args, EXTR_SKIP);
 
         $file = dirname(__DIR__) . "/App/Views/$view";  // relative to Core directory
@@ -25,7 +24,7 @@ class View
         }
 
         if (!is_readable($file)) {
-            throw new \Exception($translator->trans("Core.Not.core_file", ['core_file' => $file]));
+            throw new \Exception("$file not found");
         }
 
         require $file;

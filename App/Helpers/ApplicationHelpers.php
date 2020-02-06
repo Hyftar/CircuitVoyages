@@ -8,6 +8,7 @@ class ApplicationHelpers
 
     public static function validateDate($date, $older_than = 0)
     {
+        $translator = TranslationHelpers::getInstance();
 
         $errors = [];
         if (!preg_match(static::$date_pattern, $date)) {
