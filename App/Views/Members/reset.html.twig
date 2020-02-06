@@ -7,7 +7,7 @@
             <i class="fa fa-lock fa-4x"></i>
             <h2 class="text-center">{{ 'Account.Password.Lost'|trans }}</h2>
             <p>{{ 'Account.Password.Reset.Here'|trans }}</p>
-            <form class="form-signin" method="post" action="send_email">
+            <form id="password-reset-form" class="form-signin" method="post" action="send_email">
               <div class="form-label-group">
                 <input id="email-reset-form" name="email" type="email" class="form-control" placeholder="{{"Email"|trans }}">
                 <label for="email-reset-form">{{ 'Email'|trans }}</label>

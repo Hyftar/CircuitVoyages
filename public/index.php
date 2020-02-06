@@ -166,6 +166,12 @@ $router->add('admin/sendMessage', ['controller' => 'Newsletters', 'action' => 's
 $router->add('admin/getNewsletterUpdater', ['controller' => 'Newsletters', 'action' => 'getNewsletterUpdater'], 'POST');
 $router->add('admin/sendUpdate', ['controller' => 'Newsletters', 'action' => 'saveNewsletterUpdate'], 'POST');
 
+// Order circuit
+$router->add('admin/addTraveler', ['controller' => 'Travelers', 'action' => 'addTraveler'], 'POST');
+$router->add('admin/getTravelers', ['controller' => 'Travelers', 'action' => 'getTravelers'], 'GET');
+$router->add('admin/getTravelerCreator', ['controller' => 'Travelers', 'action' => 'getTravelerCreator'], 'GET');
+$router->add('admin/deleteTraveler', ['controller' => 'Travelers', 'action' => 'deleteTraveler'], 'POST');
+
 // Orders
 $router->add('/order/index', ['controller' => 'Orders', 'action' => 'index'], 'POST');
 
