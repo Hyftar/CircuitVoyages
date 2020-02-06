@@ -82,14 +82,14 @@ Promotion:
   Start: La promoción comienza
   End: La promoción comienza
   Code: Código promocional
-  Valeur:
+  Value:
     Percent: Valor porcentual
     Monetary: Valor en dinero
   Unlimited: Es ilimitado
   Number: Numero de promociones
   Date:
     Start: Fecha de inicio
-    Fin: Fecha final
+    End: Fecha final
 
 
 Explore: Explorar
@@ -133,7 +133,7 @@ Placeholder:
     Confirm: Confirmación de contraseña
   Mountain: Paseo de montaña
 
-Save: Registro
+Save: Registrarse
 SaveC: Guardar cambios
 Close: Cerca
 
@@ -154,7 +154,7 @@ File:
   Label: Expediente
   Management: Gestión de archivos
 
-Acitivty:
+Activity:
   Add: Agregar una actividad
   Name: Nombre de la actividad
   Type: Tipo de actividad
@@ -460,6 +460,7 @@ Members:
     List: Lista de boletines
   Unsubscribe: Desinscribirse
   Subscribe: Inscribirse
+  Save: Salvar
   Country: País
   City: Ciudad
   Region: Región

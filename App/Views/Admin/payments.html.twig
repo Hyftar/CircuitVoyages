@@ -1,8 +1,8 @@
-<h1>{% trans %}Payment.Plan.Management{% endtrans %} - {{ payment_plan.name }} </h1>
+<h1>{{ 'Payment.Plan.Management'|trans }} - {{ payment_plan.name }} </h1>
 <div class="choix_circuit">
-  <p class="mr-auto">{% trans %}Payment.Departure.Action{% endtrans %} - {{ circuit.name }}</p>
+  <p class="mr-auto">{{ 'Payment.Departure.Action'|trans }} - {{ circuit.name }}</p>
   <div class="bouton_creer" onClick="getPaymentAdd()">
-    <p>{% trans %}Payment.Add{% endtrans %}</p>
+    <p>{{ 'Payment.Add'|trans }}</p>
     <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
@@ -11,9 +11,9 @@
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
-          <li>{% trans %}Payment.Ammount{% endtrans %}</li>
-          <li>{% trans %}Payment.Date.Label{% endtrans %}</li>
-          <li>{% trans %}Actions{% endtrans %}</li>
+          <li>{{ 'Payment.Ammount'|trans }}</li>
+          <li>{{ 'Payment.Date.Label'|trans }}</li>
+          <li>{{ 'Actions'|trans }}</li>
         </ul>
       </a>
       {% for payment in payments %}
@@ -42,7 +42,7 @@
   </div>
 </div>
 <div id="modalContenuCircuit"></div>
-<button type="button" class="btn btn-dark" onclick="getPaymentPlans({{ circuit_trip.id }})">{% trans %}Payment.ReturnP{% endtrans %}</button>
+<button type="button" class="btn btn-dark" onclick="getPaymentPlans({{ circuit_trip.id }})">{{ 'Payment.ReturnP'|trans }}</button>
 
 <!-- Modal Payment -->
 <div class="modal fade" id="payment_form_add" tabindex="-1" role="dialog"
@@ -52,7 +52,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalPayment">
-          {% trans %}Payment.Add{% endtrans %}
+          {{ 'Payment.Add'|trans }}
         </h5>
         <button type="button" class="close" data-dismiss="modal"
                 aria-label="Close">
@@ -62,11 +62,11 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="payment_amount">{% trans %}Payment.Amount{% endtrans %} : </label>
+            <label for="payment_amount">{{ 'Payment.Amount'|trans }} : </label>
             <input type="number" name="payment_amount" id="payment_amount">
           </div>
           <div class="form-group">
-            <label for="payment_date">{% trans %}Payment.Date.Due{% endtrans %} : </label>
+            <label for="payment_date">{{ 'Payment.Date.Due'|trans }} : </label>
             <input type="date" name="payment_date" id="payment_date">
           </div>
         </form>
@@ -75,10 +75,10 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
                 data-dismiss="modal">
-          {% trans %}Close{% endtrans %}
+          {{ 'Close'|trans }}
         </button>
         <button type="button" class="btn btn-primary"
-                onclick="ajouterPayment({{ payment_plan.id }}, {{ circuit_trip.id }})">{% trans %}Add{% endtrans %}
+                onclick="ajouterPayment({{ payment_plan.id }}, {{ circuit_trip.id }})">{{ 'Add'|trans }}
         </button>
       </div>
     </div>

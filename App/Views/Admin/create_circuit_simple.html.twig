@@ -1,14 +1,14 @@
 <h1>{{ circuit.name }}</h1>
 <div id="gestionEtapes">
   {% for step in steps %}
-    <h2>{% trans %}Step.Label{% endtrans %} {{ step.position }}</h2>
+    <h2>{{ 'Step.Label'|trans }} {{ step.position }}</h2>
     <table class="table" id="activitiesCircuit-{{ activity.id }}">
       <thead>
         <tr>
-          <th scope="col">{% trans %}Name{% endtrans %}</th>
-          <th scope="col">{% trans %}Step.Start.Time{% endtrans %}</th>
-          <th scope="col">{% trans %}Duration{% endtrans %}</th>
-          <th scope="col">{% trans %}Type{% endtrans %}</th>
+          <th scope="col">{{ 'Name'|trans }}</th>
+          <th scope="col">{{ 'Step.Start.Time'|trans }}</th>
+          <th scope="col">{{ 'Duration'|trans }}</th>
+          <th scope="col">{{ 'Type'|trans }}</th>
         </tr>
       </thead>
     {% for activity in steps_activities %}
@@ -28,7 +28,7 @@
       </tr>
     {% endfor %}
     </table>
-    <button type="button" class="btn btn-primary" id="ajouterActivite{{ step.id }}" onclick="ajouterActivite({{ step.id }})">{% trans %}Activity.Add{% endtrans %}</button>
+    <button type="button" class="btn btn-primary" id="ajouterActivite{{ step.id }}" onclick="ajouterActivite({{ step.id }})">{{ 'Activity.Add'|trans }}</button>
   {% endfor %}
-  <button type="button" class="btn btn-primary" id="ajouterEtape" onclick="ajouterEtape({{ circuit.id }})">{% trans %}Step.Add{% endtrans %}</button>
+  <button type="button" class="btn btn-primary" id="ajouterEtape" onclick="ajouterEtape({{ circuit.id }})">{{ 'Step.Add'|trans }}</button>
 </div>

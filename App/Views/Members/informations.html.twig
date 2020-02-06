@@ -1,13 +1,13 @@
 <form id="formInfos" class="mt-2 mb-1" onsubmit="return sendInformations();">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputFirstName">{% trans %}Members.First{% endtrans %}</label>
+      <label for="inputFirstName">{{ 'Members.First'|trans }}</label>
       <input type="text" required class="form-control" id="inputFirstName" name="inputFirstName" value="{{ infos.first_name|e('html_attr')}}">
       <div class="invalid-feedback" id="feedbackFirstName">
       </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputLastName">{% trans %}Members.Name{% endtrans %}</label>
+      <label for="inputLastName">{{ 'Members.Name'|trans }}</label>
       <input type="text" required class="form-control" id="inputLastName" name="inputLastName" value="{{ infos.last_name|e('html_attr')}}">
       <div class="invalid-feedback" id="feedbackLastName">
       </div>
@@ -15,13 +15,13 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputBirthDate">{% trans %}Members.Birth{% endtrans %}</label>
+      <label for="inputBirthDate">{{ 'Members.Birth'|trans }}</label>
       <input type="date" required class="form-control" id="inputBirthDate" name="inputBirthDate" value="{{ infos.date_of_birth }}">
       <div class="invalid-feedback" id="feedbackBirthDate">
       </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPhoneNumber">{% trans %}Members.Phone{% endtrans %}</label>
+      <label for="inputPhoneNumber">{{ 'Members.Phone'|trans }}</label>
       <input type="text" required class="form-control" id="inputPhoneNumber" name="inputPhoneNumber" value="{{ infos.phone_number }}">
       <div class="invalid-feedback" id="feedbackPhoneNumber">
       </div>
@@ -29,7 +29,7 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputLanguage">Members.Language</label>
+      <label for="inputLanguage">{{ 'Members.Language'|trans }}</label>
       <select id="inputLanguage" required name="inputLanguage" class="form-control">
         {% for language in languages %}
           {% if language.id == infos.language_id %}

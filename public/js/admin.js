@@ -38,7 +38,7 @@ $(() => {
 
   $('#link-promotions').on('click', indexPromotions);
   $('#link-circuits').on('click', getCircuits);
-  $('#link-accommodation').on('click', indexAccomodations);
+  $('#link-accommodation').on('click', indexAccommodations);
   $('#link-media').on('click', indexMedia);
   $('#link-activity').on('click', indexActivity)
   $('#link-newsletters').on('click', indexNewsletters)

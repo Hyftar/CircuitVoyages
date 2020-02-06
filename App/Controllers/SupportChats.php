@@ -80,7 +80,7 @@ class SupportChats extends Controller
 
         SupportChat::serverSendMessage(
             $room_id,
-            $translater->trans("Chat.user_name", ['user_name' => $user_name])
+            $translator->trans("Chat.user_name", ['user_name' => $user_name])
         );
         SupportChat::setInactive($room_id);
     }

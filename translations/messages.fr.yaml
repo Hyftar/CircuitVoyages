@@ -82,14 +82,14 @@ Promotion:
   Start: Début de la promotion
   End: Début de la promotion
   Code: Code promo
-  Valeur:
+  Value:
     Percent: Valeur en pourcentage
     Monetary: Valeur en argent
   Unlimited: Est illimité
   Number: Nombre de promotions
   Date:
     Start: Date de début
-    Fin: Date de fin
+    End: Date de fin
 
 
 Explore: Explorer
@@ -154,7 +154,7 @@ File:
   Label: Fichier
   Management: Gestion des fichiers
 
-Acitivty:
+Activity:
   Add: Ajouter une activité
   Name: Nom de l'activité
   Type: Type d'activité
@@ -460,6 +460,7 @@ Members:
     List: Liste des bulletins d'information
   Unsubscribe: Se désinscrire
   Subscribe: S'inscrire
+  Save: Sauvegarder
   Country: Pays
   City: Ville
   Region: Region

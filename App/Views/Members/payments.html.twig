@@ -1,27 +1,27 @@
 {% if allHistory == false %}
-  <h3 class="mt-2 mb-1">{% trans %}Payment.Todo{% endtrans %}</h3>
+  <h3 class="mt-2 mb-1">{{ 'Payment.Todo'|trans }}</h3>
 {% else %}
-  <h3 class="mt-2 mb-1">{% trans %}Payment.History{% endtrans %}</h3>
+  <h3 class="mt-2 mb-1">{{ 'Payment.History'|trans }}</h3>
 {% endif %}
 <table class="table">
   <thead>
     <tr>
       <th scope="col">
-        {% trans %}Payment.Trip.Name{% endtrans %}
+        {{ 'Payment.Trip.Name'|trans }}
       </th>
       <th scope="col">
-        {% trans %}Payment.Ammount{% endtrans %}
+        {{ 'Payment.Ammount'|trans }}
       </th>
       <th scope="col">
-        {% trans %}Payment.Date.Limit{% endtrans %}
+        {{ 'Payment.Date.Limit'|trans }}
       </th>
       {% if allHistory == true %}
         <th scope="col">
-          {% trans %}Payment.Transaction{% endtrans %}
+          {{ 'Payment.Transaction'|trans }}
         </th>
       {% endif %}
       <th scope="col">
-        {% trans %}Payment.Options{% endtrans %}
+        {{ 'Payment.Options'|trans }}
       </th>
     </tr>
   </thead>
@@ -46,7 +46,7 @@
   {% else %}
     <tr>
       <td scope="row" colspan="2">
-        {% trans %}Payment.None{% endtrans %}
+        {{ 'Payment.None'|trans }}
       </td>
     </tr>
   {% endfor %}
