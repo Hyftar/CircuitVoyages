@@ -18,6 +18,7 @@ class Newsletter extends \Core\Model
                   FROM newsletters_messages
                   GROUP BY id
                   ORDER BY id DESC
+                  LIMIT 1
             ) r
             ON t.id = r.newsletter_id
             GROUP by t.id, t.name, r.newsletter_message_date, r.subject
