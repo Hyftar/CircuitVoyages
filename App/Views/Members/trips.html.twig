@@ -1,22 +1,22 @@
 {% if allHistory == false %}
-  <h3 class="mt-2 mb-1">{% trans %}Trips.Incoming{% endtrans %}</h3>
+  <h3 class="mt-2 mb-1">{{ 'Trips.Incoming'|trans }}</h3>
 {% else %}
-  <h3 class="mt-2 mb-1">{% trans %}Trips.History{% endtrans %}</h3>
+  <h3 class="mt-2 mb-1">{{ 'Trips.History'|trans }}</h3>
 {% endif %}
 <table class="table">
   <thead>
     <tr>
       <th scope="col">
-        {% trans %}Trips.Name{% endtrans %}
+        {{ 'Trips.Name'|trans }}
       </th>
       <th scope="col">
-        {% trans %}Trips.Date.Departure{% endtrans %}
+        {{ 'Trips.Date.Departure'|trans }}
       </th>
       <th scope="col">
-        {% trans %}Trips.Date.Return{% endtrans %}
+        {{ 'Trips.Date.Return'|trans }}
       </th>
       <th scope="col">
-        {% trans %}Trips.Details{% endtrans %}
+        {{ 'Trips.Details'|trans }}
       </th>
     </tr>
   </thead>
@@ -41,7 +41,7 @@
     {% else %}
       <tr>
         <td colspan="2">
-          {% trans %}Trips.None{% endtrans %}
+          {{ 'Trips.None'|trans }}
         </td>
       </tr>
     {% endfor %}

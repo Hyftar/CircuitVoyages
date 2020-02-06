@@ -82,14 +82,14 @@ Promotion:
   Start: Discount beginning
   End: Discount ending
   Code: Promo code
-  Valeur:
+  Value:
     Percent: Percentage value
     Monetary: Monetary value
   Unlimited: Is unlimited
   Number: Discount number
   Date:
     Start: Start date
-    Fin: End date
+    End: End date
 
 
 Explore: Explore
@@ -154,7 +154,7 @@ File:
   Label: File
   Management: File management
 
-Acitivty:
+Activity:
   Add: Add an activity
   Name: Activity name
   Type: Activity type
@@ -460,6 +460,7 @@ Members:
     List: List of newsletters
   Unsubscribe: Unsubscribe
   Subscribe: Subscribe
+  Save: Save
   Country: Country
   City: City
   Region: Region

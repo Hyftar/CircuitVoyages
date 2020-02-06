@@ -70,9 +70,9 @@
 </div>
 
 <div class="choix_circuit">
-  <p style="margin-top: 50px" class="mr-auto">{% trans %}Step.Accomodation.Management{% endtrans %} - {% trans %}Step.Label{% endtrans %} {{ step.position }}</p>
+  <p style="margin-top: 50px" class="mr-auto">{% trans %}Step.Accommodation.Management{% endtrans %} - {% trans %}Step.Label{% endtrans %} {{ step.position }}</p>
   <div style="margin-top: 50px" class="bouton_creer" onClick="getHebergement_add({{ step.id }})">
-    <p >{% trans %}Step.Accomodation.Add{% endtrans %}</p>
+    <p >{% trans %}Step.Accommodation.Add{% endtrans %}</p>
     <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
@@ -84,7 +84,7 @@
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
           <li>{% trans %}Step.Day{% endtrans %}</li>
-          <li>{% trans %}Step.Accomodation.Label{% endtrans %}</li>
+          <li>{% trans %}Step.Accommodation.Label{% endtrans %}</li>
           <li>{% trans %}Step.Actions{% endtrans %}</li>
         </ul>
       </a>
@@ -228,7 +228,7 @@
        role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">{% trans %}Step.Accomodation.Add{% endtrans %}</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">{% trans %}Step.Accommodation.Add{% endtrans %}</h5>
         <button type="button" class="close" data-dismiss="modal"
                 aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -240,7 +240,7 @@
           <input type="text" id="acc_filter" value="" data-role="tagsinput"/><br>
 
           <div class="form-group">
-            <label for="activity_id">{% trans %}Step.Accomodation.Choice{% endtrans %} : </label>
+            <label for="activity_id">{% trans %}Step.Accommodation.Choice{% endtrans %} : </label>
             <select class="selectpicker" title="Aucun hébergement" name="accommodation_id"
                     id="accommodation_id" multiple>
               {% for accommodation in accommodations_all %}

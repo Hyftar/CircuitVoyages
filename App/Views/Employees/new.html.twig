@@ -1,6 +1,6 @@
 <div id="register-admin-form" class="card bg-light">
   <article class="card-body mx-auto" style="max-width: 400px;">
-    <h4 class="card-title mt-3 text-center">{% trans %}Account.Create.Admin{% endtrans %}</h4>
+    <h4 class="card-title mt-3 text-center">{{ 'Account.Create.Admin'|trans }}</h4>
     <form>
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -35,7 +35,7 @@
         <input id="admin-repeat-password" class="form-control" placeholder="{{"Placeholder.Password.Confirm"|trans }}" type="password">
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block">{% trans %}Account.Create.Admin{% endtrans %}
+        <button type="submit" class="btn btn-primary btn-block">{{ 'Account.Create.Admin'|trans }}
         </button>
       </div>
     </form>

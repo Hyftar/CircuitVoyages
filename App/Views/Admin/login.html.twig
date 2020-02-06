@@ -4,17 +4,17 @@
 <div class="login-container">
   <div id="login-form" class="login-form">
     <div class="login-form__header">
-      <h1>{% trans %}Connection.Admin{% endtrans %}</h1>
+      <h1>{{ 'Connection.Admin'|trans }}</h1>
     </div>
     <div id="admin-login-errors" class="hidden"></div>
     <div class="login-form__content">
-      <label for="admin-login-email">{% trans %}Email{% endtrans %}:</label>
+      <label for="admin-login-email">{{ 'Email'|trans }}:</label>
       <input id="admin-login-email" type="email" name="email" class="form-control">
 
-      <label for="admin-login-password">{% trans %}Password{% endtrans %}:</label>
+      <label for="admin-login-password">{{ 'Password'|trans }}:</label>
       <input id="admin-login-password" type="password" name="password" class="form-control">
 
-      <button id="admin-login-submit" class="btn btn-primary">{% trans %}Connection.Label{% endtrans %}</button>
+      <button id="admin-login-submit" class="btn btn-primary">{{ 'Connection.Label'|trans }}</button>
     </div>
   </div>
 </div>

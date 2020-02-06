@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{% trans %}Newsletter.Modify{% endtrans %} - {{ newsletter.name|e }}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{ 'Newsletter.Modify'|trans }} - {{ newsletter.name|e }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -11,11 +11,11 @@
         <form method="post" id="formNewsletterUpdate" onsubmit="return updateNewsletterSave()">
           <input type="hidden" name="newsletter_id" value="{{ newsletter.id }}">
           <div class="form-group">
-            <label for="promo-type-name" class="col-form-label">{% trans %}Newsletter.Name{% endtrans %}</label>
+            <label for="promo-type-name" class="col-form-label">{{ 'Newsletter.Name'|trans }}</label>
             <input type="text" class="form-control" id="newsletter_name" required name="newsletter_name" value="{{ newsletter.name|e('html_attr') }}">
           </div>
           <div class="form-group">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'Close'|trans }}</button>
             <input type="submit" class="btn btn-primary" value="Modifier le bulletin">
           </div>
         </form>

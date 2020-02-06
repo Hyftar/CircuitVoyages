@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">{% trans %}Accommodation.Add{% endtrans %}</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">{{ 'Accommodation.Add'|trans }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,11 +10,11 @@
       <div class="modal-body">
         <form id="accommodation-add-form" onsubmit="return false">
           <div class="form-group">
-            <label for="name">{% trans %}Accommodation.Name{% endtrans %}</label>
+            <label for="name">{{ 'Accommodation.Name'|trans }}</label>
             <input id="name" name="name" type="text" class="form-control" placeholder="The Ritz-Carlton" required="required">
           </div>
           <div class="form-group">
-            <label for="accommodation-type">{% trans %}Accommodation.Type{% endtrans %}</label>
+            <label for="accommodation-type">{{ 'Accommodation.Type'|trans }}</label>
             <select id="accommodation-type" name="type" class="form-control">
               {% for type in types %}
                 <option value="{{loop.index}}">{{type|capitalize}}</option>
@@ -22,7 +22,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="rating">{% trans %}Accommodation.Rating{% endtrans %}</label>
+            <label for="rating">{{ 'Accommodation.Rating'|trans }}</label>
             <fieldset class="rating">
               <input type="radio" id="star5" name="rating" value="5"/>
               <label class="full" for="star5" title="Exceptionnel - 5 étoiles"></label>
@@ -129,7 +129,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'Close'|trans }}</button>
             <input id="accommodation-add-form__submit" type="submit" class="btn btn-primary" value="{{"Save"|trans }}"></input>
           </div>
         </form>

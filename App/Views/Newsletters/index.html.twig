@@ -1,15 +1,15 @@
 <div>
-  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="createNewsletter()">{% trans %}Newsletter.Add.Label{% endtrans %}</button>
+  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="createNewsletter()">{{ 'Newsletter.Add.Label'|trans }}</button>
 </div>
 <div>
   <table class="table">
-    <caption>{% trans %}Newsletter.Label{% endtrans %}</caption>
+    <caption>{{ 'Newsletter.Label'|trans }}</caption>
     <thead>
     <tr>
       <th scope="col"></th>
-      <th scope="col">{% trans %}Newsletter.Date{% endtrans %}</th>
-      <th scope="col">{% trans %}Newsletter.Subject{% endtrans %}</th>
-      <th scope="col">{% trans %}Newsletter.Actions{% endtrans %}</th>
+      <th scope="col">{{ 'Newsletter.Date'|trans }}</th>
+      <th scope="col">{{ 'Newsletter.Subject'|trans }}</th>
+      <th scope="col">{{ 'Newsletter.Actions'|trans }}</th>
     </tr>
     </thead>
     <tbody>

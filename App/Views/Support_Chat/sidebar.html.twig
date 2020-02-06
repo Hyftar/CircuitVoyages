@@ -14,9 +14,9 @@
   <div class="chat-session__name">
     {% if room.employee_id is null %}
       {% if room.is_active == 1 %}
-      {% trans %}Sidebar.Waiting{% endtrans %}...
+      {{ 'Sidebar.Waiting'|trans }}...
       {% else %}
-      {% trans %}Sidebar.Finished{% endtrans %}
+      {{ 'Sidebar.Finished'|trans }}
       {% endif %}
     {% else %}
     {{ room.employee_first_name }} {{ room.employee_last_name}}
@@ -25,6 +25,6 @@
 </div>
 {% endfor %}
 <div id="support-chat__new-session" class="sidebar__new-session">
-  {% trans %}Sidebar.New.Session{% endtrans %}
+  {{ 'Sidebar.New.Session'|trans }}
   <i class="fas fa-plus"></i>
 </div>

@@ -1,6 +1,6 @@
 <div id="register-user-form" class="card bg-light hidden">
   <div class="card-body mx-auto" style="max-width: 400px;">
-    <h4 class="card-title mt-3 text-center">{% trans %}Login{% endtrans %}</h4>
+    <h4 class="card-title mt-3 text-center">{{ 'Login'|trans }}</h4>
     <form id="register-form" onsubmit="return false">
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -117,11 +117,11 @@
       </div>
       <div class="form-group">
         <button id="register-submit" type="submit" class="btn btn-primary btn-block">
-         {% trans %}Account.Create.Label{% endtrans %}
+         {{ 'Account.Create.Label'|trans }}
         </button>
       </div>
       <p id="register-login-link" class="text-center">
-        <a href="#">{% trans %}Account.Exist{% endtrans %}</a>
+        <a href="#">{{ 'Account.Exist'|trans }}</a>
       </p>
     </form>
   </div>

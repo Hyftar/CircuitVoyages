@@ -1,4 +1,4 @@
-function indexAccomodations() {
+function indexAccommodations() {
   $.ajax({
     url: '/admin/accommodation',
     type: 'GET',
@@ -16,7 +16,7 @@ function sendAccommodation() {
     type: 'POST',
     success: () => {
       $('#accommodation-add-modal').modal('hide')
-      indexAccomodations()
+      indexAccommodations()
     },
     error: (data) => {
       document

@@ -1,14 +1,14 @@
-<h3>{% trans %}Circuit.Organisation.Label{% endtrans %}</h3>
+<h3>{{ 'Circuit.Organisation.Label'|trans }}</h3>
 
 <form>
   <div class="form-group">
-    <label for="date_depart">{% trans %}Circuit.Date.Official.Departure{% endtrans %} :</label>
+    <label for="date_depart">{{ 'Circuit.Date.Official.Departure'|trans }} :</label>
     <input class="datepicker" id="date_depart" width="256px"/>
-    <label for="date_fin">{% trans %}Circuit.Date.Official.End{% endtrans %} :</label>
+    <label for="date_fin">{{ 'Circuit.Date.Official.End'|trans }} :</label>
     <input class="datepicker" id="date_fin" width="256px"/>
   </div>
   <div class="form-group">
-    <label for="prix_circuit">{% trans %}Circuit.Price{% endtrans %} :</label>
+    <label for="prix_circuit">{{ 'Circuit.Price'|trans }} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -19,11 +19,11 @@
         <span class="input-group-text">.00</span>
       </div>
     </div>
-    <label for="date_remboursement">{% trans %}Refund.Date.Limit.Cancel{% endtrans %} : </label>
+    <label for="date_remboursement">{{ 'Refund.Date.Limit.Cancel'|trans }} : </label>
     <input class="datepicker" id="date_remboursement" width="256px"/>
-    <label for="date_cancellation">{% trans %}Refund.Date.Limit.Fees{% endtrans %} :</label>
+    <label for="date_cancellation">{{ 'Refund.Date.Limit.Fees'|trans }} :</label>
     <input class="datepicker" id="date_cancellation" width="256px"/>
-    <label for="prix_annulation">{% trans %}Refund.Fees{% endtrans %} :</label>
+    <label for="prix_annulation">{{ 'Refund.Fees'|trans }} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -36,10 +36,10 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="nb_places">{% trans %}Circuit.Disponibility.Places{% endtrans %}
+    <label for="nb_places">{{ 'Circuit.Disponibility.Places'|trans }}
       :</label>
     <input type="number" id="nb_places" width="256px"/>
-    <label for="quorum">{% trans %}Circuit.Organisation.Min.Places{% endtrans %}
+    <label for="quorum">{{ 'Circuit.Organisation.Min.Places'|trans }}
       :</label>
     <input type="number" id="quorum" width="256px"/>
     {# // multiple selectpicker for circuit guides #}
@@ -55,11 +55,11 @@
 
   </div>
   <div class="form-group">
-    <h4>{% trans %}Payment.Plan.Label{% endtrans %}</h4>
-    <label for="paiement_plan">{% trans %}Payment.Plan.Name{% endtrans %} :</label>
+    <h4>{{ 'Payment.Plan.Label'|trans }}</h4>
+    <label for="paiement_plan">{{ 'Payment.Plan.Name'|trans }} :</label>
     <input type="text" class="form-control" id="paiement_plan"
            placeholder="Ex.: Plan Mensuel 1">
-    <label for="prix_plan">{% trans %}Payment.Amount{% endtrans %} :</label>
+    <label for="prix_plan">{{ 'Payment.Amount'|trans }} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -70,16 +70,16 @@
         <span class="input-group-text">.00</span>
       </div>
     </div>
-    <label for="date_paiement">{% trans %}Payment.Limit.Date{% endtrans %} :</label>
+    <label for="date_paiement">{{ 'Payment.Limit.Date'|trans }} :</label>
     <input class="datepicker" id="date_paiement" width="256px"/>
   </div>
   <div class="button_panel">
     <button type="button" class="btn btn-dark mr-auto" onClick="getCircuits()">
-      {% trans %}Circuit.Return.List{% endtrans %}
+      {{ 'Circuit.Return.List'|trans }}
     </button>
-    <button type="button" class="btn btn-secondary">{% trans %}Circuit.Return.Creation{% endtrans %}
+    <button type="button" class="btn btn-secondary">{{ 'Circuit.Return.Creation'|trans }}
     </button>
-    <button type="button" class="btn btn-success">{% trans %}Circuit.Start{% endtrans %} !
+    <button type="button" class="btn btn-success">{{ 'Circuit.Start'|trans }} !
     </button>
   </div>
 </form>
