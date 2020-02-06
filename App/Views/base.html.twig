@@ -28,7 +28,7 @@
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
-    <div id="toast-container" aria-live="polite" aria-atomic="true">
+    <div id="toast-container" class="hidden" aria-live="polite" aria-atomic="true">
       <div class="toast">
         <div class="toast-header">
           <img src="/images/labernois_logo.png" class="rounded mr-2 toast-header__logo" alt="toast-logo">
@@ -65,8 +65,8 @@
         <a href="#" class="nav-link">{% trans %}Circuit.Label{% endtrans %}</a>
         <a href="#" class="nav-link">{% trans %}Promotion.Label2{% endtrans %}</a>
         <a id="nav-login-link" href="#" class="nav-link {{ member is not null ? 'hidden' : '' }}">{% trans %}Connection.Label{% endtrans %}</a>
-        <a id="nav-account-link" href="#" onclick="membersOptions()" class="nav-link {{ member is null ? 'hidden' : '' }}">{% trans %}Account.Label{% endtrans %}</a>
-        <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">{% trans %}Account.Disconnect{% endtrans %}</a>
+        <a id="nav-account-link" href="#" onclick="membersOptions()" class="nav-link {{ member is null ? 'hidden' : '' }}">{% trans %}Base.Account.Label{% endtrans %}</a>
+        <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">{% trans %}Base.Disconnect{% endtrans %}</a>
         <a href="#" class="nav-link" id="nav-cart-link" data-toggle="modal" data-target="#cartModal">
           <i class="fas fa-shopping-cart">(<span class="total-count"></span>)</i>
         </a>

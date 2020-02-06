@@ -21,6 +21,7 @@
               <div class="ribbon__center">
                 <div>{% trans %}Promotion{% endtrans %}</div>
               </div>
+            </div>
           {% endif %}
           <img src="{{ circuit.media_path }}" class="card-img-top" alt="{{ circuit.media_description }}">
           <div class="card-body">
@@ -30,6 +31,7 @@
             </p>
             <button class="btn btn-primary" data-id="{{ circuit.id }}">{% trans %}Explore{% endtrans %}</button>
           </div>
+        </div>
         {% endif %}
       {% endfor %}
     </div>
