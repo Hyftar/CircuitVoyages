@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Newsletter;
 use Core\Model;
 
+use App\Helpers\TranslationHelpers;
 use App\Helpers\ApplicationHelpers;
 use App\Models\Accommodation;
 use App\Models\Activity;

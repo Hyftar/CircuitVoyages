@@ -1,6 +1,6 @@
 <div id="register-admin-form" class="card bg-light">
   <article class="card-body mx-auto" style="max-width: 400px;">
-    <h4 class="card-title mt-3 text-center">Créez un compte administrateur</h4>
+    <h4 class="card-title mt-3 text-center">{{ 'Account.Create.Admin'|trans }}</h4>
     <form>
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -8,7 +8,7 @@
             <i class="fa fa-user"></i>
           </span>
         </div>
-        <input name="" id="user" class="form-control" placeholder="Username" type="text">
+        <input name="" id="user" class="form-control" placeholder="{{"Placeholder.User"|trans }}" type="text">
       </div>
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -16,7 +16,7 @@
             <i class="fa fa-envelope"></i>
           </span>
         </div>
-        <input name="" id="email-user-adress" class="form-control" placeholder="Adresse courriel" type="email">
+        <input name="" id="email-user-adress" class="form-control" placeholder="{{"Placeholder.Email"|trans }}" type="email">
       </div>
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -24,7 +24,7 @@
             <i class="fa fa-lock"></i>
           </span>
         </div>
-        <input id="admin-register-password" class="form-control" placeholder="Créez mot de passe" type="password">
+        <input id="admin-register-password" class="form-control" placeholder="{{"Placeholder.Password.Create"|trans }}" type="password">
       </div>
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -32,10 +32,10 @@
             <i class="fa fa-lock"></i>
           </span>
         </div>
-        <input id="admin-repeat-password" class="form-control" placeholder="Répéter mot de passe" type="password">
+        <input id="admin-repeat-password" class="form-control" placeholder="{{"Placeholder.Password.Confirm"|trans }}" type="password">
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block">Créez un compte administrateur
+        <button type="submit" class="btn btn-primary btn-block">{{ 'Account.Create.Admin'|trans }}
         </button>
       </div>
     </form>

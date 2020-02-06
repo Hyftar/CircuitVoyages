@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Helpers\ApplicationHelpers;
+use App\Helpers\TranslationHelpers;
 use App\Helpers\LoginHelpers;
 use App\Models\Employee;
 use Core\Controller;
@@ -16,6 +17,8 @@ class Employees extends Controller
 
     public function createAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
         $email = $_POST['email'];
@@ -29,27 +32,27 @@ class Employees extends Controller
         // Check if all the required parameters are set
 
         if (empty($first_name)) {
-            $errors['first_name'][] = 'Veuillez fournir un prénom';
+            $errors['first_name'][] = $translator->trans('Employee.Please.Add.First');
         }
 
         if (empty($last_name)) {
-            $errors['last_name'][] = 'Veuillez fournir un nom';
+            $errors['last_name'][] = $translator->trans('Employee.Please.Add.Name');
         }
 
         if (empty($email)) {
-            $errors['email'][] = 'Veuillez fournir un email';
+            $errors['email'][] = $translator->trans('Employee.Please.Add.Email');
         }
 
         if (empty($phone)) {
-            $errors['phone'][] = 'Veuillez fournir un numéro de téléphone';
+            $errors['phone'][] = $translator->trans('Employee.Please.Add.Phone');
         }
 
         if (empty($dob)) {
-            $errors['date_of_birth'][] = 'Veuillez fournir une date de naissance';
+            $errors['date_of_birth'][] = $translator->trans('Employee.Please.Add.Birth');
         }
 
         if (empty($languages)) {
-            $errors['languages'][] = 'Veuillez fournir les langues parlées par l\'employé';
+            $errors['languages'][] = $translator->trans('Employee.Please.Add.Language');
         }
 
         if (!empty($errors)) {
@@ -63,11 +66,11 @@ class Employees extends Controller
         // Email
 
         if (!LoginHelpers::isValidEmail($_POST['email'])) {
-            $errors['email'][] = ['Format du email invalide'];
+            $errors['email'][] = [$translator->trans('Helpers.Email.Invalid')];
         }
 
         if (Employee::exists($email)) {
-            $errors['email'][] = 'Un compte existe deja pour ce email';
+            $errors['email'][] = $translator->trans('Helpers.Account.Exist');
         }
 
         // Password
@@ -137,15 +140,17 @@ class Employees extends Controller
 
     public function loginAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $errors = [];
         if (!array_key_exists('email', $_POST) ||
             !LoginHelpers::isValidEmail($_POST['email'])) {
             // TODO: use i18n string instead
-            $errors[] = 'Format du email invalide';
+            $errors[] = $translator->trans('Account.Email.Invalid');
         }
 
         if (!array_key_exists('password', $_POST)) {
-            $errors[] = 'Veuillez fournir un mot de passe';
+            $errors[] = $translator->trans('Please.Add.Password');
         } else {
             $errors = array_merge(
                 $errors,
@@ -165,7 +170,7 @@ class Employees extends Controller
         if (!Employee::exists($_POST['email']) ||
             !Employee::isCorrectPassword($_POST['email'], $_POST['password'])) {
             // TODO: use i18n string instead
-            $errors[] = 'Email ou mot de passe invalide';
+            $errors[] = $translator->trans('Employee.Invalid');
             http_response_code(401);
             View::renderTemplate(
                 'Members/login_errors.html.twig',

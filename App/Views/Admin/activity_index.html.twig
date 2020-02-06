@@ -1,21 +1,21 @@
-<h2>Gestion des activités</h2>
+<h2>{{ 'Activity.Management'|trans }}</h2>
 
 {% include 'Admin/activity_add.html.twig' %}
 
 <div class="activity-grid__controls">
   <a id="activity-new-btn" href="#" data-toggle="modal" data-target="#activity-add-modal">
-    <span>Ajouter une activité</span>
+    <span>{{ 'Activity.Add'|trans }}</span>
     <i class="fas fa-plus-circle icone_ajout" aria-hidden="true"></i>
   </a>
 </div>
 
 <div class="activity-grid">
   <div class="activity-grid__header">
-    <div class="activity-grid__header__elem">Nom</div>
-    <div class="activity-grid__header__elem">Type</div>
-    <div class="activity-grid__header__elem">Lien</div>
-    <div class="activity-grid__header__elem">Pays</div>
-    <div class="activity-grid__header__elem">Ville</div>
+    <div class="activity-grid__header__elem">{{ 'Name'|trans }}</div>
+    <div class="activity-grid__header__elem">{{ 'Type'|trans }}</div>
+    <div class="activity-grid__header__elem">{{ 'Link'|trans }}</div>
+    <div class="activity-grid__header__elem">{{ 'Country'|trans }}</div>
+    <div class="activity-grid__header__elem">{{ 'City'|trans }}</div>
   </div>
     <div class="activity-grid__body">
       {% for activity in activities %}
@@ -41,3 +41,5 @@
       {% endfor %}
     </div>
 </div>
+<button type="button" class="btn btn-dark" onclick="getIndexAdmin()">Retour à l'accueil</button>
+

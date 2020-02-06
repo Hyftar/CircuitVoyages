@@ -1,0 +1,496 @@
+Slogan: Viajar nunca ha sido tan fácil
+
+Circuit:
+  Label: Circuitos
+  All: Todos nuestros circuitos
+  Price: Precio del circuito
+  Creation: Creación de un circuito.
+  Name: Nombre del circuito
+  Description: Descripción del recorrido.
+  Category: Categoría(s)
+  Language: Idioma(s) disponibles para el circuito
+  Save: Guardar el recorrido
+  Organise: Organiza el circuito
+  Start: Iniciar el circuito
+  Modification: Modificación del circuito
+  Organisation:
+    Label: Organización de un circuito
+    Min:
+      Places: Número mínimo de plazas para la organización del circuito
+  Management: Gestión de circuitos
+  Date:
+    Official:
+      Departure: Fecha oficial de salida del circuito
+      End: Fecha oficial de finalización del circuito
+  Modify:
+    New: Por favor, elija un recorrido para modificar
+  Image:
+    Header: Imagen para encabezado
+    Choose: Elige una imagen
+  Create:
+    Label: Crea el circuito
+    New: Crea un nuevo recorrido
+  Departure:
+    Date: Fecha de salida
+    Next:
+      Label: Proxima salida
+      Plan: Siguiente comienzo en la planificación!
+    Creation: Creación de un circuito de salida
+    Create: Crea el comienzo
+    Management: Gestión de salidas
+    Modification: Modificación de un circuito de salida
+    Modify:
+      Label: Cambiar partida
+      New: Por favor, elija una salida para modificar para el recorrido
+  Cancel:
+    Date: Fecha de cancelación
+    Price: Precio de cancelación
+  Places:
+    Label: Numero de lugares
+    Left: Cantidad de plazas restantes
+  Min:
+    Places: Cantidad mínima de lugares para ofrecer salidas
+  Disponibility:
+    Places: Número de plazas disponibles para el circuito
+  Public:
+    Posted: Esta salida es pública y se muestra a los clientes
+  Actions: Valores
+  Is:
+    Public: Es público?
+  Return:
+    Gestion: Volver a la gestión del circuito
+    List: Volver a la lista de circuitos
+    Creation: Volver a la creación del circuito
+
+
+Promotion:
+  Label: Promoción !
+  Label2: Promociones
+  Add:
+    Label: Agregar promoción
+    New: Agrega la nueva promoción
+  Creation: Creación de promociones
+  Modification: Modificación de promoción
+  Trips:
+    Concerned: Viajes afectados por la promoción
+  Description: Descripción
+  Type: Tipo de promoción
+  Applies:
+    All: Aplica a todos los viajes
+    Some: Promoción aplicable a los siguientes viajes
+  Details: Detalles de la promoción
+  Start: La promoción comienza
+  End: La promoción comienza
+  Code: Código promocional
+  Value:
+    Percent: Valor porcentual
+    Monetary: Valor en dinero
+  Unlimited: Es ilimitado
+  Number: Numero de promociones
+  Date:
+    Start: Fecha de inicio
+    End: Fecha final
+
+
+Explore: Explorar
+
+Accommodation:
+  Label: Alojamiento
+  Add: Añadir alojamiento
+  Name: Nombre del alojamiento
+  Type: Tipo de alojamiento
+  Rating: Calificación de alojamiento
+  Management: Gestión de alojamiento
+  Please:
+    Add:
+      Name: Por favor proporcione un nombre para el alojamiento
+      Type: Por favor proporcione un tipo de alojamiento
+      Address: Por favor proporcione una dirección
+      Province: Por favor proporcione una provincia
+      Phone: Por favor proporcione un número de teléfono
+      Country: Por favor proporcione un país
+      City: Proporcione una ciudad en su dirección
+
+Placeholder:
+  Email: Dirección de correo electronico
+  Link: Enlace
+  Phone: Teléfono
+  Country: País
+  Province: Provincia
+  City: Ciudad
+  Postal: Código postal
+  Birth: Fecha de nacimiento
+  Name:
+    Label: Apellido
+    First: Primer nombre
+  Address:
+    Line1: Línea de dirección 1
+    Line2: Línea de dirección 2
+  User: Usuario
+  Password:
+    Label: Contraseña
+    Create: Crea una contraseña
+    Confirm: Confirmación de contraseña
+  Mountain: Paseo de montaña
+
+Save: Registrarse
+SaveC: Guardar cambios
+Close: Cerca
+
+Name: Apellido
+Type: Tipo
+Link: Enlace
+link: enlace
+Rating: Clasificación
+Country: País
+City: Ciudad
+Places: Lugares
+'True': Verdadero
+'False': Falso
+Duration: Duración
+Cancel: Anular
+
+File:
+  Label: Expediente
+  Management: Gestión de archivos
+
+Activity:
+  Add: Agregar una actividad
+  Name: Nombre de la actividad
+  Type: Tipo de actividad
+  Management: Gestión de actividades
+  Create: Crea una actividad
+  Link: Enlace a la actividad
+  Description: Descripción de la actividad
+  Image:
+    Choose: Elige una imagen
+  Please:
+    Add:
+      Name: Proporcione un nombre para la actividad
+      Type: Por favor proporcione un tipo de actividad
+      Address: Por favor proporcione una dirección
+      Province: Por favor proporcione una provincia
+      Phone: Por favor proporcione un número de teléfono
+      Country: Por favor proporcione un país
+      City: Proporcione una ciudad en su dirección
+
+Transport: Transporte
+Action: Acción
+Actions: Acciónes
+Relaxation: Relajación
+Discovery: Descubrimiento
+Arts: Artes
+Restaurants: Restaurantes
+Others: Otro
+Start: Inicio
+Choose: Elegir
+Description: Descripción
+End: Final
+Add: Añadir
+Email: Dirección de correo electronico
+Password: Contraseña
+Path: Camino
+Error: Error
+Login: Registro
+Return: Regreso
+Send: Enviar
+Position: Posición
+Reserve: Reservar
+Itinerary: Ruta
+Guides: Guías
+
+Connection:
+  Label: Conexión
+  Admin: Conexión administrativa
+  Google: Conexión a través de Google
+  Facebook: Conexión a través de Facebook
+  Disconnect: Salir
+
+Refund:
+  Fees: Tasas de cancelacion
+  Date:
+    Max: Fecha máxima de reembolso
+    Limit:
+      Cancel: Fecha límite de cancelación con reembolso
+      Fees: Fecha límite de cancelación con gastos de cancelación
+
+Step:
+  Add: Agregar un escenario
+  Label: Paso
+  Start:
+    Label: Inicio
+    Time: Tiempo desde inicio de etapa
+  Creation: Creación de un escenario
+  Create: Crea el escenario
+  Position: Posición en el escenario
+  Description: Descripción de la etapa
+  Management: Gestión de pasos
+  Modify:
+    Label: Modificar el escenario
+    Choice: Por favor, elija una etapa para modificar
+  Activity:
+    Label: Actividad(es)
+    Add: Agregar una actividad al escenario
+  Day: Día
+  Name: Apellido
+  Type: Tipo
+  End: Final
+  Actions: Acciónes
+  Accommodation:
+    Label: Alojamiento
+    Management: Gestión de elección de alojamiento
+    Add: Agregue una opción de alojamiento al escenario
+    Choice: Elección de alojamiento(s)
+  Return: De vuelta al escenario
+  ReturnC: Volver a los circuitos
+  Filters: Agregar filtros para especificar la búsqueda del establecimiento
+  Disponibility: Ingrese el día para el cual estos establecimientos estarán disponibles
+  New:
+    Create: Crea una nueva etapa
+  Modification: Modificación de la etapa
+
+Media:
+  File:
+    Name: Nombre de archivo
+    Add: Agregar un archivo
+    Forbidden: Tipo de archivo prohibido
+  Please:
+    Add:
+      File: Por favor proporcione un archivo
+      Name: Por favor proporcione un nombre de archivo
+
+Payment:
+  Plan:
+    Label: Plan de pago
+    Name: Nombre del plan de pago
+    Add: Agregar un plan de pago
+    Departure: Agregar o eliminar planes de pago para la salida
+    Management: Gestión del plan de pago
+  Date:
+    Label: Fecha
+    Limit: Plazo de pago
+    Due: Fecha de vencimiento
+  Add: Agregar un pago
+  Amount: Monto adeudado
+  Todo: Pagos a realizar
+  History: Historial de pagos
+  Trip:
+    Name: Nombre del viaje
+  Ammount: Cantidad de pago
+  Transaction: Transacción
+  Options: Opciones
+  None: No se encontró pago.
+  Management: Gestión del plan de pago
+  Return: Volver a la gestión de salidas
+  ReturnP: Volver a la gestión del plan de pago
+  Departure:
+    Action: Agregar o eliminar pagos por salida
+
+Account:
+  Create:
+    Label: Crear una cuenta
+    Admin: Crea una cuenta de administrador
+  Exist: ¿Ya tienes una cuenta? Iniciar sesión!
+  Password:
+    Lost: ¿Contraseña olvidada?
+    Reset:
+      Here: Restablece tu contraseña aquí.
+      Label: Restablece tu contraseña
+  Connect: Login
+  Member:
+    New: Nuevo miembro? Regístrese ahora!
+  Email:
+    Invalid: Formato de correo electrónico no válido
+  Please:
+    Add:
+      Password: Por favor proporcione una contraseña
+
+Chat:
+  Message:
+    Empty: Tu mensaje no puede estar vacio
+    Cannot: No puedes enviar un mensaje en esta sesión
+  Support:
+    Messaging: Mensajes de soporte técnico
+  Resolved: Marcar como resuelto
+  Join: Unirse
+  Quit: Licencia
+  Room:
+    Provide: Debes proporcionar una pieza
+    Message: El miembro no puede enviar mensajes en la sala especificada
+  Contact:
+    Employee: Lo pondremos en contacto con un empleado en breve.
+  user_name: user_name ha marcado su problema como resuelto
+  employee_name:
+    Connected: employee_name se ha conectado, hágales saber acerca de su problema.
+    Disconnected: employee_name se ha desconectado.
+
+Sidebar:
+  Waiting: A la espera
+  Finished: Completado antes de la conexión
+  New:
+    Session: Nueva sesión
+
+Page:
+  Error:
+    Message404: Lo sentimos, esta página no existe.
+    Message500: Lo sentimos, se ha producido un error interno.
+
+Base:
+  Admin:
+    Header: Administración
+  Account:
+    Label: Mi cuenta
+    Employee: Cuentas de empleados
+    Client: Cuentas de clientes
+  Disconnect: Desconectarse
+  Support: Soporte técnico
+  Circuit:
+    Management: Gestión de circuitos
+  Promotions: Promociones
+  Payments: Pagos
+  Landing: Pantalla de inicio
+  Accommodations: Alojamiento
+  Activities: Actividades
+  Files: Archivos
+
+Footer:
+  Contact: Contáctenos
+  Newsletter: Hoja informativa
+  Admin: Administración
+
+Newsletter:
+  Label: Boletin informativo
+  Create: Crea un boletín
+  Name: Nombre del boletín
+  Add:
+    Label: Agregar un boletín
+    Message: Agregue un mensaje a este boletín
+  Date: Fecha del mensaje
+  Subject:
+    Label: Sujeto
+    Last: Asunto del último mensaje
+  Content: Contenido
+  Actions: Actions
+  Message:
+    None: No hay mensaje para este boletín.
+    Content: Contenido del mensaje.
+  Return: Regresar a la lista de boletines
+  New: Nuevo mensaje
+  Modify: Editar boletín
+
+Employee:
+  Please:
+    Add:
+      Name: Por favor proporcione un nombre
+      First: Por favor proporcione un primer nombre
+      Email: Por favor proporcione una dirección de correo electrónico
+      Phone: Por favor proporcione un número de teléfono
+      Birth: Por favor proporcione una fecha de nacimiento
+      Language: Indique los idiomas que habla el empleado
+  Invalid: Correo electrónico o contraseña no válidos
+
+Helpers:
+  Email:
+    Invalid: Formato de correo electrónico no válido
+    Sent: Correo electrónico no enviado
+  Account:
+    Exist: Ya existe una cuenta para este correo electrónico
+  Phone: Número de teléfono inválido
+  Postal: Código postal inválido
+  Date: Formato de fecha inválido
+  Password:
+    Contains:
+      Caps: La contraseña debe contener al menos 1 carácter alfanumérico en mayúsculas
+      NoCaps: La contraseña debe contener al menos 1 carácter alfanumérico en minúsculas
+      Num: La contraseña debe contener al menos 1 carácter numérico
+      Chars: 'La contraseña debe contener al menos 1 carácter entre !, @, #, $, %, ^ et &'
+      8Chars: La contraseña debe contener al menos 8 caracteres
+  older_than: Debe tener al menos más de 2 años para registrarse
+
+
+Members:
+  Google:
+    Name: Por favor proporcione un nombre
+    Id: Por favor proporcione una identificación
+    Email: Por favor proporcione un correo electrónico
+  Facebook:
+    Name: Por favor proporcione un nombre
+    Id: Por favor proporcione una identificación
+  Password:
+    Provide: Por favor proporcione una contraseña
+    Old: Antigua contraseña
+    OldI: La contraseña anterior no es válida.
+    New: Nueva contraseña
+    New2: Reingrese la nueva contraseña
+    Unique: Las nuevas contraseñas no son lo mismo.
+    Change: Cambiar contraseña
+  Invalid: Correo electrónico o contraseña no válidos
+  Create:
+    Please:
+      Add:
+        First: Por favor proporcione un primer nombre
+        Name: Por favor proporcione un nombre
+        Email: Por favor proporcione una dirección de correo electrónico
+        Address: Por favor proporcione una dirección
+        Province: Por favor proporcione una provincia
+        Phone: Por favor proporcione un número de teléfono
+        Country: Por favor proporcione un país
+        Birth: Por favor proporcione una fecha de nacimiento
+        City: Proporcione una ciudad en su dirección
+        Language: Por favor proporcione un idioma preferido
+  Exist: Ya existe una cuenta para este correo electrónico
+  Account:
+    Label: Mi cuenta
+    Modify: Modificar mi cuenta
+  Informations: Información
+  Coords: Contacto
+  Communications: Comunicaciones
+  Security: Seguridad
+  Trips:
+    Label: Itinerante
+    Incoming: Próximos viajes
+    History: Historia de viaje
+  Payments:
+    Todo: Pagos a realizar
+    History: Historial de pagos
+  Modify:
+    Email: Cambiar dirección de correo electrónico
+    Security: Cambiar la configuración de seguridad
+  Newsletter:
+    List: Lista de boletines
+  Unsubscribe: Desinscribirse
+  Subscribe: Inscribirse
+  Save: Salvar
+  Country: País
+  City: Ciudad
+  Region: Región
+  Postal: Código postal
+  Address: Dirección
+  First: Primer nombre
+  Name: Nombre
+  Birth: Fecha de nacimiento
+  Phone: Número de teléfono
+  Language: Lengua
+  Already:
+    Facebook: La cuenta fue creada usando una cuenta de Facebook. Utilice las opciones de seguridad de
+    Google: La cuenta fue creada usando una cuenta de Google. Utilice las opciones de seguridad de
+  Format:
+    Email: Formato de correo electrónico no válido
+
+Trips:
+  Incoming: Próximos viajes
+  History: Historia de viaje
+  Name: Nombre
+  Date:
+    Departure: Fecha de salida
+    Return: Fecha de vuelta
+  Details: Obtener detalles
+  None: No se encontraron viajes.
+
+Core:
+  Not:
+    Routes: Ninguna ruta coincidió.
+    core_method: core_method no encontrado en el controlador
+    core_file: core_file no encontrado
+    core_controller: Clase de controlador core_controlle no encontrado
+  core_action: 'Método core_action en controlador core_controller no se puede llamar directamente: elimine el sufijo Action para llamar a este método'

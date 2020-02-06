@@ -24,7 +24,8 @@ class Home extends \Core\Controller
             [
                 'member' => $member,
                 'circuits' => $circuits,
-                'rooms' => $rooms
+                'rooms' => $rooms,
+                'locale' => $_SESSION['locale']
             ]
         );
     }

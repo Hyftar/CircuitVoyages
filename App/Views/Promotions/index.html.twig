@@ -1,16 +1,16 @@
 <div>
-  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="ajouterPromotion()">Ajouter une promotion</button>
+  <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="ajouterPromotion()">{{ 'Promotion.Add.Label'|trans }}</button>
 </div>
 <div>
   <table class="table">
-    <caption>Promotions</caption>
+    <caption>{{ 'Promotion.Label2'|trans }}</caption>
     <thead>
       <tr>
-        <th scope="col">Type</th>
-        <th scope="col">Description</th>
-        <th scope="col">Date de début</th>
-        <th scope="col">Date de fin</th>
-        <th scope="col">Actions</th>
+        <th scope="col">{{ 'Promotion.Type'|trans }}</th>
+        <th scope="col">{{ 'Promotion.Description'|trans }}</th>
+        <th scope="col">{{ 'Promotion.Date.Start'|trans }}</th>
+        <th scope="col">{{ 'Promotion.Date.End'|trans }}</th>
+        <th scope="col">{{ 'Actions'|trans }}</th>
       </tr>
     </thead>
     <tbody>
@@ -47,4 +47,5 @@
     </tbody>
   </table>
 </div>
+<button type="button" class="btn btn-dark" onclick="getIndexAdmin()">Retour à l'accueil</button>
 <div id="modalCreationPromo"></div>

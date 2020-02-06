@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content pt-3">
       <div class="modal-header">
-        <h5 class="modal-title">Création d'un départ du circuit {{ circuit.name }}</h5>
+        <h5 class="modal-title">{{ 'Circuit.Departure.Creation'|trans }} {{ circuit.name }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -11,41 +11,41 @@
         <input type="hidden" name="circuit_id" value="{{ circuit.id|e }}">
         <div class="modal-body">
           <div class="form-group">
-            <label for="departure_date" class="col-form-label">Date du départ</label>
+            <label for="departure_date" class="col-form-label">{{ 'Circuit.Departure.Date'|trans }}</label>
             <input type="date" class="form-control" id="departure_date" name="departure_date" value="{{ 'now'|date_modify("+90 day")|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
-            <label for="price">Prix du circuit</label>
+            <label for="price">{{ 'Circuit.Price'|trans }}</label>
             <input type="number" min="0" step="any" class="form-control" id="price" name="price" value="0" required>
           </div>
           <div class="form-group">
-            <label for="refund_date" class="col-form-label">Date maximale de remboursement</label>
+            <label for="refund_date" class="col-form-label">{{ 'Refund.Date.Max'|trans }}</label>
             <input type="date" class="form-control" id="refund_date" name="refund_date" value="{{ 'now'|date_modify("+10 day")|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
-            <label for="cancellation_date" class="col-form-label">Date d'annulation</label>
+            <label for="cancellation_date" class="col-form-label">{{ 'Circuit.Cancel.Date'|trans }}</label>
             <input type="date" class="form-control" id="cancellation_date" name="cancellation_date" value="{{ 'now'|date_modify("+70 day")|date("Y-m-d")}}" required>
           </div>
           <div class="form-group">
-            <label for="cancellation_fee">Prix de l'annulation</label>
+            <label for="cancellation_fee">{{ 'Circuit.Cancel.Price'|trans }}</label>
             <input type="number" min="0" step="any" class="form-control" id="cancellation_fee" name="cancellation_fee" value="0" required>
           </div>
           <div class="form-group">
-            <label for="places">Nombre de places</label>
+            <label for="places">{{ 'Circuit.Places.Label'|trans }}</label>
             <input type="number" min="1" step="1" class="form-control" id="places" name="places" value="1" required>
           </div>
           <div class="form-group">
-            <label for="quorum">Nombre de places minimal pour offrir le départ</label>
+            <label for="quorum">{{ 'Circuit.Min.Places'|trans }}</label>
             <input type="number" min="1" step="1" class="form-control" id="quorum" name="quorum" value="1" required>
           </div>
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="public" name="public">
-            <label class="custom-control-label" for="public">Ce départ est public et affiché aux clients</label>
+            <label class="custom-control-label" for="public">{{ 'Circuit.Public.Posted'|trans }}</label>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Créer le départ</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary">{{ 'Circuit.Departure.Create'|trans }}</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'Close'|trans }}</button>
         </div>
       </form>
     </div>

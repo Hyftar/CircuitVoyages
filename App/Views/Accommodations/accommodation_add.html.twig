@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter un hébergement</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">{{ 'Accommodation.Add'|trans }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,11 +10,11 @@
       <div class="modal-body">
         <form id="accommodation-add-form" onsubmit="return false">
           <div class="form-group">
-            <label for="name">Nom de l'hébergement</label>
+            <label for="name">{{ 'Accommodation.Name'|trans }}</label>
             <input id="name" name="name" type="text" class="form-control" placeholder="The Ritz-Carlton" required="required">
           </div>
           <div class="form-group">
-            <label for="accommodation-type">Type d'hébergement</label>
+            <label for="accommodation-type">{{ 'Accommodation.Type'|trans }}</label>
             <select id="accommodation-type" name="type" class="form-control">
               {% for type in types %}
                 <option value="{{loop.index}}">{{type|capitalize}}</option>
@@ -22,7 +22,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="rating">Cote de l'hébergement</label>
+            <label for="rating">{{ 'Accommodation.Rating'|trans }}</label>
             <fieldset class="rating">
               <input type="radio" id="star5" name="rating" value="5"/>
               <label class="full" for="star5" title="Exceptionnel - 5 étoiles"></label>
@@ -52,7 +52,7 @@
                 <i class="fa fa-at"></i>
               </span>
             </div>
-            <input id="email" name="email" class="form-control" placeholder="Adresse courriel" type="email"/>
+            <input id="email" name="email" class="form-control" placeholder="{{"Placeholder.Email"|trans }}" type="email"/>
           </div>
 
           <div class="form-group input-group">
@@ -61,7 +61,7 @@
                 <i class="fa fa-link"></i>
               </span>
             </div>
-            <input id="link" name="link" class="form-control" placeholder="Lien" type="text"/>
+            <input id="link" name="link" class="form-control" placeholder="{{"Placeholder.Link"|trans }}" type="text"/>
           </div>
 
           <div class="form-group input-group">
@@ -70,7 +70,7 @@
                 <i class="fa fa-phone"></i>
               </span>
             </div>
-            <input id="phone" name="phone" class="form-control" placeholder="Téléphone" type="text" required="required" pattern="^(?:\+\d{1})?[\s\.\-]?(?:\(?\d{3}\)?[\s\.\-]?\d{3}[\s\-\.]?\d{4})$"/>
+            <input id="phone" name="phone" class="form-control" placeholder="{{"Placeholder.Phone"|trans }}" type="text" required="required" pattern="^(?:\+\d{1})?[\s\.\-]?(?:\(?\d{3}\)?[\s\.\-]?\d{3}[\s\-\.]?\d{4})$"/>
           </div>
 
           <div class="form-group input-group">
@@ -79,7 +79,7 @@
                 <i class="fa fa-globe"></i>
               </span>
             </div>
-            <input id="country" name="country" class="form-control" placeholder="Pays" type="text" required="required"/>
+            <input id="country" name="country" class="form-control" placeholder="{{"Placeholder.Country"|trans }}" type="text" required="required"/>
           </div>
 
           <div class="form-group input-group">
@@ -88,7 +88,7 @@
                 <i class="fa fa-map-pin"></i>
               </span>
             </div>
-            <input id="region" name="region" class="form-control" placeholder="Province" type="text" required="required"/>
+            <input id="region" name="region" class="form-control" placeholder="{{"Placeholder.Province"|trans }}" type="text" required="required"/>
           </div>
 
           <div class="form-group input-group">
@@ -97,7 +97,7 @@
                 <i class="fa fa-city"></i>
               </span>
             </div>
-            <input id="city" name="city" class="form-control" placeholder="Ville" type="text" required="required"/>
+            <input id="city" name="city" class="form-control" placeholder="{{"Placeholder.City"|trans }}" type="text" required="required"/>
           </div>
 
           <div class="form-group input-group">
@@ -106,7 +106,7 @@
                 <i class="fa fa-building"></i>
               </span>
             </div>
-            <input id="address-line-1" name="address_line_1" class="form-control" placeholder="Ligne d'adresse 1" type="text" required="required"/>
+            <input id="address-line-1" name="address_line_1" class="form-control" placeholder="{{"Placeholder.Address.Line1"|trans }}" type="text" required="required"/>
           </div>
 
           <div class="form-group input-group">
@@ -115,7 +115,7 @@
                 <i class="fa fa-building"></i>
               </span>
             </div>
-            <input id="address-line-2" name="address_line_2" class="form-control" placeholder="Ligne d'adresse 2" type="text"/>
+            <input id="address-line-2" name="address_line_2" class="form-control" placeholder="{{"Placeholder.Address.Line2"|trans }}" type="text"/>
           </div>
 
           <div class="form-group input-group">
@@ -125,12 +125,12 @@
                   <i class="fa fa-mail-bulk"></i>
                 </span>
               </div>
-              <input id="postal-code" name="postal_code" class="form-control" placeholder="Code postal" type="text" pattern="^([abceghj-nprstvxyABCEGHJ-NPRSTVXY]\d[abceghj-nprstv-zABCEGHJ-NPRSTV-Z])[ -]?(\d[abceghj-nprstv-zABCEGHJ-NPRSTV-Z]\d)$"/>
+              <input id="postal-code" name="postal_code" class="form-control" placeholder="{{"Placeholder.Postal"|trans }}" type="text" pattern="^([abceghj-nprstvxyABCEGHJ-NPRSTVXY]\d[abceghj-nprstv-zABCEGHJ-NPRSTV-Z])[ -]?(\d[abceghj-nprstv-zABCEGHJ-NPRSTV-Z]\d)$"/>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-            <input id="accommodation-add-form__submit" type="submit" class="btn btn-primary" value="Enregistrer"></input>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'Close'|trans }}</button>
+            <input id="accommodation-add-form__submit" type="submit" class="btn btn-primary" value="{{"Save"|trans }}"></input>
           </div>
         </form>
       </div>

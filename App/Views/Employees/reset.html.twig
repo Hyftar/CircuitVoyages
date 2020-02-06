@@ -8,14 +8,14 @@
             <h3>
               <i class="fa fa-lock fa-4x"></i>
             </h3>
-            <h2 class="text-center">Mot de passe oublié?</h2>
-            <p>Réinitialiser votre mot de passe ici.</p>
+            <h2 class="text-center">{{ 'Account.Password.Lost'|trans }}</h2>
+            <p>{{ 'Account.Password.Reset.Here'|trans }}</p>
             <form class="form-signin">
               <div class="form-label-group">
-                <input type="email" id="email-reset-form" class="form-control" placeholder="Email address">
-                <label for="email-reset-form">Adresse courriel</label>
+                <input type="email" id="email-reset-form" class="form-control" placeholder="{{"Placeholder.Email"|trans }}">
+                <label for="email-reset-form">{{ 'Email'|trans }}</label>
               </div>
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Réinitialiser votre mot de passe</button>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{{ 'Account.Password.Reset.Label'|trans }}</button>
             </form>
           </div>
         </div>

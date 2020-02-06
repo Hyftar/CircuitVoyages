@@ -3,35 +3,35 @@
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card card-signin my-5">
         <div id="login-card" class="card-body">
-          <h2 class="card-title text-center">Connectez-vous</h2>
+          <h2 class="card-title text-center">{{ 'Account.Connect'|trans }}</h2>
           <div id="login-errors" class="hidden"></div>
           <form class="form-signin" onsubmit="return false;">
             <div class="form-label-group form-label-group--text">
-              <input id="input-email" name="email" type="email" class="form-control" placeholder="Email address" required="required">
-              <label for="input-email" class="cursor-text">Adresse courriel</label>
+              <input id="input-email" name="email" type="email" class="form-control" placeholder="{{"Placeholder.Email"|trans }}" required="required">
+              <label for="input-email" class="cursor-text">{{ 'Email'|trans }}</label>
             </div>
             <div class="form-label-group form-label-group--text">
-              <input id="input-password" name="password" type="password" class="form-control" placeholder="Password" required="required">
-              <label for="input-password" class="cursor-text">Mot de passe</label>
+              <input id="input-password" name="password" type="password" class="form-control" placeholder="{{"Placeholder.Password.Label"|trans }}" required="required">
+              <label for="input-password" class="cursor-text">{{ 'Password'|trans }}</label>
             </div>
             <div id="forgot-password">
-              <a href="#" class="link">Mot de passe oublié?</a>
+              <a href="#" class="link">{{ 'Account.Password.Lost'|trans }}</a>
             </div>
-            <button id="login-submit-button" class="btn btn-lg btn-primary btn-block text-uppercase">Connexion</button>
+            <button id="login-submit-button" class="btn btn-lg btn-primary btn-block text-uppercase">{{ 'Connection.Label'|trans }}</button>
             <hr class="my-4">
             <div id="login-register-link">
-              <a href="#" class="link">Nouveau membre? Enregistrez-vous!</a>
+              <a href="#" class="link">{{ 'Account.Member.New'|trans }}</a>
             </div>
           </form>
 
           <form class="form-signin" onsubmit="return false;">
             <button id="btn-google" class="btn btn-lg btn-google btn-block text-uppercase">
               <i class="fab fa-google mr-2"></i>
-              Connexion via Google
+              {{ 'Connection.Google'|trans }}
             </button>
             <button id="btn-facebook" class="btn btn-lg btn-facebook btn-block text-uppercase">
               <i class="fab fa-facebook-f mr-2"></i>
-              Connexion via Facebook
+              {{ 'Connection.Facebook'|trans }}
             </button>
           </form>
         </div>

@@ -20,12 +20,15 @@
     <link rel="stylesheet" href="/css/support_chat.css"/>
     <link rel="stylesheet" href="/css/circuit.css"/>
     <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async="async" defer="defer"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=Ae7eU0AOSeYMzkILi5bK-xxjYCqwyX0LJfGlfUu8UbDoa0cxl2MrudZRQ9pDRAro5BtjHkljjNjwUf2X"></script>
 
-    <title>{% block title %}{% endblock %} | Le Labernois</title>
+    <title>
+      {% block title %}{% endblock %}
+      | Le Labernois</title>
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
-    <div id="toast-container" aria-live="polite" aria-atomic="true">
+    <div id="toast-container" class="hidden" aria-live="polite" aria-atomic="true">
       <div class="toast">
         <div class="toast-header">
           <img src="/images/labernois_logo.png" class="rounded mr-2 toast-header__logo" alt="toast-logo">
@@ -47,6 +50,7 @@
       {% include '/Members/register.html.twig' %}
       {% include '/Members/reset.html.twig' %}
     </div>
+    {% include '/Cart/cart.html.twig' %}
 
     <header>
       <a href="#" class="logo">
@@ -58,11 +62,14 @@
         </span>
       </button>
       <nav>
-        <a href="#" class="nav-link">Circuits</a>
-        <a href="#" class="nav-link">Promotions</a>
-        <a id="nav-login-link" href="#" class="nav-link {{ member is not null ? 'hidden' : '' }} ">Connexion</a>
-        <a id="nav-account-link" href="#" onclick="membersOptions()" class="nav-link {{ member is null ? 'hidden' : '' }}">Mon compte</a>
-        <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">Déconnexion</a>
+        <a href="#" class="nav-link">{% trans %}Circuit.Label{% endtrans %}</a>
+        <a href="#" class="nav-link">{% trans %}Promotion.Label2{% endtrans %}</a>
+        <a id="nav-login-link" href="#" class="nav-link {{ member is not null ? 'hidden' : '' }}">{% trans %}Connection.Label{% endtrans %}</a>
+        <a id="nav-account-link" href="#" onclick="membersOptions()" class="nav-link {{ member is null ? 'hidden' : '' }}">{% trans %}Base.Account.Label{% endtrans %}</a>
+        <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">{% trans %}Base.Disconnect{% endtrans %}</a>
+        <a href="#" class="nav-link" id="nav-cart-link" data-toggle="modal" data-target="#cartModal">
+          <i class="fas fa-shopping-cart">(<span class="total-count"></span>)</i>
+        </a>
       </nav>
     </header>
     <main>
@@ -74,15 +81,33 @@
       </div>
       <div class="footer__middle">
         <div class="footer__links">
-          <a href="" class="link-colors">Contact Us</a>
-          <a href="" class="link-colors">Newsletter</a>
-          <a href="/admin" class="link-colors">Administration</a>
+          <a href="" class="link-colors">{% trans %}Footer.Contact{% endtrans %}</a>
+          <a href="" class="link-colors">{% trans %}Footer.Newsletter{% endtrans %}</a>
+          <a href="/admin" class="link-colors">{% trans %}Footer.Admin{% endtrans %}</a>
         </div>
         <p class="footer-copyright">
           Copyright © 2019 MBGLA LABERNOIS, Inc. All rights reserved.</p>
       </div>
+      <div class="footer__right">
+        <select id="languages" class="language" onchange="changeLang();">
+          <option value="fr" {% if locale == 'fr' %} selected="selected"{% endif %}>
+              Français
+          </option>
+          <option value="en" {% if locale == 'en' %} selected="selected" {% endif %}>
+              English
+          </option>
+          <option value="es" {% if locale == 'es' %} selected="selected" {% endif %}>
+              Español
+          </option>
+        </select>
+      </div>
       <div class="footer__right"></div>
     </footer>
+    <div class="modal" id="order_modal" tabindex="-1" role="dialog" aria-labelledby="order_modal" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div id="order-content" class="modal-content"></div>
+      </div>
+    </div>
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -99,10 +124,14 @@
   <script src="/js/google_login.js"></script>
   <script src="/js/facebook_login.js"></script>
   <script src="/js/traveler.js"></script>
+  <script src="/js/cart-script.js"></script>
+  <script src="/js/paypal.js"></script>
+  <script src="/js/order.js"></script>
 
   <script>
     (function(d, s, id) {
-      let js, fjs = d.getElementsByTagName(s)[0]
+      let js,
+        fjs = d.getElementsByTagName(s)[0]
       if (d.getElementById(id)) {
         return
       }

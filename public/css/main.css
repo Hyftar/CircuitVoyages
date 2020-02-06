@@ -127,6 +127,12 @@ body {
   background-color: var(--sand);
 }
 
+.footer__right {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .hidden {
   display: none !important;
 }

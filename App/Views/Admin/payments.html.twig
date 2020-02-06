@@ -1,28 +1,28 @@
-<h1>Gestion du plan de paiement - {{ payment_plan.name }} </h1>
+<h1 class="pretty_title">{{ 'Payment.Plan.Management'|trans }} - {{ payment_plan.name }} </h1>
 <div class="choix_circuit">
-  <p class="mr-auto">Ajoutez ou enlever des paiements pour le départ - {{ circuit.name }}</p>
+  <p class="mr-auto">{{ 'Payment.Departure.Action'|trans }} - {{ circuit.name }}</p>
   <div class="bouton_creer" onClick="getPaymentAdd()">
-    <p>Ajouter un paiement</p>
+    <p>{{ 'Payment.Add'|trans }}</p>
     <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
-<div class="column my-2">
+<div class="column my-2 gestion_liste">
   <div class="col-10">
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
-          <li>Montant dû</li>
-          <li>Date</li>
-          <li>Actions</li>
+          <li>{{ 'Payment.Ammount'|trans }}</li>
+          <li>{{ 'Payment.Date.Label'|trans }}</li>
+          <li>{{ 'Actions'|trans }}</li>
         </ul>
       </a>
       {% for payment in payments %}
         <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
           <ul class="circuit_ul">
-            <li>{{ payment.amount_due }}</li>
-            <li>{{ payment.date_due }}</li>
+            <li>$ {{ payment.amount_due|number_format(2) }}</li>
+            <li>{{ payment.date_due|date("d/m/Y") }}</li>
             <li>
-              <button type="button" class="btn-primary" onclick="supprimerPayment({{ payment.id }}, {{ payment_plan.id }}, {{ circuit_trip.id }})"><i class="fas fa-trash"></i></button>
+              <button type="button" class="btn-primary supprimer" onclick="supprimerPayment({{ payment.id }}, {{ payment_plan.id }}, {{ circuit_trip.id }})" data-container="body" data-toggle="popover" data-placement="top" data-content="Supprimer" data-trigger="hover"><i class="fas fa-trash"></i></button>
             </li>
           </ul>
         </a>
@@ -42,7 +42,7 @@
   </div>
 </div>
 <div id="modalContenuCircuit"></div>
-<button type="button" class="btn btn-dark" onclick="getPaymentPlans({{ circuit_trip.id }})">Retour à la gestion des plans de paiement</button>
+<button type="button" class="btn btn-dark" onclick="getPaymentPlans({{ circuit_trip.id }})">{{ 'Payment.ReturnP'|trans }}</button>
 
 <!-- Modal Payment -->
 <div class="modal fade" id="payment_form_add" tabindex="-1" role="dialog"
@@ -52,7 +52,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalPayment">
-          Ajouter un paiement
+          {{ 'Payment.Add'|trans }}
         </h5>
         <button type="button" class="close" data-dismiss="modal"
                 aria-label="Close">
@@ -62,11 +62,11 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="payment_amount">Montant dû : </label>
+            <label for="payment_amount">{{ 'Payment.Amount'|trans }} : </label>
             <input type="number" name="payment_amount" id="payment_amount">
           </div>
           <div class="form-group">
-            <label for="payment_date">Date dûe : </label>
+            <label for="payment_date">{{ 'Payment.Date.Due'|trans }} : </label>
             <input type="date" name="payment_date" id="payment_date">
           </div>
         </form>
@@ -75,10 +75,10 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
                 data-dismiss="modal">
-          Fermer
+          {{ 'Close'|trans }}
         </button>
         <button type="button" class="btn btn-primary"
-                onclick="ajouterPayment({{ payment_plan.id }}, {{ circuit_trip.id }})">Ajouter
+                onclick="ajouterPayment({{ payment_plan.id }}, {{ circuit_trip.id }})">{{ 'Add'|trans }}
         </button>
       </div>
     </div>

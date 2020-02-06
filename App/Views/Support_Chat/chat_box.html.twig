@@ -1,7 +1,7 @@
 <div id="support-chat__chat-box" class="fixed-chat-box hidden">
   <div class="fixed-chat-box__title-bar">
     <div class="title-bar__title">
-      Messagerie de support technique
+      {{ 'Chat.Support.Messaging'|trans }}
     </div>
     <div id="support-chat__exit" class="title-bar__exit">
       <i class="fas fa-times"></i>
@@ -12,7 +12,7 @@
       <div id="support-chat__resolve-btn" class="support-chat__action">
         <i class="fas fa-check"></i>
         <span>
-          Marquer comme résolu
+          {{ 'Chat.Resolved'|trans }}
         </span>
       </div>
     </div>
@@ -22,7 +22,7 @@
       <form id="support-chat__form" action="chat" method="post">
         <input id="support-chat__roomid" name="room_id" type="hidden" required />
         <textarea id="support-chat__textarea" name="content" rows="2" required disabled></textarea>
-        <input id="support-chat__sendbtn" class="btn btn-primary" type="submit" value="Envoyer" disabled/>
+        <input id="support-chat__sendbtn" class="btn btn-primary" type="submit" value="{{"Envoyer"|trans }}" disabled/>
       </form>
     </div>
   </div>

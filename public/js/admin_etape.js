@@ -1,4 +1,5 @@
 function getCircuitEtapes(circuit_id) {
+  disablePops()
   $.ajax({
     url: '/admin_circuits_etapes',
     type: 'POST',
@@ -6,6 +7,7 @@ function getCircuitEtapes(circuit_id) {
     success: (data) => {
       let containter = document.getElementById('contenu');
       containter.innerHTML = data;
+      enablePops();
     }
   })
 }

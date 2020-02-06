@@ -1,27 +1,27 @@
 {% if allHistory == false %}
-  <h3 class="mt-2 mb-1">Paiements à faire</h3>
+  <h3 class="mt-2 mb-1">{{ 'Payment.Todo'|trans }}</h3>
 {% else %}
-  <h3 class="mt-2 mb-1">Historique des paiements</h3>
+  <h3 class="mt-2 mb-1">{{ 'Payment.History'|trans }}</h3>
 {% endif %}
 <table class="table">
   <thead>
     <tr>
       <th scope="col">
-        Nom du voyage
+        {{ 'Payment.Trip.Name'|trans }}
       </th>
       <th scope="col">
-        Montant du paiement
+        {{ 'Payment.Ammount'|trans }}
       </th>
       <th scope="col">
-        Date limite du paiement
+        {{ 'Payment.Date.Limit'|trans }}
       </th>
       {% if allHistory == true %}
         <th scope="col">
-          Transaction
+          {{ 'Payment.Transaction'|trans }}
         </th>
       {% endif %}
       <th scope="col">
-        Options
+        {{ 'Payment.Options'|trans }}
       </th>
     </tr>
   </thead>
@@ -46,11 +46,9 @@
   {% else %}
     <tr>
       <td scope="row" colspan="2">
-        Aucun paiement trouvé.
+        {{ 'Payment.None'|trans }}
       </td>
     </tr>
   {% endfor %}
   </tbody>
 </table>
-
-

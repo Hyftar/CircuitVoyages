@@ -1,3 +1,5 @@
+
+
 .modal-content {
   margin-top: 5em;
 }
@@ -96,6 +98,30 @@
     transition-duration: 0.2s;
 }
 
+/* admin principal */
+
+.menu_principal a {
+  color:black;
+}
+
+.menu_principal a {
+  color:black;
+  transition-duration: 0.3s;
+}
+
+
+.titre_principal {
+  padding: 20px 30px 30px 30px;
+  background-color: rgba(25, 76, 99, 0.25);
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.liste_liens {
+  margin-left: 20px;
+  padding-right: 20px;
+}
+
 
 /* hamburger menu */
 
@@ -158,10 +184,14 @@
     margin: 0 0.5vw;
 }
 
-.navbar-admin li>a:hover {
+.navbar-admin a:hover {
     color: rgba(255, 255, 255, 0.90) !important;
     transition-property: color;
     transition-duration: 0.4s;
+}
+
+.navbar-admin a:focus {
+  color:white !important;
 }
 
 a.navbar-brand {
@@ -777,6 +807,58 @@ label[for="rating"] {
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
 
+/* CSS FIX */
+
+.bouton_creer {
+  border: solid 1px black;
+  border-radius: 5px;
+  padding: 15px 15px 0px 15px;
+  box-shadow: 4px 4px 2px #4e555b;
+
+}
+
+.pretty_title {
+  color: rgba(29, 21, 21, 0.69);
+  border: groove 2px rgba(132, 137, 211, 0.2);
+  padding: 15px 20px;
+  width:35vw;
+  border-radius: 2px;
+  margin-bottom: 30px;
+  background-color: rgba(149, 67, 238, 0.04);
+}
+
+.gestion_liste {
+  padding-bottom: 50px;
+  border-radius: 2px;
+
+}
+
+.gestion_liste button {
+  border-radius: 5px;
+  background-color: rgba(11, 108, 117, 0.65);
+  border:none;
+  padding:5px 10px 5px 5px;
+  transition-duration: 0.4s;
+}
+
+.gestion_liste button.supprimer {
+  background-color: rgba(176, 66, 53, 0.74);
+}
+
+.gestion_liste ul li:last-of-type {
+  width: 200px;
+
+}
+
+#activity_form_add form > div, #hebergement_form_add form > div {
+  margin: 10px 0px;
+}
+
+#period_start {
+  border: groove 1px lightgrey;
+  border-radius: 3px;
+  padding: 5px;
+}
 
 /** Toasts **/
 

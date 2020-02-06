@@ -1,13 +1,13 @@
-<h3 class="mt-2 mb-1">Modifier les paramètres de sécurité</h3>
+<h3 class="mt-2 mb-1">{% trans %}Members.Modify.Security{% endtrans %}</h3>
 {% if informations.facebook_id is defined and informations.facebook_id is not null %}
   <div>
-    <p>Le compte a été créé à l'aide d'un compte Facebook. Veuillez utiliser les options de sécurité de
+    <p>{% trans %}Members.Already.Facebook{% endtrans %}
       <a target=”_blank” href="https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Fads%2Fpreferences%2F%3Fentry_product%3Dad_settings_screen">
         Facebook</a>.</p>
   </div>
   {% elseif informations.google_id is defined and informations.google_id is not null %}
     <div>
-      <p>Le compte a été créé à l'aide d'un compte Google. Veuillez utiliser les options de sécurité de
+      <p>{% trans %}Members.Already.Google{% endtrans %}
         <a target=”_blank” href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwjdppfeuJLnAhWILc0KHZPJBuoQFjAAegQICBAC&url=https%3A%2F%2Fmyaccount.google.com%2Fintro%2Fsecurity&usg=AOvVaw2WhjH5gPuMnfmXAXVuW3vX">
           Google</a>.</p>
     </div>
@@ -15,7 +15,7 @@
     <form id="formSecurity" class="mt-2 mb-1" onsubmit="return sendSecurity();">
       <div class="form-row">
         <div class="form-group col-md-8">
-          <label for="inputOldPassword">Ancien mot de passe</label>
+          <label for="inputOldPassword">{% trans %}Members.Password.Old{% endtrans %}</label>
           <input type="password" required class="form-control" id="inputOldPassword" name="inputOldPassword">
           <div class="invalid-feedback" id="feedbackOldPassword">
           </div>
@@ -23,7 +23,7 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-8">
-          <label for="inputNewPassword">Nouveau mot de passe</label>
+          <label for="inputNewPassword">{% trans %}Members.Password.New{% endtrans %}</label>
           <input type="password" required class="form-control" id="inputNewPassword" name="inputNewPassword">
           <div class="invalid-feedback" id="feedbackNewPassword">
           </div>
@@ -31,12 +31,12 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-8">
-          <label for="inputNewPasswordBis">Entrez à nouveau le nouveau mot de passe</label>
+          <label for="inputNewPasswordBis">{% trans %}Members.Password.New2{% endtrans %}</label>
           <input type="password" required class="form-control" id="inputNewPasswordBis" name="inputNewPasswordBis">
           <div class="invalid-feedback" id="feedbackNewPasswordBis">
           </div>
         </div>
       </div>
-      <input type="submit" class="btn btn-primary" value="Changer le mot de passe">
+      <input type="submit" class="btn btn-primary" value="{{"Members.Password.Change"|trans }}">
     </form>
 {% endif %}

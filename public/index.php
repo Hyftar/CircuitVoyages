@@ -3,6 +3,7 @@
  * Composer
  */
 require dirname(__DIR__) . '/vendor/autoload.php';
+use App\Helpers\TranslationHelpers;
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
@@ -21,15 +22,19 @@ set_exception_handler('Core\Error::exceptionHandler');
  */
 session_start();
 
+if (empty($_SESSION['locale'])) {
+    $_SESSION['locale'] = 'fr';
+}
+
 /**
  * Routing
  */
 $router = new Core\Router();
 
-
 /* ADMIN PAGES */
 
 $router->add('admin', ['controller' => 'Admin', 'action' => 'admin']);
+$router->add('admin/index', ['controller' => 'Admin', 'action' => 'index']);
 
 $router->add('admin/accommodation', ['controller' => 'Admin', 'action' => 'accommodationIndex']);
 $router->add('admin/accommodation', ['controller' => 'Admin', 'action' => 'accommodationCreate'], 'POST');
@@ -167,6 +172,9 @@ $router->add('admin/getTravelers', ['controller' => 'Travelers', 'action' => 'ge
 $router->add('admin/getTravelerCreator', ['controller' => 'Travelers', 'action' => 'getTravelerCreator'], 'GET');
 $router->add('admin/deleteTraveler', ['controller' => 'Travelers', 'action' => 'deleteTraveler'], 'POST');
 
+// Orders
+$router->add('/order/index', ['controller' => 'Orders', 'action' => 'index'], 'POST');
+
 // API routes
 $router->add('api/getCircuits', ['controller' => 'API', 'action' => 'getCircuits'], 'GET');
 
@@ -175,6 +183,9 @@ $router->add('api/getCircuits', ['controller' => 'API', 'action' => 'getCircuits
 $router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'showResetPage', 'allowed_variables' => ['token']]);
 $router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'confirmReset'], 'POST');
 $router->add('send_email', ['controller' => 'ForgotPassword', 'action' => 'sendEmail'], 'POST');
+
+/* Translator */
+$router->add('changelocale', ['controller' => 'Translation', 'action' => 'setLocale'], 'POST');
 
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

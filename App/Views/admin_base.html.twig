@@ -3,7 +3,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <title>Administration | Le Labernois</title>
+    <title>{% trans %}Base.Admin.Header{% endtrans %} | Le Labernois</title>
     <link rel="shortcut icon" type="image/png" href="/images/labernois_logo.png"/>
 
     <link rel="stylesheet" href="/css/support_chat.css">
@@ -44,7 +44,7 @@
 
   <body>
     {% include 'Support_Chat/chat_box_admin.html.twig' %}
-    <div id="toast-container" aria-live="polite" aria-atomic="true">
+    <div id="toast-container" class="hidden" aria-live="polite" aria-atomic="true">
       <div class="toast">
         <div class="toast-header">
           <img src="/images/labernois_logo.png" class="rounded mr-2 toast-header__logo" alt="toast-logo">
@@ -65,7 +65,7 @@
             <div class="bar2"></div>
             <div class="bar3"></div>
           </div>
-          <a class="navbar-brand" href="#">Le Labernois</a>
+          <a class="navbar-brand" href="#" onclick="getIndexAdmin()">Le Labernois</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -76,10 +76,10 @@
               <li class="nav-item"></li>
               <li class="nav-item"></li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Mon compte</a>
+                <a class="nav-link" href="#">{% trans %}Base.Account.Label{% endtrans %}</a>
               </li>
               <li class="nav-item">
-                <a id="admin-logout-link" class="nav-link" href="#">Se déconnecter</a>
+                <a id="admin-logout-link" class="nav-link" href="#">{% trans %}Base.Disconnect{% endtrans %}</a>
               </li>
             </ul>
           </div>
@@ -91,37 +91,36 @@
           <li class="nav-item">
             <a classs="nav-link" href="#collapseComptes" data-toggle="collapse" aria-expanded="false" aria-controls="collapseComptes"><img src="/images/people-24px.svg"></a>
             <div id="collapseComptes" class="collapse" data-parent="#sidebar_container">
-              <p id="link-support-chat">Support Technique</p>
-              <p>Comptes employés</p>
-              <p>Comptes clients</p>
+              <p id="link-support-chat">{% trans %}Base.Support{% endtrans %}</p>
+              <p>{% trans %}Base.Account.Employee{% endtrans %}</p>
+              <p>{% trans %}Base.Account.Client{% endtrans %}</p>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#collapseCircuit" data-toggle="collapse" aria-expanded="false" aria-controls="collapseCircuit"><img src="/images/all_inclusive-24px.svg"></a>
             <div id="collapseCircuit" class="collapse" data-parent="#sidebar_container">
-              <p id="link-circuits">Gestion des circuits</p>
+              <p id="link-circuits">{% trans %}Base.Circuit.Management{% endtrans %}</p>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#collapseFinances" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFinances"><img src="/images/trending_up-24px.svg"></a>
             <div id="collapseFinances" class="collapse" data-parent="#sidebar_container">
-              <p id="link-promotions">Promotions</p>
-              <p>Paiements</p>
+              <p id="link-promotions">{% trans %}Base.Promotions{% endtrans %}</p>
+              <p>{% trans %}Base.Payments{% endtrans %}</p>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#collapseAffichage" data-toggle="collapse" aria-expanded="false" aria-controls="collapseAffichage"><img src="/images/style-24px.svg"></a>
             <div id="collapseAffichage" class="collapse" data-parent="#sidebar_container">
-              <p>Affichage accueil</p>
+              <p>{% trans %}Base.Landing{% endtrans %}</p>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#collapseObjets" data-toggle="collapse" aria-expanded="false" aria-controls="collapseObjets"><img src="/images/library_add-24px.svg"></a>
             <div id="collapseObjets" class="collapse" data-parent="#sidebar_container">
-              <p id="link-accommodation">Hébergement</p>
-              <p id="link-media">Fichiers</p>
-              <p id="link-activity">Activités</p>
-              <p id="link-newsletters">Bulletins d'information</p>
+              <p id="link-accommodation">{% trans %}Base.Accommodations{% endtrans %}</p>
+              <p id="link-media">{% trans %}Base.Files{% endtrans %}</p>
+              <p id="link-activity">{% trans %}Base.Activities{% endtrans %}</p>
             </div>
           </li>
         </ul>
@@ -131,5 +130,5 @@
 
   </body>
   <script src="/js/support_chat_admin.js"></script>
-  <script src="/js/main.js"></script>
+  <script src="/js/toastadmin.js"></script>
 </html>

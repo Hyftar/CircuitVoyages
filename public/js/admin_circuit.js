@@ -1,10 +1,12 @@
 function getCircuits() {
+  disablePops()
   $.ajax({
     url: '/admin/circuits',
     type: 'GET',
     success: (data) => {
       let container = document.getElementById('contenu')
       container.innerHTML = data
+      enablePops();
     }
   })
 }

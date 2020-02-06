@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Voyages concernés par la promotion</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{ 'Promotion.Trips.Concerned'|trans }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -11,20 +11,20 @@
         <form method="post" id="formApplication" onsubmit="return ajouterApplicationEnreg()">
           <input type="hidden" name="promo-id" value="{{ promotions.id }}">
           <div class="form-group">
-            <label for="promo-description" class="col-form-label">Description</label>
+            <label for="promo-description" class="col-form-label">{{ 'Promotion.Description'|trans }}</label>
             <textarea disabled rows="6" cols="30" class="form-control" id="promo-description" name="promo-description">{{ promotions.description }}</textarea>
           </div>
           <div class="form-group">
-            <label for="promo-type-name" class="col-form-label">Type de promotion</label>
+            <label for="promo-type-name" class="col-form-label">{{ 'Promotion.Type'|trans }}</label>
             <input disabled type="text" class="form-control" id="promo-type-name" value="{{ promotions.name }}">
           </div>
           {% if circuits[0].circuit_trip_id is null and circuits[0].id is not null %}
             <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="circuit-unlimited" onclick="allCircuitChange()" name="circuit-unlimited" checked>S'applique à tous les voyages</label>
+              <input type="checkbox" class="form-check-input" id="circuit-unlimited" onclick="allCircuitChange()" name="circuit-unlimited" checked>{{ 'Promotion.Applies.All'|trans }}</label>
               <label for="circuit-unlimited" class="form-check-label">
             </div>
             <div class="form-group">
-              <label for="circuit-trip-id" class="col-form-label">Type de promotion</label>
+              <label for="circuit-trip-id" class="col-form-label">{{ 'Promotion.Type'|trans }}</label>
               <select disabled name="circuit-trip-id[]" id="circuit-trip-id" multiple="multiple">
                 {% for voyage in voyages %}
                   <option value="{{ voyage.id }}" selected>{{ voyage.name }} {{ voyage.departure_date }}</option>
@@ -33,11 +33,11 @@
             </div>
           {% else %}
             <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="circuit-unlimited" onclick="allCircuitChange()" name="circuit-unlimited">S'applique à tous les voyages</label>
+              <input type="checkbox" class="form-check-input" id="circuit-unlimited" onclick="allCircuitChange()" name="circuit-unlimited">{{ 'Promotion.Applies.All'|trans }}</label>
               <label for="circuit-unlimited" class="form-check-label">
             </div>
               <div class="form-group">
-                <label for="circuit-trip-id">Promotion applicable aux voyages suivants :</label>
+                <label for="circuit-trip-id">{{ 'Promotion.Applies.Some'|trans }} :</label>
                 <select class="form-control" name="circuit-trip-id[]" id="circuit-trip-id" multiple="multiple">
                   {% for voyage in voyages %}
                     {% set trouve = false %}
@@ -57,7 +57,7 @@
           {% endif %}
 
           <div class="form-group">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'Close'|trans }}</button>
             <input type="submit" class="btn btn-primary" value="Enregistrer les applications">
           </div>
         </form>

@@ -5,7 +5,7 @@
   </div>
 
   <div class="circuit-info__content">
-    <h2 class="content-header">Description</h2>
+    <h2 class="content-header">{% trans %}Description{% endtrans %} {{ circuit.id }}</h2>
     <div class="description-container">
       <div class="card text-center description-body">
         <div class="card-body">
@@ -13,26 +13,25 @@
           <p class="card-text">
             {{ circuit.description|e }}
           </p>
-          <a href="#" class="btn btn-primary">Réserver</a>
+
+          <a href="#" data-id="{{ circuit_trips.0.id }}"
+             data-date="{{ "now"|date("d/m/Y") }}"
+             data-name="{{ circuit.name|e }}"
+             data-price="{{ circuit_trips.0.price }}"
+             class="add-to-cart btn btn-success">{% trans %}Reserve{% endtrans %}</a>
         </div>
         <div class="card-footer text-muted">
           {% if circuit.next_departure is not null %}
-          <p>
-            Prochain départ {{ circuit.next_departure.departure_date|time_diff }}
-          </p>
-          <p>
-            {{ circuit.next_departure.departure_date|date('Y-m-d')}}
-          </p>
+          {% trans %}Circuit.Departure.Next.Label{% endtrans %} {{ circuit.next_departure.departure_date|time_diff }}
           {% else %}
-          <p>
-            Prochain départ en planification!
+          {% trans %}Circuit.Departure.Next.Plan{% endtrans %}
           </p>
           {% endif %}
         </div>
       </div>
     </div>
 
-    <h2 class="content-header">Itinerary</h2>
+    <h2 class="content-header">{% trans %}Itinerary{% endtrans %}</h2>
     <div class="nodes">
       {% for step in circuit.steps %}
       <div class="node">
@@ -60,7 +59,7 @@
       {% endfor %}
     </div>
 
-    <h2 class="content-header">Guides</h2>
+    <h2 class="content-header">{% trans %}Guides{% endtrans %}</h2>
     {% for guide in circuit.employees %}
     <div class="circuit-guides">
       <div class="circuit-guide">

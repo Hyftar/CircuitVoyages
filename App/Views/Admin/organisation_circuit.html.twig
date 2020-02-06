@@ -1,14 +1,14 @@
-<h3>Organisation d'un circuit</h3>
+<h3>{{ 'Circuit.Organisation.Label'|trans }}</h3>
 
 <form>
   <div class="form-group">
-    <label for="date_depart">Date de départ officielle du circuit :</label>
+    <label for="date_depart">{{ 'Circuit.Date.Official.Departure'|trans }} :</label>
     <input class="datepicker" id="date_depart" width="256px"/>
-    <label for="date_fin">Date de fin officielle du circuit :</label>
+    <label for="date_fin">{{ 'Circuit.Date.Official.End'|trans }} :</label>
     <input class="datepicker" id="date_fin" width="256px"/>
   </div>
   <div class="form-group">
-    <label for="prix_circuit">Prix du circuit :</label>
+    <label for="prix_circuit">{{ 'Circuit.Price'|trans }} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -19,13 +19,11 @@
         <span class="input-group-text">.00</span>
       </div>
     </div>
-    <label for="date_remboursement">Date limite pour l'annulation avec
-      remboursement : </label>
+    <label for="date_remboursement">{{ 'Refund.Date.Limit.Cancel'|trans }} : </label>
     <input class="datepicker" id="date_remboursement" width="256px"/>
-    <label for="date_cancellation">Date limite pour l'annulation avec frais
-      d'annulation :</label>
+    <label for="date_cancellation">{{ 'Refund.Date.Limit.Fees'|trans }} :</label>
     <input class="datepicker" id="date_cancellation" width="256px"/>
-    <label for="prix_annulation">Frais d'annulation :</label>
+    <label for="prix_annulation">{{ 'Refund.Fees'|trans }} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -38,10 +36,10 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="nb_places">Nombre de places disponibles pour le circuit
+    <label for="nb_places">{{ 'Circuit.Disponibility.Places'|trans }}
       :</label>
     <input type="number" id="nb_places" width="256px"/>
-    <label for="quorum">Nombre de places minimal pour l'organisation du circuit
+    <label for="quorum">{{ 'Circuit.Organisation.Min.Places'|trans }}
       :</label>
     <input type="number" id="quorum" width="256px"/>
     {# // multiple selectpicker for circuit guides #}
@@ -57,11 +55,11 @@
 
   </div>
   <div class="form-group">
-    <h4>Plan de paiement</h4>
-    <label for="paiement_plan">Nom du plan de paiement :</label>
+    <h4>{{ 'Payment.Plan.Label'|trans }}</h4>
+    <label for="paiement_plan">{{ 'Payment.Plan.Name'|trans }} :</label>
     <input type="text" class="form-control" id="paiement_plan"
            placeholder="Ex.: Plan Mensuel 1">
-    <label for="prix_plan">Montant dû :</label>
+    <label for="prix_plan">{{ 'Payment.Amount'|trans }} :</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
@@ -72,17 +70,16 @@
         <span class="input-group-text">.00</span>
       </div>
     </div>
-    <label for="date_paiement">Date de paiement limite :</label>
+    <label for="date_paiement">{{ 'Payment.Limit.Date'|trans }} :</label>
     <input class="datepicker" id="date_paiement" width="256px"/>
   </div>
   <div class="button_panel">
     <button type="button" class="btn btn-dark mr-auto" onClick="getCircuits()">
-      Retour à la liste des circuits
+      {{ 'Circuit.Return.List'|trans }}
     </button>
-    <button type="button" class="btn btn-secondary">Retour à la création du
-      circuit
+    <button type="button" class="btn btn-secondary">{{ 'Circuit.Return.Creation'|trans }}
     </button>
-    <button type="button" class="btn btn-success">Démarrer le circuit !
+    <button type="button" class="btn btn-success">{{ 'Circuit.Start'|trans }} !
     </button>
   </div>
 </form>

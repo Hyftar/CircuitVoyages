@@ -16,6 +16,7 @@ function sendActivity() {
 }
 
 function getStepActivities(step_id){
+  disablePops()
   $.ajax({
     url: 'admin_activity_list',
     type: 'POST',
@@ -23,6 +24,7 @@ function getStepActivities(step_id){
     success: (data) => {
       let container = document.getElementById('contenu');
       container.innerHTML = data;
+      enablePops();
       $(".selectpicker").selectpicker()
       $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
       $('#hebergement_form_add > div > div > div.modal-body > form > div.form-group > div > button').click(() => {

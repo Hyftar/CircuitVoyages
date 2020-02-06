@@ -1,21 +1,21 @@
-<h1>Gestion des circuits</h1>
+<h1 class="pretty_title">{% trans %}Circuit.Management{% endtrans %}</h1>
 <div class="choix_circuit">
-<p class="mr-auto">Veuillez choisir un circuit à modifier</p>
+<p class="mr-auto">{% trans %}Circuit.Modify.New{% endtrans %}</p>
 <div class="bouton_creer" onClick="getCircuits_create()">
-  <p>Créer un nouveau circuit</p>
+  <p>{% trans %}Circuit.Create.New{% endtrans %}</p>
   <i class="fas fa-plus-circle icone_ajout"></i>
   </div>
 </div>
 
-<div class="column my-2">
+<div class="column my-2 gestion_liste">
   <div class="col-10">
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
       <a class="list-group-item disabled">
         <ul class="circuit_ul">
-        <li>Nom du circuit</li>
-        <li>Description</li>
-        <li>Est public</li>
-        <li>Actions</li>
+        <li>{% trans %}Circuit.Name{% endtrans %}</li>
+        <li>{% trans %}Description{% endtrans %}</li>
+        <li>{% trans %}Circuit.Is.Public{% endtrans %}</li>
+        <li>{% trans %}Actions{% endtrans %}</li>
         </ul>
         </a>
       {% for circuit in circuits %}
@@ -25,16 +25,16 @@
           <li>{{ circuit.description }}</li>
           <li>
             {% if circuit.is_public == 1 %}
-              Vrai
+              {% trans %}True{% endtrans %}
             {% else %}
-              Faux
+              {% trans %}False{% endtrans %}
             {% endif %}
           </li>
           <li>
-            <button type="button" class="btn-primary" onclick="getCircuits_update({{ circuit.id|e }})"><i class="fas fa-edit"></i></button>
-            <button type="button" class="btn-primary" onclick="getCircuitTrips({{ circuit.id|e }})"><i class="fas fa-calendar-alt"></i></button>
-            <button type="button" class="btn-primary" onclick="supprimerCircuit({{ circuit.id|e }})"><i class="fas fa-trash"></i></button>
-            <button type="button" class="btn-primary" onclick="getCircuitEtapes({{ circuit.id|e }})"><i class="fas fa-calendar"></i></button>
+            <button type="button" class="btn-primary" onclick="getCircuits_update({{ circuit.id|e }})" data-container="body" data-toggle="popover" data-placement="top" data-content="Modifier" data-trigger="hover"><i class="fas fa-edit"></i></button>
+            <button type="button" class="btn-primary" onclick="getCircuitTrips({{ circuit.id|e }})" data-container="body" data-toggle="popover" data-placement="top" data-content="Voir les départs" data-trigger="hover"><i class="fas fa-calendar-alt"></i></button>
+            <button type="button" class="btn-primary" onclick="getCircuitEtapes({{ circuit.id|e }})" data-container="body" data-toggle="popover" data-placement="top" data-content="Voir les étapes" data-trigger="hover"><i class="fas fa-calendar"></i></button>
+            <button type="button" class="btn-primary supprimer" onclick="supprimerCircuit({{ circuit.id|e }})" data-container="body" data-toggle="popover" data-placement="top" data-content="Supprimer" data-trigger="hover"><i class="fas fa-trash"></i></button>
           </li>
         </ul>
         </a>
@@ -54,4 +54,5 @@
     </div>
   </div>
 </div>
+<button type="button" class="btn btn-dark" onclick="getIndexAdmin()">Retour à l'accueil</button>
 <div id="modalContenuCircuit"></div>

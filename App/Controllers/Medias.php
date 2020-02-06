@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Models\Media;
+use \App\Helpers\TranslationHelpers;
 
 class Medias extends \Core\Controller
 {
@@ -27,6 +28,8 @@ class Medias extends \Core\Controller
 
     public function uploadAction()
     {
+        $translator = TranslationHelpers::getInstance();
+
         $description = null;
 
         $errors = [];
@@ -36,11 +39,11 @@ class Medias extends \Core\Controller
         }
 
         if (empty($_FILES['media'])) {
-            $errors[] = 'Veuillez fournir un fichier';
+            $errors[] = $translator->trans('Media.Please.Add.File');
         }
 
         if (empty($_POST['name'])) {
-            $errors[] = 'Veuillez fournir un nom de fichier';
+            $errors[] = $translator->trans('Media.Please.Add.Name');
         }
 
         $file_name = $_FILES['media']['name'];
@@ -52,7 +55,7 @@ class Medias extends \Core\Controller
         $path = '/uploaded_files/' . $file_name;
 
         if (!in_array($file_type, $file_types)) {
-            $errors = "Type de fichier interdit";
+            $errors = $translator->trans("Media.File.Forbidden");
         }
 
         if (!empty($errors)) {

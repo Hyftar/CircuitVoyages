@@ -82,7 +82,7 @@ class Router
         $url = trim($url, '/');
 
         if (!$this->match($url, $method))  {
-            throw new \Exception('No route matched.', 404);
+            throw new \Exception($translator->trans('Core.Not.Routes'), 404);
         }
 
         $this->params['variables'] = [];
@@ -114,7 +114,7 @@ class Router
         $controller = $this->getNamespace() . $controller;
 
         if (!class_exists($controller)) {
-            throw new \Exception("Controller class $controller not found");
+            throw new \Exception($translator->trans("Core.Not.core_controller",['core_controller' => $controller]));
         }
 
         $controller_object = new $controller($this->params);
@@ -124,9 +124,7 @@ class Router
 
         if (preg_match('/action$/i', $action) != 0) {
             throw new \Exception(
-                "Method $action in controller $controller
-                cannot be called directly - remove the
-                Action suffix to call this method"
+                $translator->trans("Core.core_action",[['core_action' => $action],['core_controller' => $controller]])
             );
         }
 

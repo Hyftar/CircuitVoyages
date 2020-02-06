@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Créer un bulletin d'informations</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{ 'Newsletter.Create'|trans }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,11 +10,11 @@
       <div class="modal-body">
         <form method="post" id="formNewsletterAdd" onsubmit="return saveNewsletter()">
           <div class="form-group">
-            <label for="promo-type-name" class="col-form-label">Nom du bulletin</label>
+            <label for="promo-type-name" class="col-form-label">{{ 'Newsletter.Name'|trans }}</label>
             <input type="text" class="form-control" id="newsletter_name" required name="newsletter_name">
           </div>
           <div class="form-group">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'Close'|trans }}</button>
             <input type="submit" class="btn btn-primary" value="Enregistrer le bulletin">
           </div>
         </form>
