@@ -263,7 +263,7 @@ class Member extends \Core\Model
     {
         $db = static::getDB();
 
-        $stmt = $db->prepare('SELECT * FROM MEMBERS WHERE id = :id AND address_id IS NOT NULL');
+        $stmt = $db->prepare('SELECT * FROM members WHERE id = :id AND address_id IS NOT NULL');
         $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
