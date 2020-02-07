@@ -446,12 +446,12 @@ class Members extends \Core\Controller
             ]
         );
     }
-    public function showPaymentsAction()
+    public function showPaidPaymentsAction()
     {
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $payments = Member::getPayments($_SESSION['member'][0]);
+            $payments = Member::getPaidPayments($_SESSION['member'][0]);
         }
 
         View::renderTemplate(
@@ -464,12 +464,12 @@ class Members extends \Core\Controller
         );
     }
 
-    public function showPaymentsUpcomingAction()
+    public function showUnpaidPaymentsAction()
     {
         $member = null;
         if (!empty($_SESSION['member'])) {
             $member = $_SESSION['member'];
-            $payments = Member::getPaymentsUpcoming($_SESSION['member'][0]);
+            $payments = Member::getUnpaidPayments($_SESSION['member'][0]);
         }
 
         View::renderTemplate(

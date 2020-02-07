@@ -20,13 +20,15 @@
           {{ 'Payment.Transaction'|trans }}
         </th>
       {% endif %}
-      <th scope="col">
-        {{ 'Payment.Options'|trans }}
-      </th>
+      {% if allHistory == false %}
+        <th scope="col">
+          {{ 'Payment.Options'|trans }}
+        </th>
+      {% endif %}
     </tr>
   </thead>
   <tbody>
-  {% for payments in payments %}
+  {% for payment in payments %}
     <tr>
       <td scope="row">
         {{ payment.name|e }}
@@ -37,11 +39,13 @@
       <td scope="row">
         {{ payment.date_due|date('Y-m-d') }}
       </td>
-      <td scope="row">
-        <button class="btn btn-info" onclick="return getTripInformations({{ trip.id }})">
-          <span class="fab fa-paypal"></span>
-        </button>
-      </td>
+      {% if allHistory == false %}
+        <td scope="row">
+          <button class="btn btn-info" onclick="return pay({{ payment.tp_id }})">
+            <span class="fab fa-paypal"></span>
+          </button>
+        </td>
+      {% endif %}
     </tr>
   {% else %}
     <tr>

@@ -129,8 +129,8 @@ $router->add('member/communications',['controller' => 'Members', 'action' => 'sh
 $router->add('member/sendCommunications',['controller' => 'Members', 'action' => 'sendCommunications'], 'POST');
 $router->add('member/trips',['controller' => 'Members', 'action' => 'showTrips'], 'GET');
 $router->add('member/tripsUpcoming',['controller' => 'Members', 'action' => 'showTripsUpcoming'], 'GET');
-$router->add('member/payments',['controller' => 'Members', 'action' => 'showPayments'], 'GET');
-$router->add('member/paymentsUpcoming',['controller' => 'Members', 'action' => 'showPaymentsUpcoming'], 'GET');
+$router->add('member/payments',['controller' => 'Members', 'action' => 'showPaidPayments'], 'GET');
+$router->add('member/paymentsUpcoming',['controller' => 'Members', 'action' => 'showUnpaidPayments'], 'GET');
 $router->add('member/suscribe',['controller' => 'Members', 'action' => 'suscribe'], 'POST');
 $router->add('member/unsuscribe',['controller' => 'Members', 'action' => 'unsuscribe'], 'POST');
 
