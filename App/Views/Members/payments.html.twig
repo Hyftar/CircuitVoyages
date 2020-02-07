@@ -19,8 +19,7 @@
         <th scope="col">
           {{ 'Payment.Transaction'|trans }}
         </th>
-      {% endif %}
-      {% if allHistory == false %}
+      {% else %}
         <th scope="col">
           {{ 'Payment.Options'|trans }}
         </th>
@@ -40,11 +39,14 @@
         {{ payment.date_due|date('Y-m-d') }}
       </td>
       {% if allHistory == false %}
-        <td scope="row">
-          <button class="btn btn-info" onclick="return pay({{ payment.tp_id }})">
-            <span class="fab fa-paypal"></span>
-          </button>
-        </td>
+      <td scope="row">
+        <div id="paypal-payment-{{payment.tp_id}}" class="paypal-button" data-id="{{payment.tp_id}}">
+        </div>
+      </td>
+      {% else %}
+      <td>
+        {{ payment.transaction_id }}
+      </td>
       {% endif %}
     </tr>
   {% else %}
