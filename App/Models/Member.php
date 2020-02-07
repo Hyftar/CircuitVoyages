@@ -460,9 +460,9 @@ class Member extends \Core\Model
             'SELECT trips_payments.id AS tp_id,
                 trips_payments.amount_due AS amount_due,
                 trips_payments.date_due AS date_due,
-                trips_payments.transaction_id AS transaction_id,
                 circuits_trips.departure_date AS departure_date,
-                circuits.name AS name
+                circuits.name AS name,
+                transactions.transaction_order AS transaction_id
                 FROM trips_payments
                 INNER JOIN payments_plans ON payments_plans.id = trips_payments.payment_plan_id
                 INNER JOIN circuits_trips ON payments_plans.circuit_trip_id = circuits_trips.id

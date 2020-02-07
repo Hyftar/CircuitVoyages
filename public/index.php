@@ -193,7 +193,7 @@ $router->add('cartrow', ['controller' => 'CartRenderer', 'action' => 'getCartRow
 $router->add('changelocale', ['controller' => 'Translation', 'action' => 'setLocale'], 'POST');
 
 // PayPal
-$router->add('payments/getorder/', ['controller' => 'Payments', 'action' => 'getOrderId']);
+$router->add('payments/getorder/{tpid:/\d+/}', ['controller' => 'Payments', 'action' => 'getOrderId']);
 $router->add('payments/onapprove/', ['controller' => 'Payments', 'action' => 'onApprove'], 'POST');
 
 // Send the URI and Method to the dispatcher
