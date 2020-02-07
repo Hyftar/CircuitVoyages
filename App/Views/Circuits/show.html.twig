@@ -13,8 +13,7 @@
           <p class="card-text">
             {{ circuit.description|e }}
           </p>
-
-          <a href="#" data-id="{{ circuit_trips.0.id }}"
+          <a href="#" data-id="{{ circuit.id }}"
              data-date="{{ "now"|date("d/m/Y") }}"
              data-name="{{ circuit.name|e('html_attr') }}"
              data-price="{{ circuit_trips.0.price }}"

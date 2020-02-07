@@ -13,6 +13,7 @@ class Circuit extends Model
         $db = static::getDB();
         $stmt = $db->prepare(
             'SELECT
+                 c.id,
                  c.name AS `name`,
                  c.description,
                  c.is_public,

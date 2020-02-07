@@ -1,13 +1,61 @@
 <div class="modal-header">
-  <h5 class="modal-title">Choix des hébergements</h5>
+  <h5 class="modal-title">Choix des hébergements - {{ circuit.name }}</h5>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-
+  <div class="column my-2 gestion_liste">
+    <div class="col-12">
+      <div class="list-group list-group-flush" id="list-tab" role="tablist">
+        <a class="list-group-item disabled">
+          <ul class="circuit_ul">
+            <li>Étape</li>
+            <li>Période</li>
+            <li>Choix de l'hébergement</li>
+            <li>Site web</li>
+          </ul>
+        </a>
+        {% set counterstep = 1 %}
+        {% for step in steps %}
+          {% set counterperiod = 1 %}
+          {% for period in periods %}
+            {% if period.step_id == step.id %}
+            <ul class="list-group-item list-group-item-action active"
+              id="list-home-list" data-toggle="list" href="#list-home"
+              role="tab" aria-controls="home">
+              <ul class="circuit_ul period_acc">
+                <input type="number" value="{{ period.id }}" class="hidden period_input">
+                <li>
+                  {{ counterstep }}
+                </li>
+                <li>
+                  {{ counterperiod }}
+                </li>
+                <li>
+                  <select class="form-control accommodation-select" onchange="">
+                    {% for accommodation in accommodations %}
+                      {% if accommodation.period_id == period.id %}
+                        <option data-href="{{ accommodation.link }}" value="{{ accommodation.accommodation_id }}">{{ accommodation.name }}</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                </li>
+                <li>
+                  <a href="/">Lien vers l'hébergement</a>
+                </li>
+              </ul>
+            </ul>
+            {% set counterperiod = counterperiod + 1 %}
+            {% endif %}
+          {% endfor %}
+          {% set counterstep = counterstep + 1 %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary">Étape suivante</button>
+  <button id="register_rooms_button" type="button" class="btn btn-primary">Étape suivante</button>
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
 </div>

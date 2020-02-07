@@ -154,7 +154,7 @@ function displayCart() {
       + "<td>" + cartArray[i].name+ "</td>"
       + "<td>" + cartArray[i].date + "</td>"
       + "<td>" + cartArray[i].price + "$</td>"
-      + "<button onclick=\"commander(" + cartArray[i].id + ")\" type=\"button\" class=\"btn-primary checkout-button\" data-dismiss=\"modal\">Commander</button>\n"
+      + "<td><button onclick=\"commander(" + cartArray[i].id + ")\" type=\"button\" class=\"btn-primary checkout-button\" data-dismiss=\"modal\">Commander</button></td>"
       + `"<td><button class='delete-item btn btn-danger' data-name="${cartArray[i].name}">X</button></td>"`
       + "</tr>";
   }

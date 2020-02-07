@@ -78,6 +78,10 @@
 </div>
 
 
+<button type="button" class="btn btn-dark"
+        onclick="getCircuitEtapes({{ circuit.id }})">{% trans %}Step.Return{% endtrans %}
+</button>
+
 <div class="column my-2 gestion_liste">
   <div class="col-10">
     <div class="list-group list-group-flush" id="list-tab" role="tablist">
@@ -100,7 +104,7 @@
               {% if periods[counter+1] %}
                 {% set next_day = (periods[counter+1].time_after_step_start /60 /24)|round(0, 'floor')  + 1 %}
                 {% if next_day > first_day + 1 %}
-                   - {{ next_day - 1 }}
+                  - {{ next_day - 1 }}
                 {% endif %}
               {% else %}
                 {% set next_day =  (activities[activities|length - 1].time_after_last_step /60 /24)|round(0, 'floor') + 1 %}
@@ -109,11 +113,11 @@
                 {% endif %}
               {% endif %}
             </li>
-              <ul>
-                {% for accommodation in accommodations[counter] %}
-                  <li>{{ accommodation.name }}</li>
-                {% endfor %}
-              </ul>
+            <ul>
+              {% for accommodation in accommodations[counter] %}
+                <li>{{ accommodation.name }}</li>
+              {% endfor %}
+            </ul>
             <li>
               <button type="button" class="btn-primary supprimer"
                       onclick="supprimerHebergements({{ period.id }}, {{ step.id }})" data-container="body" data-toggle="popover" data-placement="top" data-content="Supprimer" data-trigger="hover">
@@ -141,10 +145,6 @@
     </div>
   </div>
 </div>
-
-<button type="button" class="btn btn-dark"
-        onclick="getCircuitEtapes({{ circuit.id }})">{% trans %}Step.Return{% endtrans %}
-</button>
 
 
 <!-- Modal pour les activités -->

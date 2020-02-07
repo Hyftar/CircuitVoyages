@@ -110,3 +110,34 @@
   padding: 1rem;
   border-radius: 0.5em;
 }
+
+/* choix hébergement */
+
+.circuit_ul {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0 !important;
+  padding: 0;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.circuit_ul i {
+  margin-left: 10px;
+}
+
+.circuit_ul li {
+  list-style-type: none;
+  width: 200px;
+  text-align: right;
+}
+
+#order_modal #list-home-list {
+  background-color: white !important;
+  color:black !important;
+  margin-right: 5px;
+}
+
+#order_modal .modal-content {
+  width:1000px;
+}
