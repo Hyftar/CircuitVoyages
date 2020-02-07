@@ -55,6 +55,7 @@ $(() => {
   $('#link-media').on('click', indexMedia);
   $('#link-activity').on('click', indexActivity)
   $('#link-newsletters').on('click', indexNewsletters)
+
 })
 
 function indexNewsletters(){
