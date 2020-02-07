@@ -12,7 +12,7 @@
           {% for payment in payments %}
           <div class="mb-4">
             <h5>Nom du plan : {{ payment.plan.name }}</h5>
-            <table class="table">
+            <table class="table" id="tablePayments">
               <thead>
                 <tr>
                   <th scope="col">Montant par personne</th>

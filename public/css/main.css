@@ -160,3 +160,7 @@ body {
 .toast-header__supporting-text {
   min-width: 4rem;
 }
+
+.modal-body {
+  overflow-x: auto;
+}

@@ -3,7 +3,7 @@ function choosePayments() {
     url: '/order/getPaymentsPlans',
     type: 'GET',
     success: (data) => {
-      document.getElementById('contenuTest').innerHTML = data;
+      document.getElementById('order_modal_content').innerHTML = data;
       $("#modalPayment").modal()
     }
   })
