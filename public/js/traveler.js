@@ -18,6 +18,7 @@ function enableDisable(id){
 
 function returnTravelersList(){
   $("#modalTraveler").modal('hide')
+  $("#modalPayment").modal('hide')
   getTravelersList()
 }
 
@@ -94,8 +95,8 @@ function addTraveler(){
 
 function passToAccommodations(){
   let table = document.getElementById('tableTravelers');
-  let rowCount = table.tBodies[0].rows.length;
-  if (rowCount == 0){
+  let count = table.tBodies[0].rows[0].cells.length;
+  if (count == 1){
     showToast('Voyageur', null,'Vous devez ajouter un voyageur avant de continuer.')
     return
   }

@@ -60,3 +60,9 @@ function changeLang() {
     }
   })
 }
+
+function alertContact() {
+  alert('Pour nous joindre, vous pouvez vous connecter et ensuite utiliser le service de chat intégré au site.\n' +
+    'Un employé se fera un plaisir de vous aider.\n' +
+    'Vous pouvez également nous joindre au (514)555-1243')
+}
