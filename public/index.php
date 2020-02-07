@@ -168,6 +168,9 @@ $router->add('admin/sendUpdate', ['controller' => 'Newsletters', 'action' => 'sa
 
 // Orders
 $router->add('/order/index', ['controller' => 'Orders', 'action' => 'index'], 'POST');
+$router->add('/order/getPaymentsPlans', ['controller' => 'PaymentsPlans', 'action' => 'getPaymentsPlansTrip'], 'GET');
+$router->add('/order/createOrder', ['controller' => 'PaymentsPlans', 'action' => 'createOrder'], 'POST');
+
 
 // API routes
 $router->add('api/getCircuits', ['controller' => 'API', 'action' => 'getCircuits'], 'GET');

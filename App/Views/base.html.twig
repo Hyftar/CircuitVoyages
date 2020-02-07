@@ -62,8 +62,7 @@
         </span>
       </button>
       <nav>
-        <a href="#" class="nav-link">{% trans %}Circuit.Label{% endtrans %}</a>
-        <a href="#" class="nav-link">{% trans %}Promotion.Label2{% endtrans %}</a>
+        <a href="#" class="nav-link circuits">{% trans %}Circuit.Label{% endtrans %}</a>
         <a id="nav-login-link" href="#" class="nav-link {{ member is not null ? 'hidden' : '' }}">{% trans %}Connection.Label{% endtrans %}</a>
         <a id="nav-account-link" href="#" onclick="membersOptions()" class="nav-link {{ member is null ? 'hidden' : '' }}">{% trans %}Base.Account.Label{% endtrans %}</a>
         <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">{% trans %}Base.Disconnect{% endtrans %}</a>
@@ -126,7 +125,7 @@
   <script src="/js/cart-script.js"></script>
   <script src="/js/paypal.js"></script>
   <script src="/js/order.js"></script>
-
+  <script src="/js/paymentsPlans.js"></script>
   <script>
     (function(d, s, id) {
       let js,
