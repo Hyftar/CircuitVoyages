@@ -26,7 +26,8 @@ function getTravelersList(){
     url: '/admin/getTravelers',
     type: 'GET',
     success: (data) => {
-      document.getElementById("contenuHome").innerHTML = data
+      document.getElementById("order_modal_content").innerHTML = data
+      $("#order_modal").modal('hide')
       $("#modalTravelerList").modal()
     }
   })
@@ -52,7 +53,7 @@ function getTravelerCreator(){
     type: 'GET',
     success: (data) => {
       $("#modalTravelerList").modal('hide')
-      document.getElementById("contenuHome").innerHTML = data
+      document.getElementById("order_modal_content").innerHTML = data
       $("#modalTraveler").modal()
     }
   })
@@ -89,4 +90,16 @@ function addTraveler(){
     }
   })
   return false
+}
+
+function passToAccommodations(){
+  let table = document.getElementById('tableTravelers');
+  let rowCount = table.tBodies[0].rows.length;
+  if (rowCount == 0){
+    showToast('Voyageur', null,'Vous devez ajouter un voyageur avant de continuer.')
+    return
+  }
+  $("#modalTravelerList").modal('hide')
+  choosePayments()
+
 }

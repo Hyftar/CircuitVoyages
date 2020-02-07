@@ -153,9 +153,9 @@ function displayCart() {
       + "<td>" + cartArray[i].id + "</td>"
       + "<td>" + cartArray[i].name+ "</td>"
       + "<td>" + cartArray[i].date + "</td>"
-      + "<td>" + cartArray[i].price + "$</td>"
-      + "<button onclick=\"commander(" + cartArray[i].id + ")\" type=\"button\" class=\"btn-primary checkout-button\" data-dismiss=\"modal\">Commander</button>\n"
-      + `"<td><button class='delete-item btn btn-danger' data-name="${cartArray[i].name}">X</button></td>"`
+      + "<td>" + cartArray[i].price + "$/personne</td>"
+      + "<td><button onclick=\"commander(" + cartArray[i].id + ",'" + cartArray[i].name + "')" + "\" type=\"button\" class=\"btn btn-primary checkout-button\" data-dismiss=\"modal\">" + "Commander" + "</button>"
+      + "<button class=\'delete-item btn btn-danger\' data-name=\"" + cartArray[i].name + "\">X</button></td>"
       + "</tr>";
   }
   $('.show-cart').html(output);

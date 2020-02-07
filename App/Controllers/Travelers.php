@@ -111,8 +111,7 @@ class Travelers extends Controller
         }
 
         Traveler::createTraveler(
-            // NON FONCTIONNEL. DOIT IMPLÉMENTER LE TRIP DANS LA SESSION
-            $_SESSION['trip'][0],
+            $_SESSION['trip'],
             $address_id,
             $_POST['inputFirstName'],
             $_POST['inputLastName'],
@@ -136,7 +135,7 @@ class Travelers extends Controller
         View::renderTemplate(
             'Travelers/listTravelers.html.twig',
             [
-                'travelers' => Traveler::getTravelers(1)
+                'travelers' => Traveler::getTravelers($_SESSION['trip'])
             ]
         );
     }

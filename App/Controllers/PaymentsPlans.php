@@ -11,13 +11,13 @@ class PaymentsPlans extends Controller
 {
 
     public function getPaymentsPlansTripAction(){
-        $circuit_trip = PaymentPlan::getTripCircuitTrip($_SESSION['trip'][0]);
+        $circuit_trip = PaymentPlan::getTripCircuitTrip($_SESSION['trip']);
         $plans = PaymentPlan::getAllPaymentsPlans($circuit_trip['circuit_trip_id']);
         $payments = [];
         foreach ($plans as $plan){
             $paymentsPlan = [];
             $paymentsPlan['plan'] = ['paymentPlanId' => $plan['id'], 'name' => $plan['name']];
-            $count = PaymentPlan::countTravelers($_SESSION['trip'][0]);
+            $count = PaymentPlan::countTravelers($_SESSION['trip']);
             $details = PaymentPlan::getPaymentPlanDetails($plan['id'], $count);
             foreach ($details as $detail){
                 $paymentsPlan['payments'][] = [
@@ -39,7 +39,7 @@ class PaymentsPlans extends Controller
 
     public function createOrderAction(){
         $paymentPlan = $_POST['id'];
-        $trip_id = $_SESSION['trip'][0];
+        $trip_id = $_SESSION['trip'];
         PaymentPlan::choosePaymentPlan($trip_id, $paymentPlan);
     }
 

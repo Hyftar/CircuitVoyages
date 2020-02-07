@@ -12,12 +12,6 @@
       <th scope="col">
         {{ 'Trips.Date.Departure'|trans }}
       </th>
-      <th scope="col">
-        {{ 'Trips.Date.Return'|trans }}
-      </th>
-      <th scope="col">
-        {{ 'Trips.Details'|trans }}
-      </th>
     </tr>
   </thead>
   <tbody>
@@ -28,14 +22,6 @@
         </td>
         <td scope="row">
           {{ trip.departure_date|date('Y-m-d') }}
-        </td>
-        <td scope="row">
-          {{ trip.return_date|date('Y-m-d') }}
-        </td>
-        <td scope="row">
-          <button class="btn btn-info" onclick="return getTripInformations({{ trip.id }})">
-            <span class="fas fa-info-circle"></span>
-          </button>
         </td>
       </tr>
     {% else %}
