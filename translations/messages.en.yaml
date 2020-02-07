@@ -114,10 +114,11 @@ Accommodation:
 Placeholder:
   Email: Email
   Link: Lien
-  Phone: Phone
+  Phone: Phone Number
   Country: Country
   Province: Province
   City: City
+  Region: Region
   Postal: Postal code
   Birth: Date of birth
   Name:
@@ -131,6 +132,7 @@ Placeholder:
     Label: Password
     Create: Create a password
     Confirm: Password confirmation
+  Language: Language
   Mountain: Mountain hiking
 
 Save: Save
@@ -352,6 +354,8 @@ Base:
   Accommodations: Accommodations
   Activities: Activities
   Files: Files
+  Members:
+    List: Members List
   Newsletters: Newsletters
 
 Footer:
@@ -487,6 +491,36 @@ Trips:
     Return: Return date
   Details: Get details
   None: No trips found.
+
+Traveler:
+  Name: Name
+  First: First Name
+  Birth: Date of birth
+  Phone: Phone number
+  Sex:
+    M: Male
+    F: Female
+    Other: Other
+  Country: Country
+  City: City
+  Region: Region
+  Postal: Postal code
+  Address:
+    Label: Address
+    Label2: Traveler address
+  Redress: Redress number (if necessary)
+  Use:
+    Same: Use the same address as the customer
+  Assistance: Assistance required at the airport
+  Info: Traveler information
+  Add: Add a traveler
+
+Cart:
+  Total: Total price
+  Price: Price
+  Name: Name
+  Date: Date
+  Order: Shopping cart
 
 Core:
   Not:

@@ -9,6 +9,7 @@ use App\Models\Activity;
 use App\Models\Circuit;
 use App\Models\CircuitTrip;
 use App\Models\Media;
+use App\Models\Member;
 use \Core\View;
 
 class Admin extends \Core\Controller
@@ -574,5 +575,17 @@ class Admin extends \Core\Controller
 
     public function circuitsOrganizeAction(){
         View::renderTemplate('Admin/organisation_circuit.html.twig');
+    }
+
+    public function getAllMembersAction()
+    {
+        $members = Member::getAllMembers();
+
+        View::renderTemplate(
+            'Admin/members_list.html.twig',
+            [
+                'members' => $members
+            ]
+        );
     }
 }

@@ -541,4 +541,17 @@ class Member extends \Core\Model
 
         return $hash === $password_hash;
     }
+
+    public static function getAllMembers()
+    {
+        $db = static::getDB();
+        $stmt = $db->prepare(
+            'SELECT * FROM members
+             INNER JOIN languages ON languages.id = members.language_id
+             INNER JOIN addresses ON addresses.id = members.address_id'
+        );
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

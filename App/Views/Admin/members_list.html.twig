@@ -1,0 +1,60 @@
+<table id='listM'>
+  <tr>
+    <th id='thM'>Id:</th>
+    <th id='thM'>{% trans %}Placeholder.Email{% endtrans %}:</th>
+    <th id='thM'>{% trans %}Placeholder.Name.Label{% endtrans %}:</th>
+    <th id='thM'>{% trans %}Placeholder.Name.First{% endtrans %}:</th>
+    <th id='thM'>{% trans %}Placeholder.Phone{% endtrans %}:</th>
+    <th id='thM'>{% trans %}Placeholder.Birth{% endtrans %}:</th>
+    <th id='thM'>{% trans %}Placeholder.Country{% endtrans %}:</th>
+    <th id='thM'>{% trans %}Placeholder.City{% endtrans %}:</th>
+    <th id='thM'>{% trans %}Placeholder.Region{% endtrans %}:</th>
+    <th id='thM'>{% trans %}Placeholder.Address.Line1{% endtrans %}:</th>
+    <th id='thM'>{% trans %}Placeholder.Address.Line2{% endtrans %}:</th>
+    <th id='thM'>{% trans %}Placeholder.Postal{% endtrans %}:</th>
+    <th id='thM'>{% trans %}Placeholder.Language{% endtrans %}:</th>
+  </tr>
+  {% for Member in members %}
+  <tr>
+    <td id='tdM'>
+      {{ Member.id}}
+    </td>
+    <td id='tdM'>
+      {{ Member.email}}
+    </td>
+    <td id='tdM'>
+      {{ Member.last_name}}
+    </td>
+    <td id='tdM'>
+      {{ Member.first_name}}
+    </td>
+    <td id='tdM'>
+      {{ Member.phone_number}}
+    </td>
+    <td id='tdM'>
+      {{ Member.date_of_birth}}
+    </td>
+    <td id='tdM'>
+      {{ Member.country}}
+    </td>
+    <td id='tdM'>
+      {{ Member.city}}
+    </td>
+    <td id='tdM'>
+      {{ Member.region}}
+    </td>
+    <td id='tdM'>
+      {{ Member.address_line_1}}
+    </td>
+    <td id='tdM'>
+      {{ Member.address_line_2}}
+    </td>
+    <td id='tdM'>
+      {{ Member.postal_code}}
+    </td>
+    <td id='tdM'>
+      {{ Member.name}}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
