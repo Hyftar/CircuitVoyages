@@ -4,8 +4,7 @@
     autohide: true,
     delay: 3000
   })
-
-  $('.logo').on('click', () => {
+  $('.logo, .circuits').on('click', () => {
     $.ajax({
       url: '/',
       dataType: 'html',
@@ -60,4 +59,10 @@ function changeLang() {
       window.location.reload();
     }
   })
+}
+
+function alertContact() {
+  alert('Pour nous joindre, vous pouvez vous connecter et ensuite utiliser le service de chat intégré au site.\n' +
+    'Un employé se fera un plaisir de vous aider.\n' +
+    'Vous pouvez également nous joindre au (514)555-1243')
 }

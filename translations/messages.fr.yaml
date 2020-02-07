@@ -1,7 +1,7 @@
 Slogan: Voyager n'aura jamais été aussi facile
 
 Circuit:
-  Label: Circuits
+  Label: Accueil
   All: Tous nos circuits
   Price: Prix du circuit
   Creation: Création d'un circuit
@@ -356,6 +356,7 @@ Base:
   Files: Fichiers
   Members:
     List: Liste des membres
+  Newsletters: Bulletins d'informations
 
 Footer:
   Contact: Nous contacter

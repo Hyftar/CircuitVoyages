@@ -76,7 +76,6 @@
               <li class="nav-item"></li>
               <li class="nav-item"></li>
               <li class="nav-item">
-                <a class="nav-link" href="#">{% trans %}Base.Account.Label{% endtrans %}</a>
               </li>
               <li class="nav-item">
                 <a id="admin-logout-link" class="nav-link" href="#">{% trans %}Base.Disconnect{% endtrans %}</a>
@@ -92,8 +91,6 @@
             <a classs="nav-link" href="#collapseComptes" data-toggle="collapse" aria-expanded="false" aria-controls="collapseComptes"><img src="/images/people-24px.svg"></a>
             <div id="collapseComptes" class="collapse" data-parent="#sidebar_container">
               <p id="link-support-chat">{% trans %}Base.Support{% endtrans %}</p>
-              <p>{% trans %}Base.Account.Employee{% endtrans %}</p>
-              <p>{% trans %}Base.Account.Client{% endtrans %}</p>
               <p id="link-members-list">{% trans %}Base.Members.List{% endtrans %}</p>
             </div>
           </li>
@@ -107,15 +104,17 @@
             <a class="nav-link" href="#collapseFinances" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFinances"><img src="/images/trending_up-24px.svg"></a>
             <div id="collapseFinances" class="collapse" data-parent="#sidebar_container">
               <p id="link-promotions">{% trans %}Base.Promotions{% endtrans %}</p>
-              <p>{% trans %}Base.Payments{% endtrans %}</p>
+              <p id="link-newsletters">{% trans %}Base.Newsletters{% endtrans %}</p>
             </div>
           </li>
+        {#
           <li class="nav-item">
             <a class="nav-link" href="#collapseAffichage" data-toggle="collapse" aria-expanded="false" aria-controls="collapseAffichage"><img src="/images/style-24px.svg"></a>
             <div id="collapseAffichage" class="collapse" data-parent="#sidebar_container">
               <p>{% trans %}Base.Landing{% endtrans %}</p>
             </div>
           </li>
+        #}
           <li class="nav-item">
             <a class="nav-link" href="#collapseObjets" data-toggle="collapse" aria-expanded="false" aria-controls="collapseObjets"><img src="/images/library_add-24px.svg"></a>
             <div id="collapseObjets" class="collapse" data-parent="#sidebar_container">

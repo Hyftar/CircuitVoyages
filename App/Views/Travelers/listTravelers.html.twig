@@ -12,7 +12,7 @@
           <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="getTravelerCreator()">Ajouter un voyageur</button>
         </div>
         <div>
-          <table class="table">
+          <table class="table" id="tableTravelers">
             <caption>Voyageurs</caption>
             <thead>
               <tr>
@@ -31,7 +31,7 @@
                   {{ traveler.last_name }}
                 </td>
                 <td>
-                  <button type="button" class=" my-2 float-sm-right btn btn-danger" onclick="deleteTraveler({{ traveler.id|e }})">
+                  <button type="button" class="float-sm-right btn btn-danger" onclick="deleteTraveler({{ traveler.id|e }})">
                     <i class="fas fa-trash"></i>
                   </button>
                 </td>
@@ -47,7 +47,7 @@
           </table>
         </div>
         <div>
-          <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="selectAccommodations()">Passer à la prochaine étape</button>
+          <button type="button" class=" my-2 float-sm-right btn btn-primary" onclick="passToAccommodations()">Passer à la prochaine étape</button>
           <button type="button" class=" my-2 float-sm-right btn btn-secondary"  data-dismiss="modal">Annuler la commande de ce voyage</button>
         </div>
       </div>

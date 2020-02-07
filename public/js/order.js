@@ -1,4 +1,4 @@
-function commander(id) {
+function commander(id, name) {
   $.ajax({
     url: '/order/index',
     type: 'POST',
@@ -6,9 +6,13 @@ function commander(id) {
       'id': id
     },
     success: (data) => {
-      let content = document.getElementById('order-content');
-      content.innerHTML = data;
-      $('#order_modal').modal('show');
+      $("#order_modal").modal('hide')
+      shoppingCart.removeItemFromCart(name)
+      displayCart()
+      getTravelersList()
+      //let content = document.getElementById('order-content');
+      //content.innerHTML = data;
+      //$('#order_modal').modal('show');
     },
   });
 }

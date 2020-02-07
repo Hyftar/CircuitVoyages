@@ -131,8 +131,8 @@ $router->add('member/communications',['controller' => 'Members', 'action' => 'sh
 $router->add('member/sendCommunications',['controller' => 'Members', 'action' => 'sendCommunications'], 'POST');
 $router->add('member/trips',['controller' => 'Members', 'action' => 'showTrips'], 'GET');
 $router->add('member/tripsUpcoming',['controller' => 'Members', 'action' => 'showTripsUpcoming'], 'GET');
-$router->add('member/payments',['controller' => 'Members', 'action' => 'showPayments'], 'GET');
-$router->add('member/paymentsUpcoming',['controller' => 'Members', 'action' => 'showPaymentsUpcoming'], 'GET');
+$router->add('member/payments',['controller' => 'Members', 'action' => 'showPaidPayments'], 'GET');
+$router->add('member/paymentsUpcoming',['controller' => 'Members', 'action' => 'showUnpaidPayments'], 'GET');
 $router->add('member/suscribe',['controller' => 'Members', 'action' => 'suscribe'], 'POST');
 $router->add('member/unsuscribe',['controller' => 'Members', 'action' => 'unsuscribe'], 'POST');
 
@@ -176,6 +176,9 @@ $router->add('admin/deleteTraveler', ['controller' => 'Travelers', 'action' => '
 
 // Orders
 $router->add('/order/index', ['controller' => 'Orders', 'action' => 'index'], 'POST');
+$router->add('/order/getPaymentsPlans', ['controller' => 'PaymentsPlans', 'action' => 'getPaymentsPlansTrip'], 'GET');
+$router->add('/order/createOrder', ['controller' => 'PaymentsPlans', 'action' => 'createOrder'], 'POST');
+
 
 // API routes
 $router->add('api/getCircuits', ['controller' => 'API', 'action' => 'getCircuits'], 'GET');
@@ -186,8 +189,14 @@ $router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 's
 $router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'confirmReset'], 'POST');
 $router->add('send_email', ['controller' => 'ForgotPassword', 'action' => 'sendEmail'], 'POST');
 
+$router->add('cartrow', ['controller' => 'CartRenderer', 'action' => 'getCartRow', 'allowed_variables' => ['id', 'name', 'date', 'price']]);
+
 /* Translator */
 $router->add('changelocale', ['controller' => 'Translation', 'action' => 'setLocale'], 'POST');
+
+// PayPal
+$router->add('payments/getorder/{tpid:/\d+/}', ['controller' => 'Payments', 'action' => 'getOrderId']);
+$router->add('payments/onapprove/', ['controller' => 'Payments', 'action' => 'onApprove'], 'POST');
 
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

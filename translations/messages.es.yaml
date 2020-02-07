@@ -1,7 +1,7 @@
 Slogan: Viajar nunca ha sido tan fácil
 
 Circuit:
-  Label: Circuitos
+  Label: Página principal
   All: Todos nuestros circuitos
   Price: Precio del circuito
   Creation: Creación de un circuito.
@@ -356,6 +356,7 @@ Base:
   Files: Archivos
   Members:
     List: Lista de miembros
+  Newsletters: Boletines informativos
 
 Footer:
   Contact: Contáctenos

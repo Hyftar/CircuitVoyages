@@ -20,11 +20,9 @@
     <link rel="stylesheet" href="/css/support_chat.css"/>
     <link rel="stylesheet" href="/css/circuit.css"/>
     <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async="async" defer="defer"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=Ae7eU0AOSeYMzkILi5bK-xxjYCqwyX0LJfGlfUu8UbDoa0cxl2MrudZRQ9pDRAro5BtjHkljjNjwUf2X"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AcwWV7u7X5pYJHF2X3qDf_pTN5Gbk2MrMCrFMOj8Ipz3g9MI5nCVrrVQ3IC6IFbnx8ArJVrJJ3PTpDvG"></script>
 
-    <title>
-      {% block title %}{% endblock %}
-      | Le Labernois</title>
+    <title>{% block title %}{% endblock %}| Le Labernois</title>
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
@@ -62,8 +60,7 @@
         </span>
       </button>
       <nav>
-        <a href="#" class="nav-link">{% trans %}Circuit.Label{% endtrans %}</a>
-        <a href="#" class="nav-link">{% trans %}Promotion.Label2{% endtrans %}</a>
+        <a href="#" class="nav-link circuits">{% trans %}Circuit.Label{% endtrans %}</a>
         <a id="nav-login-link" href="#" class="nav-link {{ member is not null ? 'hidden' : '' }}">{% trans %}Connection.Label{% endtrans %}</a>
         <a id="nav-account-link" href="#" onclick="membersOptions()" class="nav-link {{ member is null ? 'hidden' : '' }}">{% trans %}Base.Account.Label{% endtrans %}</a>
         <a id="nav-logout-link" href="#" class="nav-link {{ member is null ? 'hidden' : ''  }}">{% trans %}Base.Disconnect{% endtrans %}</a>
@@ -81,8 +78,7 @@
       </div>
       <div class="footer__middle">
         <div class="footer__links">
-          <a href="" class="link-colors">{% trans %}Footer.Contact{% endtrans %}</a>
-          <a href="" class="link-colors">{% trans %}Footer.Newsletter{% endtrans %}</a>
+          <a href="javascript: void(0)" class="link-colors" onclick="alertContact()">{% trans %}Footer.Contact{% endtrans %}</a>
           <a href="/admin" class="link-colors">{% trans %}Footer.Admin{% endtrans %}</a>
         </div>
         <p class="footer-copyright">
@@ -108,6 +104,7 @@
         <div id="order-content" class="modal-content"></div>
       </div>
     </div>
+    <div id="order_modal_content"></div>
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -127,7 +124,7 @@
   <script src="/js/cart-script.js"></script>
   <script src="/js/paypal.js"></script>
   <script src="/js/order.js"></script>
-
+  <script src="/js/paymentsPlans.js"></script>
   <script>
     (function(d, s, id) {
       let js,
