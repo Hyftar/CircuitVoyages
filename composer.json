@@ -13,9 +13,7 @@
       "phpmailer/phpmailer": "~6.1",
       "symfony/translation": "^5.0",
       "symfony/yaml": "^5.0",
-      "symfony/twig-bridge": "*",
-      "paypal/paypal-checkout-sdk": "1.0.1",
-      "ext-json": "*"
+      "symfony/twig-bridge": "*"
     },
     "autoload": {
         "psr-4": {

@@ -196,11 +196,6 @@ function getPaymentsUpcoming(){
     type: 'GET',
     success: (data) => {
       document.getElementById('contentForm').innerHTML = data
-      for (let element of $('.paypal-button')) {
-        let container_id = '#' +  element.attributes['id'].value
-        let tp_id = element.attributes['data-id'].value
-        addPaypalButton(container_id, tp_id)
-      }
       setMemberMenuInactive()
       document.getElementById('linkTrips').classList.add('active')
     }

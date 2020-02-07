@@ -775,8 +775,7 @@ CREATE TABLE `transactions` (
                                 `id` int(11) NOT NULL,
                                 `currency_code` varchar(6) COLLATE utf8mb4_bin NOT NULL,
                                 `gross_amount` decimal(10,2) NOT NULL,
-                                `transaction_order` VARCHAR(200) NOT NULL,
-                                `payer_order` VARCHAR(200) NOT NULL,
+                                `transaction_order` int(11) NOT NULL,
                                 `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 

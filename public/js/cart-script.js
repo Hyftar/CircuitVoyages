@@ -147,21 +147,18 @@ $('.clear-cart').click(function () {
 
 function displayCart() {
   var cartArray = shoppingCart.listCart();
-  $('.show-cart').html('')
+  var output = "";
   for (var i in cartArray) {
-    let url = new URL(window.location.origin + '/cartrow')
-    url.searchParams.set('id', cartArray[i].id)
-    url.searchParams.set('name', cartArray[i].name)
-    url.searchParams.set('date', cartArray[i].date)
-    url.searchParams.set('price', cartArray[i].price)
-    $.ajax({
-      url: url.href,
-      method: 'GET',
-      success: (data) => {
-        $('.show-cart').append(data)
-      }
-    })
+    output += "<tr>"
+      + "<td>" + cartArray[i].id + "</td>"
+      + "<td>" + cartArray[i].name+ "</td>"
+      + "<td>" + cartArray[i].date + "</td>"
+      + "<td>" + cartArray[i].price + "$/personne</td>"
+      + "<td><button onclick=\"commander(" + cartArray[i].id + ",'" + cartArray[i].name + "')" + "\" type=\"button\" class=\"btn btn-primary checkout-button\" data-dismiss=\"modal\">" + "Commander" + "</button>"
+      + "<button class=\'delete-item btn btn-danger\' data-name=\"" + cartArray[i].name + "\">X</button></td>"
+      + "</tr>";
   }
+  $('.show-cart').html(output);
   $('.total-cart').html(shoppingCart.totalCart());
   $('.total-count').html(shoppingCart.totalCount());
 }
@@ -175,3 +172,4 @@ $('.show-cart').on("click", ".delete-item", function (event) {
 })
 
 displayCart();
+

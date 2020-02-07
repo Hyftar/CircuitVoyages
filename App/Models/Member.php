@@ -263,7 +263,7 @@ class Member extends \Core\Model
     {
         $db = static::getDB();
 
-        $stmt = $db->prepare('SELECT * FROM members WHERE id = :id AND address_id IS NOT NULL');
+        $stmt = $db->prepare('SELECT * FROM MEMBERS WHERE id = :id AND address_id IS NOT NULL');
         $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
@@ -460,9 +460,9 @@ class Member extends \Core\Model
             'SELECT trips_payments.id AS tp_id,
                 trips_payments.amount_due AS amount_due,
                 trips_payments.date_due AS date_due,
+                trips_payments.transaction_id AS transaction_id,
                 circuits_trips.departure_date AS departure_date,
-                circuits.name AS name,
-                transactions.transaction_order AS transaction_id
+                circuits.name AS name
                 FROM trips_payments
                 INNER JOIN payments_plans ON payments_plans.id = trips_payments.payment_plan_id
                 INNER JOIN circuits_trips ON payments_plans.circuit_trip_id = circuits_trips.id
