@@ -453,38 +453,40 @@ class Member extends \Core\Model
         return $stmt->fetchAll();
     }
 
-    public static function getPayments($id)
+    public static function getPaidPayments($id)
     {
         $db = static::getDB();
         $stmt = $db->prepare(
-            'SELECT trips_payments.id,
-                trips_payments.amount_due,
-                trips_payments.date_due,
-                trips_payments.transaction_id,
-                circuits_trips.departure_date,
-                circuits.name
+            'SELECT trips_payments.id AS tp_id,
+                trips_payments.amount_due AS amount_due,
+                trips_payments.date_due AS date_due,
+                trips_payments.transaction_id AS transaction_id,
+                circuits_trips.departure_date AS departure_date,
+                circuits.name AS name
                 FROM trips_payments
                 INNER JOIN payments_plans ON payments_plans.id = trips_payments.payment_plan_id
                 INNER JOIN circuits_trips ON payments_plans.circuit_trip_id = circuits_trips.id
                 INNER JOIN circuits ON circuits_trips.circuit_id = circuits.id
                 INNER JOIN trips ON trips_payments.trip_id = trips.id
                 LEFT JOIN transactions ON trips_payments.transaction_id = transactions.id
-                WHERE trips.member_id = :id ORDER BY trips_payments.date_due DESC'
+                WHERE trips.member_id = :id
+                AND trips_payments.transaction_id IS NOT NULL
+                ORDER BY trips_payments.date_due DESC'
         );
         $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public static function getPaymentsUpcoming($id)
+    public static function getUnpaidPayments($id)
     {
         $db = static::getDB();
         $stmt = $db->prepare(
-            'SELECT trips_payments.id,
-                trips_payments.amount_due,
-                trips_payments.date_due,
-                trips_payments.transaction_id,
-                circuits_trips.departure_date,
+            'SELECT trips_payments.id AS tp_id,
+                trips_payments.amount_due AS amount_due,
+                trips_payments.date_due AS date_due,
+                trips_payments.transaction_id AS transaction_id,
+                circuits_trips.departure_date AS departure_date,
                 circuits.name
                 FROM trips_payments
                 INNER JOIN payments_plans ON payments_plans.id = trips_payments.payment_plan_id
@@ -493,7 +495,6 @@ class Member extends \Core\Model
                 INNER JOIN trips ON trips_payments.trip_id = trips.id
                 LEFT JOIN transactions ON trips_payments.transaction_id = transactions.id
                 WHERE trips.member_id = :id AND trips_payments.transaction_id IS NULL
-                AND trips_payments.date_due >= NOW() - INTERVAL 30 DAY
                 ORDER BY trips_payments.date_due ASC'
         );
         $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
