@@ -187,5 +187,9 @@ $router->add('send_email', ['controller' => 'ForgotPassword', 'action' => 'sendE
 /* Translator */
 $router->add('changelocale', ['controller' => 'Translation', 'action' => 'setLocale'], 'POST');
 
+// PayPal
+$router->add('payments/getorder/', ['controller' => 'Payments', 'action' => 'getOrderId']);
+$router->add('payments/onapprove/', ['controller' => 'Payments', 'action' => 'onApprove'], 'POST');
+
 // Send the URI and Method to the dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
