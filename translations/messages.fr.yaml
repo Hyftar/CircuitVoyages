@@ -118,6 +118,7 @@ Placeholder:
   Country: Pays
   Province: Province
   City: Ville
+  Region: Région
   Postal: Code postal
   Birth: Date de naissance
   Name:
@@ -132,6 +133,7 @@ Placeholder:
     Create: Créez un mot de passe
     Confirm: Confirmation du mot de passe
   Mountain: Promenade en montagne
+  Language: Langage
 
 Save: Enregistrer
 SaveC: Enregistrer les changements
@@ -352,6 +354,8 @@ Base:
   Accommodations: Hébergements
   Activities: Activités
   Files: Fichiers
+  Members:
+    List: Liste des membres
 
 Footer:
   Contact: Nous contacter
@@ -486,6 +490,36 @@ Trips:
     Return: Date de retour
   Details: Obtenir des détails
   None: Aucun voyage trouvé.
+
+Traveler:
+  Name: Nom
+  First: Prénom
+  Birth: Date de naissance
+  Phone: Téléphone
+  Sex:
+    M: Homme
+    F: Femme
+    Other: Autre
+  Country: Pays
+  City: Ville
+  Region: Région
+  Postal: Code postal
+  Address:
+    Label: Addresse
+    Label2: Adresse du voyageur
+  Redress: Redress number (si nécessaire)
+  Use:
+    Same: Utiliser la même adresse que le client
+  Assistance: Assistance nécessaire à l'aéroport
+  Info: Information du voyageur
+  Add: Ajouter un voyageur
+
+Cart:
+  Total: Prix total
+  Price: Prix
+  Name: Nom
+  Date: Date
+  Order: Panier de commande
 
 Core:
   Not:

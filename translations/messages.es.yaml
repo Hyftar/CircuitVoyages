@@ -116,6 +116,7 @@ Placeholder:
   Link: Enlace
   Phone: Teléfono
   Country: País
+  Region: Región
   Province: Provincia
   City: Ciudad
   Postal: Código postal
@@ -132,6 +133,7 @@ Placeholder:
     Create: Crea una contraseña
     Confirm: Confirmación de contraseña
   Mountain: Paseo de montaña
+  Language: Idioma
 
 Save: Registrarse
 SaveC: Guardar cambios
@@ -352,6 +354,8 @@ Base:
   Accommodations: Alojamiento
   Activities: Actividades
   Files: Archivos
+  Members:
+    List: Lista de miembros
 
 Footer:
   Contact: Contáctenos
@@ -486,6 +490,36 @@ Trips:
     Return: Fecha de vuelta
   Details: Obtener detalles
   None: No se encontraron viajes.
+
+Traveler:
+  Name: Nombre
+  First: Prime Nombre
+  Birth: Fecha de nacimiento
+  Phone: Número de teléfono
+  Sex:
+    M: Masculino
+    F: Hembra
+    Other: Otra
+  Country: País
+  City: Ciudad
+  Region: Región
+  Postal: Código postal
+  Address:
+    Label: Dirección
+    Label2: Dirección del viajero
+  Redress: Número de reparación (si es necesario)
+  Use:
+    Same: Use la misma dirección que el cliente
+  Assistance: Asistencia requerida en el aeropuerto
+  Info: Información del viajero
+  Add: Añadir un viajero
+
+Cart:
+  Total: Precio total
+  Price: Precio
+  Name: Nombre
+  Date: Fecha
+  Order: Carrito de compras
 
 Core:
   Not:

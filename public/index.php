@@ -78,6 +78,8 @@ $router->add('admin_etape_getupdate', ['controller' => 'Admin', 'action' => 'eta
 $router->add('admin_etape_update', ['controller' => 'Admin', 'action' => 'etapeUpdate'], 'POST');
 $router->add('admin_delete_etape', ['controller' => 'Admin', 'action' => 'etapeDelete'], 'POST');
 
+$router->add('admin/getAllMembers',['controller' => 'Admin', 'action' => 'getAllMembers'], 'GET');
+
 /* -- ADMIN DEPRECATED -- */
 $router->add('admin/circuits/addstep_link', ['controller' => 'Admin', 'action' => 'circuitsAddStepLink'], 'POST');
 $router->add('admin/circuits/addstep_tab', ['controller' => 'Admin', 'action' => 'circuitsAddStepTab']);

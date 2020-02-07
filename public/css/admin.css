@@ -896,3 +896,26 @@ label[for="rating"] {
   border-bottom: none !important;
 }
 
+#listM{
+  border: 1px solid rgb(68, 67, 67);
+  text-align: center;
+}
+
+#tdM
+{
+  border: 1px solid rgb(68, 67, 67);
+  padding-top: 8px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+}
+
+#thM
+{
+  border: 1px solid rgb(68, 67, 67);
+  background-color: rgb(198, 214, 230);
+  padding-top: 6px;
+  padding-right: 8px;
+  padding-bottom: 6px;
+  padding-left: 8px;
+}
