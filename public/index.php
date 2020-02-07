@@ -187,6 +187,8 @@ $router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 's
 $router->add('password_reset', ['controller' => 'ForgotPassword', 'action' => 'confirmReset'], 'POST');
 $router->add('send_email', ['controller' => 'ForgotPassword', 'action' => 'sendEmail'], 'POST');
 
+$router->add('cartrow', ['controller' => 'CartRenderer', 'action' => 'getCartRow', 'allowed_variables' => ['id', 'name', 'date', 'price']]);
+
 /* Translator */
 $router->add('changelocale', ['controller' => 'Translation', 'action' => 'setLocale'], 'POST');
 
